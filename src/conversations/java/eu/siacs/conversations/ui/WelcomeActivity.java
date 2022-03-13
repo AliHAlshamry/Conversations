@@ -119,7 +119,11 @@ public class WelcomeActivity extends XmppActivity implements XmppConnectionServi
             setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
         }
         super.onCreate(savedInstanceState);
-        ActivityWelcomeBinding binding = DataBindingUtil.setContentView(this, R.layout.activity_welcome);
+        Intent intent = new Intent(this, EditAccountActivity.class);
+        //intent.putExtra(EditAccountActivity.EXTRA_FORCE_REGISTER, false);
+        startActivity(intent);
+        finish();
+        /*ActivityWelcomeBinding binding = DataBindingUtil.setContentView(this, R.layout.activity_welcome);
         setSupportActionBar(binding.toolbar);
         configureActionBar(getSupportActionBar(), false);
         binding.registerNewAccount.setOnClickListener(v -> {
@@ -139,7 +143,7 @@ public class WelcomeActivity extends XmppActivity implements XmppConnectionServi
             }
             addInviteUri(intent);
             startActivity(intent);
-        });
+        });*/
 
     }
 

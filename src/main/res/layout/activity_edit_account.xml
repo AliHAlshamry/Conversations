@@ -93,6 +93,29 @@
                                     style="@style/Widget.Conversations.EditText"/>
                             </com.google.android.material.textfield.TextInputLayout>
 
+                            <com.google.android.material.textfield.TextInputLayout
+                                android:id="@+id/re_enter_password_layout"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                app:passwordToggleDrawable="@drawable/visibility_toggle_drawable"
+                                android:visibility="gone"
+                                app:passwordToggleEnabled="true"
+                                app:passwordToggleTint="?android:textColorSecondary"
+                                app:hintTextAppearance="@style/TextAppearance.Conversations.Design.Hint"
+                                app:errorTextAppearance="@style/TextAppearance.Conversations.Design.Error">
+
+                                <eu.siacs.conversations.ui.widget.TextInputEditText
+                                    android:id="@+id/re_enter_account_password"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:layout_alignParentTop="true"
+                                    android:hint="@string/password"
+                                    android:inputType="textPassword"
+
+                                    android:textColor="?attr/edit_text_color"
+                                    style="@style/Widget.Conversations.EditText"/>
+                            </com.google.android.material.textfield.TextInputLayout>
+
                             <LinearLayout
                                 android:id="@+id/name_port"
                                 android:layout_width="fill_parent"
@@ -155,6 +178,7 @@
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:layout_marginTop="8dp"
+                                android:visibility="gone"
                                 android:text="@string/register_account"/>
                         </LinearLayout>
                     </RelativeLayout>

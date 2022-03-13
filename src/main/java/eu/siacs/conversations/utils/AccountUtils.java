@@ -93,7 +93,7 @@ public class AccountUtils {
 
     private static Class<?> getManageAccountActivityClass() {
         try {
-            return Class.forName("eu.siacs.conversations.ui.ManageAccountActivity");
+            return Class.forName("eu.siacs.conversations.ui.ManageAccountActivity1");
         } catch (final ClassNotFoundException e) {
             return null;
         }

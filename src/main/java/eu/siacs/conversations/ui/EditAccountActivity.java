@@ -1,5 +1,6 @@
 package eu.siacs.conversations.ui;
 
+import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.app.PendingIntent;
 import android.content.ActivityNotFoundException;
@@ -686,6 +687,7 @@ public class EditAccountActivity extends OmemoActivity implements OnAccountUpdat
         final MenuItem mamPrefs = menu.findItem(R.id.action_mam_prefs);
         final MenuItem changePresence = menu.findItem(R.id.action_change_presence);
         final MenuItem share = menu.findItem(R.id.action_share);
+        final MenuItem deleteAccount = menu.findItem(R.id.mgmt_account_delete);
         renewCertificate.setVisible(mAccount != null && mAccount.getPrivateKeyAlias() != null);
 
         share.setVisible(mAccount != null && !mInitMode);
@@ -706,6 +708,14 @@ public class EditAccountActivity extends OmemoActivity implements OnAccountUpdat
             changePassword.setVisible(false);
             mamPrefs.setVisible(false);
             changePresence.setVisible(false);
+        }
+
+        if (this.mAccount !=null) {
+            if (this.mAccount.isEnabled()) {
+                menu.findItem(R.id.mgmt_account_enable).setVisible(false);
+            } else {
+                menu.findItem(R.id.mgmt_account_disable).setVisible(false);
+            }
         }
         return super.onCreateOptionsMenu(menu);
     }
@@ -917,6 +927,16 @@ public class EditAccountActivity extends OmemoActivity implements OnAccountUpdat
             case R.id.action_change_presence:
                 changePresence();
                 break;
+
+            case R.id.mgmt_account_disable:
+                disableAccount();
+                return true;
+            case R.id.mgmt_account_enable:
+                enableAccount();
+                return true;
+            case R.id.mgmt_account_delete:
+                deleteAccount();
+                return true;
         }
         return super.onOptionsItemSelected(item);
     }
@@ -1265,6 +1285,7 @@ public class EditAccountActivity extends OmemoActivity implements OnAccountUpdat
         builder.create().show();
     }
 
+    @SuppressLint("StringFormatInvalid")
     private void showOsOptimizationWarning(boolean showBatteryWarning, boolean showDataSaverWarning) {
         this.binding.osOptimization.setVisibility(showBatteryWarning || showDataSaverWarning ? View.VISIBLE : View.GONE);
         if (showDataSaverWarning && android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.N) {
@@ -1313,6 +1334,40 @@ public class EditAccountActivity extends OmemoActivity implements OnAccountUpdat
         this.mFetchingMamPrefsToast = Toast.makeText(this, R.string.fetching_mam_prefs, Toast.LENGTH_LONG);
         this.mFetchingMamPrefsToast.show();
         xmppConnectionService.fetchMamPreferences(mAccount, this);
+    }
+
+    private void disableAccount() {
+        mAccount.setOption(Account.OPTION_DISABLED, true);
+        if (!xmppConnectionService.updateAccount(mAccount)) {
+            Toast.makeText(this, R.string.unable_to_update_account, Toast.LENGTH_SHORT).show();
+        }
+    }
+
+    private void enableAccount() {
+        mAccount.setOption(Account.OPTION_DISABLED, false);
+        final XmppConnection connection = mAccount.getXmppConnection();
+        if (connection != null) {
+            connection.resetEverything();
+        }
+        if (!xmppConnectionService.updateAccount(mAccount)) {
+            Toast.makeText(this, R.string.unable_to_update_account, Toast.LENGTH_SHORT).show();
+        }
+    }
+
+    private void deleteAccount() {
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        builder.setTitle(getString(R.string.mgmt_account_are_you_sure));
+        builder.setIconAttribute(android.R.attr.alertDialogIcon);
+        builder.setMessage(getString(R.string.mgmt_account_delete_confirm_text));
+        builder.setPositiveButton(getString(R.string.delete),
+                (dialog, which) -> {
+                    xmppConnectionService.deleteAccount(mAccount);
+                    if (xmppConnectionService.getAccounts().size() == 0 && Config.MAGIC_CREATE_DOMAIN != null) {
+                        WelcomeActivity.launch(this);
+                    }
+                });
+        builder.setNegativeButton(getString(R.string.cancel), null);
+        builder.create().show();
     }
 
     @Override

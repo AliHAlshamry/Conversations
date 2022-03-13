@@ -625,36 +625,37 @@ public class Message extends AbstractEntity implements AvatarService.Avatarable 
     }
 
     public boolean mergeable(final Message message) {
-        return message != null &&
-                (message.getType() == Message.TYPE_TEXT &&
-                        this.getTransferable() == null &&
-                        message.getTransferable() == null &&
-                        message.getEncryption() != Message.ENCRYPTION_PGP &&
-                        message.getEncryption() != Message.ENCRYPTION_DECRYPTION_FAILED &&
-                        this.getType() == message.getType() &&
-                        //this.getStatus() == message.getStatus() &&
-                        isStatusMergeable(this.getStatus(), message.getStatus()) &&
-                        this.getEncryption() == message.getEncryption() &&
-                        this.getCounterpart() != null &&
-                        this.getCounterpart().equals(message.getCounterpart()) &&
-                        this.edited() == message.edited() &&
-                        (message.getTimeSent() - this.getTimeSent()) <= (Config.MESSAGE_MERGE_WINDOW * 1000) &&
-                        this.getBody().length() + message.getBody().length() <= Config.MAX_DISPLAY_MESSAGE_CHARS &&
-                        !message.isGeoUri() &&
-                        !this.isGeoUri() &&
-                        !message.isOOb() &&
-                        !this.isOOb() &&
-                        !message.treatAsDownloadable() &&
-                        !this.treatAsDownloadable() &&
-                        !message.hasMeCommand() &&
-                        !this.hasMeCommand() &&
-                        !this.bodyIsOnlyEmojis() &&
-                        !message.bodyIsOnlyEmojis() &&
-                        ((this.axolotlFingerprint == null && message.axolotlFingerprint == null) || this.axolotlFingerprint.equals(message.getFingerprint())) &&
-                        UIHelper.sameDay(message.getTimeSent(), this.getTimeSent()) &&
-                        this.getReadByMarkers().equals(message.getReadByMarkers()) &&
-                        !this.conversation.getJid().asBareJid().equals(Config.BUG_REPORTS)
-                );
+        return false;
+//		return message != null &&
+//				(message.getType() == Message.TYPE_TEXT &&
+//						this.getTransferable() == null &&
+//						message.getTransferable() == null &&
+//						message.getEncryption() != Message.ENCRYPTION_PGP &&
+//						message.getEncryption() != Message.ENCRYPTION_DECRYPTION_FAILED &&
+//						this.getType() == message.getType() &&
+//						//this.getStatus() == message.getStatus() &&
+//						isStatusMergeable(this.getStatus(), message.getStatus()) &&
+//						this.getEncryption() == message.getEncryption() &&
+//						this.getCounterpart() != null &&
+//						this.getCounterpart().equals(message.getCounterpart()) &&
+//						this.edited() == message.edited() &&
+//						(message.getTimeSent() - this.getTimeSent()) <= (Config.MESSAGE_MERGE_WINDOW * 1000) &&
+//						this.getBody().length() + message.getBody().length() <= Config.MAX_DISPLAY_MESSAGE_CHARS &&
+//						!message.isGeoUri() &&
+//						!this.isGeoUri() &&
+//						!message.isOOb() &&
+//						!this.isOOb() &&
+//						!message.treatAsDownloadable() &&
+//						!this.treatAsDownloadable() &&
+//						!message.getBody().startsWith(ME_COMMAND) &&
+//						!this.getBody().startsWith(ME_COMMAND) &&
+//						!this.bodyIsOnlyEmojis() &&
+//						!message.bodyIsOnlyEmojis() &&
+//						((this.axolotlFingerprint == null && message.axolotlFingerprint == null) || this.axolotlFingerprint.equals(message.getFingerprint())) &&
+//						UIHelper.sameDay(message.getTimeSent(), this.getTimeSent()) &&
+//						this.getReadByMarkers().equals(message.getReadByMarkers()) &&
+//						!this.conversation.getJid().asBareJid().equals(Config.BUG_REPORTS)
+//				);
     }
 
     private static boolean isStatusMergeable(int a, int b) {

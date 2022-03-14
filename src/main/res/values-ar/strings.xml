@@ -69,7 +69,6 @@
     <string name="send_never">لا تسألني ثانية</string>
     <string name="problem_connecting_to_account">لا يمكن الإتصال بالحساب</string>
     <string name="problem_connecting_to_accounts">لايمكن الإتصال بحسابات متعددة</string>
-    <string name="attach_file">ارفاق ملف</string>
     <string name="add_contact">اضافة جهة اتصال</string>
     <string name="send_failed">فشل التسليم</string>
     <string name="preparing_image">اعداد صورة للإرسال</string>
@@ -759,6 +758,12 @@
     <string name="more_options">المزيد</string>
     <string name="add_to_favorites">تثبيت في الأعلى</string>
     <string name="remove_from_favorites">إلغاء التثبيت</string>
+    <string name="attach_image">اختيار صورة</string>
+    <string name="attach_capture_photo">التقاط صورة</string>
+    <string name="attach_capture_video">التقاط فيديو</string>
+    <string name="attach_file">ملف</string>
+    <string name="attach_voice">رسالة صوتية</string>
+    <string name="attach_location">موقع</string>
     <string name="battery_optimizations_enabled_explained">جهازك يقوم بمنع Conversations من التشغيل في الخلفية من أجل توفير الطاقة، ننصحك بإيقاف تحسين البطارية لتتمكن من استلام جميع الإشعارات والرسائل والمكالمات بصورة طبيعية.</string>
     <string name="battery_optimizations_enabled_dialog">جهازك يقوم بمنع Conversations من التشغيل في الخلفية من أجل توفير الطاقة، يرجى السماح لإيقاف تحسين البطارية لتتمكن من استلام جميع الإشعارات والرسائل والمكالمات بصورة طبيعية.</string>
     <string name="default_resource">جهاز لوحي</string>

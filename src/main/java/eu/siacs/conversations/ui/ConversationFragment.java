@@ -53,6 +53,7 @@ import androidx.core.view.inputmethod.InputConnectionCompat;
 import androidx.core.view.inputmethod.InputContentInfoCompat;
 import androidx.databinding.DataBindingUtil;
 
+import com.google.android.material.bottomsheet.BottomSheetBehavior;
 import com.google.common.base.Optional;
 
 import java.util.ArrayList;
@@ -420,7 +421,8 @@ public class ConversationFragment extends XmppFragment implements EditMessage.Ke
             setSelection(binding.messagesView.getCount() - 1, true);
         }
     };
-    private final OnClickListener mSendButtonListener = new OnClickListener() {
+
+    private OnClickListener mSendButtonListener = new OnClickListener() {
 
         @Override
         public void onClick(View v) {
@@ -460,6 +462,47 @@ public class ConversationFragment extends XmppFragment implements EditMessage.Ke
             }
         }
     };
+
+    private final OnClickListener mAttachButtonListener = new OnClickListener() {
+        @Override
+        public void onClick(View v) {
+            if (sheetBehavior.getState() != BottomSheetBehavior.STATE_EXPANDED) {
+                sheetBehavior.setState(BottomSheetBehavior.STATE_EXPANDED);
+
+            } else {
+                sheetBehavior.setState(BottomSheetBehavior.STATE_COLLAPSED);
+
+            }
+        }
+    };
+    private OnClickListener onAttachClickListener = new OnClickListener() {
+        @Override
+        public void onClick(View v) {
+            sheetBehavior.setState(BottomSheetBehavior.STATE_HIDDEN);
+            switch (v.getId()) {
+                case R.id.btn_attach_image:
+                    attachFile(ATTACHMENT_CHOICE_CHOOSE_IMAGE);
+                    break;
+                case R.id.btn_attach_camera:
+                    attachFile(ATTACHMENT_CHOICE_TAKE_PHOTO);
+                    break;
+                case R.id.btn_attach_video:
+                    attachFile(ATTACHMENT_CHOICE_RECORD_VIDEO);
+                    break;
+                case R.id.btn_attach_file:
+                    attachFile(ATTACHMENT_CHOICE_CHOOSE_FILE);
+                    break;
+                case R.id.btn_attach_voice:
+                    attachFile(ATTACHMENT_CHOICE_RECORD_VOICE);
+                    break;
+                case R.id.btn_attach_location:
+                    attachFile(ATTACHMENT_CHOICE_LOCATION);
+                    break;
+            }
+        }
+    };
+    BottomSheetBehavior sheetBehavior;
+
     private int completionIndex = 0;
     private int lastCompletionLength = 0;
     private String incomplete;
@@ -1042,7 +1085,7 @@ public class ConversationFragment extends XmppFragment implements EditMessage.Ke
 
         binding.textinput.setOnEditorActionListener(mEditorActionListener);
         binding.textinput.setRichContentListener(new String[]{"image/*"}, mEditorContentListener);
-
+        binding.textAttachButton.setOnClickListener(this.mAttachButtonListener);
         binding.textSendButton.setOnClickListener(this.mSendButtonListener);
 
         binding.scrollToBottomButton.setOnClickListener(this.mScrollButtonListener);
@@ -1060,6 +1103,17 @@ public class ConversationFragment extends XmppFragment implements EditMessage.Ke
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
             this.binding.textinput.setCustomInsertionActionModeCallback(new EditMessageActionModeCallback(this.binding.textinput));
         }
+
+        sheetBehavior = BottomSheetBehavior.from(binding.bottomSheet.bottomSheet);
+
+        binding.bottomSheet.btnAttachImage.setOnClickListener(onAttachClickListener);
+        binding.bottomSheet.btnAttachCamera.setOnClickListener(onAttachClickListener);
+        binding.bottomSheet.btnAttachVideo.setOnClickListener(onAttachClickListener);
+        binding.bottomSheet.btnAttachFile.setOnClickListener(onAttachClickListener);
+        binding.bottomSheet.btnAttachVoice.setOnClickListener(onAttachClickListener);
+        binding.bottomSheet.btnAttachLocation.setOnClickListener(onAttachClickListener);
+
+
 
         return binding.getRoot();
     }

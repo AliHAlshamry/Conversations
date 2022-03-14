@@ -1,0 +1,130 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <RelativeLayout
+        android:id="@+id/bottom_sheet"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:elevation="10dp"
+        app:behavior_hideable="true"
+        app:behavior_peekHeight="0dp"
+        app:layout_behavior="com.google.android.material.bottomsheet.BottomSheetBehavior">
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="#ffffff"
+            android:columnCount="3"
+            android:orientation="vertical"
+            android:padding="16dp"
+            android:gravity="center"
+            android:rowCount="3">
+
+            <RelativeLayout
+                android:background="@drawable/sheet_header_rectangle"
+                android:layout_width="60dp"
+                android:layout_height="6dp"/>
+
+            <LinearLayout
+                android:layout_gravity="center"
+                android:gravity="center"
+                android:layout_marginTop="24dp"
+                android:layout_marginBottom="24dp"
+                android:orientation="horizontal"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <Button
+                    android:id="@+id/btn_attach_image"
+                    style="?android:attr/borderlessButtonStyle"
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+                    android:layout_height="wrap_content"
+                    android:drawableTop="@drawable/ic_attach_photo"
+                    android:drawablePadding="12dp"
+                    android:paddingHorizontal="16dp"
+                    android:text="@string/attach_image" />
+
+                <Button
+                    android:id="@+id/btn_attach_camera"
+                    style="?android:attr/borderlessButtonStyle"
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+                    android:layout_height="wrap_content"
+                    android:drawableTop="@drawable/ic_attach_camera"
+                    android:drawablePadding="12dp"
+                    android:paddingHorizontal="16dp"
+                    android:text="@string/attach_capture_photo" />
+
+                <Button
+                    android:id="@+id/btn_attach_video"
+                    style="?android:attr/borderlessButtonStyle"
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+                    android:layout_height="wrap_content"
+                    android:drawableTop="@drawable/ic_attach_videocam"
+                    android:drawablePadding="12dp"
+                    android:paddingHorizontal="16dp"
+                    android:text="@string/attach_capture_video" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:orientation="horizontal"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+                <Button
+                    android:id="@+id/btn_attach_file"
+                    style="?android:attr/borderlessButtonStyle"
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+                    android:layout_height="wrap_content"
+                    android:drawableTop="@drawable/ic_attach_document"
+                    android:drawablePadding="12dp"
+                    android:paddingHorizontal="16dp"
+                    android:text="@string/attach_file" />
+
+                <Button
+                    android:id="@+id/btn_attach_voice"
+                    style="?android:attr/borderlessButtonStyle"
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+                    android:layout_height="wrap_content"
+                    android:drawableTop="@drawable/ic_attach_record"
+                    android:drawablePadding="12dp"
+                    android:paddingHorizontal="16dp"
+                    android:text="@string/attach_voice" />
+
+                <Button
+                    android:id="@+id/btn_attach_location"
+                    style="?android:attr/borderlessButtonStyle"
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+                    android:layout_height="wrap_content"
+                    android:drawableTop="@drawable/ic_attach_location"
+                    android:drawablePadding="12dp"
+                    android:paddingHorizontal="16dp"
+                    android:text="@string/attach_location" />
+
+
+            </LinearLayout>
+        </LinearLayout>
+
+        <Button
+            android:id="@+id/btn_close"
+            style="?android:attr/borderlessButtonStyle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentRight="true"
+            android:layout_gravity="end"
+            android:layout_margin="16dp"
+            android:text="x"
+            android:visibility="gone" />
+
+
+    </RelativeLayout>
+
+</layout>

@@ -39,6 +39,9 @@ public class SettingsFragment extends PreferenceFragment {
 			openPreferenceScreen(page);
 		}
 
+		PreferenceCategory uiCategory = (PreferenceCategory) findPreference("ui");
+		Preference quickAction = findPreference("quick_action");
+		uiCategory.removePreference(quickAction);
 	}
 
 	@Override

@@ -163,7 +163,7 @@
             android:summary="@string/pref_accept_files_summary"
             android:title="@string/pref_accept_files" />
     </PreferenceCategory>
-    <PreferenceCategory android:title="@string/pref_ui_options">
+    <PreferenceCategory android:key="ui" android:title="@string/pref_ui_options">
         <CheckBoxPreference
             android:defaultValue="@bool/use_green_background"
             android:key="use_green_background"

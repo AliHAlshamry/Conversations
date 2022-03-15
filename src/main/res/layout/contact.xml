@@ -14,7 +14,20 @@
             android:layout_height="48dp"
             android:layout_alignParentLeft="true"
             android:scaleType="centerCrop"
-            app:riv_corner_radius="2dp"/>
+            app:riv_corner_radius="50dp"/>
+
+        <ImageView
+            android:id="@+id/online_tag"
+            android:layout_width="14dp"
+            android:layout_height="14dp"
+            android:visibility="invisible"
+            android:layout_alignEnd="@+id/contact_photo"
+            android:layout_alignRight="@+id/contact_photo"
+            android:layout_alignBottom="@+id/contact_photo"
+            android:layout_marginEnd="0dp"
+            android:layout_marginRight="0dp"
+            android:layout_marginBottom="0dp"
+            android:src="@drawable/account_online" />
 
         <LinearLayout
             android:layout_width="wrap_content"

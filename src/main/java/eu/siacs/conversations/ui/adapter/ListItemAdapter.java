@@ -65,18 +65,20 @@ public class ListItemAdapter extends ArrayAdapter<ListItem> {
 		view.setBackground(StyledAttributes.getDrawable(view.getContext(),R.attr.list_item_background));
 
 		List<ListItem.Tag> tags = item.getTags(activity);
-		if (tags.size() == 0 || !this.showDynamicTags) {
-			viewHolder.tags.setVisibility(View.GONE);
+		if (tags.size() == 0) {
+			//viewHolder.tags.setVisibility(View.GONE);
+			viewHolder.online_tag.setVisibility(View.INVISIBLE);
 		} else {
-			viewHolder.tags.setVisibility(View.VISIBLE);
-			viewHolder.tags.removeAllViewsInLayout();
+			//viewHolder.tags.setVisibility(View.VISIBLE);
+			viewHolder.online_tag.setVisibility(View.VISIBLE);
+			/*viewHolder.tags.removeAllViewsInLayout();
 			for (ListItem.Tag tag : tags) {
 				TextView tv = (TextView) inflater.inflate(R.layout.list_item_tag, viewHolder.tags, false);
 				tv.setText(tag.getName());
 				tv.setBackgroundColor(tag.getColor());
 				tv.setOnClickListener(this.onTagTvClick);
 				viewHolder.tags.addView(tv);
-			}
+			}*/
 		}
 		final Jid jid = item.getJid();
 		if (jid != null) {
@@ -104,7 +106,7 @@ public class ListItemAdapter extends ArrayAdapter<ListItem> {
 		private TextView jid;
 		private ImageView avatar;
 		private FlowLayout tags;
-
+		private ImageView online_tag;
 		private ViewHolder() {
 
 		}
@@ -115,6 +117,7 @@ public class ListItemAdapter extends ArrayAdapter<ListItem> {
 			viewHolder.jid = binding.contactJid;
 			viewHolder.avatar = binding.contactPhoto;
 			viewHolder.tags = binding.tags;
+			viewHolder.online_tag = binding.onlineTag;
 			binding.getRoot().setTag(viewHolder);
 			return viewHolder;
 		}

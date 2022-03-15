@@ -470,7 +470,7 @@ public class ConversationFragment extends XmppFragment implements EditMessage.Ke
                 sheetBehavior.setState(BottomSheetBehavior.STATE_EXPANDED);
 
             } else {
-                sheetBehavior.setState(BottomSheetBehavior.STATE_COLLAPSED);
+                sheetBehavior.setState(BottomSheetBehavior.STATE_HIDDEN);
 
             }
         }

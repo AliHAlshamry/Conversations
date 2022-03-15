@@ -25,8 +25,19 @@
                     android:layout_height="56dp"
                     android:layout_alignParentLeft="true"
                     android:scaleType="centerCrop"
-                    app:riv_corner_radius="2dp" />
-
+                    app:riv_corner_radius="50dp" />
+                <ImageView
+                    android:id="@+id/online_tag"
+                    android:layout_width="14dp"
+                    android:layout_height="14dp"
+                    android:layout_alignEnd="@+id/conversation_image"
+                    android:layout_alignRight="@+id/conversation_image"
+                    android:layout_alignBottom="@+id/conversation_image"
+                    android:layout_marginEnd="2dp"
+                    android:layout_marginRight="2dp"
+                    android:layout_marginBottom="2dp"
+                    android:src="@drawable/account_online"
+                    android:visibility="invisible" />
                 <RelativeLayout
                     android:layout_width="fill_parent"
                     android:layout_height="wrap_content"

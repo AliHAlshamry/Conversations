@@ -204,6 +204,12 @@ public class ConversationAdapter extends RecyclerView.Adapter<ConversationAdapte
         }
         viewHolder.binding.pinnedOnTop.setVisibility(conversation.getBooleanAttribute(Conversation.ATTRIBUTE_PINNED_ON_TOP,false) ? View.VISIBLE : View.GONE);
         viewHolder.binding.conversationLastupdate.setText(UIHelper.readableTimeDifference(activity, timestamp));
+        if(conversation.getContact().getShownStatus().name().equals("ONLINE")&&conversation.getMode() == Conversation.MODE_SINGLE){
+            viewHolder.binding.onlineTag.setVisibility(View.VISIBLE);
+            conversation.alwaysNotify();
+        }
+        if(conversation.getMode() == Conversation.MODE_MULTI)
+            viewHolder.binding.onlineTag.setVisibility(View.INVISIBLE);
         AvatarWorkerTask.loadAvatar(conversation, viewHolder.binding.conversationImage, R.dimen.avatar_on_conversation_overview);
         viewHolder.itemView.setOnClickListener(v -> listener.onConversationClick(v, conversation));
     }

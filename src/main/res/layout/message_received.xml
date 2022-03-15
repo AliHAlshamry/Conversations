@@ -82,11 +82,11 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center_vertical"
-                    android:gravity="center_vertical"
-                    android:text="@string/sending"
                     android:accessibilityTraversalAfter="@id/message_photo"
                     android:accessibilityTraversalBefore="@id/message_content"
-                    android:textAppearance="@style/TextAppearance.Conversations.Caption"/>
+                    android:gravity="center_vertical"
+                    android:text="@string/sending"
+                    android:textAppearance="@style/TextAppearance.Conversations.Caption" />
             </LinearLayout>
         </LinearLayout>
     </LinearLayout>

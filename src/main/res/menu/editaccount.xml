@@ -44,7 +44,9 @@
         android:checkable="true"
         android:checked="false"
         app:showAsAction="never"
-        android:title="@string/server_info_show_more"/>
+        android:title="@string/server_info_show_more"
+        android:visibility="gone"
+        />
 
     <item
         android:id="@+id/action_mam_prefs"

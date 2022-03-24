@@ -69,23 +69,23 @@
                                         android:layout_width="wrap_content"
                                         android:layout_height="wrap_content"
                                         android:layout_alignParentStart="true"
-                                        android:layout_toStartOf="@+id/edit_muc_name_button"
-                                        android:orientation="vertical"
                                         android:layout_alignParentLeft="true"
-                                        android:layout_toLeftOf="@+id/edit_muc_name_button">
+                                        android:layout_toStartOf="@+id/edit_muc_name_button"
+                                        android:layout_toLeftOf="@+id/edit_muc_name_button"
+                                        android:orientation="vertical">
 
                                         <TextView
                                             android:id="@+id/muc_title"
                                             android:layout_width="wrap_content"
                                             android:layout_height="wrap_content"
-                                            android:textAppearance="@style/TextAppearance.Conversations.Title"/>
+                                            android:textAppearance="@style/TextAppearance.Conversations.Title" />
 
                                         <TextView
                                             android:id="@+id/muc_subject"
                                             android:layout_width="wrap_content"
                                             android:layout_height="wrap_content"
                                             android:autoLink="web"
-                                            android:textAppearance="@style/TextAppearance.Conversations.Subhead"/>
+                                            android:textAppearance="@style/TextAppearance.Conversations.Subhead" />
                                     </LinearLayout>
 
 
@@ -134,13 +134,13 @@
                                         android:id="@+id/edit_muc_name_button"
                                         android:layout_width="wrap_content"
                                         android:layout_height="wrap_content"
-                                        android:layout_alignParentEnd="true"
                                         android:layout_alignParentTop="true"
+                                        android:layout_alignParentEnd="true"
+                                        android:layout_alignParentRight="true"
                                         android:alpha="?attr/icon_alpha"
                                         android:background="?attr/selectableItemBackgroundBorderless"
                                         android:padding="@dimen/image_button_padding"
-                                        android:src="?attr/icon_edit_body"
-                                        android:layout_alignParentRight="true" />
+                                        android:src="?attr/icon_edit_body" />
                                 </RelativeLayout>
                             </LinearLayout>
                         </RelativeLayout>
@@ -155,11 +155,11 @@
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:layout_alignParentStart="true"
+                                android:layout_alignParentLeft="true"
                                 android:layout_centerVertical="true"
                                 android:layout_toStartOf="@+id/change_conference_button"
-                                android:textAppearance="@style/TextAppearance.Conversations.Body1"
-                                android:layout_alignParentLeft="true"
-                                android:layout_toLeftOf="@+id/change_conference_button" />
+                                android:layout_toLeftOf="@+id/change_conference_button"
+                                android:textAppearance="@style/TextAppearance.Conversations.Body1" />
 
                             <ImageButton
                                 android:id="@+id/change_conference_button"
@@ -167,13 +167,13 @@
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:layout_alignParentEnd="true"
+                                android:layout_alignParentRight="true"
                                 android:layout_centerVertical="true"
                                 android:layout_gravity="center_horizontal"
                                 android:alpha="?attr/icon_alpha"
                                 android:background="?attr/selectableItemBackgroundBorderless"
                                 android:padding="@dimen/image_button_padding"
-                                android:src="?attr/icon_settings"
-                                android:layout_alignParentRight="true" />
+                                android:src="?attr/icon_settings" />
                         </RelativeLayout>
 
                         <TableLayout

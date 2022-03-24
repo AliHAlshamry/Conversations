@@ -157,7 +157,7 @@
     <string name="mgmt_account_are_you_sure">هل أنت متأكد؟</string>
     <string name="mgmt_account_delete_confirm_text">إذا قمت بحذف حسابك، فسوف تفقد سجل محادثاتك بالكامل</string>
     <string name="attach_record_voice">تسجيل صوت</string>
-    <string name="account_settings_jabber_id">العنوان</string>
+    <string name="account_settings_jabber_id">البريد الالكتروني</string>
     <string name="block_jabber_id">حظر الحساب</string>
     <string name="account_settings_example_jabber_id">username@example.com</string>
     <string name="password">كلمة السر</string>

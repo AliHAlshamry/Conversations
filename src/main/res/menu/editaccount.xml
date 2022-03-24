@@ -45,7 +45,7 @@
         android:checked="false"
         app:showAsAction="never"
         android:title="@string/server_info_show_more"
-        android:visibility="gone"
+        android:visible="false"
         />
 
     <item

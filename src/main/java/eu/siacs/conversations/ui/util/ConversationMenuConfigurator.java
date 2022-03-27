@@ -60,7 +60,8 @@ public class ConversationMenuConfigurator {
 		} else {
 			visible = true;
 		}
-		menuAttach.setVisible(visible);
+//		menuAttach.setVisible(visible);
+		menuAttach.setVisible(false);
 		if (!visible) {
 			return;
 		}

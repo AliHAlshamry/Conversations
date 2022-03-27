@@ -172,7 +172,7 @@
     <string name="encryption_choice_unencrypted">Unencrypted</string>
     <string name="encryption_choice_otr">OTR</string>
     <string name="encryption_choice_pgp">OpenPGP</string>
-    <string name="encryption_choice_omemo">OMEMO</string>
+    <string name="encryption_choice_omemo">Full Encrypted</string>
     <string name="mgmt_account_delete">Delete account</string>
     <string name="mgmt_account_disable">Temporarily disable</string>
     <string name="mgmt_account_publish_avatar">Publish avatar</string>

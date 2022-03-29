@@ -9,7 +9,7 @@
     <bool name="treat_vibrate_as_silent">false</bool>
     <bool name="confirm_messages">true</bool>
     <bool name="chat_states">true</bool>
-    <bool name="last_activity">false</bool>
+    <bool name="last_activity1">true</bool>
     <bool name="vibrate_on_notification">true</bool>
     <bool name="led">true</bool>
     <bool name="enable_quiet_hours">false</bool>

@@ -2464,10 +2464,59 @@ public class ConversationFragment extends XmppFragment implements EditMessage.Ke
                 }
                 updateSendButton();
                 updateEditablity();
+                updateAppBar();
+                activity.invalidateOptionsMenu();
             }
         }
     }
 
+    private void updateAppBar() {
+        String connectionStatus = "";
+        switch (conversation.getAccount().getStatus()) {
+            case DISABLED:
+                connectionStatus = getString(R.string.account_status_disabled);
+                break;
+            case CONNECTING:
+                connectionStatus = getString(R.string.account_status_connecting);
+                break;
+            case NO_INTERNET:
+                connectionStatus = getString(R.string.account_status_no_internet);
+                break;
+            case OFFLINE:
+                connectionStatus = getString(R.string.account_status_offline);
+                break;
+            case SERVER_NOT_FOUND:
+                connectionStatus = getString(R.string.account_status_not_found);
+                break;
+        }
+        if (connectionStatus != "") {
+            activity.getSupportActionBar().setSubtitle(connectionStatus);
+            return;
+        }
+        if (conversation.getAccount().getStatus() == Account.State.ONLINE) {
+            Contact contact = conversation.getContact();
+            if (contact.isBlocked()) {
+                activity.getSupportActionBar().setSubtitle(R.string.contact_blocked);
+            } else {
+                //boolean o=activity.xmppConnectionService.getAccounts().get(0).isOnlineAndConnected();
+                Presence.Status status = contact.getShownStatus();
+                if (contact.getLastseen() > 0
+                        && contact.getPresences().allOrNonSupport(Namespace.IDLE)) {
+                    activity.getSupportActionBar().setSubtitle(UIHelper.lastseen(activity, contact.isActive(), contact.getLastseen()));
+                } else {
+                    if (conversation.getMode() == Conversational.MODE_SINGLE) {
+                        if (status == Presence.Status.ONLINE) {
+                            activity.getSupportActionBar().setSubtitle(getString(R.string.account_status_online));
+                        } else {
+                            activity.getSupportActionBar().setIcon(activity.getResources().getDrawable(R.drawable.ic_attach_camera));
+                        }
+                    }
+                }
+            }
+        } else {
+            activity.getSupportActionBar().setIcon(activity.getResources().getDrawable(R.drawable.ic_attach_camera));
+        }
+    }
     protected void messageSent() {
         mSendingPgpMessage.set(false);
         this.binding.textinput.setText("");

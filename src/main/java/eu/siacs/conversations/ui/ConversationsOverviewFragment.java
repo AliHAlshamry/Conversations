@@ -352,6 +352,7 @@ public class ConversationsOverviewFragment extends XmppFragment {
 	@Override
 	public void onResume() {
 		super.onResume();
+		this.activity.getSupportActionBar().setSubtitle("");
 		Log.d(Config.LOGTAG, "ConversationsOverviewFragment.onResume()");
 	}
 
@@ -414,6 +415,29 @@ public class ConversationsOverviewFragment extends XmppFragment {
 		if (scrollState != null) {
 			setScrollPosition(scrollState);
 		}
+		updateAppBar();
+	}
+
+	private void updateAppBar() {
+		String connectionStatus = "";
+		switch (this.activity.xmppConnectionService.getAccounts().get(0).getStatus()) {
+			case DISABLED:
+				connectionStatus = getString(R.string.account_status_disabled);
+				break;
+			case CONNECTING:
+				connectionStatus = getString(R.string.account_status_connecting);
+				break;
+			case NO_INTERNET:
+				connectionStatus = getString(R.string.account_status_no_internet);
+				break;
+			case OFFLINE:
+				connectionStatus = getString(R.string.account_status_offline);
+				break;
+			case SERVER_NOT_FOUND:
+				connectionStatus = getString(R.string.account_status_not_found);
+				break;
+		}
+		activity.getSupportActionBar().setSubtitle(connectionStatus);
 	}
 
 	private void setScrollPosition(ScrollState scrollPosition) {

@@ -92,7 +92,7 @@
     <string name="send_unencrypted_message">Send unencrypted message</string>
     <string name="send_message">Send message</string>
     <string name="send_message_to_x">Send message to %s</string>
-    <string name="send_omemo_message">Send OMEMO encrypted message</string>
+    <string name="send_omemo_message">Send encrypted message</string>
     <string name="send_omemo_x509_message">Send v\\OMEMO encrypted message</string>
     <string name="send_pgp_message">Send OpenPGP encrypted message</string>
     <string name="your_nick_has_been_changed">New nickname in use</string>
@@ -980,5 +980,5 @@
     <string name="attach_location">Location</string>
     <string name="account_registrations_are_not_supported">Account registrations are not supported</string>
     <string name="no_xmpp_adddress_found">No XMPP address found</string>
-
+    <string name="offline">offline</string>
 </resources>

@@ -415,7 +415,7 @@ public class ContactDetailsActivity extends OmemoActivity implements OnAccountUp
             binding.statusMessage.setVisibility(View.GONE);
         }
 
-        if (contact.isBlocked() && !this.showDynamicTags) {
+        if (contact.isBlocked()) {
             binding.detailsLastseen.setVisibility(View.VISIBLE);
             binding.detailsLastseen.setText(R.string.contact_blocked);
         } else {

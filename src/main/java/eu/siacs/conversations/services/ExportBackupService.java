@@ -108,7 +108,9 @@ public class ExportBackupService extends Service {
                 if (value == null || Account.ROSTERVERSION.equals(accountCursor.getColumnName(i))) {
                     builder.append("NULL");
                 } else if (value.matches("\\d+")) {
-                    int intValue = Integer.parseInt(value);
+                    //remove this line because it cause an error in select account (we already have one account)
+                    //int intValue = Integer.parseInt(value);
+                    int intValue =1;
                     if (Account.OPTIONS.equals(accountCursor.getColumnName(i))) {
                         intValue |= 1 << Account.OPTION_DISABLED;
                     }

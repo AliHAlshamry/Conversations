@@ -48,6 +48,8 @@ import android.util.Log;
 import android.view.KeyEvent;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.ImageView;
 import android.widget.Toast;
 
 import androidx.annotation.IdRes;
@@ -78,9 +80,11 @@ import eu.siacs.conversations.ui.interfaces.OnConversationSelected;
 import eu.siacs.conversations.ui.interfaces.OnConversationsListItemUpdated;
 import eu.siacs.conversations.ui.util.ActionBarUtil;
 import eu.siacs.conversations.ui.util.ActivityResult;
+import eu.siacs.conversations.ui.util.AvatarWorkerTask;
 import eu.siacs.conversations.ui.util.ConversationMenuConfigurator;
 import eu.siacs.conversations.ui.util.MenuDoubleTabUtil;
 import eu.siacs.conversations.ui.util.PendingItem;
+import eu.siacs.conversations.utils.AccountUtils;
 import eu.siacs.conversations.utils.EmojiWrapper;
 import eu.siacs.conversations.utils.ExceptionHelper;
 import eu.siacs.conversations.utils.SignupUtils;
@@ -620,11 +624,13 @@ public class ConversationsActivity extends XmppActivity implements OnConversatio
         if (actionBar == null) {
             return;
         }
+        final ImageView profilePhoto = findViewById(R.id.profile_photo);
         final FragmentManager fragmentManager = getFragmentManager();
         final Fragment mainFragment = fragmentManager.findFragmentById(R.id.main_fragment);
         if (mainFragment instanceof ConversationFragment) {
             final Conversation conversation = ((ConversationFragment) mainFragment).getConversation();
             if (conversation != null) {
+                profilePhoto.setVisibility(View.GONE);
                 actionBar.setTitle(EmojiWrapper.transform(conversation.getName()));
                 actionBar.setDisplayHomeAsUpEnabled(true);
                 ActionBarUtil.setActionBarOnClickListener(
@@ -634,7 +640,15 @@ public class ConversationsActivity extends XmppActivity implements OnConversatio
                 return;
             }
         }
-        actionBar.setTitle(R.string.app_name);
+        actionBar.setTitle("");
+        profilePhoto.setVisibility(View.VISIBLE);
+        if(xmppConnectionService != null){
+            final Account account = AccountUtils.getFirst(xmppConnectionService);
+            AvatarWorkerTask.loadAvatar(account, profilePhoto, R.dimen.media_size);
+        }
+        profilePhoto.setOnClickListener(view -> {
+            AccountUtils.launchManageAccount(this);
+        });
         actionBar.setDisplayHomeAsUpEnabled(false);
         ActionBarUtil.resetActionBarOnClickListeners(binding.toolbar);
     }

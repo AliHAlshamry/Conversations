@@ -841,6 +841,11 @@ public class MessageAdapter extends ArrayAdapter<Message> {
                     viewHolder.encryption.setText(CryptoHelper.encryptionTypeToText(message.getEncryption()));
                 }
             }
+            if(conversation.getMode() == Conversational.MODE_SINGLE){
+                viewHolder.contact_picture.setVisibility(View.GONE);
+            }else{
+                viewHolder.contact_picture.setVisibility(View.VISIBLE);
+            }
         }
 
         displayStatus(viewHolder, message, type, darkBackground);

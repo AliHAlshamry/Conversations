@@ -90,7 +90,7 @@
     <string name="also_end_conversation">Close this conversation afterwards</string>
     <string name="choose_presence">Choose device</string>
     <string name="send_unencrypted_message">Send encrypted message</string>
-    <string name="send_message">Send message</string>
+    <string name="send_message">Send full encrypted message</string>
     <string name="send_message_to_x">Send message to %s</string>
     <string name="send_omemo_message">message</string>
     <string name="send_omemo_x509_message">Send v\\OMEMO encrypted message</string>

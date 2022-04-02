@@ -60,7 +60,8 @@ public class ConversationMenuConfigurator {
 		} else {
 			visible = true;
 		}
-		menuAttach.setVisible(visible);
+//		menuAttach.setVisible(visible);
+		menuAttach.setVisible(false);
 		if (!visible) {
 			return;
 		}
@@ -106,7 +107,8 @@ public class ConversationMenuConfigurator {
 			menuSecure.setIcon(R.drawable.ic_lock_white_24dp);
 		}
 
-		pgp.setVisible(Config.supportOpenPgp());
+//		pgp.setVisible(Config.supportOpenPgp());
+		pgp.setVisible(false);
 		none.setVisible(Config.supportUnencrypted() || conversation.getMode() == Conversation.MODE_MULTI);
 		axolotl.setVisible(Config.supportOmemo());
 		switch (conversation.getNextEncryption()) {

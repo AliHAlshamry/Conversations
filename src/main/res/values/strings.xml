@@ -169,10 +169,10 @@
     <string name="account_status_incompatible_server">Incompatible server</string>
     <string name="account_status_stream_error">Stream error</string>
     <string name="account_status_stream_opening_error">Stream opening error</string>
-    <string name="encryption_choice_unencrypted">Unencrypted</string>
+    <string name="encryption_choice_unencrypted">Encrypted</string>
     <string name="encryption_choice_otr">OTR</string>
     <string name="encryption_choice_pgp">OpenPGP</string>
-    <string name="encryption_choice_omemo">OMEMO</string>
+    <string name="encryption_choice_omemo">Full Encrypted</string>
     <string name="mgmt_account_delete">Delete account</string>
     <string name="mgmt_account_disable">Temporarily disable</string>
     <string name="mgmt_account_publish_avatar">Publish avatar</string>
@@ -184,7 +184,7 @@
     <string name="mgmt_account_are_you_sure">Are you sure?</string>
     <string name="mgmt_account_delete_confirm_text">Deleting your account erases your entire conversation history</string>
     <string name="attach_record_voice">Record voice</string>
-    <string name="account_settings_jabber_id">XMPP address</string>
+    <string name="account_settings_jabber_id">Email address</string>
     <string name="block_jabber_id">Block XMPP address</string>
     <string name="account_settings_example_jabber_id">username@example.com</string>
     <string name="password">Password</string>

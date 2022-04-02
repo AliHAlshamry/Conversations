@@ -349,11 +349,12 @@ public class StartConversationActivity extends XmppActivity implements XmppConne
         final Menu menu = popupMenu.getMenu();
         for (int i = 0; i < menu.size(); i++) {
             final MenuItem menuItem = menu.getItem(i);
+            if(menuItem.getItemId() != R.id.discover_public_channels){
             final SpeedDialActionItem actionItem = new SpeedDialActionItem.Builder(menuItem.getItemId(), menuItem.getIcon())
                     .setLabel(menuItem.getTitle() != null ? menuItem.getTitle().toString() : null)
                     .setFabImageTintColor(ContextCompat.getColor(this, R.color.white))
                     .create();
-            speedDialView.addActionItem(actionItem);
+            speedDialView.addActionItem(actionItem);}
         }
     }
 

@@ -79,7 +79,7 @@
     <string name="clear_histor_msg">هل أنت متأكد من أنك تريد حذف جميع الرسائل في هذه المحادثة؟\n\n<b>تحذير:</b> لن يحذف هذا نسخًا من الرسائل المخزنة على الأجهزة الأخرى.</string>
     <string name="delete_file_dialog">حذف الملف</string>
     <string name="choose_presence">إختر جهازاً</string>
-    <string name="send_unencrypted_message">إرسال رسالة غير مشفرة</string>
+    <string name="send_unencrypted_message">إرسال رسالة مشفرة</string>
     <string name="send_message">إبعث رسالة</string>
     <string name="send_message_to_x">إبعث رسالة إلى %s</string>
     <string name="send_omemo_message">ارسال رسالة تامة التشفير</string>

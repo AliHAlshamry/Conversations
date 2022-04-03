@@ -422,24 +422,4 @@ public class ConversationsOverviewFragment extends XmppFragment {
 			layoutManager.scrollToPositionWithOffset(scrollPosition.position, scrollPosition.offset);
 		}
 	}
-	private void hiddenMenuItem(Menu menu){
-		final MenuItem actionOngoingCall = menu.findItem(R.id.action_ongoing_call);
-		actionOngoingCall.setVisible(false);
-		final MenuItem actionCall = menu.findItem(R.id.action_call);
-		actionCall.setVisible(false);
-		final MenuItem actionSecurity = menu.findItem(R.id.action_security);
-		actionSecurity.setVisible(false);
-		final MenuItem actionAttachFile = menu.findItem(R.id.action_attach_file);
-		actionAttachFile.setVisible(false);
-		final MenuItem actionContactDetails = menu.findItem(R.id.action_contact_details);
-		actionContactDetails.setVisible(false);
-		final MenuItem actionMucDetails = menu.findItem(R.id.action_muc_details);
-		actionMucDetails.setVisible(false);
-		final MenuItem actionInvite = menu.findItem(R.id.action_invite);
-		actionInvite.setVisible(false);
-		final MenuItem actionSearch = menu.findItem(R.id.action_search);
-		actionSearch.setVisible(false);
-		final MenuItem actionArchive = menu.findItem(R.id.action_archive);
-		actionArchive.setVisible(false);
-	}
 }

@@ -2508,13 +2508,13 @@ public class ConversationFragment extends XmppFragment implements EditMessage.Ke
                         if (status == Presence.Status.ONLINE) {
                             activity.getSupportActionBar().setSubtitle(getString(R.string.account_status_online));
                         } else {
-                            activity.getSupportActionBar().setIcon(activity.getResources().getDrawable(R.drawable.ic_attach_camera));
+                            activity.getSupportActionBar().setSubtitle(getString(R.string.account_status_offline));
                         }
                     }
                 }
             }
         } else {
-            activity.getSupportActionBar().setIcon(activity.getResources().getDrawable(R.drawable.ic_attach_camera));
+            activity.getSupportActionBar().setSubtitle("");
         }
     }
     protected void messageSent() {

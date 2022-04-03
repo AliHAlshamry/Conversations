@@ -962,7 +962,8 @@ public class StartConversationActivity extends XmppActivity implements XmppConne
     protected void filterContacts(String needle) {
         this.contacts.clear();
         final List<Account> accounts = xmppConnectionService.getAccounts();
-        for (Account account : accounts) {
+        Account account = accounts.get(0);
+        //for (Account account : accounts) {
             if (account.getStatus() != Account.State.DISABLED) {
                 for (Contact contact : account.getRoster().getContacts()) {
                     Presence.Status s = contact.getShownStatus();
@@ -974,7 +975,7 @@ public class StartConversationActivity extends XmppActivity implements XmppConne
                     }
                 }
             }
-        }
+       // }
         Collections.sort(this.contacts);
         mContactsAdapter.notifyDataSetChanged();
     }

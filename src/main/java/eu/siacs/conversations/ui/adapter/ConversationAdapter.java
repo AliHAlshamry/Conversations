@@ -34,6 +34,7 @@ public class ConversationAdapter extends RecyclerView.Adapter<ConversationAdapte
     private final XmppActivity activity;
     private final List<Conversation> conversations;
     private OnConversationClickListener listener;
+    private OnConversationLongClickListener longClickListener;
 
     public ConversationAdapter(XmppActivity activity, List<Conversation> conversations) {
         this.activity = activity;
@@ -212,6 +213,10 @@ public class ConversationAdapter extends RecyclerView.Adapter<ConversationAdapte
             viewHolder.binding.onlineTag.setVisibility(View.INVISIBLE);
         AvatarWorkerTask.loadAvatar(conversation, viewHolder.binding.conversationImage, R.dimen.avatar_on_conversation_overview);
         viewHolder.itemView.setOnClickListener(v -> listener.onConversationClick(v, conversation));
+        viewHolder.itemView.setOnLongClickListener(v -> {
+            longClickListener.onConversationLongClick(v, conversation);
+            return true;
+        });
     }
 
     @Override
@@ -222,6 +227,10 @@ public class ConversationAdapter extends RecyclerView.Adapter<ConversationAdapte
     public void setConversationClickListener(OnConversationClickListener listener) {
         this.listener = listener;
     }
+    public void setConversationLongClickListener(OnConversationLongClickListener longClickListener) {
+        this.longClickListener = longClickListener;
+    }
+
 
 
     public void insert(Conversation c, int position) {
@@ -236,6 +245,9 @@ public class ConversationAdapter extends RecyclerView.Adapter<ConversationAdapte
 
     public interface OnConversationClickListener {
         void onConversationClick(View view, Conversation conversation);
+    }
+    public interface OnConversationLongClickListener {
+        void onConversationLongClick(View view, Conversation conversation);
     }
 
     static class ConversationViewHolder extends RecyclerView.ViewHolder {

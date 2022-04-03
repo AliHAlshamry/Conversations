@@ -54,6 +54,7 @@ import com.google.android.material.snackbar.Snackbar;
 import com.google.common.collect.Collections2;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 import java.util.concurrent.atomic.AtomicReference;
 
@@ -61,9 +62,13 @@ import eu.siacs.conversations.Config;
 import eu.siacs.conversations.R;
 import eu.siacs.conversations.databinding.FragmentConversationsOverviewBinding;
 import eu.siacs.conversations.entities.Account;
+import eu.siacs.conversations.entities.Contact;
 import eu.siacs.conversations.entities.Conversation;
 import eu.siacs.conversations.entities.Conversational;
+import eu.siacs.conversations.entities.ListItem;
+import eu.siacs.conversations.entities.Presence;
 import eu.siacs.conversations.ui.adapter.ConversationAdapter;
+import eu.siacs.conversations.ui.adapter.ConversationHorizontalAdapter;
 import eu.siacs.conversations.ui.interfaces.OnConversationArchived;
 import eu.siacs.conversations.ui.interfaces.OnConversationSelected;
 import eu.siacs.conversations.ui.util.MenuDoubleTabUtil;
@@ -82,11 +87,13 @@ public class ConversationsOverviewFragment extends XmppFragment {
 
 	private static final String STATE_SCROLL_POSITION = ConversationsOverviewFragment.class.getName()+".scroll_state";
 
+	private final List<ListItem> contacts = new ArrayList<>();
 	private final List<Conversation> conversations = new ArrayList<>();
 	private final PendingItem<Conversation> swipedConversation = new PendingItem<>();
 	private final PendingItem<ScrollState> pendingScrollState = new PendingItem<>();
 	private FragmentConversationsOverviewBinding binding;
-	private ConversationAdapter conversationsAdapter;
+	private ConversationHorizontalAdapter conversationHorizontalAdapter;
+	private ConversationAdapter conversationAdapter;
 	private XmppActivity activity;
 	private float mSwipeEscapeVelocity = 0f;
 	private final PendingActionHelper pendingActionHelper = new PendingActionHelper();
@@ -131,10 +138,10 @@ public class ConversationsOverviewFragment extends XmppFragment {
 			} catch (IndexOutOfBoundsException e) {
 				return;
 			}
-			conversationsAdapter.remove(swipedConversation.peek(), position);
+			conversationAdapter.remove(swipedConversation.peek(), position);
 			activity.xmppConnectionService.markRead(swipedConversation.peek());
 
-			if (position == 0 && conversationsAdapter.getItemCount() == 0) {
+			if (position == 0 && conversationHorizontalAdapter.getItemCount() == 0) {
 				final Conversation c = swipedConversation.pop();
 				activity.xmppConnectionService.archiveConversation(c);
 				return;
@@ -159,7 +166,7 @@ public class ConversationsOverviewFragment extends XmppFragment {
 					.setAction(R.string.undo, v -> {
 						pendingActionHelper.undo();
 						Conversation conversation = swipedConversation.pop();
-						conversationsAdapter.insert(conversation, position);
+						conversationAdapter.insert(conversation, position);
 						if (formerlySelected) {
 							if (activity instanceof OnConversationSelected) {
 								((OnConversationSelected) activity).onConversationSelected(c);
@@ -255,7 +262,8 @@ public class ConversationsOverviewFragment extends XmppFragment {
 		Log.d(Config.LOGTAG,"ConversationsOverviewFragment.onDestroyView()");
 		super.onDestroyView();
 		this.binding = null;
-		this.conversationsAdapter = null;
+		this.conversationHorizontalAdapter = null;
+		this.conversationAdapter = null;
 		this.touchHelper = null;
 	}
 	@Override
@@ -289,17 +297,29 @@ public class ConversationsOverviewFragment extends XmppFragment {
 		this.binding = DataBindingUtil.inflate(inflater, R.layout.fragment_conversations_overview, container, false);
 		this.binding.fab.setOnClickListener((view) -> StartConversationActivity.launch(getActivity()));
 
-		this.conversationsAdapter = new ConversationAdapter(this.activity, this.conversations);
-		this.conversationsAdapter.setConversationClickListener((view, conversation) -> {
+		this.conversationHorizontalAdapter = new ConversationHorizontalAdapter(this.conversations);
+		this.conversationAdapter = new ConversationAdapter(this.activity, this.conversations);
+		this.conversationHorizontalAdapter.setConversationClickListener((view, conversation) -> {
 			if (activity instanceof OnConversationSelected) {
 				((OnConversationSelected) activity).onConversationSelected(conversation);
 			} else {
 				Log.w(ConversationsOverviewFragment.class.getCanonicalName(), "Activity does not implement OnConversationSelected");
 			}
 		});
-		this.binding.list.setAdapter(this.conversationsAdapter);
+
+		this.conversationAdapter.setConversationClickListener((view, conversation) -> {
+			if (activity instanceof OnConversationSelected) {
+				((OnConversationSelected) activity).onConversationSelected(conversation);
+			} else {
+				Log.w(ConversationsOverviewFragment.class.getCanonicalName(), "Activity does not implement OnConversationSelected");
+			}
+		});
+		this.binding.horizontalList.setAdapter(this.conversationHorizontalAdapter);
+		this.binding.horizontalList.setLayoutManager(new LinearLayoutManager(getActivity(),LinearLayoutManager.HORIZONTAL,false));
+		this.binding.list.setAdapter(this.conversationAdapter);
 		this.binding.list.setLayoutManager(new LinearLayoutManager(getActivity(),LinearLayoutManager.VERTICAL,false));
 		this.touchHelper = new ItemTouchHelper(this.callback);
+		this.touchHelper.attachToRecyclerView(this.binding.horizontalList);
 		this.touchHelper.attachToRecyclerView(this.binding.list);
 		return binding.getRoot();
 	}
@@ -410,11 +430,13 @@ public class ConversationsOverviewFragment extends XmppFragment {
 				pendingActionHelper.execute();
 			}
 		}
-		this.conversationsAdapter.notifyDataSetChanged();
+		this.conversationHorizontalAdapter.notifyDataSetChanged();
+		this.conversationAdapter.notifyDataSetChanged();
 		ScrollState scrollState = pendingScrollState.pop();
 		if (scrollState != null) {
 			setScrollPosition(scrollState);
 		}
+		filter(null);
 		updateAppBar();
 	}
 
@@ -442,8 +464,30 @@ public class ConversationsOverviewFragment extends XmppFragment {
 
 	private void setScrollPosition(ScrollState scrollPosition) {
 		if (scrollPosition != null) {
-			LinearLayoutManager layoutManager = (LinearLayoutManager) binding.list.getLayoutManager();
+			LinearLayoutManager layoutManager = (LinearLayoutManager) binding.horizontalList.getLayoutManager();
 			layoutManager.scrollToPositionWithOffset(scrollPosition.position, scrollPosition.offset);
 		}
+	}
+	protected void filter(String needle) {
+		if (activity.xmppConnectionServiceBound) {
+			this.filterContacts(needle);
+			//this.filterConferences(needle);
+		}
+	}
+	protected void filterContacts(String needle) {
+		this.contacts.clear();
+		final Account account = this.activity.xmppConnectionService.getAccounts().get(0);
+		if (account.getStatus() != Account.State.DISABLED) {
+			for (Contact contact : account.getRoster().getContacts()) {
+				Presence.Status s = contact.getShownStatus();
+				if (contact.showInContactList() && contact.match(this.activity, needle)
+						&& ((needle != null && !needle.trim().isEmpty())
+						|| s.compareTo(Presence.Status.OFFLINE) < 0)) {
+					this.contacts.add(contact);
+				}
+			}
+		}
+		Collections.sort(this.contacts);
+		//mContactsAdapter.notifyDataSetChanged();
 	}
 }

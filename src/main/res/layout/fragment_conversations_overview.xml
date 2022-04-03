@@ -1,14 +1,18 @@
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
         xmlns:app="http://schemas.android.com/apk/res-auto">
-
     <androidx.coordinatorlayout.widget.CoordinatorLayout
         android:background="?attr/color_background_primary"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
-
-
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/horizontal_list"
+            android:layout_width="match_parent"
+            android:layout_height="70dp"
+            android:background="?attr/color_background_primary"
+            android:scrollbars="none"/>
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/list"
+            android:layout_marginTop="70dp"
             android:scrollbars="vertical"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
@@ -22,6 +26,8 @@
             android:layout_height="wrap_content"
             android:layout_gravity="end|bottom"
             android:layout_margin="16dp"
+            android:scrollbars="none"
+            android:overScrollMode="never"
             android:src="@drawable/ic_chat_white_24dp"/>
     </androidx.coordinatorlayout.widget.CoordinatorLayout>
 </layout>

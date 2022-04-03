@@ -46,6 +46,7 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.PopupMenu;
 import android.widget.Toast;
 
 import androidx.databinding.DataBindingUtil;
@@ -297,6 +298,13 @@ public class ConversationsOverviewFragment extends XmppFragment {
 				Log.w(ConversationsOverviewFragment.class.getCanonicalName(), "Activity does not implement OnConversationSelected");
 			}
 		});
+		this.conversationsAdapter.setConversationLongClickListener((view, conversation) -> {
+			PopupMenu popupMenu = new PopupMenu(view.getContext(), view.findViewById(R.id.conversation_name));
+			getActivity().getMenuInflater().inflate(R.menu.fragment_conversation, popupMenu.getMenu());
+			Menu menu = popupMenu.getMenu();
+			hiddenMenuItem(menu);
+			popupMenu.show();
+		});
 		this.binding.list.setAdapter(this.conversationsAdapter);
 		this.binding.list.setLayoutManager(new LinearLayoutManager(getActivity(),LinearLayoutManager.VERTICAL,false));
 		this.touchHelper = new ItemTouchHelper(this.callback);
@@ -421,5 +429,25 @@ public class ConversationsOverviewFragment extends XmppFragment {
 			LinearLayoutManager layoutManager = (LinearLayoutManager) binding.list.getLayoutManager();
 			layoutManager.scrollToPositionWithOffset(scrollPosition.position, scrollPosition.offset);
 		}
+	}
+	private void hiddenMenuItem(Menu menu) {
+		final MenuItem actionOngoingCall = menu.findItem(R.id.action_ongoing_call);
+		actionOngoingCall.setVisible(false);
+		final MenuItem actionCall = menu.findItem(R.id.action_call);
+		actionCall.setVisible(false);
+		final MenuItem actionSecurity = menu.findItem(R.id.action_security);
+		actionSecurity.setVisible(false);
+		final MenuItem actionAttachFile = menu.findItem(R.id.action_attach_file);
+		actionAttachFile.setVisible(false);
+		final MenuItem actionContactDetails = menu.findItem(R.id.action_contact_details);
+		actionContactDetails.setVisible(false);
+		final MenuItem actionMucDetails = menu.findItem(R.id.action_muc_details);
+		actionMucDetails.setVisible(false);
+		final MenuItem actionInvite = menu.findItem(R.id.action_invite);
+		actionInvite.setVisible(false);
+		final MenuItem actionSearch = menu.findItem(R.id.action_search);
+		actionSearch.setVisible(false);
+		final MenuItem actionArchive = menu.findItem(R.id.action_archive);
+		actionArchive.setVisible(false);
 	}
 }

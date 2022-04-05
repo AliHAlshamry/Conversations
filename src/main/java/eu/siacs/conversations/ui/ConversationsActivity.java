@@ -50,6 +50,8 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.IdRes;
@@ -88,6 +90,7 @@ import eu.siacs.conversations.utils.AccountUtils;
 import eu.siacs.conversations.utils.EmojiWrapper;
 import eu.siacs.conversations.utils.ExceptionHelper;
 import eu.siacs.conversations.utils.SignupUtils;
+import eu.siacs.conversations.utils.UIHelper;
 import eu.siacs.conversations.utils.XmppUri;
 import eu.siacs.conversations.xmpp.Jid;
 import eu.siacs.conversations.xmpp.OnUpdateBlocklist;
@@ -624,25 +627,40 @@ public class ConversationsActivity extends XmppActivity implements OnConversatio
         if (actionBar == null) {
             return;
         }
+        actionBar.setTitle("");
+        final LinearLayout contactInfo = findViewById(R.id.contact_info);
+        contactInfo.setVisibility(View.VISIBLE);
         final ImageView profilePhoto = findViewById(R.id.profile_photo);
+        final TextView contactName = findViewById(R.id.contact_name);
+        final TextView contactStatus = findViewById(R.id.contact_status);
         final FragmentManager fragmentManager = getFragmentManager();
         final Fragment mainFragment = fragmentManager.findFragmentById(R.id.main_fragment);
         if (mainFragment instanceof ConversationFragment) {
             final Conversation conversation = ((ConversationFragment) mainFragment).getConversation();
             if (conversation != null) {
-                profilePhoto.setVisibility(View.GONE);
-                actionBar.setTitle(EmojiWrapper.transform(conversation.getName()));
+//                profilePhoto.setVisibility(View.GONE);
+//                actionBar.setTitle(EmojiWrapper.transform(conversation.getName()));
+                contactName.setVisibility(View.VISIBLE);
+                if(conversation.getMode() == Conversational.MODE_SINGLE){
+                    contactStatus.setVisibility(View.VISIBLE);
+                }
+                AvatarWorkerTask.loadAvatar(conversation.getContact(), profilePhoto, R.dimen.media_size);
+                contactName.setText(EmojiWrapper.transform(conversation.getName()));
+                contactStatus.setText(UIHelper.lastseen(getApplicationContext(), conversation.getContact().isActive(), conversation.getContact().getLastseen()));
+                profilePhoto.setOnClickListener(view -> openConversationDetails(conversation));
                 actionBar.setDisplayHomeAsUpEnabled(true);
-                ActionBarUtil.setActionBarOnClickListener(
-                        binding.toolbar,
-                        (v) -> openConversationDetails(conversation)
-                );
+//                ActionBarUtil.setActionBarOnClickListener(
+//                        binding.toolbar,
+//                        (v) -> openConversationDetails(conversation)
+//                );
                 return;
             }
         }
-        actionBar.setTitle("");
-        profilePhoto.setVisibility(View.VISIBLE);
+//        actionBar.setTitle("");
+//        profilePhoto.setVisibility(View.VISIBLE);
         if(xmppConnectionService != null){
+            contactName.setVisibility(View.GONE);
+            contactStatus.setVisibility(View.GONE);
             final Account account = AccountUtils.getFirst(xmppConnectionService);
             AvatarWorkerTask.loadAvatar(account, profilePhoto, R.dimen.media_size);
         }

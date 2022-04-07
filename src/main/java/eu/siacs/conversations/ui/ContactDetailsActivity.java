@@ -23,6 +23,7 @@ import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.CompoundButton;
 import android.widget.CompoundButton.OnCheckedChangeListener;
+import android.widget.PopupMenu;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -226,6 +227,52 @@ public class ContactDetailsActivity extends OmemoActivity implements OnAccountUp
         mMediaAdapter = new MediaAdapter(this, R.dimen.media_size);
         this.binding.media.setAdapter(mMediaAdapter);
         GridManager.setupLayoutManager(this, this.binding.media, R.dimen.media_size);
+        binding.editContactNameButton.setOnClickListener(v->{
+            Uri systemAccount = contact.getSystemAccount();
+            if (systemAccount == null) {
+                quickEdit(contact.getServerName(), R.string.contact_name, value -> {
+                    contact.setServerName(value);
+                    ContactDetailsActivity.this.xmppConnectionService.pushContactToServer(contact);
+                    populateView();
+                    return null;
+                }, true);
+            } else {
+                Intent intent = new Intent(Intent.ACTION_EDIT);
+                intent.setDataAndType(systemAccount, Contacts.CONTENT_ITEM_TYPE);
+                intent.putExtra("finishActivityOnSaveCompleted", true);
+                try {
+                    startActivity(intent);
+                } catch (ActivityNotFoundException e) {
+                    Toast.makeText(ContactDetailsActivity.this, R.string.no_application_found_to_view_contact, Toast.LENGTH_SHORT).show();
+                }
+
+            }
+        });
+        binding.shareContactButton.setOnClickListener(v->{
+            PopupMenu popupMenu = new PopupMenu(this, v);
+            getMenuInflater().inflate(R.menu.share_contact, popupMenu.getMenu());
+            popupMenu.setOnMenuItemClickListener(menuItem -> {
+                switch (menuItem.getItemId()) {
+                    case R.id.action_share_http:
+                        shareLink(true);
+                        break;
+                    case R.id.action_share_uri:
+                        shareLink(false);
+                        break;
+                }
+                return true;
+            });
+            popupMenu.show();
+        });
+        binding.deleteContactButton.setOnClickListener(v->{
+            final AlertDialog.Builder builder = new AlertDialog.Builder(this);
+            builder.setTitle(getString(R.string.action_delete_contact))
+                    .setMessage(JidDialog.style(this, R.string.remove_contact_text, contact.getJid().toEscapedString()))
+                    .setPositiveButton(getString(R.string.delete),
+                            removeFromRoster).create().show();
+        });
+       binding.blockContactButton.setOnClickListener(v->BlockContactDialog.show(this, contact));
+       binding.unblockContactButton.setOnClickListener(v->BlockContactDialog.show(this, contact));
     }
 
     @Override
@@ -319,7 +366,7 @@ public class ContactDetailsActivity extends OmemoActivity implements OnAccountUp
     @Override
     public boolean onCreateOptionsMenu(final Menu menu) {
         getMenuInflater().inflate(R.menu.contact_details, menu);
-        AccountUtils.showHideMenuItems(menu);
+//        AccountUtils.showHideMenuItems(menu);
         MenuItem block = menu.findItem(R.id.action_block);
         MenuItem unblock = menu.findItem(R.id.action_unblock);
         MenuItem edit = menu.findItem(R.id.action_edit_contact);
@@ -357,7 +404,8 @@ public class ContactDetailsActivity extends OmemoActivity implements OnAccountUp
             binding.addContactButton.setVisibility(View.GONE);
             binding.detailsSendPresence.setOnCheckedChangeListener(null);
             binding.detailsReceivePresence.setOnCheckedChangeListener(null);
-
+            binding.deleteContactButton.setVisibility(View.VISIBLE);
+            binding.editContactNameButton.setVisibility(View.VISIBLE);
             List<String> statusMessages = contact.getPresences().getStatusMessages();
             if (statusMessages.size() == 0) {
                 binding.statusMessage.setVisibility(View.GONE);
@@ -413,6 +461,8 @@ public class ContactDetailsActivity extends OmemoActivity implements OnAccountUp
             binding.detailsSendPresence.setVisibility(View.GONE);
             binding.detailsReceivePresence.setVisibility(View.GONE);
             binding.statusMessage.setVisibility(View.GONE);
+            binding.deleteContactButton.setVisibility(View.GONE);
+            binding.editContactNameButton.setVisibility(View.GONE);
         }
 
         if (contact.isBlocked() && !this.showDynamicTags) {
@@ -514,6 +564,12 @@ public class ContactDetailsActivity extends OmemoActivity implements OnAccountUp
                 tv.setBackgroundColor(tag.getColor());
                 binding.tags.addView(tv);
             }
+        }
+        if(contact.isBlocked()){
+            binding.blockContactButton.setVisibility(View.GONE);
+        }else{
+            binding.unblockContactButton.setVisibility(View.GONE);
+            binding.blockContactButton.setVisibility(View.VISIBLE);
         }
     }
 

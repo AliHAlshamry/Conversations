@@ -7,14 +7,16 @@
         android:icon="?attr/icon_edit"
         android:orderInCategory="10"
         app:showAsAction="always"
-        android:title="@string/action_edit_contact"/>
+        android:title="@string/action_edit_contact"
+        android:visible="false"/>
 
     <item
         android:id="@+id/action_share"
         android:icon="?attr/icon_share"
         android:orderInCategory="15"
         app:showAsAction="always"
-        android:title="@string/share_uri_with">
+        android:title="@string/share_uri_with"
+        android:visible="false">
         <menu>
             <item
                 android:id="@+id/action_share_uri"
@@ -31,34 +33,40 @@
         android:id="@+id/action_delete_contact"
         android:orderInCategory="10"
         app:showAsAction="never"
-        android:title="@string/action_delete_contact"/>
+        android:title="@string/action_delete_contact"
+        android:visible="false"/>
 
     <item
         android:id="@+id/action_block"
         android:orderInCategory="72"
         app:showAsAction="never"
-        android:title="@string/action_block_contact"/>
+        android:title="@string/action_block_contact"
+        android:visible="false"/>
 
     <item
         android:id="@+id/action_unblock"
         android:orderInCategory="73"
         app:showAsAction="never"
-        android:title="@string/action_unblock_contact"/>
+        android:title="@string/action_unblock_contact"
+        android:visible="false"/>
 
     <item
         android:id="@+id/action_accounts"
         android:orderInCategory="90"
         app:showAsAction="never"
-        android:title="@string/action_accounts"/>
+        android:title="@string/action_accounts"
+        android:visible="false"/>
     <item
         android:id="@+id/action_account"
         android:orderInCategory="90"
         android:title="@string/action_account"
-        app:showAsAction="never"/>
+        app:showAsAction="never"
+        android:visible="false"/>
     <item
         android:id="@+id/action_settings"
         android:orderInCategory="100"
         app:showAsAction="never"
-        android:title="@string/action_settings"/>
+        android:title="@string/action_settings"
+        android:visible="false"/>
 
 </menu>

@@ -550,7 +550,7 @@ public class ContactDetailsActivity extends OmemoActivity implements OnAccountUp
             keyType.setOnClickListener(openKey);
             binding.detailsContactKeys.addView(view);
         }
-        binding.keysWrapper.setVisibility(hasKeys ? View.VISIBLE : View.GONE);
+//        binding.keysWrapper.setVisibility(hasKeys ? View.VISIBLE : View.GONE);
 
         List<ListItem.Tag> tagList = contact.getTags(this);
         if (tagList.size() == 0 || !this.showDynamicTags) {

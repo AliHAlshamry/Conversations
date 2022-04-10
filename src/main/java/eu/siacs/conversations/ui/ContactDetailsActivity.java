@@ -56,7 +56,6 @@ import eu.siacs.conversations.ui.util.AvatarWorkerTask;
 import eu.siacs.conversations.ui.util.GridManager;
 import eu.siacs.conversations.ui.util.JidDialog;
 import eu.siacs.conversations.ui.util.MenuDoubleTabUtil;
-import eu.siacs.conversations.utils.AccountUtils;
 import eu.siacs.conversations.utils.Compatibility;
 import eu.siacs.conversations.utils.Emoticons;
 import eu.siacs.conversations.utils.IrregularUnicodeDetector;
@@ -570,6 +569,9 @@ public class ContactDetailsActivity extends OmemoActivity implements OnAccountUp
         }else{
             binding.unblockContactButton.setVisibility(View.GONE);
             binding.blockContactButton.setVisibility(View.VISIBLE);
+        }
+        if(contact.getShownStatus().name().equals("ONLINE")){
+            binding.onlineTag.setVisibility(View.VISIBLE);
         }
     }
 

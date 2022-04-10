@@ -125,27 +125,48 @@
                     android:layout_marginRight="@dimen/activity_horizontal_margin"
                     android:layout_marginTop="@dimen/activity_vertical_margin">
                     <LinearLayout
-                        android:layout_width="wrap_content"
+                        android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:orientation="vertical"
-                        android:padding="8dp">
+                        android:orientation="vertical">
+
                         <Button
                             android:id="@+id/add_contact_button"
-                            android:layout_width="wrap_content"
+                            android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:layout_marginTop="8dp"
-                            android:text="@string/add_contact" />
+                            android:background="?attr/selectableItemBackground"
+                            android:drawableLeft="@drawable/ic_person_add_gray_24"
+                            android:drawablePadding="16dp"
+                            android:gravity="left|center"
+                            android:paddingHorizontal="16dp"
+                            android:paddingVertical="16dp"
+                            android:text="@string/add_contact"
+                            android:textAppearance="@style/TextAppearance.Conversations.Subhead"/>
+
                         <Button
                             android:id="@+id/edit_contact_name_button"
-                            android:layout_width="wrap_content"
+                            android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:text="@string/action_edit_contact"
+                            android:background="?attr/selectableItemBackground"
+                            android:drawableLeft="@drawable/ic_edit_gray_24"
+                            android:drawablePadding="16dp"
+                            android:gravity="left|center"
+                            android:paddingHorizontal="16dp"
+                            android:paddingVertical="16dp"
+                            android:textAppearance="@style/TextAppearance.Conversations.Subhead"
                             />
                         <Button
                             android:id="@+id/share_contact_button"
-                            android:layout_width="wrap_content"
+                            android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:text="@string/share_uri_with"
+                            android:background="?attr/selectableItemBackground"
+                            android:drawableLeft="@drawable/ic_share_gray_24"
+                            android:drawablePadding="16dp"
+                            android:gravity="left|center"
+                            android:paddingHorizontal="16dp"
+                            android:paddingVertical="16dp"
+                            android:textAppearance="@style/TextAppearance.Conversations.Subhead"
                             />
                     </LinearLayout>
                 </androidx.cardview.widget.CardView>
@@ -157,27 +178,49 @@
                     android:layout_marginRight="@dimen/activity_horizontal_margin"
                     android:layout_marginTop="@dimen/activity_vertical_margin">
                     <LinearLayout
-                        android:layout_width="wrap_content"
+                        android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:orientation="vertical"
-                        android:padding="8dp">
+                        android:orientation="vertical">
                         <Button
                             android:id="@+id/delete_contact_button"
-                            android:layout_width="wrap_content"
+                            android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:text="@string/action_delete_contact"
+                            android:background="?attr/selectableItemBackground"
+                            android:drawableLeft="@drawable/ic_delete_red_24"
+                            android:drawablePadding="16dp"
+                            android:gravity="left|center"
+                            android:paddingHorizontal="16dp"
+                            android:paddingVertical="16dp"
+                            android:textAppearance="@style/TextAppearance.Conversations.Subhead"
+                            android:textColor="@color/red500"
                             />
                         <Button
                             android:id="@+id/block_contact_button"
-                            android:layout_width="wrap_content"
+                            android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:text="@string/block_contact"
+                            android:background="?attr/selectableItemBackground"
+                            android:drawableLeft="@drawable/ic_block_red_24"
+                            android:drawablePadding="16dp"
+                            android:gravity="left|center"
+                            android:paddingHorizontal="16dp"
+                            android:paddingVertical="16dp"
+                            android:textAppearance="@style/TextAppearance.Conversations.Subhead"
+                            android:textColor="@color/red500"
                             />
                         <Button
                             android:id="@+id/unblock_contact_button"
-                            android:layout_width="wrap_content"
+                            android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:text="@string/unblock_contact"
+                            android:background="?attr/selectableItemBackground"
+                            android:drawableLeft="@drawable/ic_block_gray_24"
+                            android:drawablePadding="16dp"
+                            android:gravity="left|center"
+                            android:paddingHorizontal="16dp"
+                            android:paddingVertical="16dp"
+                            android:textAppearance="@style/TextAppearance.Conversations.Subhead"
                             />
                     </LinearLayout>
                 </androidx.cardview.widget.CardView>

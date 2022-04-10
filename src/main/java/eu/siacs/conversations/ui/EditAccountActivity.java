@@ -764,7 +764,11 @@ public class EditAccountActivity extends OmemoActivity implements OnAccountUpdat
             this.mInitMode = init || this.jidToEdit == null;
             this.messageFingerprint = intent.getStringExtra("fingerprint");
             if (!mInitMode) {
-                setTitle(getString(R.string.account_details));
+                ActionBar actionBar = getSupportActionBar();
+                if (actionBar != null) {
+                    setTitle("");
+                    actionBar.setDisplayHomeAsUpEnabled(true);
+                }
             } else {
                 this.binding.accountRegisterNew.setVisibility(View.VISIBLE);
                 this.binding.avater.setVisibility(View.GONE);

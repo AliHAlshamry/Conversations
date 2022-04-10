@@ -90,7 +90,6 @@ import eu.siacs.conversations.utils.AccountUtils;
 import eu.siacs.conversations.utils.EmojiWrapper;
 import eu.siacs.conversations.utils.ExceptionHelper;
 import eu.siacs.conversations.utils.SignupUtils;
-import eu.siacs.conversations.utils.UIHelper;
 import eu.siacs.conversations.utils.XmppUri;
 import eu.siacs.conversations.xmpp.Jid;
 import eu.siacs.conversations.xmpp.OnUpdateBlocklist;
@@ -646,7 +645,10 @@ public class ConversationsActivity extends XmppActivity implements OnConversatio
                 }
                 AvatarWorkerTask.loadAvatar(conversation.getContact(), profilePhoto, R.dimen.media_size);
                 contactName.setText(EmojiWrapper.transform(conversation.getName()));
-                contactStatus.setText(UIHelper.lastseen(getApplicationContext(), conversation.getContact().isActive(), conversation.getContact().getLastseen()));
+                contactStatus.setText("offline");
+                if(conversation.getContact().getShownStatus().name().equals("ONLINE")){
+                    contactStatus.setText("online");
+                }
                 profilePhoto.setOnClickListener(view -> openConversationDetails(conversation));
                 actionBar.setDisplayHomeAsUpEnabled(true);
 //                ActionBarUtil.setActionBarOnClickListener(

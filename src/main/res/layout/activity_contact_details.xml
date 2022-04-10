@@ -31,32 +31,59 @@
                     android:layout_marginRight="@dimen/activity_horizontal_margin"
                     android:layout_marginTop="@dimen/activity_vertical_margin">
 
-                    <RelativeLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:padding="@dimen/card_padding_regular">
+<!--                    <RelativeLayout-->
+<!--                        android:layout_width="match_parent"-->
+<!--                        android:layout_height="wrap_content"-->
+<!--                        android:padding="@dimen/card_padding_regular">-->
 
-                        <QuickContactBadge
-                            android:id="@+id/details_contact_badge"
-                            android:layout_width="@dimen/avatar_on_details_screen_size"
-                            android:layout_height="@dimen/avatar_on_details_screen_size"
-                            android:layout_alignParentTop="true"
-                            android:scaleType="centerCrop" />
-
+<!--                        <QuickContactBadge-->
+<!--                            android:id="@+id/details_contact_badge"-->
+<!--                            android:layout_width="@dimen/avatar_on_details_screen_size"-->
+<!--                            android:layout_height="@dimen/avatar_on_details_screen_size"-->
+<!--                            android:layout_alignParentTop="true"-->
+<!--                            android:scaleType="centerCrop" />-->
                         <LinearLayout
                             android:id="@+id/details_jidbox"
-                            android:layout_width="wrap_content"
+                            android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:layout_marginLeft="16dp"
+                            android:layout_marginLeft="0dp"
                             android:layout_toRightOf="@+id/details_contact_badge"
-                            android:orientation="vertical">
+                            android:orientation="vertical"
+                            android:gravity="center"
+                            android:paddingVertical="16dp">
+                            <RelativeLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:padding="@dimen/list_padding"
+                                android:gravity="center">
 
+                            <com.makeramen.roundedimageview.RoundedImageView
+                                android:id="@+id/details_contact_badge"
+                                android:layout_width="@dimen/avatar_on_details_screen_size"
+                                android:layout_height="@dimen/avatar_on_details_screen_size"
+                                android:scaleType="centerCrop"
+                                app:riv_corner_radius="50dp" />
+
+                            <ImageView
+                                android:id="@+id/online_tag"
+                                android:layout_width="16dp"
+                                android:layout_height="16dp"
+                                android:visibility="invisible"
+                                android:layout_alignEnd="@+id/details_contact_badge"
+                                android:layout_alignRight="@+id/details_contact_badge"
+                                android:layout_alignBottom="@+id/details_contact_badge"
+                                android:layout_marginEnd="0dp"
+                                android:layout_marginRight="0dp"
+                                android:layout_marginBottom="0dp"
+                                android:src="@drawable/account_online" />
+                            </RelativeLayout>
                             <TextView
                                 android:id="@+id/details_contactjid"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:text="@string/account_settings_example_jabber_id"
-                                android:textAppearance="@style/TextAppearance.Conversations.Title" />
+                                android:textAppearance="@style/TextAppearance.Conversations.Title"
+                                android:layout_marginTop="8dp"/>
 
                             <com.wefika.flowlayout.FlowLayout
                                 android:id="@+id/tags"
@@ -88,22 +115,27 @@
 <!--                                android:layout_marginTop="8dp"-->
 <!--                                android:text="@string/add_contact" />-->
 
-                            <CheckBox
-                                android:id="@+id/details_send_presence"
-                                style="@style/Widget.Conversations.CheckBox"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:layout_marginTop="8dp"
-                                android:text="@string/send_presence_updates"
-                                android:textAppearance="@style/TextAppearance.Conversations.Body1" />
+                           <LinearLayout
+                               android:layout_width="wrap_content"
+                               android:layout_height="wrap_content"
+                               android:orientation="vertical">
+                               <CheckBox
+                                   android:id="@+id/details_send_presence"
+                                   style="@style/Widget.Conversations.CheckBox"
+                                   android:layout_width="wrap_content"
+                                   android:layout_height="wrap_content"
+                                   android:layout_marginTop="8dp"
+                                   android:text="@string/send_presence_updates"
+                                   android:textAppearance="@style/TextAppearance.Conversations.Body1" />
 
-                            <CheckBox
-                                android:id="@+id/details_receive_presence"
-                                style="@style/Widget.Conversations.CheckBox"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:text="@string/receive_presence_updates"
-                                android:textAppearance="@style/TextAppearance.Conversations.Body1" />
+                               <CheckBox
+                                   android:id="@+id/details_receive_presence"
+                                   style="@style/Widget.Conversations.CheckBox"
+                                   android:layout_width="wrap_content"
+                                   android:layout_height="wrap_content"
+                                   android:text="@string/receive_presence_updates"
+                                   android:textAppearance="@style/TextAppearance.Conversations.Body1" />
+                           </LinearLayout>
                         </LinearLayout>
 
                         <TextView
@@ -114,8 +146,9 @@
                             android:layout_below="@+id/details_jidbox"
                             android:layout_marginTop="32dp"
                             android:text="@string/using_account"
-                            android:textAppearance="@style/TextAppearance.Conversations.Caption" />
-                    </RelativeLayout>
+                            android:textAppearance="@style/TextAppearance.Conversations.Caption"
+                            android:visibility="gone"/>
+<!--                    </RelativeLayout>-->
                 </androidx.cardview.widget.CardView>
                 <androidx.cardview.widget.CardView
                     android:layout_width="match_parent"

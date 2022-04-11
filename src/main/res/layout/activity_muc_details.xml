@@ -35,120 +35,191 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:orientation="vertical"
-                        android:padding="@dimen/card_padding_regular">
+                        android:padding="@dimen/card_padding_regular"
+                        android:gravity="center">
 
-                        <RelativeLayout
-                            android:layout_width="fill_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_marginBottom="32dp">
+<!--                        <RelativeLayout-->
+<!--                            android:layout_width="fill_parent"-->
+<!--                            android:layout_height="wrap_content"-->
+<!--                            android:layout_marginBottom="32dp">-->
 
                             <com.makeramen.roundedimageview.RoundedImageView
                                 android:id="@+id/your_photo"
                                 android:layout_width="@dimen/avatar_on_details_screen_size"
                                 android:layout_height="@dimen/avatar_on_details_screen_size"
-                                android:layout_alignParentStart="true"
-                                app:riv_corner_radius="2dp"
-                                android:layout_marginEnd="@dimen/avatar_item_distance"
-                                android:layout_alignParentLeft="true"
-                                android:layout_marginRight="@dimen/avatar_item_distance" />
+                                app:riv_corner_radius="50dp"/>
+                        <LinearLayout
+                            android:id="@+id/muc_display"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="8dp"
+                            android:orientation="vertical">
 
-                            <LinearLayout
-                                android:layout_width="fill_parent"
+                            <TextView
+                                android:id="@+id/muc_title"
+                                android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:layout_alignParentTop="true"
-                                android:layout_toEndOf="@+id/your_photo"
-                                android:orientation="vertical"
-                                android:layout_toRightOf="@+id/your_photo">
+                                android:textAppearance="@style/TextAppearance.Conversations.Title" />
 
-                                <RelativeLayout
+                            <TextView
+                                android:id="@+id/muc_subject"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:autoLink="web"
+                                android:textAppearance="@style/TextAppearance.Conversations.Subhead" />
+                        </LinearLayout>
+                        <LinearLayout
+                            android:id="@+id/edit_setting_wrapper"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:orientation="horizontal">
+                            <ImageButton
+                                android:id="@+id/edit_muc_name_button"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:alpha="?attr/icon_alpha"
+                                android:background="?attr/selectableItemBackgroundBorderless"
+                                android:padding="@dimen/image_button_padding"
+                                android:src="?attr/icon_edit_body"
+                                />
+                            <ImageButton
+                                android:id="@+id/change_conference_button"
+                                style="?android:attr/buttonStyleSmall"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_gravity="center_horizontal"
+                                android:alpha="?attr/icon_alpha"
+                                android:background="?attr/selectableItemBackgroundBorderless"
+                                android:padding="@dimen/image_button_padding"
+                                android:src="?attr/icon_settings" />
+                        </LinearLayout>
+                        <LinearLayout
+                            android:id="@+id/muc_editor"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="vertical"
+                            android:visibility="gone"
+                            >
+                            <com.google.android.material.textfield.TextInputLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                app:errorTextAppearance="@style/TextAppearance.Conversations.Design.Error"
+                                app:hintTextAppearance="@style/TextAppearance.Conversations.Design.Hint">
+
+                                <eu.siacs.conversations.ui.widget.EmojiWrapperEditText
+                                    android:id="@+id/muc_edit_title"
                                     android:layout_width="match_parent"
-                                    android:layout_height="wrap_content">
+                                    android:layout_height="wrap_content"
+                                    android:hint="@string/group_chat_name"
+                                    android:textAppearance="@style/Widget.Conversations.EditText"/>
+                            </com.google.android.material.textfield.TextInputLayout>
 
-                                    <LinearLayout
-                                        android:id="@+id/muc_display"
-                                        android:layout_width="wrap_content"
-                                        android:layout_height="wrap_content"
-                                        android:layout_alignParentStart="true"
-                                        android:layout_alignParentLeft="true"
-                                        android:layout_toStartOf="@+id/edit_muc_name_button"
-                                        android:layout_toLeftOf="@+id/edit_muc_name_button"
-                                        android:orientation="vertical">
+                            <com.google.android.material.textfield.TextInputLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                app:errorTextAppearance="@style/TextAppearance.Conversations.Design.Error"
+                                app:hintTextAppearance="@style/TextAppearance.Conversations.Design.Hint">
 
-                                        <TextView
-                                            android:id="@+id/muc_title"
-                                            android:layout_width="wrap_content"
-                                            android:layout_height="wrap_content"
-                                            android:textAppearance="@style/TextAppearance.Conversations.Title" />
+                                <eu.siacs.conversations.ui.widget.EmojiWrapperEditText
+                                    android:id="@+id/muc_edit_subject"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:hint="@string/topic"
+                                    android:textAppearance="@style/Widget.Conversations.EditText"/>
+                            </com.google.android.material.textfield.TextInputLayout>
+                        </LinearLayout>
+<!--                            <LinearLayout-->
+<!--                                android:layout_width="fill_parent"-->
+<!--                                android:layout_height="wrap_content"-->
+<!--                                android:orientation="vertical">-->
 
-                                        <TextView
-                                            android:id="@+id/muc_subject"
-                                            android:layout_width="wrap_content"
-                                            android:layout_height="wrap_content"
-                                            android:autoLink="web"
-                                            android:textAppearance="@style/TextAppearance.Conversations.Subhead" />
-                                    </LinearLayout>
+<!--                                <RelativeLayout-->
+<!--                                    android:layout_width="match_parent"-->
+<!--                                    android:layout_height="wrap_content">-->
+
+<!--                                    <LinearLayout-->
+<!--                                        android:id="@+id/muc_display"-->
+<!--                                        android:layout_width="wrap_content"-->
+<!--                                        android:layout_height="wrap_content"-->
+<!--                                        android:layout_alignParentStart="true"-->
+<!--                                        android:layout_alignParentLeft="true"-->
+<!--                                        android:layout_toStartOf="@+id/edit_muc_name_button"-->
+<!--                                        android:layout_toLeftOf="@+id/edit_muc_name_button"-->
+<!--                                        android:orientation="vertical">-->
+
+<!--                                        <TextView-->
+<!--                                            android:id="@+id/muc_title"-->
+<!--                                            android:layout_width="wrap_content"-->
+<!--                                            android:layout_height="wrap_content"-->
+<!--                                            android:textAppearance="@style/TextAppearance.Conversations.Title" />-->
+
+<!--                                        <TextView-->
+<!--                                            android:id="@+id/muc_subject"-->
+<!--                                            android:layout_width="wrap_content"-->
+<!--                                            android:layout_height="wrap_content"-->
+<!--                                            android:autoLink="web"-->
+<!--                                            android:textAppearance="@style/TextAppearance.Conversations.Subhead" />-->
+<!--                                    </LinearLayout>-->
 
 
-                                    <LinearLayout
-                                        android:id="@+id/muc_editor"
-                                        android:layout_width="wrap_content"
-                                        android:layout_height="wrap_content"
-                                        android:layout_alignParentStart="true"
-                                        android:layout_toStartOf="@+id/edit_muc_name_button"
-                                        android:orientation="vertical"
-                                        android:visibility="gone"
-                                        android:layout_alignParentLeft="true"
-                                        android:layout_toLeftOf="@+id/edit_muc_name_button">
+<!--                                    <LinearLayout-->
+<!--                                        android:id="@+id/muc_editor"-->
+<!--                                        android:layout_width="wrap_content"-->
+<!--                                        android:layout_height="wrap_content"-->
+<!--                                        android:orientation="vertical"-->
+<!--                                        android:visibility="gone"-->
+<!--                                      >-->
 
-                                        <com.google.android.material.textfield.TextInputLayout
-                                            android:layout_width="match_parent"
-                                            android:layout_height="wrap_content"
-                                            app:errorTextAppearance="@style/TextAppearance.Conversations.Design.Error"
-                                            app:hintTextAppearance="@style/TextAppearance.Conversations.Design.Hint">
+<!--                                        <com.google.android.material.textfield.TextInputLayout-->
+<!--                                            android:layout_width="match_parent"-->
+<!--                                            android:layout_height="wrap_content"-->
+<!--                                            app:errorTextAppearance="@style/TextAppearance.Conversations.Design.Error"-->
+<!--                                            app:hintTextAppearance="@style/TextAppearance.Conversations.Design.Hint">-->
 
-                                            <eu.siacs.conversations.ui.widget.EmojiWrapperEditText
-                                                android:id="@+id/muc_edit_title"
-                                                android:layout_width="match_parent"
-                                                android:layout_height="wrap_content"
-                                                android:hint="@string/group_chat_name"
-                                                android:textAppearance="@style/Widget.Conversations.EditText"/>
-                                        </com.google.android.material.textfield.TextInputLayout>
+<!--                                            <eu.siacs.conversations.ui.widget.EmojiWrapperEditText-->
+<!--                                                android:id="@+id/muc_edit_title"-->
+<!--                                                android:layout_width="match_parent"-->
+<!--                                                android:layout_height="wrap_content"-->
+<!--                                                android:hint="@string/group_chat_name"-->
+<!--                                                android:textAppearance="@style/Widget.Conversations.EditText"/>-->
+<!--                                        </com.google.android.material.textfield.TextInputLayout>-->
 
-                                        <com.google.android.material.textfield.TextInputLayout
-                                            android:layout_width="match_parent"
-                                            android:layout_height="wrap_content"
-                                            app:errorTextAppearance="@style/TextAppearance.Conversations.Design.Error"
-                                            app:hintTextAppearance="@style/TextAppearance.Conversations.Design.Hint">
+<!--                                        <com.google.android.material.textfield.TextInputLayout-->
+<!--                                            android:layout_width="match_parent"-->
+<!--                                            android:layout_height="wrap_content"-->
+<!--                                            app:errorTextAppearance="@style/TextAppearance.Conversations.Design.Error"-->
+<!--                                            app:hintTextAppearance="@style/TextAppearance.Conversations.Design.Hint">-->
 
-                                            <eu.siacs.conversations.ui.widget.EmojiWrapperEditText
-                                                android:id="@+id/muc_edit_subject"
-                                                android:layout_width="match_parent"
-                                                android:layout_height="wrap_content"
-                                                android:hint="@string/topic"
-                                                android:textAppearance="@style/Widget.Conversations.EditText"/>
-                                        </com.google.android.material.textfield.TextInputLayout>
+<!--                                            <eu.siacs.conversations.ui.widget.EmojiWrapperEditText-->
+<!--                                                android:id="@+id/muc_edit_subject"-->
+<!--                                                android:layout_width="match_parent"-->
+<!--                                                android:layout_height="wrap_content"-->
+<!--                                                android:hint="@string/topic"-->
+<!--                                                android:textAppearance="@style/Widget.Conversations.EditText"/>-->
+<!--                                        </com.google.android.material.textfield.TextInputLayout>-->
 
-                                    </LinearLayout>
+<!--                                    </LinearLayout>-->
 
-                                    <ImageButton
-                                        android:id="@+id/edit_muc_name_button"
-                                        android:layout_width="wrap_content"
-                                        android:layout_height="wrap_content"
-                                        android:layout_alignParentTop="true"
-                                        android:layout_alignParentEnd="true"
-                                        android:layout_alignParentRight="true"
-                                        android:alpha="?attr/icon_alpha"
-                                        android:background="?attr/selectableItemBackgroundBorderless"
-                                        android:padding="@dimen/image_button_padding"
-                                        android:src="?attr/icon_edit_body" />
-                                </RelativeLayout>
-                            </LinearLayout>
-                        </RelativeLayout>
+<!--                                    <ImageButton-->
+<!--                                        android:id="@+id/edit_muc_name_button"-->
+<!--                                        android:layout_width="wrap_content"-->
+<!--                                        android:layout_height="wrap_content"-->
+<!--                                        android:layout_alignParentTop="true"-->
+<!--                                        android:layout_alignParentEnd="true"-->
+<!--                                        android:layout_alignParentRight="true"-->
+<!--                                        android:alpha="?attr/icon_alpha"-->
+<!--                                        android:background="?attr/selectableItemBackgroundBorderless"-->
+<!--                                        android:padding="@dimen/image_button_padding"-->
+<!--                                        android:src="?attr/icon_edit_body" />-->
+<!--                                </RelativeLayout>-->
+<!--                            </LinearLayout>-->
+<!--                        </RelativeLayout>-->
 
                         <RelativeLayout
                             android:id="@+id/muc_settings"
                             android:layout_width="fill_parent"
-                            android:layout_height="wrap_content">
+                            android:layout_height="wrap_content"
+                            android:visibility="gone">
 
                             <TextView
                                 android:id="@+id/muc_conference_type"
@@ -157,23 +228,22 @@
                                 android:layout_alignParentStart="true"
                                 android:layout_alignParentLeft="true"
                                 android:layout_centerVertical="true"
-                                android:layout_toStartOf="@+id/change_conference_button"
-                                android:layout_toLeftOf="@+id/change_conference_button"
-                                android:textAppearance="@style/TextAppearance.Conversations.Body1" />
+                                android:textAppearance="@style/TextAppearance.Conversations.Body1"
+                                android:visibility="gone"/>
 
-                            <ImageButton
-                                android:id="@+id/change_conference_button"
-                                style="?android:attr/buttonStyleSmall"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:layout_alignParentEnd="true"
-                                android:layout_alignParentRight="true"
-                                android:layout_centerVertical="true"
-                                android:layout_gravity="center_horizontal"
-                                android:alpha="?attr/icon_alpha"
-                                android:background="?attr/selectableItemBackgroundBorderless"
-                                android:padding="@dimen/image_button_padding"
-                                android:src="?attr/icon_settings" />
+<!--                            <ImageButton-->
+<!--                                android:id="@+id/change_conference_button"-->
+<!--                                style="?android:attr/buttonStyleSmall"-->
+<!--                                android:layout_width="wrap_content"-->
+<!--                                android:layout_height="wrap_content"-->
+<!--                                android:layout_alignParentEnd="true"-->
+<!--                                android:layout_alignParentRight="true"-->
+<!--                                android:layout_centerVertical="true"-->
+<!--                                android:layout_gravity="center_horizontal"-->
+<!--                                android:alpha="?attr/icon_alpha"-->
+<!--                                android:background="?attr/selectableItemBackgroundBorderless"-->
+<!--                                android:padding="@dimen/image_button_padding"-->
+<!--                                android:src="?attr/icon_settings" />-->
                         </RelativeLayout>
 
                         <TableLayout
@@ -203,7 +273,8 @@
                                     android:layout_gravity="end"
                                     android:paddingStart="4dp"
                                     android:textAppearance="@style/TextAppearance.Conversations.Body1"
-                                    android:paddingLeft="4dp" />
+                                    android:paddingLeft="4dp"
+                                    android:visibility="gone"/>
                             </TableRow>
 
                         </TableLayout>
@@ -214,7 +285,8 @@
                             android:layout_height="wrap_content"
                             android:layout_gravity="end"
                             android:layout_marginTop="32dp"
-                            android:textAppearance="@style/TextAppearance.Conversations.Caption"/>
+                            android:textAppearance="@style/TextAppearance.Conversations.Caption"
+                            android:visibility="gone"/>
                     </LinearLayout>
                 </androidx.cardview.widget.CardView>
 
@@ -241,7 +313,51 @@
                             android:paddingStart="@dimen/card_padding_regular"
                             android:text="@string/no_users_hint_channel"
                             android:textAppearance="@style/TextAppearance.Conversations.Body2"/>
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="vertical"
+                            android:layout_marginTop="8dp">
+                            <Button
+                                android:id="@+id/show_users"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                tools:text="View n Participants"
+                                android:background="?attr/selectableItemBackground"
+                                android:drawableLeft="@drawable/ic_group_gray_24"
+                                android:drawablePadding="16dp"
+                                android:gravity="left|center"
+                                android:paddingHorizontal="16dp"
+                                android:paddingVertical="16dp"
+                                android:textAppearance="@style/TextAppearance.Conversations.Subhead"
+                                />
+                            <Button
+                                android:id="@+id/invite"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:background="?attr/selectableItemBackground"
+                                android:drawableLeft="@drawable/ic_person_add_gray_24"
+                                android:drawablePadding="16dp"
+                                android:gravity="left|center"
+                                android:paddingHorizontal="16dp"
+                                android:paddingVertical="16dp"
+                                android:text="@string/invite"
+                                android:textAppearance="@style/TextAppearance.Conversations.Subhead"/>
 
+                            <Button
+                                android:id="@+id/share_contact_button"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:text="@string/share_uri_with"
+                                android:background="?attr/selectableItemBackground"
+                                android:drawableLeft="@drawable/ic_share_gray_24"
+                                android:drawablePadding="16dp"
+                                android:gravity="left|center"
+                                android:paddingHorizontal="16dp"
+                                android:paddingVertical="16dp"
+                                android:textAppearance="@style/TextAppearance.Conversations.Subhead"
+                                />
+                        </LinearLayout>
                         <androidx.recyclerview.widget.RecyclerView
                             android:id="@+id/users"
                             android:layout_width="match_parent"
@@ -254,34 +370,34 @@
                             android:layout_marginStart="-2dp"
                             android:layout_marginEnd="-2dp"/>
 
-                        <LinearLayout
-                            android:layout_width="wrap_content"
-                            android:layout_height="match_parent"
-                            android:orientation="horizontal"
-                            android:layout_gravity="end">
+<!--                        <LinearLayout-->
+<!--                            android:layout_width="wrap_content"-->
+<!--                            android:layout_height="match_parent"-->
+<!--                            android:orientation="vertical"-->
+<!--                            android:layout_gravity="end">-->
 
-                            <Button
-                                android:id="@+id/invite"
-                                style="@style/Widget.Conversations.Button.Borderless"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:minWidth="0dp"
-                                android:paddingLeft="16dp"
-                                android:paddingRight="16dp"
-                                android:text="@string/invite"
-                                android:textColor="?attr/colorAccent" />
+<!--                            <Button-->
+<!--                                android:id="@+id/invite"-->
+<!--                                style="@style/Widget.Conversations.Button.Borderless"-->
+<!--                                android:layout_width="wrap_content"-->
+<!--                                android:layout_height="wrap_content"-->
+<!--                                android:minWidth="0dp"-->
+<!--                                android:paddingLeft="16dp"-->
+<!--                                android:paddingRight="16dp"-->
+<!--                                android:text="@string/invite"-->
+<!--                                android:textColor="?attr/colorAccent" />-->
 
-                            <Button
-                                android:id="@+id/show_users"
-                                style="@style/Widget.Conversations.Button.Borderless"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:minWidth="0dp"
-                                android:paddingLeft="16dp"
-                                android:paddingRight="16dp"
-                                tools:text="View n Participants"
-                                android:textColor="?attr/colorAccent" />
-                        </LinearLayout>
+<!--                            <Button-->
+<!--                                android:id="@+id/show_users"-->
+<!--                                style="@style/Widget.Conversations.Button.Borderless"-->
+<!--                                android:layout_width="wrap_content"-->
+<!--                                android:layout_height="wrap_content"-->
+<!--                                android:minWidth="0dp"-->
+<!--                                android:paddingLeft="16dp"-->
+<!--                                android:paddingRight="16dp"-->
+<!--                                tools:text="View n Participants"-->
+<!--                                android:textColor="?attr/colorAccent" />-->
+<!--                        </LinearLayout>-->
                     </LinearLayout>
                 </androidx.cardview.widget.CardView>
 
@@ -375,7 +491,8 @@
                             android:layout_gravity="end"
                             android:layout_marginTop="32dp"
                             android:text="@string/using_account"
-                            android:textAppearance="@style/TextAppearance.Conversations.Caption"/>
+                            android:textAppearance="@style/TextAppearance.Conversations.Caption"
+                            android:visibility="gone"/>
                     </LinearLayout>
                 </androidx.cardview.widget.CardView>
                 <androidx.cardview.widget.CardView

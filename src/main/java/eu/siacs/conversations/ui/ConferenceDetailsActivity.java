@@ -459,6 +459,7 @@ public class ConferenceDetailsActivity extends XmppActivity implements OnConvers
             account = mConversation.getAccount().getJid().asBareJid().toEscapedString();
         }
         setTitle(mucOptions.isPrivateAndNonAnonymous() ? R.string.action_muc_details : R.string.channel_details);
+        this.binding.editSettingWrapper.setVisibility((self.getAffiliation().ranks(MucOptions.Affiliation.OWNER) || mucOptions.canChangeSubject()) ? View.VISIBLE : View.GONE);
         this.binding.editMucNameButton.setVisibility((self.getAffiliation().ranks(MucOptions.Affiliation.OWNER) || mucOptions.canChangeSubject()) ? View.VISIBLE : View.GONE);
         this.binding.detailsAccount.setText(getString(R.string.using_account, account));
         if (mConversation.isPrivateAndNonAnonymous()) {
@@ -501,10 +502,10 @@ public class ConferenceDetailsActivity extends XmppActivity implements OnConvers
             this.binding.mucRole.setVisibility(View.VISIBLE);
             this.binding.mucRole.setText(getStatus(self));
             if (mucOptions.getSelf().getAffiliation().ranks(MucOptions.Affiliation.OWNER)) {
-                this.binding.mucSettings.setVisibility(View.VISIBLE);
+//                this.binding.mucSettings.setVisibility(View.VISIBLE);
                 this.binding.mucConferenceType.setText(MucConfiguration.describe(this, mucOptions));
             } else if (!mucOptions.isPrivateAndNonAnonymous() && mucOptions.nonanonymous()) {
-                this.binding.mucSettings.setVisibility(View.VISIBLE);
+//                this.binding.mucSettings.setVisibility(View.VISIBLE);
                 this.binding.mucConferenceType.setText(R.string.group_chat_will_make_your_jabber_id_public);
             } else {
                 this.binding.mucSettings.setVisibility(View.GONE);

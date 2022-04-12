@@ -28,7 +28,7 @@
             android:title="@string/pref_chat_states" />
 
         <CheckBoxPreference
-            android:defaultValue="@bool/last_activity"
+            android:defaultValue="@bool/last_activity1"
             android:key="last_activity"
             android:summary="@string/pref_broadcast_last_activity_summary"
             android:title="@string/pref_broadcast_last_activity" />

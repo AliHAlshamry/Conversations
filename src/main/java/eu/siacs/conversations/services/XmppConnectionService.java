@@ -4083,7 +4083,7 @@ public class XmppConnectionService extends Service {
     }
 
     public boolean broadcastLastActivity() {
-        return getBooleanPreference(SettingsActivity.BROADCAST_LAST_ACTIVITY, R.bool.last_activity);
+        return getBooleanPreference(SettingsActivity.BROADCAST_LAST_ACTIVITY, R.bool.last_activity1);
     }
 
     public int unreadCount() {

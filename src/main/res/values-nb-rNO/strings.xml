@@ -66,7 +66,7 @@
     <string name="send_unencrypted_message">Send ukryptert melding</string>
     <string name="send_message">Send melding</string>
     <string name="send_message_to_x">Send melding til %s</string>
-    <string name="send_omemo_message">Send OMEMO-kryptert melding</string>
+    <string name="send_omemo_message">Send kryptert melding</string>
     <string name="send_omemo_x509_message">Send \\OMEMO-kryptert melding</string>
     <string name="send_pgp_message">Send OpenPGP-kryptert melding</string>
     <string name="send_unencrypted">Send ukryptert</string>

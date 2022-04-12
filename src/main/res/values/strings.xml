@@ -980,5 +980,6 @@
     <string name="attach_location">Location</string>
     <string name="account_registrations_are_not_supported">Account registrations are not supported</string>
     <string name="no_xmpp_adddress_found">No XMPP address found</string>
-
+    <string name="offline">offline</string>
+    <string name="see_all">see all</string>
 </resources>

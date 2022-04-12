@@ -831,5 +831,7 @@
     <string name="anyone_can_edit_subject">بإمكان أي شخص إضافة أعضاء.</string>
     <string name="allow_participants_to_edit_subject">السماح لأي شخص بتعديل عنوان المجموعة</string>
     <string name="channel_already_exists">هذه القناة موجودة فعلاً</string>
+    <string name="offline">غير متصل</string>
     <string name="resend_sms_in">إعادة إرسال الرسالة القصيرة</string>
+    <string name="see_all">عرض الكل</string>
 </resources>

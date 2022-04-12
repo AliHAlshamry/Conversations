@@ -53,7 +53,8 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginTop="8dp"
-                            android:orientation="vertical">
+                            android:orientation="vertical"
+                            android:gravity="center">
 
                             <TextView
                                 android:id="@+id/muc_title"
@@ -68,31 +69,7 @@
                                 android:autoLink="web"
                                 android:textAppearance="@style/TextAppearance.Conversations.Subhead" />
                         </LinearLayout>
-                        <LinearLayout
-                            android:id="@+id/edit_setting_wrapper"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:orientation="horizontal">
-                            <ImageButton
-                                android:id="@+id/edit_muc_name_button"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:alpha="?attr/icon_alpha"
-                                android:background="?attr/selectableItemBackgroundBorderless"
-                                android:padding="@dimen/image_button_padding"
-                                android:src="?attr/icon_edit_body"
-                                />
-                            <ImageButton
-                                android:id="@+id/change_conference_button"
-                                style="?android:attr/buttonStyleSmall"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:layout_gravity="center_horizontal"
-                                android:alpha="?attr/icon_alpha"
-                                android:background="?attr/selectableItemBackgroundBorderless"
-                                android:padding="@dimen/image_button_padding"
-                                android:src="?attr/icon_settings" />
-                        </LinearLayout>
+
                         <LinearLayout
                             android:id="@+id/muc_editor"
                             android:layout_width="match_parent"
@@ -127,6 +104,30 @@
                                     android:hint="@string/topic"
                                     android:textAppearance="@style/Widget.Conversations.EditText"/>
                             </com.google.android.material.textfield.TextInputLayout>
+                            <LinearLayout
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:orientation="horizontal"
+                                android:layout_marginTop="5dp">
+                                <Button
+                                    android:id="@+id/cancel_button"
+                                    android:layout_width="60dp"
+                                    android:layout_height="wrap_content"
+                                    android:text="@string/cancel"
+                                    android:background="@android:color/transparent"
+                                    android:textSize="?attr/TextSizeCaption"
+                                    />
+                                <Button
+                                    android:id="@+id/save_button"
+                                    android:layout_width="60dp"
+                                    android:layout_height="wrap_content"
+                                    android:text="@string/save"
+                                    android:background="@android:color/transparent"
+                                    android:textSize="?attr/TextSizeCaption"
+                                   android:textColor="@color/blue_a400"
+                                  android:enabled="false"
+                                    />
+                            </LinearLayout>
                         </LinearLayout>
 <!--                            <LinearLayout-->
 <!--                                android:layout_width="fill_parent"-->
@@ -287,6 +288,44 @@
                             android:layout_marginTop="32dp"
                             android:textAppearance="@style/TextAppearance.Conversations.Caption"
                             android:visibility="gone"/>
+                    </LinearLayout>
+                </androidx.cardview.widget.CardView>
+                <androidx.cardview.widget.CardView
+                    android:id="@+id/edit_setting_wrapper"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="@dimen/activity_vertical_margin"
+                    android:layout_marginLeft="@dimen/activity_horizontal_margin"
+                    android:layout_marginRight="@dimen/activity_horizontal_margin"
+                    android:layout_marginTop="@dimen/activity_vertical_margin">
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical">
+                        <Button
+                            android:id="@+id/edit_muc_name_button"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:background="?attr/selectableItemBackground"
+                            android:drawableLeft="@drawable/ic_edit_gray_24"
+                            android:drawablePadding="16dp"
+                            android:gravity="left|center"
+                            android:paddingHorizontal="16dp"
+                            android:paddingVertical="16dp"
+                            android:text="@string/action_edit_contact"
+                            android:textAppearance="@style/TextAppearance.Conversations.Subhead"/>
+                        <Button
+                            android:id="@+id/change_conference_button"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:background="?attr/selectableItemBackground"
+                            android:drawableLeft="@drawable/ic_settings_gray_24"
+                            android:drawablePadding="16dp"
+                            android:gravity="left|center"
+                            android:paddingHorizontal="16dp"
+                            android:paddingVertical="16dp"
+                            android:text="@string/action_settings"
+                            android:textAppearance="@style/TextAppearance.Conversations.Subhead"/>
                     </LinearLayout>
                 </androidx.cardview.widget.CardView>
 
@@ -539,6 +578,48 @@
                                 android:textColor="?attr/colorAccent" />
                         </LinearLayout>
                     </LinearLayout>
+                </androidx.cardview.widget.CardView>
+                <androidx.cardview.widget.CardView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="@dimen/activity_vertical_margin"
+                    android:layout_marginLeft="@dimen/activity_horizontal_margin"
+                    android:layout_marginRight="@dimen/activity_horizontal_margin"
+                    android:layout_marginTop="@dimen/activity_vertical_margin">
+                   <LinearLayout
+                       android:layout_width="match_parent"
+                       android:layout_height="wrap_content"
+                       android:orientation="vertical"
+                       >
+                       <Button
+                           android:id="@+id/action_destroy_room"
+                           android:layout_width="match_parent"
+                           android:layout_height="wrap_content"
+                           android:text="@string/destroy_room"
+                           android:background="?attr/selectableItemBackground"
+                           android:drawableLeft="@drawable/ic_delete_red_24"
+                           android:drawablePadding="16dp"
+                           android:gravity="left|center"
+                           android:paddingHorizontal="16dp"
+                           android:paddingVertical="16dp"
+                           android:textAppearance="@style/TextAppearance.Conversations.Subhead"
+                           android:textColor="@color/red500"
+                           />
+                       <Button
+                           android:id="@+id/action_delete_bookmark"
+                           android:layout_width="match_parent"
+                           android:layout_height="wrap_content"
+                           android:text="@string/delete_bookmark"
+                           android:background="?attr/selectableItemBackground"
+                           android:drawableLeft="@drawable/ic_delete_red_24"
+                           android:drawablePadding="16dp"
+                           android:gravity="left|center"
+                           android:paddingHorizontal="16dp"
+                           android:paddingVertical="16dp"
+                           android:textAppearance="@style/TextAppearance.Conversations.Subhead"
+                           android:textColor="@color/red500"
+                           />
+                   </LinearLayout>
                 </androidx.cardview.widget.CardView>
 
             </LinearLayout>

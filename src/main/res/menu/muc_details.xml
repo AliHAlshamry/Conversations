@@ -7,7 +7,8 @@
         android:icon="?attr/icon_share"
         android:orderInCategory="15"
         app:showAsAction="always"
-        android:title="@string/share_uri_with">
+        android:title="@string/share_uri_with"
+        android:visible="false">
         <menu>
             <item
                 android:id="@+id/action_share_uri"
@@ -25,17 +26,20 @@
         android:id="@+id/action_save_as_bookmark"
         android:orderInCategory="80"
         app:showAsAction="never"
-        android:title="@string/save_as_bookmark"/>
+        android:title="@string/save_as_bookmark"
+        android:visible="false"/>
     <item
         android:id="@+id/action_delete_bookmark"
         android:orderInCategory="80"
         app:showAsAction="never"
-        android:title="@string/delete_bookmark"/>
+        android:title="@string/delete_bookmark"
+        android:visible="false"/>
     <item
         android:id="@+id/action_destroy_room"
         android:orderInCategory="82"
         app:showAsAction="never"
-        android:title="@string/destroy_room"/>
+        android:title="@string/destroy_room"
+        android:visible="false"/>
     <item
         android:id="@+id/action_advanced_mode"
         android:checkable="true"
@@ -47,16 +51,19 @@
         android:id="@+id/action_accounts"
         android:orderInCategory="90"
         app:showAsAction="never"
-        android:title="@string/action_accounts"/>
+        android:title="@string/action_accounts"
+        android:visible="false"/>
     <item
         android:id="@+id/action_account"
         android:orderInCategory="90"
         android:title="@string/action_account"
-        app:showAsAction="never"/>
+        app:showAsAction="never"
+        android:visible="false"/>
     <item
         android:id="@+id/action_settings"
         android:orderInCategory="100"
         app:showAsAction="never"
-        android:title="@string/action_settings"/>
+        android:title="@string/action_settings"
+        android:visible="false"/>
 
 </menu>

@@ -238,7 +238,7 @@
     <string name="channel_full_jid_example">channel@conference.example.com/nick</string>
     <string name="channel_bare_jid_example">channel@conference.example.com</string>
     <string name="save_as_bookmark">Save as bookmark</string>
-    <string name="delete_bookmark">Delete bookmark</string>
+    <string name="delete_bookmark">Exit group</string>
     <string name="destroy_room">Destroy group chat</string>
     <string name="destroy_channel">Destroy channel</string>
     <string name="destroy_room_dialog">Are you sure you want to destroy this group chat?\n\n<b>Warning:</b> The group chat will be completely removed on the server.</string>
@@ -980,5 +980,9 @@
     <string name="attach_location">Location</string>
     <string name="account_registrations_are_not_supported">Account registrations are not supported</string>
     <string name="no_xmpp_adddress_found">No XMPP address found</string>
-
+    <string name="leave_channel">Do you want to leave channel</string>
+    <string name="leave_group">Do you want to leave group</string>
+    <string name="change_photo">Change photo</string>
+    <string name="Exit_channel">Exit channel</string>
+    <string name="Exit_group">Exit group</string>
 </resources>

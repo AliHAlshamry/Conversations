@@ -88,6 +88,7 @@ import eu.siacs.conversations.ui.util.StyledAttributes;
 import eu.siacs.conversations.utils.AccountUtils;
 import eu.siacs.conversations.utils.EasyOnboardingInvite;
 import eu.siacs.conversations.utils.ThemeHelper;
+import eu.siacs.conversations.utils.XmppUri;
 
 import static androidx.recyclerview.widget.ItemTouchHelper.LEFT;
 import static androidx.recyclerview.widget.ItemTouchHelper.RIGHT;
@@ -313,6 +314,59 @@ public class ConversationsOverviewFragment extends XmppFragment {
 		super.onCreate(savedInstanceState);
 		setHasOptionsMenu(true);
 	}
+
+	@SuppressLint("InflateParams")
+	protected void showCreateContactDialog(final StartConversationActivity.Invite invite) {
+		this.mActivatedAccounts.clear();
+		this.mActivatedAccounts.addAll(AccountUtils.getEnabledAccounts(activity.xmppConnectionService));
+		FragmentTransaction ft = activity.getSupportFragmentManager().beginTransaction();
+		androidx.fragment.app.Fragment prev = activity.getSupportFragmentManager().findFragmentByTag(FRAGMENT_TAG_DIALOG);
+		if (prev != null) {
+			ft.remove(prev);
+		}
+		ft.addToBackStack(null);
+		EnterJidDialog dialog = EnterJidDialog.newInstance(
+				mActivatedAccounts,
+				getString(R.string.add_contact),
+				getString(R.string.add),
+				null,
+				null,
+				false,
+				true
+		);
+
+		dialog.setOnEnterJidDialogPositiveListener((accountJid, contactJid) -> {
+			if (!activity.xmppConnectionServiceBound) {
+				return false;
+			}
+
+			final Account account = activity.xmppConnectionService.findAccountByJid(accountJid);
+			if (account == null) {
+				return true;
+			}
+
+			final Contact contact = account.getRoster().getContact(contactJid);
+			if (invite != null && invite.getName() != null) {
+				contact.setServerName(invite.getName());
+			}
+			if (contact.isSelf()) {
+				switchToConversation(contact);
+				return true;
+			} else if (contact.showInRoster()) {
+				throw new EnterJidDialog.JidError(getString(R.string.contact_already_exists));
+			} else {
+				final String preAuth = invite == null ? null : invite.getParameter(XmppUri.PARAMETER_PRE_AUTH);
+				activity.xmppConnectionService.createContact(contact, true, preAuth);
+				if (invite != null && invite.hasFingerprints()) {
+					activity.xmppConnectionService.verifyFingerprints(contact, invite.getFingerprints());
+				}
+				switchToConversationDoNotAppend(contact, invite == null ? null : invite.getBody());
+				return true;
+			}
+		});
+		dialog.show(ft, FRAGMENT_TAG_DIALOG);
+	}
+
 	@SuppressLint("InflateParams")
 	protected void showJoinConferenceDialog() {
 		this.mActivatedAccounts.clear();
@@ -321,6 +375,19 @@ public class ConversationsOverviewFragment extends XmppFragment {
 		ft.addToBackStack(null);
 		JoinConferenceDialog joinConferenceFragment = JoinConferenceDialog.newInstance("", mActivatedAccounts);
 		joinConferenceFragment.show(ft, FRAGMENT_TAG_DIALOG);
+	}
+
+	private void showPublicChannelDialog() {
+		this.mActivatedAccounts.clear();
+		this.mActivatedAccounts.addAll(AccountUtils.getEnabledAccounts(activity.xmppConnectionService));
+		FragmentTransaction ft = activity.getSupportFragmentManager().beginTransaction();
+		androidx.fragment.app.Fragment prev = activity.getSupportFragmentManager().findFragmentByTag(FRAGMENT_TAG_DIALOG);
+		if (prev != null) {
+			ft.remove(prev);
+		}
+		ft.addToBackStack(null);
+		CreatePublicChannelDialog dialog = CreatePublicChannelDialog.newInstance(mActivatedAccounts);
+		dialog.show(ft, FRAGMENT_TAG_DIALOG);
 	}
 
 	private void showCreatePrivateGroupChatDialog() {
@@ -376,12 +443,12 @@ public class ConversationsOverviewFragment extends XmppFragment {
 				case R.id.create_private_group_chat:
 					showCreatePrivateGroupChatDialog();
 					break;
-/*				case R.id.create_public_channel:
+				case R.id.create_public_channel:
 					showPublicChannelDialog();
 					break;
 				case R.id.create_contact:
-					showCreateContactDialog(prefilled, null);
-					break;*/
+					showCreateContactDialog(null);
+					break;
 			}
 			return false;
 		});
@@ -568,5 +635,13 @@ public class ConversationsOverviewFragment extends XmppFragment {
 		intent.putExtra(ConversationsActivity.EXTRA_CONVERSATION, conversation.getUuid());
 		intent.setFlags(intent.getFlags() | Intent.FLAG_ACTIVITY_CLEAR_TOP);
 		startActivity(intent);
+	}
+	protected void switchToConversation(Contact contact) {
+		Conversation conversation = activity.xmppConnectionService.findOrCreateConversation(contact.getAccount(), contact.getJid(), false, true);
+		switchToConversation(conversation);
+	}
+	protected void switchToConversationDoNotAppend(Contact contact, String body) {
+		Conversation conversation = activity.xmppConnectionService.findOrCreateConversation(contact.getAccount(), contact.getJid(), false, true);
+		activity.switchToConversationDoNotAppend(conversation, body, false);
 	}
 }

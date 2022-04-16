@@ -624,7 +624,7 @@ public class StartConversationActivity extends XmppActivity implements XmppConne
 
     protected void switchToConversationDoNotAppend(Contact contact, String body) {
         Conversation conversation = xmppConnectionService.findOrCreateConversation(contact.getAccount(), contact.getJid(), false, true);
-        switchToConversationDoNotAppend(conversation, body);
+        switchToConversationDoNotAppend(conversation, body, true);
     }
 
     @Override
@@ -893,7 +893,7 @@ public class StartConversationActivity extends XmppActivity implements XmppConne
         if (invite.isAction(XmppUri.ACTION_JOIN)) {
             Conversation muc = xmppConnectionService.findFirstMuc(invite.getJid());
             if (muc != null && !invite.forceDialog) {
-                switchToConversationDoNotAppend(muc, invite.getBody());
+                switchToConversationDoNotAppend(muc, invite.getBody(), true);
                 return true;
             } else {
                 showJoinConferenceDialog(invite.getJid().asBareJid().toEscapedString());
@@ -1333,7 +1333,7 @@ public class StartConversationActivity extends XmppActivity implements XmppConne
         }
     }
 
-    private class Invite extends XmppUri {
+    public class Invite extends XmppUri {
 
         public String account;
 

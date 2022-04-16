@@ -106,7 +106,7 @@ import eu.siacs.conversations.utils.XmppUri;
 import eu.siacs.conversations.xmpp.Jid;
 import eu.siacs.conversations.xmpp.OnUpdateBlocklist;
 
-public class ConversationsActivity extends XmppActivity implements OnConversationSelected, OnConversationArchived, OnConversationsListItemUpdated, OnConversationRead, XmppConnectionService.OnAccountUpdate, XmppConnectionService.OnConversationUpdate, XmppConnectionService.OnRosterUpdate, OnUpdateBlocklist, XmppConnectionService.OnShowErrorToast, XmppConnectionService.OnAffiliationChanged , JoinConferenceDialog.JoinConferenceDialogListener, CreatePrivateGroupChatDialog.CreateConferenceDialogListener{
+public class ConversationsActivity extends XmppActivity implements OnConversationSelected, OnConversationArchived, OnConversationsListItemUpdated, OnConversationRead, XmppConnectionService.OnAccountUpdate, XmppConnectionService.OnConversationUpdate, XmppConnectionService.OnRosterUpdate, OnUpdateBlocklist, XmppConnectionService.OnShowErrorToast, XmppConnectionService.OnAffiliationChanged , JoinConferenceDialog.JoinConferenceDialogListener, CreatePrivateGroupChatDialog.CreateConferenceDialogListener, CreatePublicChannelDialog.CreatePublicChannelDialogListener{
 
     public static final String ACTION_VIEW_CONVERSATION = "eu.siacs.conversations.action.VIEW";
     public static final String EXTRA_CONVERSATION = "conversationUuid";
@@ -251,6 +251,25 @@ public class ConversationsActivity extends XmppActivity implements OnConversatio
         }
     }
 
+    private void createPrivateGroupChat(int requestCode,Intent intent){
+        if (xmppConnectionServiceBound) {
+            this.mPostponedActivityResult = null;
+            if (requestCode == REQUEST_CREATE_CONFERENCE) {
+                Account account = extractAccount(intent);
+                final String name = intent.getStringExtra(ChooseContactActivity.EXTRA_GROUP_CHAT_NAME);
+                final List<Jid> jids = ChooseContactActivity.extractJabberIds(intent);
+                if (account != null && jids.size() > 0) {
+                    if (xmppConnectionService.createAdhocConference(account, name, jids, mAdhocConferenceCallback)) {
+                        mToast = Toast.makeText(this, R.string.creating_conference, Toast.LENGTH_LONG);
+                        mToast.show();
+                    }
+                }
+            }
+        } else {
+            this.mPostponedActivityResult = new Pair<>(requestCode, intent);
+        }
+    }
+
     private String getBatteryOptimizationPreferenceKey() {
         @SuppressLint("HardwareIds") String device = Settings.Secure.getString(getContentResolver(), Settings.Secure.ANDROID_ID);
         return "show_battery_optimization" + (device == null ? "" : device);
@@ -338,7 +357,7 @@ public class ConversationsActivity extends XmppActivity implements OnConversatio
         }
     }
 
-/*    @Override
+   @Override
     public void onActivityResult(int requestCode, int resultCode, final Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
         ActivityResult activityResult = ActivityResult.of(requestCode, resultCode, data);
@@ -347,7 +366,7 @@ public class ConversationsActivity extends XmppActivity implements OnConversatio
         } else {
             this.postponedActivityResult.push(activityResult);
         }
-    }*/
+    }
 
     private void handleActivityResult(ActivityResult activityResult) {
         if (activityResult.resultCode == Activity.RESULT_OK) {
@@ -374,6 +393,9 @@ public class ConversationsActivity extends XmppActivity implements OnConversatio
 
     private void handlePositiveActivityResult(int requestCode, final Intent data) {
         Conversation conversation = ConversationFragment.getConversationReliable(this);
+        if (requestCode == REQUEST_CREATE_CONFERENCE) {
+            createPrivateGroupChat(requestCode, data);
+        }
         if (conversation == null) {
             Log.d(Config.LOGTAG, "conversation not found");
             return;
@@ -882,7 +904,7 @@ public class ConversationsActivity extends XmppActivity implements OnConversatio
         intent.putExtra(ChooseContactActivity.EXTRA_TITLE_RES_ID, R.string.choose_participants);
         startActivityForResult(intent, REQUEST_CREATE_CONFERENCE);
     }
-
+/*
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent intent) {
         if (resultCode == RESULT_OK) {
@@ -905,5 +927,33 @@ public class ConversationsActivity extends XmppActivity implements OnConversatio
         }
         super.onActivityResult(requestCode, requestCode, intent);
     }
+*/
+    @Override
+    public void onCreatePublicChannel(Account account, String name, Jid address) {
+        mToast = Toast.makeText(this, R.string.creating_channel, Toast.LENGTH_LONG);
+        mToast.show();
+        xmppConnectionService.createPublicChannel(account, name, address, new UiCallback<Conversation>() {
+            @Override
+            public void success(Conversation conversation) {
+                runOnUiThread(() -> {
+                    hideToast();
+                    switchToConversation(conversation);
+                });
 
+            }
+
+            @Override
+            public void error(int errorCode, Conversation conversation) {
+                runOnUiThread(() -> {
+                    replaceToast(getString(errorCode));
+                    switchToConversation(conversation);
+                });
+            }
+
+            @Override
+            public void userInputRequired(PendingIntent pi, Conversation object) {
+
+            }
+        });
+    }
 }

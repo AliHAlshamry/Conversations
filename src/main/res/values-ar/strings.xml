@@ -208,7 +208,7 @@
     <string name="channel_full_jid_example">channel@conference.example.com/nick</string>
     <string name="channel_bare_jid_example">channel@conference.example.com</string>
     <string name="save_as_bookmark">حفظ بالمفضلة</string>
-    <string name="delete_bookmark">حذف من المفضلة</string>
+    <string name="delete_bookmark">مغادرة المجموعة</string>
     <string name="destroy_room">حذف المجموعة نهائياً</string>
     <string name="destroy_channel">حذف القناة نهائياً</string>
     <string name="could_not_destroy_room">لا يمكن حذف المجموعة</string>
@@ -834,4 +834,9 @@
     <string name="offline">غير متصل</string>
     <string name="resend_sms_in">إعادة إرسال الرسالة القصيرة</string>
     <string name="see_all">عرض الكل</string>
+    <string name="leave_channel">هل انت متاكد من مغادرة القناة</string>
+    <string name="leave_group">هل انت متاكد من مغادرة المجموعة</string>
+    <string name="change_photo">تغيير الصورة</string>
+    <string name="Exit_channel">مغادرة القناة</string>
+    <string name="Exit_group">مغادرة المجموعة</string>
 </resources>

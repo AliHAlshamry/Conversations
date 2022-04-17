@@ -32,6 +32,7 @@ import android.widget.CheckBox;
 import android.widget.CompoundButton.OnCheckedChangeListener;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.PopupMenu;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -660,7 +661,32 @@ public class EditAccountActivity extends OmemoActivity implements OnAccountUpdat
         if (Config.DISALLOW_REGISTRATION_IN_UI) {
             this.binding.accountRegisterNew.setVisibility(View.GONE);
         }
-        this.binding.actionEditYourName.setOnClickListener(this::onEditYourNameClicked);
+//        this.binding.actionEditYourName.setOnClickListener(this::onEditYourNameClicked);
+        this.binding.actionEditName.setOnClickListener(this::onEditYourNameClicked);
+        this.binding.actionEditStatusMessage.setOnClickListener(v->changePresence());
+        this.binding.actionEditPhoto.setOnClickListener(this.mAvatarClickListener);
+        this.binding.actionArchiveButton.setOnClickListener(v->editMamPrefs());
+        this.binding.actionShowBlockList.setOnClickListener(v->{
+            final Intent showBlocklistIntent = new Intent(this, BlocklistActivity.class);
+            showBlocklistIntent.putExtra(EXTRA_ACCOUNT, mAccount.getJid().toEscapedString());
+            startActivity(showBlocklistIntent);
+        });
+        binding.actionShareUriButton.setOnClickListener(v->{
+            PopupMenu popupMenu = new PopupMenu(this, v);
+            getMenuInflater().inflate(R.menu.share_account, popupMenu.getMenu());
+            popupMenu.setOnMenuItemClickListener(menuItem -> {
+                switch (menuItem.getItemId()) {
+                    case R.id.action_share_http:
+                        shareLink(true);
+                        break;
+                    case R.id.action_share_uri:
+                        shareLink(false);
+                        break;
+                }
+                return true;
+            });
+            popupMenu.show();
+        });
     }
 
     private void onEditYourNameClicked(View view) {
@@ -1069,6 +1095,8 @@ public class EditAccountActivity extends OmemoActivity implements OnAccountUpdat
 
         final String displayName = mAccount.getDisplayName();
         updateDisplayName(displayName);
+        updateDisplayEmail(mAccount.getJid().asBareJid());
+
 
 
         final boolean togglePassword = mAccount.isOptionSet(Account.OPTION_MAGIC_CREATE) || !mAccount.isOptionSet(Account.OPTION_LOGGED_IN_SUCCESSFULLY);
@@ -1249,11 +1277,18 @@ public class EditAccountActivity extends OmemoActivity implements OnAccountUpdat
 
     private void updateDisplayName(String displayName) {
         if (TextUtils.isEmpty(displayName)) {
-            this.binding.yourName.setText(R.string.no_name_set_instructions);
-            this.binding.yourName.setTextAppearance(this, R.style.TextAppearance_Conversations_Body1_Tertiary);
+            this.binding.userName.setText(R.string.no_name_set_instructions);
+//            this.binding.yourName.setTextAppearance(this, R.style.TextAppearance_Conversations_Body1_Tertiary);
         } else {
-            this.binding.yourName.setText(displayName);
-            this.binding.yourName.setTextAppearance(this, R.style.TextAppearance_Conversations_Body1);
+            this.binding.userName.setText(displayName);
+//            this.binding.yourName.setTextAppearance(this, R.style.TextAppearance_Conversations_Body1);
+        }
+    }
+    private void updateDisplayEmail(Jid jid) {
+        if (TextUtils.isEmpty(jid)) {
+            this.binding.userJid.setText(R.string.no_name_set_instructions);
+        }else{
+            this.binding.userJid.setText(jid);
         }
     }
 

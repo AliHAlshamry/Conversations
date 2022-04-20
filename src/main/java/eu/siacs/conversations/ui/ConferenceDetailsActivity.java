@@ -375,9 +375,7 @@ public class ConferenceDetailsActivity extends XmppActivity implements OnConvers
             binding.actionDeleteBookmark.setVisibility(View.GONE);
         }
 //        menuItemDestroyRoom.setVisible(mConversation.getMucOptions().getSelf().getAffiliation().ranks(MucOptions.Affiliation.OWNER));
-        if(!mConversation.getMucOptions().getSelf().getAffiliation().ranks(MucOptions.Affiliation.OWNER)){
-            binding.actionDestroyRoom.setVisibility(View.GONE);
-          }
+          binding.actionDestroyRoom.setVisibility(mConversation.getMucOptions().getSelf().getAffiliation().ranks(MucOptions.Affiliation.OWNER)?View.VISIBLE:View.GONE);
         return true;
     }
 

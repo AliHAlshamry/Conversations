@@ -19,10 +19,10 @@
 
         <com.makeramen.roundedimageview.RoundedImageView
             android:id="@+id/profile_photo"
-            android:layout_width="40dp"
-            android:layout_height="40dp"
+            android:layout_width="@dimen/avatar"
+            android:layout_height="@dimen/avatar"
             android:scaleType="fitXY"
-            app:riv_corner_radius="50dp" />
+            app:riv_corner_radius="50dp"/>
 
         <LinearLayout
             android:layout_width="wrap_content"

@@ -549,7 +549,7 @@ public class EditAccountActivity extends OmemoActivity implements OnAccountUpdat
         } else if (mAccount != null
                 && (mAccount.getStatus() == Account.State.CONNECTING || mAccount.getStatus() == Account.State.REGISTRATION_SUCCESSFUL || mFetchingAvatar)) {
             this.binding.saveButton.setEnabled(false);
-            this.binding.cancelButton.setEnabled(true);
+//            this.binding.cancelButton.setEnabled(true);
             this.binding.accountPassword.setEnabled(false);
             this.binding.saveButton.setText(R.string.account_status_connecting);
         } else if (mAccount != null && mAccount.getStatus() == Account.State.DISABLED && !mInitMode) {
@@ -574,12 +574,12 @@ public class EditAccountActivity extends OmemoActivity implements OnAccountUpdat
                     HttpUrl url = connection != null && mAccount.getStatus() == Account.State.PAYMENT_REQUIRED ? connection.getRedirectionUrl() : null;
                     if (url != null) {
                         this.binding.saveButton.setText(R.string.open_website);
-                        this.binding.cancelButton.setEnabled(true);
+//                        this.binding.cancelButton.setEnabled(true);
                     } else if (inNeedOfSaslAccept()) {
                         this.binding.saveButton.setText(R.string.accept);
                     } else {
                         this.binding.saveButton.setText(R.string.connect);
-                        this.binding.cancelButton.setEnabled(true);
+//                        this.binding.cancelButton.setEnabled(true);
                     }
                 }
             } else {
@@ -589,7 +589,7 @@ public class EditAccountActivity extends OmemoActivity implements OnAccountUpdat
                     this.binding.saveButton.setText(R.string.open_website);
                 } else {
                     this.binding.saveButton.setText(R.string.next);
-                    this.binding.cancelButton.setEnabled(false);
+//                    this.binding.cancelButton.setEnabled(false);
                 }
             }
         }
@@ -652,7 +652,7 @@ public class EditAccountActivity extends OmemoActivity implements OnAccountUpdat
         this.binding.port.setText(String.valueOf(Resolver.DEFAULT_PORT_XMPP));
         this.binding.port.addTextChangedListener(mTextWatcher);
         this.binding.saveButton.setOnClickListener(this.mSaveButtonClickListener);
-        this.binding.cancelButton.setOnClickListener(this.mCancelButtonClickListener);
+//        this.binding.cancelButton.setOnClickListener(this.mCancelButtonClickListener);
         if (savedInstanceState != null && savedInstanceState.getBoolean("showMoreTable")) {
             changeMoreTableVisibility(true);
         }
@@ -687,7 +687,8 @@ public class EditAccountActivity extends OmemoActivity implements OnAccountUpdat
             });
             popupMenu.show();
         });
-    }
+
+      }
 
     private void onEditYourNameClicked(View view) {
         quickEdit(mAccount.getDisplayName(), R.string.your_name, value -> {
@@ -717,25 +718,33 @@ public class EditAccountActivity extends OmemoActivity implements OnAccountUpdat
         final MenuItem share = menu.findItem(R.id.action_share);
         final MenuItem deleteAccount = menu.findItem(R.id.mgmt_account_delete);
         renewCertificate.setVisible(mAccount != null && mAccount.getPrivateKeyAlias() != null);
-
-        share.setVisible(mAccount != null && !mInitMode);
+//        share.setVisible(mAccount != null && !mInitMode);
+        binding.actionShowBlockList.setVisibility(View.VISIBLE);
+        binding.actionEditStatusMessage.setVisibility(View.VISIBLE);
+        binding.actionArchiveButton.setVisibility(View.VISIBLE);
 
         if (mAccount != null && mAccount.isOnlineAndConnected()) {
             if (!mAccount.getXmppConnection().getFeatures().blocking()) {
                 showBlocklist.setVisible(false);
+                binding.actionShowBlockList.setVisibility(View.GONE);
             }
 
             if (!mAccount.getXmppConnection().getFeatures().register()) {
                 changePassword.setVisible(false);
             }
-            mamPrefs.setVisible(mAccount.getXmppConnection().getFeatures().mam());
-            changePresence.setVisible(!mInitMode);
+//            mamPrefs.setVisible(mAccount.getXmppConnection().getFeatures().mam());
+              binding.actionArchiveButton.setVisibility(mAccount.getXmppConnection().getFeatures().mam()?View.VISIBLE:View.GONE);
+//            changePresence.setVisible(!mInitMode);
+            binding.actionEditStatusMessage.setVisibility(!mInitMode?View.VISIBLE:View.GONE);
         } else {
             showBlocklist.setVisible(false);
             showMoreInfo.setVisible(false);
             changePassword.setVisible(false);
             mamPrefs.setVisible(false);
             changePresence.setVisible(false);
+            binding.actionShowBlockList.setVisibility(View.GONE);
+            binding.actionEditStatusMessage.setVisibility(View.GONE);
+            binding.actionArchiveButton.setVisibility(View.GONE);
         }
 
         if (this.mAccount !=null) {
@@ -744,6 +753,11 @@ public class EditAccountActivity extends OmemoActivity implements OnAccountUpdat
             } else {
                 menu.findItem(R.id.mgmt_account_disable).setVisible(false);
             }
+        }
+        if(mInitMode){
+            menu.findItem(R.id.mgmt_account_enable).setVisible(false);
+            menu.findItem(R.id.mgmt_account_disable).setVisible(false);
+            deleteAccount.setVisible(false);
         }
         return super.onCreateOptionsMenu(menu);
     }
@@ -892,7 +906,7 @@ public class EditAccountActivity extends OmemoActivity implements OnAccountUpdat
 
 
         if (this.xmppConnectionService.getAccounts().size() == 0) {
-            this.binding.cancelButton.setEnabled(false);
+//            this.binding.cancelButton.setEnabled(false);
         }
         if (mUsernameMode) {
             this.binding.accountJidLayout.setHint(getString(R.string.username_hint));
@@ -1108,7 +1122,6 @@ public class EditAccountActivity extends OmemoActivity implements OnAccountUpdat
         this.binding.accountPassword.setFocusableInTouchMode(editPassword);
         this.binding.accountPassword.setCursorVisible(editPassword);
         this.binding.accountPassword.setEnabled(editPassword);
-
         if (!mInitMode) {
             this.binding.avater.setVisibility(View.VISIBLE);
             AvatarWorkerTask.loadAvatar(mAccount, binding.avater, R.dimen.avatar_on_details_screen_size);
@@ -1128,7 +1141,7 @@ public class EditAccountActivity extends OmemoActivity implements OnAccountUpdat
         }
         if (this.mAccount.isOnlineAndConnected() && !this.mFetchingAvatar) {
             Features features = this.mAccount.getXmppConnection().getFeatures();
-            this.binding.stats.setVisibility(View.VISIBLE);
+//            this.binding.stats.setVisibility(View.VISIBLE);
             boolean showBatteryWarning = !xmppConnectionService.getPushManagementService().available(mAccount) && isOptimizingBattery();
             boolean showDataSaverWarning = isAffectedByDataSaver();
             showOsOptimizationWarning(showBatteryWarning, showDataSaverWarning);
@@ -1240,7 +1253,7 @@ public class EditAccountActivity extends OmemoActivity implements OnAccountUpdat
                 }
             }
             if (hasKeys && Config.supportOmemo()) { //TODO: either the button should be visible if we print an active device or the device list should be fed with reactived devices
-                this.binding.otherDeviceKeysCard.setVisibility(View.VISIBLE);
+//                this.binding.otherDeviceKeysCard.setVisibility(View.VISIBLE);
                 Set<Integer> otherDevices = mAccount.getAxolotlService().getOwnDeviceIds();
                 if (otherDevices == null || otherDevices.isEmpty()) {
                     binding.clearDevices.setVisibility(View.GONE);
@@ -1248,7 +1261,7 @@ public class EditAccountActivity extends OmemoActivity implements OnAccountUpdat
                     binding.clearDevices.setVisibility(View.VISIBLE);
                 }
             } else {
-                this.binding.otherDeviceKeysCard.setVisibility(View.GONE);
+//                this.binding.otherDeviceKeysCard.setVisibility(View.GONE);
             }
         } else {
             final TextInputLayout errorLayout;
@@ -1272,6 +1285,15 @@ public class EditAccountActivity extends OmemoActivity implements OnAccountUpdat
             removeErrorsOnAllBut(errorLayout);
             this.binding.stats.setVisibility(View.GONE);
             this.binding.otherDeviceKeysCard.setVisibility(View.GONE);
+        }
+        if (!mInitMode) {
+            this.binding.editor.setVisibility(View.GONE);
+            this.binding.accountCard.setVisibility(View.VISIBLE);
+            this.binding.accountSettingCard.setVisibility(View.VISIBLE);
+        }else{
+            this.binding.accountCard.setVisibility(View.GONE);
+            this.binding.accountSettingCard.setVisibility(View.GONE);
+            this.binding.editor.setVisibility(View.VISIBLE);
         }
     }
 

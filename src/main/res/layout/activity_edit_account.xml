@@ -14,7 +14,6 @@
         <ScrollView
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
-            android:layout_above="@+id/button_bar"
             android:layout_below="@id/toolbar">
 
             <LinearLayout
@@ -29,10 +28,9 @@
                     android:layout_marginBottom="@dimen/activity_vertical_margin"
                     android:layout_marginLeft="@dimen/activity_horizontal_margin"
                     android:layout_marginRight="@dimen/activity_horizontal_margin"
-                    android:layout_marginTop="@dimen/activity_vertical_margin">
-
+                    android:layout_marginTop="@dimen/activity_vertical_margin"
+                    android:visibility="gone">
                     <LinearLayout
-                        android:id="@+id/account_layout"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:gravity="center"
@@ -69,8 +67,8 @@
                                 android:layout_height="match_parent"
                                 android:layout_alignParentStart="true"
                                 android:layout_alignParentLeft="true"
-                                android:layout_toStartOf="@+id/edit_button_2"
-                                android:layout_toLeftOf="@+id/edit_button_2"
+                                android:layout_toStartOf="@+id/edit_button_1"
+                                android:layout_toLeftOf="@+id/edit_button_1"
                                 android:gravity="start|center"
                                 android:orientation="horizontal">
 
@@ -81,7 +79,8 @@
                                     android:layout_alignParentStart="true"
                                     android:layout_gravity="center_horizontal"
                                     android:background="@android:color/transparent"
-                                    android:src="@drawable/ic_photo_camera_gray_24" />
+                                    android:src="@drawable/ic_photo_camera_gray_24"
+                                    android:clickable="false"/>
 
                                 <TextView
                                     android:layout_width="wrap_content"
@@ -93,7 +92,7 @@
                             </LinearLayout>
 
                             <ImageButton
-                                android:id="@+id/edit_button_2"
+                                android:id="@+id/edit_button_1"
                                 style="?android:attr/buttonStyleSmall"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
@@ -102,6 +101,7 @@
                                 android:layout_centerVertical="true"
                                 android:layout_gravity="center_horizontal"
                                 android:background="@android:color/transparent"
+                                android:clickable="false"
                                 android:src="@drawable/ic_edit_gray_24" />
                         </RelativeLayout>
 
@@ -118,8 +118,8 @@
                                 android:layout_height="match_parent"
                                 android:layout_alignParentStart="true"
                                 android:layout_alignParentLeft="true"
-                                android:layout_toStartOf="@+id/notification_status_button"
-                                android:layout_toLeftOf="@+id/notification_status_button"
+                                android:layout_toStartOf="@+id/edit_button_2"
+                                android:layout_toLeftOf="@+id/edit_button_2"
                                 android:gravity="center|left"
                                 android:orientation="horizontal">
 
@@ -131,7 +131,8 @@
                                     android:layout_centerVertical="true"
                                     android:layout_gravity="center_horizontal"
                                     android:background="@android:color/transparent"
-                                    android:src="@drawable/ic_person_gray_24" />
+                                    android:src="@drawable/ic_person_gray_24"
+                                    android:clickable="false"/>
 
                                 <LinearLayout
                                     android:id="@+id/user_name_layout"
@@ -150,7 +151,7 @@
                             </LinearLayout>
 
                             <ImageButton
-                                android:id="@+id/notification_status_button"
+                                android:id="@+id/edit_button_2"
                                 style="?android:attr/buttonStyleSmall"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
@@ -188,7 +189,8 @@
                                     android:layout_centerVertical="true"
                                     android:layout_gravity="center_horizontal"
                                     android:background="@android:color/transparent"
-                                    android:src="@drawable/ic_announcement_gray_24" />
+                                    android:src="@drawable/ic_announcement_gray_24"
+                                    android:clickable="false"/>
 
                                 <TextView
                                     android:layout_width="wrap_content"
@@ -207,17 +209,20 @@
                                 android:layout_centerVertical="true"
                                 android:layout_gravity="center_horizontal"
                                 android:background="@android:color/transparent"
-                                android:src="@drawable/ic_edit_gray_24" />
+                                android:src="@drawable/ic_edit_gray_24"
+                                android:clickable="false"/>
                         </RelativeLayout>
                     </LinearLayout>
                 </androidx.cardview.widget.CardView>
                 <androidx.cardview.widget.CardView
+                    android:id="@+id/account_setting_card"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginBottom="@dimen/activity_vertical_margin"
                     android:layout_marginLeft="@dimen/activity_horizontal_margin"
                     android:layout_marginRight="@dimen/activity_horizontal_margin"
-                    android:layout_marginTop="@dimen/activity_vertical_margin">
+                    android:layout_marginTop="@dimen/activity_vertical_margin"
+                    android:visibility="gone">
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
@@ -291,22 +296,23 @@
                             android:layout_width="fill_parent"
                             android:layout_height="wrap_content"
                             android:orientation="vertical">
+
                             <com.google.android.material.textfield.TextInputLayout
                                 android:id="@+id/account_jid_layout"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:hint="@string/account_settings_jabber_id"
-                                app:hintTextAppearance="@style/TextAppearance.Conversations.Design.Hint"
-                                app:errorTextAppearance="@style/TextAppearance.Conversations.Design.Error">
+                                app:errorTextAppearance="@style/TextAppearance.Conversations.Design.Error"
+                                app:hintTextAppearance="@style/TextAppearance.Conversations.Design.Hint">
 
                                 <AutoCompleteTextView
                                     android:id="@+id/account_jid"
+                                    style="@style/Widget.Conversations.EditText"
                                     android:layout_width="match_parent"
                                     android:layout_height="wrap_content"
                                     android:imeOptions="actionNext"
                                     android:inputType="textEmailAddress"
-                                    android:textColor="?attr/edit_text_color"
-                                    style="@style/Widget.Conversations.EditText"/>
+                                    android:textColor="?attr/edit_text_color" />
                             </com.google.android.material.textfield.TextInputLayout>
 
 
@@ -314,44 +320,44 @@
                                 android:id="@+id/account_password_layout"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
+                                app:errorTextAppearance="@style/TextAppearance.Conversations.Design.Error"
+                                app:hintTextAppearance="@style/TextAppearance.Conversations.Design.Hint"
                                 app:passwordToggleDrawable="@drawable/visibility_toggle_drawable"
                                 app:passwordToggleEnabled="true"
-                                app:passwordToggleTint="?android:textColorSecondary"
-                                app:hintTextAppearance="@style/TextAppearance.Conversations.Design.Hint"
-                                app:errorTextAppearance="@style/TextAppearance.Conversations.Design.Error">
+                                app:passwordToggleTint="?android:textColorSecondary">
 
                                 <eu.siacs.conversations.ui.widget.TextInputEditText
                                     android:id="@+id/account_password"
+                                    style="@style/Widget.Conversations.EditText"
                                     android:layout_width="match_parent"
                                     android:layout_height="wrap_content"
                                     android:layout_alignParentTop="true"
                                     android:hint="@string/password"
                                     android:inputType="textPassword"
-                                    android:textColor="?attr/edit_text_color"
-                                    style="@style/Widget.Conversations.EditText"/>
+                                    android:textColor="?attr/edit_text_color" />
                             </com.google.android.material.textfield.TextInputLayout>
 
                             <com.google.android.material.textfield.TextInputLayout
                                 android:id="@+id/re_enter_password_layout"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
-                                app:passwordToggleDrawable="@drawable/visibility_toggle_drawable"
                                 android:visibility="gone"
-                                app:passwordToggleEnabled="true"
-                                app:passwordToggleTint="?android:textColorSecondary"
+                                app:errorTextAppearance="@style/TextAppearance.Conversations.Design.Error"
                                 app:hintTextAppearance="@style/TextAppearance.Conversations.Design.Hint"
-                                app:errorTextAppearance="@style/TextAppearance.Conversations.Design.Error">
+                                app:passwordToggleDrawable="@drawable/visibility_toggle_drawable"
+                                app:passwordToggleEnabled="true"
+                                app:passwordToggleTint="?android:textColorSecondary">
 
                                 <eu.siacs.conversations.ui.widget.TextInputEditText
                                     android:id="@+id/re_enter_account_password"
+                                    style="@style/Widget.Conversations.EditText"
                                     android:layout_width="match_parent"
                                     android:layout_height="wrap_content"
                                     android:layout_alignParentTop="true"
                                     android:hint="@string/password"
-                                    android:inputType="textPassword"
 
-                                    android:textColor="?attr/edit_text_color"
-                                    style="@style/Widget.Conversations.EditText"/>
+                                    android:inputType="textPassword"
+                                    android:textColor="?attr/edit_text_color" />
                             </com.google.android.material.textfield.TextInputLayout>
 
                             <LinearLayout
@@ -373,15 +379,15 @@
                                         android:layout_width="match_parent"
                                         android:layout_height="wrap_content"
                                         android:hint="@string/account_settings_hostname"
-                                        app:hintTextAppearance="@style/TextAppearance.Conversations.Design.Hint"
-                                        app:errorTextAppearance="@style/TextAppearance.Conversations.Design.Error">
+                                        app:errorTextAppearance="@style/TextAppearance.Conversations.Design.Error"
+                                        app:hintTextAppearance="@style/TextAppearance.Conversations.Design.Hint">
 
                                         <EditText
                                             android:id="@+id/hostname"
+                                            style="@style/Widget.Conversations.EditText"
                                             android:layout_width="fill_parent"
                                             android:layout_height="wrap_content"
-                                            android:inputType="textWebEmailAddress"
-                                            style="@style/Widget.Conversations.EditText"/>
+                                            android:inputType="textWebEmailAddress" />
                                     </com.google.android.material.textfield.TextInputLayout>
                                 </LinearLayout>
 
@@ -396,16 +402,16 @@
                                         android:layout_width="match_parent"
                                         android:layout_height="wrap_content"
                                         android:hint="@string/account_settings_port"
-                                        app:hintTextAppearance="@style/TextAppearance.Conversations.Design.Hint"
-                                        app:errorTextAppearance="@style/TextAppearance.Conversations.Design.Error">
+                                        app:errorTextAppearance="@style/TextAppearance.Conversations.Design.Error"
+                                        app:hintTextAppearance="@style/TextAppearance.Conversations.Design.Hint">
 
                                         <EditText
                                             android:id="@+id/port"
+                                            style="@style/Widget.Conversations.EditText"
                                             android:layout_width="match_parent"
                                             android:layout_height="match_parent"
                                             android:inputType="number"
-                                            android:maxLength="5"
-                                            style="@style/Widget.Conversations.EditText"/>
+                                            android:maxLength="5" />
                                     </com.google.android.material.textfield.TextInputLayout>
                                 </LinearLayout>
                             </LinearLayout>
@@ -416,8 +422,20 @@
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:layout_marginTop="8dp"
-                                android:visibility="gone"
-                                android:text="@string/register_account"/>
+                                android:text="@string/register_account"
+                                android:visibility="gone" />
+
+                            <Button
+                                android:id="@+id/save_button"
+                                style="@style/Widget.Conversations.Button.Borderless"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="1"
+                                android:enabled="false"
+                                android:text="@string/save"
+                                android:background="@drawable/rounded_corner_button"
+                                android:textColor="@color/white"
+                                android:layout_marginTop="12dp"/>
                         </LinearLayout>
                     </RelativeLayout>
                 </androidx.cardview.widget.CardView>
@@ -943,40 +961,40 @@
             </LinearLayout>
         </ScrollView>
 
-        <LinearLayout
-            android:id="@+id/button_bar"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentBottom="true"
-            android:layout_alignParentEnd="true"
-            android:layout_alignParentLeft="true"
-            android:layout_alignParentRight="true"
-            android:layout_alignParentStart="true">
+<!--        <LinearLayout-->
+<!--            android:id="@+id/button_bar"-->
+<!--            android:layout_width="wrap_content"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:layout_alignParentBottom="true"-->
+<!--            android:layout_alignParentEnd="true"-->
+<!--            android:layout_alignParentLeft="true"-->
+<!--            android:layout_alignParentRight="true"-->
+<!--            android:layout_alignParentStart="true">-->
 
-            <Button
-                android:id="@+id/cancel_button"
-                style="@style/Widget.Conversations.Button.Borderless"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:text="@string/cancel"/>
+<!--            <Button-->
+<!--                android:id="@+id/cancel_button"-->
+<!--                style="@style/Widget.Conversations.Button.Borderless"-->
+<!--                android:layout_width="0dp"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:layout_weight="1"-->
+<!--                android:text="@string/cancel"/>-->
 
-            <View
-                android:layout_width="1dp"
-                android:layout_height="fill_parent"
-                android:layout_marginBottom="7dp"
-                android:layout_marginTop="7dp"
-                android:background="?attr/divider"/>
+<!--            <View-->
+<!--                android:layout_width="1dp"-->
+<!--                android:layout_height="fill_parent"-->
+<!--                android:layout_marginBottom="7dp"-->
+<!--                android:layout_marginTop="7dp"-->
+<!--                android:background="?attr/divider"/>-->
 
-            <Button
-                android:id="@+id/save_button"
-                style="@style/Widget.Conversations.Button.Borderless"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:enabled="false"
-                android:text="@string/save"/>
-        </LinearLayout>
+<!--            <Button-->
+<!--                android:id="@+id/save_button"-->
+<!--                style="@style/Widget.Conversations.Button.Borderless"-->
+<!--                android:layout_width="0dp"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:layout_weight="1"-->
+<!--                android:enabled="false"-->
+<!--                android:text="@string/save"/>-->
+<!--        </LinearLayout>-->
 
     </RelativeLayout>
 </layout>

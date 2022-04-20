@@ -400,11 +400,11 @@ public class ContactDetailsActivity extends OmemoActivity implements OnAccountUp
         if (contact.showInRoster()) {
             binding.detailsSendPresence.setVisibility(View.VISIBLE);
             binding.detailsReceivePresence.setVisibility(View.VISIBLE);
-            binding.addContactButton.setVisibility(View.GONE);
+//            binding.addContactButton.setVisibility(View.GONE);
             binding.detailsSendPresence.setOnCheckedChangeListener(null);
             binding.detailsReceivePresence.setOnCheckedChangeListener(null);
-            binding.deleteContactButton.setVisibility(View.VISIBLE);
-            binding.editContactNameButton.setVisibility(View.VISIBLE);
+//            binding.deleteContactButton.setVisibility(View.VISIBLE);
+//            binding.editContactNameButton.setVisibility(View.VISIBLE);
             List<String> statusMessages = contact.getPresences().getStatusMessages();
             if (statusMessages.size() == 0) {
                 binding.statusMessage.setVisibility(View.GONE);
@@ -456,12 +456,12 @@ public class ContactDetailsActivity extends OmemoActivity implements OnAccountUp
             binding.detailsSendPresence.setOnCheckedChangeListener(this.mOnSendCheckedChange);
             binding.detailsReceivePresence.setOnCheckedChangeListener(this.mOnReceiveCheckedChange);
         } else {
-            binding.addContactButton.setVisibility(View.VISIBLE);
+//            binding.addContactButton.setVisibility(View.VISIBLE);
             binding.detailsSendPresence.setVisibility(View.GONE);
             binding.detailsReceivePresence.setVisibility(View.GONE);
             binding.statusMessage.setVisibility(View.GONE);
-            binding.deleteContactButton.setVisibility(View.GONE);
-            binding.editContactNameButton.setVisibility(View.GONE);
+//            binding.deleteContactButton.setVisibility(View.GONE);
+//            binding.editContactNameButton.setVisibility(View.GONE);
         }
 
         if (contact.isBlocked()) {
@@ -563,6 +563,22 @@ public class ContactDetailsActivity extends OmemoActivity implements OnAccountUp
                 tv.setBackgroundColor(tag.getColor());
                 binding.tags.addView(tv);
             }
+        }
+        if(contact.getAccount().isOnlineAndConnected()){
+            binding.blockUnblockDeleteCard.setVisibility(View.VISIBLE);
+            if(contact.showInRoster()){
+                binding.editContactNameButton.setVisibility(View.VISIBLE);
+                binding.deleteContactButton.setVisibility(View.VISIBLE);
+                binding.addContactButton.setVisibility(View.GONE);
+            }else{
+                binding.editContactNameButton.setVisibility(View.GONE);
+                binding.addContactButton.setVisibility(View.VISIBLE);
+                binding.deleteContactButton.setVisibility(View.GONE);
+            }
+        }else{
+            binding.blockUnblockDeleteCard.setVisibility(View.GONE);
+            binding.editContactNameButton.setVisibility(View.GONE);
+            binding.addContactButton.setVisibility(View.GONE);
         }
         if(contact.isBlocked()){
             binding.blockContactButton.setVisibility(View.GONE);

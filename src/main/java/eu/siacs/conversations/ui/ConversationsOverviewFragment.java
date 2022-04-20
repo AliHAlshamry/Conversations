@@ -32,7 +32,6 @@ package eu.siacs.conversations.ui;
 import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.app.AlertDialog;
-import android.app.Dialog;
 import android.app.Fragment;
 import android.content.Intent;
 import android.graphics.Canvas;
@@ -45,10 +44,9 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.AutoCompleteTextView;
-import android.widget.Spinner;
+import android.widget.CheckBox;
+import android.widget.TextView;
 import android.widget.Toast;
-
 import androidx.annotation.MenuRes;
 import androidx.appcompat.widget.PopupMenu;
 import androidx.core.content.ContextCompat;
@@ -59,7 +57,6 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.google.android.material.snackbar.Snackbar;
-import com.google.android.material.textfield.TextInputLayout;
 import com.google.common.collect.Collections2;
 import com.leinardi.android.speeddial.SpeedDialActionItem;
 import com.leinardi.android.speeddial.SpeedDialView;
@@ -88,6 +85,7 @@ import eu.siacs.conversations.ui.util.StyledAttributes;
 import eu.siacs.conversations.utils.AccountUtils;
 import eu.siacs.conversations.utils.EasyOnboardingInvite;
 import eu.siacs.conversations.utils.ThemeHelper;
+import eu.siacs.conversations.utils.TimeFrameUtils;
 import eu.siacs.conversations.utils.XmppUri;
 
 import static androidx.recyclerview.widget.ItemTouchHelper.LEFT;
@@ -452,6 +450,45 @@ public class ConversationsOverviewFragment extends XmppFragment {
 			}
 			return false;
 		});
+		this.conversationAdapter.setConversationLongClickListener((view, conversation) -> {
+			android.widget.PopupMenu popupMenu = new android.widget.PopupMenu(view.getContext(), view.findViewById(R.id.conversation_name));
+			getActivity().getMenuInflater().inflate(R.menu.fragment_conversation, popupMenu.getMenu());
+			Menu menu = popupMenu.getMenu();
+			final MenuItem menuMute = menu.findItem(R.id.action_mute);
+			final MenuItem menuUnmute = menu.findItem(R.id.action_unmute);
+			if (conversation.isMuted()) {
+				menuMute.setVisible(false);
+			} else {
+				menuUnmute.setVisible(false);
+			}
+			final MenuItem menuTogglePinned = menu.findItem(R.id.action_toggle_pinned);
+			if (conversation.getBooleanAttribute(Conversation.ATTRIBUTE_PINNED_ON_TOP, false)) {
+				menuTogglePinned.setTitle(R.string.remove_from_favorites);
+			} else {
+				menuTogglePinned.setTitle(R.string.add_to_favorites);
+			}
+			popupMenu.setOnMenuItemClickListener(menuItem -> {
+				switch (menuItem.getItemId()) {
+					case R.id.action_clear_history:
+						clearHistoryDialog(conversation);
+						break;
+					case R.id.action_toggle_pinned:
+						togglePinned(conversation);
+						break;
+					case R.id.action_mute:
+						muteConversationDialog(conversation);
+						break;
+					case R.id.action_unmute:
+						unmuteConversation(conversation);
+						break;
+					default:
+						break;
+				}
+				return true;
+			});
+			hiddenMenuItem(menu);
+			popupMenu.show();
+		});
 		return binding.getRoot();
 	}
 
@@ -606,7 +643,9 @@ public class ConversationsOverviewFragment extends XmppFragment {
 				connectionStatus = getString(R.string.account_status_not_found);
 				break;
 		}
-		activity.getSupportActionBar().setSubtitle(connectionStatus);
+//		activity.getSupportActionBar().setSubtitle(connectionStatus);
+		final TextView contactStatus = activity.findViewById(R.id.contact_status);
+		contactStatus.setText(connectionStatus);
 	}
 
 	private void setScrollPosition(ScrollState scrollPosition) {
@@ -644,4 +683,83 @@ public class ConversationsOverviewFragment extends XmppFragment {
 		Conversation conversation = activity.xmppConnectionService.findOrCreateConversation(contact.getAccount(), contact.getJid(), false, true);
 		activity.switchToConversationDoNotAppend(conversation, body, false);
 	}
+
+	private void hiddenMenuItem(Menu menu) {
+		final MenuItem actionOngoingCall = menu.findItem(R.id.action_ongoing_call);
+		actionOngoingCall.setVisible(false);
+		final MenuItem actionCall = menu.findItem(R.id.action_call);
+		actionCall.setVisible(false);
+		final MenuItem actionSecurity = menu.findItem(R.id.action_security);
+		actionSecurity.setVisible(false);
+		final MenuItem actionAttachFile = menu.findItem(R.id.action_attach_file);
+		actionAttachFile.setVisible(false);
+		final MenuItem actionContactDetails = menu.findItem(R.id.action_contact_details);
+		actionContactDetails.setVisible(false);
+		final MenuItem actionMucDetails = menu.findItem(R.id.action_muc_details);
+		actionMucDetails.setVisible(false);
+		final MenuItem actionInvite = menu.findItem(R.id.action_invite);
+		actionInvite.setVisible(false);
+		final MenuItem actionSearch = menu.findItem(R.id.action_search);
+		actionSearch.setVisible(false);
+		final MenuItem actionArchive = menu.findItem(R.id.action_archive);
+		actionArchive.setVisible(false);
+	}
+
+	protected void clearHistoryDialog(final Conversation conversation) {
+		final androidx.appcompat.app.AlertDialog.Builder builder = new androidx.appcompat.app.AlertDialog.Builder(activity);
+		builder.setTitle(getString(R.string.clear_conversation_history));
+		final View dialogView = activity.getLayoutInflater().inflate(R.layout.dialog_clear_history, null);
+		final CheckBox endConversationCheckBox = dialogView.findViewById(R.id.end_conversation_checkbox);
+		endConversationCheckBox.setVisibility(View.GONE);
+		builder.setView(dialogView);
+		builder.setNegativeButton(getString(R.string.cancel), null);
+		builder.setPositiveButton(getString(R.string.confirm), (dialog, which) -> {
+			activity.xmppConnectionService.clearConversationHistory(conversation);
+			refresh();
+		});
+		builder.create().show();
+	}
+
+	private void togglePinned(Conversation conversation) {
+		final boolean pinned = conversation.getBooleanAttribute(Conversation.ATTRIBUTE_PINNED_ON_TOP, false);
+		conversation.setAttribute(Conversation.ATTRIBUTE_PINNED_ON_TOP, !pinned);
+		activity.xmppConnectionService.updateConversation(conversation);
+		activity.invalidateOptionsMenu();
+		refresh();
+	}
+
+	protected void muteConversationDialog(final Conversation conversation) {
+		final androidx.appcompat.app.AlertDialog.Builder builder = new androidx.appcompat.app.AlertDialog.Builder(activity);
+		builder.setTitle(R.string.disable_notifications);
+		final int[] durations = getResources().getIntArray(R.array.mute_options_durations);
+		final CharSequence[] labels = new CharSequence[durations.length];
+		for (int i = 0; i < durations.length; ++i) {
+			if (durations[i] == -1) {
+				labels[i] = getString(R.string.until_further_notice);
+			} else {
+				labels[i] = TimeFrameUtils.resolve(activity, 1000L * durations[i]);
+			}
+		}
+		builder.setItems(labels, (dialog, which) -> {
+			final long till;
+			if (durations[which] == -1) {
+				till = Long.MAX_VALUE;
+			} else {
+				till = System.currentTimeMillis() + (durations[which] * 1000L);
+			}
+			conversation.setMutedTill(till);
+			activity.xmppConnectionService.updateConversation(conversation);
+			refresh();
+			activity.invalidateOptionsMenu();
+		});
+		builder.create().show();
+	}
+
+	public void unmuteConversation(final Conversation conversation) {
+		conversation.setMutedTill(0);
+		activity.xmppConnectionService.updateConversation(conversation);
+		refresh();
+		activity.invalidateOptionsMenu();
+	}
+
 }

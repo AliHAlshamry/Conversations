@@ -279,6 +279,7 @@ public class ConversationsActivity extends XmppActivity implements OnConversatio
         getPreferences().edit().putBoolean(getBatteryOptimizationPreferenceKey(), false).apply();
     }
 
+    @SuppressLint("StringFormatInvalid")
     private void openBatteryOptimizationDialogIfNeeded() {
         if (hasAccountWithoutPush()
                 && isOptimizingBattery()
@@ -686,24 +687,15 @@ public class ConversationsActivity extends XmppActivity implements OnConversatio
         contactInfo.setVisibility(View.VISIBLE);
         final ImageView profilePhoto = findViewById(R.id.profile_photo);
         final TextView contactName = findViewById(R.id.contact_name);
-        final TextView contactStatus = findViewById(R.id.contact_status);
         final FragmentManager fragmentManager = getFragmentManager();
         final Fragment mainFragment = fragmentManager.findFragmentById(R.id.main_fragment);
         if (mainFragment instanceof ConversationFragment) {
             final Conversation conversation = ((ConversationFragment) mainFragment).getConversation();
             if (conversation != null) {
-//                profilePhoto.setVisibility(View.GONE);
-//                actionBar.setTitle(EmojiWrapper.transform(conversation.getName()));
-                contactName.setVisibility(View.VISIBLE);
-                if(conversation.getMode() == Conversational.MODE_SINGLE){
-                    contactStatus.setVisibility(View.VISIBLE);
-                }
+//               actionBar.setTitle(EmojiWrapper.transform(conversation.getName()));
                 AvatarWorkerTask.loadAvatar(conversation.getContact(), profilePhoto, R.dimen.media_size);
+                contactName.setVisibility(View.VISIBLE);
                 contactName.setText(EmojiWrapper.transform(conversation.getName()));
-                contactStatus.setText("offline");
-                if(conversation.getContact().getShownStatus().name().equals("ONLINE")){
-                    contactStatus.setText("online");
-                }
                 profilePhoto.setOnClickListener(view -> openConversationDetails(conversation));
                 actionBar.setDisplayHomeAsUpEnabled(true);
 //                ActionBarUtil.setActionBarOnClickListener(
@@ -714,10 +706,8 @@ public class ConversationsActivity extends XmppActivity implements OnConversatio
             }
         }
 //        actionBar.setTitle("");
-//        profilePhoto.setVisibility(View.VISIBLE);
         if(xmppConnectionService != null){
             contactName.setVisibility(View.GONE);
-            contactStatus.setVisibility(View.GONE);
             final Account account = AccountUtils.getFirst(xmppConnectionService);
             AvatarWorkerTask.loadAvatar(account, profilePhoto, R.dimen.media_size);
         }

@@ -42,6 +42,7 @@ import android.widget.AdapterView.AdapterContextMenuInfo;
 import android.widget.CheckBox;
 import android.widget.ListView;
 import android.widget.PopupMenu;
+import android.widget.TextView;
 import android.widget.TextView.OnEditorActionListener;
 import android.widget.Toast;
 
@@ -1599,6 +1600,7 @@ public class ConversationFragment extends XmppFragment implements EditMessage.Ke
         }
     }
 
+    @SuppressLint("StringFormatInvalid")
     @Override
     public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
         if (grantResults.length > 0) {
@@ -2464,7 +2466,7 @@ public class ConversationFragment extends XmppFragment implements EditMessage.Ke
                 }
                 updateSendButton();
                 updateEditablity();
-                //updateAppBar();
+                updateAppBar();
                 activity.invalidateOptionsMenu();
             }
         }
@@ -2489,32 +2491,43 @@ public class ConversationFragment extends XmppFragment implements EditMessage.Ke
                 connectionStatus = getString(R.string.account_status_not_found);
                 break;
         }
+        TextView contactStatus = activity.findViewById(R.id.contact_status);
+        contactStatus.setVisibility(View.VISIBLE);
         if (connectionStatus != "") {
-            activity.getSupportActionBar().setSubtitle(connectionStatus);
+//            activity.getSupportActionBar().setSubtitle(connectionStatus);
+             contactStatus.setText(connectionStatus);
             return;
         }
         if (conversation.getAccount().getStatus() == Account.State.ONLINE) {
             Contact contact = conversation.getContact();
             if (contact.isBlocked()) {
-                activity.getSupportActionBar().setSubtitle(R.string.contact_blocked);
+//                activity.getSupportActionBar().setSubtitle(R.string.contact_blocked);
+                contactStatus.setText(R.string.contact_blocked);
             } else {
                 //boolean o=activity.xmppConnectionService.getAccounts().get(0).isOnlineAndConnected();
                 Presence.Status status = contact.getShownStatus();
                 if (contact.getLastseen() > 0
                         && contact.getPresences().allOrNonSupport(Namespace.IDLE)) {
-                    activity.getSupportActionBar().setSubtitle(UIHelper.lastseen(activity, contact.isActive(), contact.getLastseen()));
+//                    activity.getSupportActionBar().setSubtitle(UIHelper.lastseen(activity, contact.isActive(), contact.getLastseen()));
+                    contactStatus.setText(UIHelper.lastseen(activity, contact.isActive(), contact.getLastseen()));
                 } else {
                     if (conversation.getMode() == Conversational.MODE_SINGLE) {
                         if (status == Presence.Status.ONLINE) {
-                            activity.getSupportActionBar().setSubtitle(getString(R.string.account_status_online));
+//                            activity.getSupportActionBar().setSubtitle(getString(R.string.account_status_online));
+                            contactStatus.setText(getString(R.string.account_status_online));
                         } else {
-                            activity.getSupportActionBar().setSubtitle(getString(R.string.account_status_offline));
+//                            activity.getSupportActionBar().setSubtitle(getString(R.string.account_status_offline));
+                            contactStatus.setText(getString(R.string.account_status_offline));
                         }
                     }
                 }
             }
         } else {
             activity.getSupportActionBar().setSubtitle("");
+            contactStatus.setText("");
+        }
+        if(connectionStatus.isEmpty() && conversation.getMode() == Conversational.MODE_MULTI){
+            contactStatus.setVisibility(View.GONE);
         }
     }
     protected void messageSent() {

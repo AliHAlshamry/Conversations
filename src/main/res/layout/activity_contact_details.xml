@@ -62,18 +62,18 @@
                                     android:layout_width="@dimen/avatar_on_details_screen_size"
                                     android:layout_height="@dimen/avatar_on_details_screen_size"
                                     android:scaleType="centerCrop"
-                                    app:riv_corner_radius="50dp" />
+                                    app:riv_corner_radius="50dp"/>
 
                                 <ImageView
                                     android:id="@+id/online_tag"
-                                    android:layout_width="14dp"
-                                    android:layout_height="14dp"
+                                    android:layout_width="18dp"
+                                    android:layout_height="18dp"
                                     android:layout_alignEnd="@+id/details_contact_badge"
                                     android:layout_alignRight="@+id/details_contact_badge"
                                     android:layout_alignBottom="@+id/details_contact_badge"
                                     android:layout_marginEnd="0dp"
-                                    android:layout_marginRight="0dp"
-                                    android:layout_marginBottom="0dp"
+                                    android:layout_marginRight="4dp"
+                                    android:layout_marginBottom="4dp"
                                     android:src="@drawable/account_online"
                                     android:visibility="invisible" />
                             </RelativeLayout>

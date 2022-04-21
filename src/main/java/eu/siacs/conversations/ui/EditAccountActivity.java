@@ -1422,7 +1422,7 @@ public class EditAccountActivity extends OmemoActivity implements OnAccountUpdat
         builder.setTitle(getString(R.string.mgmt_account_are_you_sure));
         builder.setIconAttribute(android.R.attr.alertDialogIcon);
         builder.setMessage(getString(R.string.mgmt_account_delete_confirm_text));
-        builder.setPositiveButton(getString(R.string.delete),
+        builder.setPositiveButton(getString(R.string.mgmt_account_delete),
                 (dialog, which) -> {
                     xmppConnectionService.deleteAccount(mAccount);
                     if (xmppConnectionService.getAccounts().size() == 0 && Config.MAGIC_CREATE_DOMAIN != null) {

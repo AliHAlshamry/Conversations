@@ -155,7 +155,7 @@
     <string name="unpublish_pgp">حذف مفتاح OpenPGP العمومي</string>
     <string name="mgmt_account_enable">تفعيل الحساب</string>
     <string name="mgmt_account_are_you_sure">هل أنت متأكد؟</string>
-    <string name="mgmt_account_delete_confirm_text">إذا قمت بحذف حسابك، فسوف تفقد سجل محادثاتك بالكامل</string>
+    <string name="mgmt_account_delete_confirm_text">تسجيل الخروج من حسابك، سوف يؤدي الى فقدان سجل محادثاتك بالكامل</string>
     <string name="attach_record_voice">تسجيل صوت</string>
     <string name="account_settings_jabber_id">البريد الالكتروني</string>
     <string name="block_jabber_id">حظر الحساب</string>
@@ -728,7 +728,7 @@
     <string name="open_backup">افتح النسخة الاحتياطية</string>
     <string name="please_enter_password">يرجى إدخال الكلمة السرية للحساب</string>
     <string name="pref_notification_sound_summary">صوت الأشعارات للرسائل الجديدة</string>
-    <string name="invalid_jid">رقم الهاتف غير صالح</string>
+    <string name="invalid_jid">خطأ في ادخال البريد الالكتروني</string>
     <string name="this_looks_like_a_domain">رقم الهاتف غير صالح</string>
     <string name="this_looks_like_channel">عنوان القناة غير صالح</string>
     <string name="destroy_room_dialog">هل تريد حذف هذه المجموعة ؟ <b>تحذير:</b> هذه المجموعة ستحذف نهائيا من السيرفر  .</string>

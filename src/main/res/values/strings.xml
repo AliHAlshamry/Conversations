@@ -182,13 +182,13 @@
     <string name="openpgp_has_been_published">OpenPGP public key published.</string>
     <string name="mgmt_account_enable">Enable account</string>
     <string name="mgmt_account_are_you_sure">Are you sure?</string>
-    <string name="mgmt_account_delete_confirm_text">Deleting your account erases your entire conversation history</string>
+    <string name="mgmt_account_delete_confirm_text">Logging out of your account will be erases your entire conversation history</string>
     <string name="attach_record_voice">Record voice</string>
     <string name="account_settings_jabber_id">Email address</string>
     <string name="block_jabber_id">Block XMPP address</string>
     <string name="account_settings_example_jabber_id">username@example.com</string>
     <string name="password">Password</string>
-    <string name="invalid_jid">This is not a valid XMPP address</string>
+    <string name="invalid_jid">This is not a valid Email address</string>
     <string name="error_out_of_memory">Out of memory. Image too big</string>
     <string name="add_phone_book_text">Do you want to add %s to your address book?</string>
     <string name="server_info_show_more">Server info</string>

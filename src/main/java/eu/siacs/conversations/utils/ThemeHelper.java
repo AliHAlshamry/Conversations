@@ -54,13 +54,21 @@ public class ThemeHelper {
 		final Resources resources = context.getResources();
 		final boolean dark = isDark(sharedPreferences, resources);
 		final String fontSize = sharedPreferences.getString("font_size", resources.getString(R.string.default_font_size));
+//		switch (fontSize) {
+//			case "medium":
+//				return dark ? R.style.ConversationsTheme_Dark_Medium : R.style.ConversationsTheme_Medium;
+//			case "large":
+//				return dark ? R.style.ConversationsTheme_Dark_Large : R.style.ConversationsTheme_Large;
+//			default:
+//				return dark ? R.style.ConversationsTheme_Dark : R.style.ConversationsTheme;
+//		}
 		switch (fontSize) {
 			case "medium":
-				return dark ? R.style.ConversationsTheme_Dark_Medium : R.style.ConversationsTheme_Medium;
+				return R.style.ConversationsTheme_Medium;
 			case "large":
-				return dark ? R.style.ConversationsTheme_Dark_Large : R.style.ConversationsTheme_Large;
+				return R.style.ConversationsTheme_Large;
 			default:
-				return dark ? R.style.ConversationsTheme_Dark : R.style.ConversationsTheme;
+				return R.style.ConversationsTheme;
 		}
 	}
 
@@ -69,13 +77,21 @@ public class ThemeHelper {
 		final Resources resources = context.getResources();
 		final boolean dark = isDark(sharedPreferences, resources);
 		final String fontSize = sharedPreferences.getString("font_size", resources.getString(R.string.default_font_size));
+//		switch (fontSize) {
+//			case "medium":
+//				return dark ? R.style.ConversationsTheme_Dark_Dialog_Medium : R.style.ConversationsTheme_Dialog_Medium;
+//			case "large":
+//				return dark ? R.style.ConversationsTheme_Dark_Dialog_Large : R.style.ConversationsTheme_Dialog_Large;
+//			default:
+//				return dark ? R.style.ConversationsTheme_Dark_Dialog : R.style.ConversationsTheme_Dialog;
+//		}
 		switch (fontSize) {
 			case "medium":
-				return dark ? R.style.ConversationsTheme_Dark_Dialog_Medium : R.style.ConversationsTheme_Dialog_Medium;
+				return R.style.ConversationsTheme_Dialog_Medium;
 			case "large":
-				return dark ? R.style.ConversationsTheme_Dark_Dialog_Large : R.style.ConversationsTheme_Dialog_Large;
+				return R.style.ConversationsTheme_Dialog_Large;
 			default:
-				return dark ? R.style.ConversationsTheme_Dark_Dialog : R.style.ConversationsTheme_Dialog;
+				return R.style.ConversationsTheme_Dialog;
 		}
 	}
 

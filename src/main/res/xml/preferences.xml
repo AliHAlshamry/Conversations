@@ -174,13 +174,13 @@
             android:key="show_dynamic_tags"
             android:summary="@string/pref_show_dynamic_tags_summary"
             android:title="@string/pref_show_dynamic_tags" />
-        <ListPreference
-            android:defaultValue="@string/theme"
-            android:entries="@array/themes"
-            android:entryValues="@array/themes_values"
-            android:key="theme"
-            android:summary="@string/pref_theme_options_summary"
-            android:title="@string/pref_theme_options" />
+<!--        <ListPreference-->
+<!--            android:defaultValue="@string/theme"-->
+<!--            android:entries="@array/themes"-->
+<!--            android:entryValues="@array/themes_values"-->
+<!--            android:key="theme"-->
+<!--            android:summary="@string/pref_theme_options_summary"-->
+<!--            android:title="@string/pref_theme_options"/>-->
         <ListPreference
             android:defaultValue="@string/quick_action"
             android:dialogTitle="@string/choose_quick_action"

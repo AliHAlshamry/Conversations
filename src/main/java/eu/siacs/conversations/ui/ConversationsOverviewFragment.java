@@ -29,6 +29,10 @@
 
 package eu.siacs.conversations.ui;
 
+import static androidx.recyclerview.widget.ItemTouchHelper.LEFT;
+import static androidx.recyclerview.widget.ItemTouchHelper.RIGHT;
+import static eu.siacs.conversations.ui.XmppActivity.FRAGMENT_TAG_DIALOG;
+
 import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.app.AlertDialog;
@@ -87,10 +91,6 @@ import eu.siacs.conversations.utils.EasyOnboardingInvite;
 import eu.siacs.conversations.utils.ThemeHelper;
 import eu.siacs.conversations.utils.TimeFrameUtils;
 import eu.siacs.conversations.utils.XmppUri;
-
-import static androidx.recyclerview.widget.ItemTouchHelper.LEFT;
-import static androidx.recyclerview.widget.ItemTouchHelper.RIGHT;
-import static eu.siacs.conversations.ui.XmppActivity.FRAGMENT_TAG_DIALOG;
 
 public class ConversationsOverviewFragment extends XmppFragment {
 
@@ -645,7 +645,7 @@ public class ConversationsOverviewFragment extends XmppFragment {
 		}
 //		activity.getSupportActionBar().setSubtitle(connectionStatus);
 		final TextView contactStatus = activity.findViewById(R.id.contact_status);
-		contactStatus.setText(connectionStatus);
+		contactStatus.setText(connectionStatus.isEmpty()?getString(R.string.account_status_online):connectionStatus);
 	}
 
 	private void setScrollPosition(ScrollState scrollPosition) {

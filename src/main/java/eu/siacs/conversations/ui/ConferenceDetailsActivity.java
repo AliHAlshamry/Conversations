@@ -48,7 +48,6 @@ import eu.siacs.conversations.ui.util.MucConfiguration;
 import eu.siacs.conversations.ui.util.MucDetailsContextMenuHelper;
 import eu.siacs.conversations.ui.util.MyLinkify;
 import eu.siacs.conversations.ui.util.SoftKeyboardUtils;
-import eu.siacs.conversations.utils.AccountUtils;
 import eu.siacs.conversations.utils.Compatibility;
 import eu.siacs.conversations.utils.EmojiWrapper;
 import eu.siacs.conversations.utils.StringUtils;
@@ -222,7 +221,24 @@ public class ConferenceDetailsActivity extends XmppActivity implements OnConvers
             SoftKeyboardUtils.hideSoftKeyboard(this);
             hideEditor();
         });
-
+        binding.actionDestroyRoom.setOnClickListener(v->destroyRoom());
+        binding.actionDeleteBookmark.setOnClickListener(v->deleteBookmark());
+        binding.shareButton.setOnClickListener(v->{
+            PopupMenu popupMenu = new PopupMenu(this, v);
+            getMenuInflater().inflate(R.menu.share_group, popupMenu.getMenu());
+            popupMenu.setOnMenuItemClickListener(menuItem -> {
+                switch (menuItem.getItemId()) {
+                    case R.id.action_share_http:
+                        shareLink(true);
+                        break;
+                    case R.id.action_share_uri:
+                        shareLink(false);
+                        break;
+                }
+                return true;
+            });
+            popupMenu.show();
+        });
     }
 
     @Override
@@ -401,24 +417,24 @@ public class ConferenceDetailsActivity extends XmppActivity implements OnConvers
             mMediaAdapter.setAttachments(attachments.subList(0, Math.min(limit, attachments.size())));
             binding.mediaWrapper.setVisibility(attachments.size() > 0 ? View.VISIBLE : View.GONE);
         });
-        binding.actionDestroyRoom.setOnClickListener(v->destroyRoom());
-        binding.actionDeleteBookmark.setOnClickListener(v->deleteBookmark());
-        binding.shareButton.setOnClickListener(v->{
-            PopupMenu popupMenu = new PopupMenu(this, v);
-            getMenuInflater().inflate(R.menu.share_group, popupMenu.getMenu());
-            popupMenu.setOnMenuItemClickListener(menuItem -> {
-                switch (menuItem.getItemId()) {
-                    case R.id.action_share_http:
-                        shareLink(true);
-                        break;
-                    case R.id.action_share_uri:
-                        shareLink(false);
-                        break;
-                }
-                return true;
-            });
-            popupMenu.show();
-        });
+//        binding.actionDestroyRoom.setOnClickListener(v->destroyRoom());
+//        binding.actionDeleteBookmark.setOnClickListener(v->deleteBookmark());
+//        binding.shareButton.setOnClickListener(v->{
+//            PopupMenu popupMenu = new PopupMenu(this, v);
+//            getMenuInflater().inflate(R.menu.share_group, popupMenu.getMenu());
+//            popupMenu.setOnMenuItemClickListener(menuItem -> {
+//                switch (menuItem.getItemId()) {
+//                    case R.id.action_share_http:
+//                        shareLink(true);
+//                        break;
+//                    case R.id.action_share_uri:
+//                        shareLink(false);
+//                        break;
+//                }
+//                return true;
+//            });
+//            popupMenu.show();
+//        });
     }
 
 

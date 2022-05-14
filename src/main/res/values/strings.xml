@@ -987,4 +987,5 @@
     <string name="change_photo">Change photo</string>
     <string name="Exit_channel">Exit channel</string>
     <string name="Exit_group">Exit group</string>
+    <string name="confirm_password">confirm password</string>
 </resources>

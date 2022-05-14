@@ -537,11 +537,34 @@ public class EditAccountActivity extends OmemoActivity implements OnAccountUpdat
             binding.reEnterPasswordLayout.startAnimation(animFadeIn);
 
         } else if (!(this.binding.reEnterPasswordLayout.getVisibility()==View.GONE)){
-            this.binding.reEnterPasswordLayout.postDelayed(() -> {
-                binding.reEnterPasswordLayout.startAnimation(animFadeOut);
-                binding.reEnterPasswordLayout.setVisibility(View.GONE);
-                TransitionManager.beginDelayedTransition(binding.editor, new AutoTransition());
-            }, 1000);
+           // this.binding.reEnterPasswordLayout.postDelayed(() -> {
+
+
+            binding.reEnterPasswordLayout.startAnimation(animFadeOut);
+                animFadeOut.setAnimationListener(new Animation.AnimationListener() {
+                    @Override
+                    public void onAnimationStart(Animation animation) {
+                        binding.reEnterPasswordLayout.setVisibility(View.INVISIBLE);
+                        //Toast.makeText(xmppConnectionService, "start", Toast.LENGTH_SHORT).show();
+                    }
+
+                    @Override
+                    public void onAnimationEnd(Animation animation) {
+                        binding.reEnterPasswordLayout.setVisibility(View.GONE);
+                        //Toast.makeText(xmppConnectionService, "end", Toast.LENGTH_SHORT).show();
+                    }
+
+                    @Override
+                    public void onAnimationRepeat(Animation animation) {
+                        //Toast.makeText(xmppConnectionService, "repeat", Toast.LENGTH_SHORT).show();
+                    }
+                });
+                /*if(animFadeOut.hasEnded()){binding.reEnterPasswordLayout.setVisibility(View.GONE);
+                    //TransitionManager.beginDelayedTransition(binding.editor, new AutoTransition());
+                }*/
+            //binding.reEnterPasswordLayout.startAnimation(animFadeOut);
+
+           // }, 1000);
         }
         if (accountInfoEdited && !mInitMode) {
             this.binding.saveButton.setText(R.string.save);

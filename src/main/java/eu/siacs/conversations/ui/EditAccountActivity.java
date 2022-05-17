@@ -318,7 +318,7 @@ public class EditAccountActivity extends OmemoActivity implements OnAccountUpdat
             } else {
                 binding.accountPassword.setEnabled(true);
                 binding.reEnterPassword.setEnabled(true);
-                updateSaveButton();
+                updateSaveButton(false);
                 updateAccountInformation(true);
             }
 
@@ -329,7 +329,7 @@ public class EditAccountActivity extends OmemoActivity implements OnAccountUpdat
         @Override
         public void onTextChanged(final CharSequence s, final int start, final int before, final int count) {
             updatePortLayout();
-            updateSaveButton();
+            updateSaveButton(false);
         }
 
         @Override
@@ -406,7 +406,7 @@ public class EditAccountActivity extends OmemoActivity implements OnAccountUpdat
         if (mAccount != null) {
             updateAccountInformation(false);
         }
-        updateSaveButton();
+        updateSaveButton(false);
     }
 
     @Override
@@ -526,17 +526,17 @@ public class EditAccountActivity extends OmemoActivity implements OnAccountUpdat
         }
     }
 
-    protected void updateSaveButton() {
+    protected void updateSaveButton(boolean startAnimation) {
         Animation animFadeIn = AnimationUtils.loadAnimation(getApplicationContext(),R.anim.fade_in);
         Animation animFadeOut = AnimationUtils.loadAnimation(getApplicationContext(),R.anim.fade_out);
         boolean accountInfoEdited = accountInfoEdited();
-        if (this.binding.accountRegisterNew.isChecked()) {
+        if (this.binding.accountRegisterNew.isChecked() && startAnimation) {
             //this.binding.confirmPasswordLayout.setVisibility(View.VISIBLE);
             this.binding.confirmPasswordLayout.setVisibility(View.VISIBLE);
             TransitionManager.beginDelayedTransition(this.binding.login, new AutoTransition());
             binding.confirmPasswordLayout.startAnimation(animFadeIn);
 
-        } else if (!(this.binding.confirmPasswordLayout.getVisibility()==View.GONE)){
+        } else if (!(this.binding.confirmPasswordLayout.getVisibility()==View.GONE) && startAnimation){
            // this.binding.confirmPasswordLayout.postDelayed(() -> {
 
 
@@ -679,7 +679,7 @@ public class EditAccountActivity extends OmemoActivity implements OnAccountUpdat
         if (savedInstanceState != null && savedInstanceState.getBoolean("showMoreTable")) {
             changeMoreTableVisibility(true);
         }
-        final OnCheckedChangeListener OnCheckedShowConfirmPassword = (buttonView, isChecked) -> updateSaveButton();
+        final OnCheckedChangeListener OnCheckedShowConfirmPassword = (buttonView, isChecked) -> updateSaveButton(true);
         this.binding.accountRegisterNew.setOnCheckedChangeListener(OnCheckedShowConfirmPassword);
         if (Config.DISALLOW_REGISTRATION_IN_UI) {
             this.binding.accountRegisterNew.setVisibility(View.GONE);
@@ -962,7 +962,7 @@ public class EditAccountActivity extends OmemoActivity implements OnAccountUpdat
             pendingUri = null;
         }
         updatePortLayout();
-        updateSaveButton();
+        updateSaveButton(false);
         invalidateOptionsMenu();
     }
 

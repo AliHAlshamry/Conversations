@@ -268,7 +268,7 @@
     <string name="send_private_message_to">Send private message to %s</string>
     <string name="connect">Connect</string>
     <string name="account_already_exists">This account already exists</string>
-    <string name="next">Next</string>
+    <string name="next">next</string>
     <string name="server_info_session_established">Session established</string>
     <string name="skip">Skip</string>
     <string name="disable_notifications">Disable notifications</string>
@@ -987,5 +987,7 @@
     <string name="change_photo">Change photo</string>
     <string name="Exit_channel">Exit channel</string>
     <string name="Exit_group">Exit group</string>
-    <string name="confirm_password">confirm password</string>
+    <string name="confirm_password">Confirm password</string>
+    <string name="email">Email</string>
+    <string name="password_hint">at least 6 letters</string>
 </resources>

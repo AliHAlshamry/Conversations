@@ -86,6 +86,7 @@
 
     <style name="TextAppearance.Conversations.Design.Error" parent="TextAppearance.Design.Error">
         <item name="android:textSize">?TextSizeCaption</item>
+        <item name="android:textColor">?colorSecondary</item>
     </style>
 
     <style name="TextAppearance.Conversations.Body1.Secondary" parent="TextAppearance.Conversations.Body1">
@@ -102,6 +103,12 @@
     </style>
 
     <style name="InputLabel" parent="TextAppearance.Conversations.Caption">
+        <item name="android:paddingBottom">@dimen/input_label_vertical_spacing</item>
+        <item name="android:paddingLeft">@dimen/input_label_horizontal_spacing</item>
+        <item name="android:paddingRight">@dimen/input_label_horizontal_spacing</item>
+    </style>
+
+    <style name="InputLabel2" parent="TextAppearance.Conversations.Caption">
         <item name="android:paddingBottom">@dimen/input_label_vertical_spacing</item>
         <item name="android:paddingLeft">@dimen/input_label_horizontal_spacing</item>
         <item name="android:paddingRight">@dimen/input_label_horizontal_spacing</item>

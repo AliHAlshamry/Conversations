@@ -26,6 +26,8 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.View.OnClickListener;
+import android.view.Window;
+import android.view.WindowManager;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 import android.widget.CheckBox;
@@ -40,6 +42,7 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AlertDialog.Builder;
+import androidx.core.content.ContextCompat;
 import androidx.databinding.DataBindingUtil;
 
 import com.google.android.material.textfield.TextInputLayout;
@@ -150,17 +153,15 @@ public class EditAccountActivity extends OmemoActivity implements OnAccountUpdat
         public void onClick(final View v) {
             final String password;
             if (mInitMode && binding.accountRegisterNew.isChecked()){
-                if (binding.accountPassword.getText().toString().equals(binding.reEnterAccountPassword.getText().toString())){
+                if (binding.accountPassword.getText().toString().equals(binding.reEnterPassword.getText().toString())){
                     password = binding.accountPassword.getText().toString();
                 }else{
-                    binding.reEnterAccountPassword.setError("password incorrect");
+                    binding.reEnterPasswordLayout.setError("password incorrect");
                  return;
                 }
             }else{
                 password = binding.accountPassword.getText().toString();
             }
-            binding.accountPassword.setEnabled(false);
-            binding.reEnterAccountPassword.setEnabled(false);
             final boolean wasDisabled = mAccount != null && mAccount.getStatus() == Account.State.DISABLED;
             final boolean accountInfoEdited = accountInfoEdited();
 
@@ -316,7 +317,7 @@ public class EditAccountActivity extends OmemoActivity implements OnAccountUpdat
                 finish();
             } else {
                 binding.accountPassword.setEnabled(true);
-                binding.reEnterAccountPassword.setEnabled(true);
+                binding.reEnterPassword.setEnabled(true);
                 updateSaveButton();
                 updateAccountInformation(true);
             }
@@ -351,8 +352,6 @@ public class EditAccountActivity extends OmemoActivity implements OnAccountUpdat
                 }
                 final int res = resId;
                 new Handler().postDelayed(() -> et.setHint(res), 200);
-            } else {
-                et.setHint(null);
             }
         }
     };
@@ -532,25 +531,26 @@ public class EditAccountActivity extends OmemoActivity implements OnAccountUpdat
         Animation animFadeOut = AnimationUtils.loadAnimation(getApplicationContext(),R.anim.fade_out);
         boolean accountInfoEdited = accountInfoEdited();
         if (this.binding.accountRegisterNew.isChecked()) {
-            this.binding.reEnterPasswordLayout.setVisibility(View.VISIBLE);
-            TransitionManager.beginDelayedTransition(this.binding.editor, new AutoTransition());
-            binding.reEnterPasswordLayout.startAnimation(animFadeIn);
+            //this.binding.confirmPasswordLayout.setVisibility(View.VISIBLE);
+            this.binding.confirmPasswordLayout.setVisibility(View.VISIBLE);
+            TransitionManager.beginDelayedTransition(this.binding.login, new AutoTransition());
+            binding.confirmPasswordLayout.startAnimation(animFadeIn);
 
-        } else if (!(this.binding.reEnterPasswordLayout.getVisibility()==View.GONE)){
-           // this.binding.reEnterPasswordLayout.postDelayed(() -> {
+        } else if (!(this.binding.confirmPasswordLayout.getVisibility()==View.GONE)){
+           // this.binding.confirmPasswordLayout.postDelayed(() -> {
 
 
-            binding.reEnterPasswordLayout.startAnimation(animFadeOut);
+            binding.confirmPasswordLayout.startAnimation(animFadeOut);
                 animFadeOut.setAnimationListener(new Animation.AnimationListener() {
                     @Override
                     public void onAnimationStart(Animation animation) {
-                        binding.reEnterPasswordLayout.setVisibility(View.INVISIBLE);
+                        binding.confirmPasswordLayout.setVisibility(View.INVISIBLE);
                         //Toast.makeText(xmppConnectionService, "start", Toast.LENGTH_SHORT).show();
                     }
 
                     @Override
                     public void onAnimationEnd(Animation animation) {
-                        binding.reEnterPasswordLayout.setVisibility(View.GONE);
+                        binding.confirmPasswordLayout.setVisibility(View.GONE);
                         //Toast.makeText(xmppConnectionService, "end", Toast.LENGTH_SHORT).show();
                     }
 
@@ -559,10 +559,10 @@ public class EditAccountActivity extends OmemoActivity implements OnAccountUpdat
                         //Toast.makeText(xmppConnectionService, "repeat", Toast.LENGTH_SHORT).show();
                     }
                 });
-                /*if(animFadeOut.hasEnded()){binding.reEnterPasswordLayout.setVisibility(View.GONE);
+                /*if(animFadeOut.hasEnded()){binding.confirmPasswordLayout.setVisibility(View.GONE);
                     //TransitionManager.beginDelayedTransition(binding.editor, new AutoTransition());
                 }*/
-            //binding.reEnterPasswordLayout.startAnimation(animFadeOut);
+            //binding.confirmPasswordLayout.startAnimation(animFadeOut);
 
            // }, 1000);
         }
@@ -663,7 +663,7 @@ public class EditAccountActivity extends OmemoActivity implements OnAccountUpdat
             this.mSavedInstanceInit = savedInstanceState.getBoolean("initMode", false);
         }
         this.binding = DataBindingUtil.setContentView(this, R.layout.activity_edit_account);
-        setSupportActionBar(binding.toolbar);
+        setSupportActionBar(binding.toolbarLoginPage);
         binding.accountJid.addTextChangedListener(this.mTextWatcher);
         binding.accountJid.setOnFocusChangeListener(this.mEditTextFocusListener);
         this.binding.accountPassword.addTextChangedListener(this.mTextWatcher);
@@ -835,6 +835,21 @@ public class EditAccountActivity extends OmemoActivity implements OnAccountUpdat
                     actionBar.setDisplayHomeAsUpEnabled(true);
                 }
             } else {
+                ActionBar actionBar = getSupportActionBar();
+                if (actionBar != null) {
+                    actionBar.setElevation(0);
+                    Window window = getWindow();
+
+// clear FLAG_TRANSLUCENT_STATUS flag:
+                    window.clearFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
+
+// add FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS flag to the window
+                    window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS);
+
+// finally change the color
+                    window.setStatusBarColor(ContextCompat.getColor(this,R.color.white));
+                    actionBar.setBackgroundDrawable(getResources().getDrawable(R.color.white));
+                }
                 this.binding.accountRegisterNew.setVisibility(View.VISIBLE);
                 this.binding.avater.setVisibility(View.GONE);
                 if (mForceRegister != null) {
@@ -845,6 +860,7 @@ public class EditAccountActivity extends OmemoActivity implements OnAccountUpdat
                     }
                 } else {
                     setTitle(R.string.action_add_account);
+                    setTitleColor(R.color.warning);
                 }
             }
         }
@@ -1310,13 +1326,13 @@ public class EditAccountActivity extends OmemoActivity implements OnAccountUpdat
             this.binding.otherDeviceKeysCard.setVisibility(View.GONE);
         }
         if (!mInitMode) {
-            this.binding.editor.setVisibility(View.GONE);
+            this.binding.login.setVisibility(View.GONE);
             this.binding.accountCard.setVisibility(View.VISIBLE);
             this.binding.accountSettingCard.setVisibility(View.VISIBLE);
         }else{
             this.binding.accountCard.setVisibility(View.GONE);
             this.binding.accountSettingCard.setVisibility(View.GONE);
-            this.binding.editor.setVisibility(View.VISIBLE);
+            this.binding.login.setVisibility(View.VISIBLE);
         }
     }
 

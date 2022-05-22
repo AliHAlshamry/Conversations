@@ -696,7 +696,8 @@ public class ConversationsActivity extends XmppActivity implements OnConversatio
                 AvatarWorkerTask.loadAvatar(conversation.getContact(), profilePhoto, R.dimen.media_size);
                 contactName.setVisibility(View.VISIBLE);
                 contactName.setText(EmojiWrapper.transform(conversation.getName()));
-                profilePhoto.setOnClickListener(view -> openConversationDetails(conversation));
+                contactInfo.setOnClickListener(view -> openConversationDetails(conversation));
+//                profilePhoto.setOnClickListener(view -> openConversationDetails(conversation));
                 actionBar.setDisplayHomeAsUpEnabled(true);
 //                ActionBarUtil.setActionBarOnClickListener(
 //                        binding.toolbar,
@@ -707,13 +708,16 @@ public class ConversationsActivity extends XmppActivity implements OnConversatio
         }
 //        actionBar.setTitle("");
         if(xmppConnectionService != null){
-            contactName.setVisibility(View.GONE);
+//            contactName.setVisibility(View.GONE);
+            contactName.setVisibility(View.VISIBLE);
             final Account account = AccountUtils.getFirst(xmppConnectionService);
+            contactName.setText(EmojiWrapper.transform(account.getDisplayName()));
             AvatarWorkerTask.loadAvatar(account, profilePhoto, R.dimen.media_size);
         }
-        profilePhoto.setOnClickListener(view -> {
-            AccountUtils.launchManageAccount(this);
-        });
+        contactInfo.setOnClickListener(view ->AccountUtils.launchManageAccount(this));
+//        profilePhoto.setOnClickListener(view -> {
+//            AccountUtils.launchManageAccount(this);
+//        });
         actionBar.setDisplayHomeAsUpEnabled(false);
         ActionBarUtil.resetActionBarOnClickListeners(binding.toolbar);
     }

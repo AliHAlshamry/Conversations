@@ -3,18 +3,43 @@
         xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:id="@+id/dialog_layout"
+        android:layout_width="312dp"
+        android:layout_height="wrap_content"
         android:orientation="vertical"
-        android:padding="?dialogPreferredPadding">
+        android:elevation="8dp"
+        android:background="@drawable/rounded_corner_dialog"
+        android:gravity="center_vertical"
+        android:paddingVertical="@dimen/dialog_padding_vertical"
+        android:paddingHorizontal="@dimen/card_padding_regular">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/enter_your_name"
+            android:textColor="@color/txt_color1"
+            android:fontFamily="@font/roboto_medium"
+            android:textFontWeight="500"
+            android:textSize="20sp"
+            android:layout_marginBottom="@dimen/dialog_title_margin_bottom"/>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/your_name"
+            android:textColor="@color/txt_color1"
+            android:fontFamily="@font/roboto_medium"
+            android:textFontWeight="500"
+            android:textSize="16sp"
+            android:layout_marginBottom="@dimen/dialog_subtitle_margin_bottom"/>
 
         <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/input_layout"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="@dimen/edit_text_height"
             app:errorEnabled="true"
             app:errorTextAppearance="@style/TextAppearance.Conversations.Design.Error"
-            app:hintTextAppearance="@style/TextAppearance.Conversations.Design.Hint">
+            app:hintTextAppearance="@style/TextAppearance.Conversations.Design.Hint"
+            app:hintEnabled="false"
+            android:background="@drawable/rounded_corner_input_layout_with_border">
 
             <eu.siacs.conversations.ui.widget.EmojiWrapperEditText
                 android:id="@+id/input_edit_text"
@@ -22,11 +47,46 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:ems="10"
-                android:inputType="textPersonName">
+                android:inputType="textPersonName"
+                android:background="@android:color/transparent"
+                android:padding="12dp"
+                android:hint="@string/enter_your_name">
 
                 <requestFocus/>
             </eu.siacs.conversations.ui.widget.EmojiWrapperEditText>
 
         </com.google.android.material.textfield.TextInputLayout>
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_marginTop="40dp"
+            android:layout_gravity="center_horizontal">
+            <Button
+                android:id="@+id/cancel_button"
+                style="@style/Widget.Conversations.Button.Borderless"
+                android:layout_width="@dimen/dialog_button_width"
+                android:layout_height="@dimen/dialog_button_height"
+                android:background="@drawable/rounded_corner_button_gray"
+                android:text="@string/cancel"
+                android:textColor="@color/txt_color1"
+                android:layout_marginRight="@dimen/dialog_button_horizontal_padding"
+                android:fontFamily="@font/roboto_medium"
+                android:textAllCaps="false"
+                android:textFontWeight="500"
+                android:textSize="16sp"/>
+            <Button
+                android:id="@+id/save_button"
+                style="@style/Widget.Conversations.Button.Borderless"
+                android:layout_width="@dimen/dialog_button_width"
+                android:layout_height="@dimen/dialog_button_height"
+                android:background="@drawable/rounded_corner_button_blue"
+                android:text="@string/accept"
+                android:textColor="@color/white"
+                android:fontFamily="@font/roboto_medium"
+                android:textAllCaps="false"
+                android:textFontWeight="500"
+                android:textSize="16sp"/>
+        </LinearLayout>
     </LinearLayout>
 </layout>

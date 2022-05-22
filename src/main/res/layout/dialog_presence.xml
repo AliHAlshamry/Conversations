@@ -3,13 +3,23 @@
         xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_width="312dp"
+        android:layout_height="wrap_content"
         android:orientation="vertical"
-        android:paddingBottom="?attr/dialog_vertical_padding"
-        android:paddingLeft="?attr/dialog_horizontal_padding"
-        android:paddingRight="?attr/dialog_horizontal_padding"
-        android:paddingTop="?attr/dialog_vertical_padding">
+        android:elevation="8dp"
+        android:background="@drawable/rounded_corner_dialog"
+        android:gravity="center_vertical"
+        android:paddingVertical="@dimen/dialog_padding_vertical"
+        android:paddingHorizontal="@dimen/card_padding_regular">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/edit_status_message_title"
+            android:textColor="@color/txt_color1"
+            android:fontFamily="@font/roboto_medium"
+            android:textFontWeight="500"
+            android:textSize="20sp"
+            android:layout_marginBottom="@dimen/dialog_title_margin_bottom"/>
 
         <RadioGroup
             android:id="@+id/show"
@@ -21,46 +31,102 @@
                 android:id="@+id/online"
                 style="@style/Widget.Conversations.RadioButton"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="@string/presence_online"/>
+                android:layout_height="@dimen/radio_button_height"
+                android:text="@string/presence_online"
+                android:background="@android:color/transparent"
+                android:button="@drawable/radio_button_background"
+                android:paddingLeft="@dimen/radio_button_text_padding_left"
+                android:layout_marginBottom="@dimen/radio_button_margin_bottom"/>
 
             <RadioButton
                 android:id="@+id/away"
                 style="@style/Widget.Conversations.RadioButton"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="@string/presence_away"/>
+                android:layout_height="@dimen/radio_button_height"
+                android:text="@string/presence_away"
+                android:button="@drawable/radio_button_background"
+                android:paddingLeft="@dimen/radio_button_text_padding_left"
+                android:layout_marginBottom="@dimen/radio_button_margin_bottom"/>
 
             <RadioButton
                 android:id="@+id/xa"
                 style="@style/Widget.Conversations.RadioButton"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="@string/presence_xa"/>
+                android:layout_height="@dimen/radio_button_height"
+                android:text="@string/presence_xa"
+                android:button="@drawable/radio_button_background"
+                android:paddingLeft="@dimen/radio_button_text_padding_left"
+                android:layout_marginBottom="@dimen/radio_button_margin_bottom"/>
 
             <RadioButton
                 android:id="@+id/dnd"
                 style="@style/Widget.Conversations.RadioButton"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="@string/presence_dnd"/>
+                android:layout_height="@dimen/radio_button_height"
+                android:text="@string/presence_dnd"
+                android:button="@drawable/radio_button_background"
+                android:paddingLeft="@dimen/radio_button_text_padding_left"/>
         </RadioGroup>
-
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/status_message"
+            android:textColor="@color/txt_color1"
+            android:fontFamily="@font/roboto_medium"
+            android:textFontWeight="500"
+            android:textSize="16sp"
+            android:layout_marginBottom="@dimen/dialog_subtitle_margin_bottom"/>
         <com.google.android.material.textfield.TextInputLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="@dimen/edit_text_height"
+            app:errorEnabled="true"
             app:errorTextAppearance="@style/TextAppearance.Conversations.Design.Error"
-            app:hintTextAppearance="@style/TextAppearance.Conversations.Design.Hint">
+            app:hintTextAppearance="@style/TextAppearance.Conversations.Design.Hint"
+            app:hintEnabled="false"
+            android:background="@drawable/rounded_corner_input_layout_with_border">
 
             <eu.siacs.conversations.ui.widget.ImmediateAutoCompleteTextView
                 android:id="@+id/status_message"
                 style="@style/Widget.Conversations.EditText"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:ems="10"
                 android:hint="@string/status_message"
-                android:inputType="textShortMessage"/>
+                android:inputType="textShortMessage"
+                android:ems="10"
+                android:background="@android:color/transparent"
+                android:padding="12dp"/>
         </com.google.android.material.textfield.TextInputLayout>
-
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_marginTop="40dp"
+            android:layout_gravity="center_horizontal">
+            <Button
+                android:id="@+id/cancel_button"
+                style="@style/Widget.Conversations.Button.Borderless"
+                android:layout_width="@dimen/dialog_button_width"
+                android:layout_height="@dimen/dialog_button_height"
+                android:background="@drawable/rounded_corner_button_gray"
+                android:text="@string/cancel"
+                android:layout_marginRight="@dimen/dialog_button_horizontal_padding"
+                android:textColor="@color/txt_color1"
+                android:fontFamily="@font/roboto_medium"
+                android:textAllCaps="false"
+                android:textFontWeight="500"
+                android:textSize="16sp"/>
+            <Button
+                android:id="@+id/save_button"
+                style="@style/Widget.Conversations.Button.Borderless"
+                android:layout_width="@dimen/dialog_button_width"
+                android:layout_height="@dimen/dialog_button_height"
+                android:background="@drawable/rounded_corner_button_blue"
+                android:text="@string/confirm"
+                android:textColor="@color/white"
+                android:fontFamily="@font/roboto_medium"
+                android:textAllCaps="false"
+                android:textFontWeight="500"
+                android:textSize="16sp"/>
+        </LinearLayout>
     </LinearLayout>
 </layout>

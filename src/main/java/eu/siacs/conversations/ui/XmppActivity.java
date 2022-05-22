@@ -10,7 +10,6 @@ import android.content.ClipboardManager;
 import android.content.ComponentName;
 import android.content.Context;
 import android.content.ContextWrapper;
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.IntentSender.SendIntentException;
 import android.content.ServiceConnection;
@@ -41,6 +40,7 @@ import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.WindowManager;
 import android.widget.ImageView;
 import android.widget.Toast;
 
@@ -77,10 +77,10 @@ import eu.siacs.conversations.services.XmppConnectionService.XmppConnectionBinde
 import eu.siacs.conversations.ui.service.EmojiService;
 import eu.siacs.conversations.ui.util.MenuDoubleTabUtil;
 import eu.siacs.conversations.ui.util.PresenceSelector;
+import eu.siacs.conversations.ui.util.SettingsUtils;
 import eu.siacs.conversations.ui.util.SoftKeyboardUtils;
 import eu.siacs.conversations.utils.AccountUtils;
 import eu.siacs.conversations.utils.ExceptionHelper;
-import eu.siacs.conversations.ui.util.SettingsUtils;
 import eu.siacs.conversations.utils.ThemeHelper;
 import eu.siacs.conversations.xmpp.Jid;
 import eu.siacs.conversations.xmpp.OnKeyStatusUpdated;
@@ -709,7 +709,7 @@ public abstract class XmppActivity extends ActionBarActivity {
         if (password) {
             binding.inputEditText.setInputType(InputType.TYPE_CLASS_TEXT | InputType.TYPE_TEXT_VARIATION_PASSWORD);
         }
-        builder.setPositiveButton(R.string.accept, null);
+//        builder.setPositiveButton(R.string.accept, null);
         if (hint != 0) {
             binding.inputLayout.setHint(getString(hint));
         }
@@ -718,10 +718,15 @@ public abstract class XmppActivity extends ActionBarActivity {
             binding.inputEditText.getText().append(previousValue);
         }
         builder.setView(binding.getRoot());
-        builder.setNegativeButton(R.string.cancel, null);
+//        builder.setNegativeButton(R.string.cancel, null);
         final AlertDialog dialog = builder.create();
         dialog.setOnShowListener(d -> SoftKeyboardUtils.showKeyboard(binding.inputEditText));
         dialog.show();
+        WindowManager.LayoutParams layoutParams = new WindowManager.LayoutParams();
+        layoutParams.copyFrom(dialog.getWindow().getAttributes());
+        layoutParams.width = (int) (348 * this.getResources().getDisplayMetrics().density);
+        layoutParams.height =  layoutParams.WRAP_CONTENT;
+        dialog.getWindow().setAttributes(layoutParams);
         View.OnClickListener clickListener = v -> {
             String value = binding.inputEditText.getText().toString();
             if (!value.equals(previousValue) && (!value.trim().isEmpty() || permitEmpty)) {
@@ -734,11 +739,16 @@ public abstract class XmppActivity extends ActionBarActivity {
             SoftKeyboardUtils.hideSoftKeyboard(binding.inputEditText);
             dialog.dismiss();
         };
-        dialog.getButton(DialogInterface.BUTTON_POSITIVE).setOnClickListener(clickListener);
-        dialog.getButton(DialogInterface.BUTTON_NEGATIVE).setOnClickListener((v -> {
+//        dialog.getButton(DialogInterface.BUTTON_POSITIVE).setOnClickListener(clickListener);
+//        dialog.getButton(DialogInterface.BUTTON_NEGATIVE).setOnClickListener((v -> {
+//            SoftKeyboardUtils.hideSoftKeyboard(binding.inputEditText);
+//            dialog.dismiss();
+//        }));
+        binding.cancelButton.setOnClickListener((v -> {
             SoftKeyboardUtils.hideSoftKeyboard(binding.inputEditText);
             dialog.dismiss();
         }));
+        binding.saveButton.setOnClickListener(clickListener);
         dialog.setCanceledOnTouchOutside(false);
         dialog.setOnDismissListener(dialog1 -> {
             SoftKeyboardUtils.hideSoftKeyboard(binding.inputEditText);

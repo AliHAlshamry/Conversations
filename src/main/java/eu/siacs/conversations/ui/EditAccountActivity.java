@@ -17,8 +17,10 @@ import android.provider.Settings;
 import android.security.KeyChain;
 import android.security.KeyChainAliasCallback;
 import android.text.Editable;
+import android.text.SpannableString;
 import android.text.TextUtils;
 import android.text.TextWatcher;
+import android.text.style.ForegroundColorSpan;
 import android.transition.AutoTransition;
 import android.transition.TransitionManager;
 import android.util.Log;
@@ -26,6 +28,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.View.OnClickListener;
+import android.view.WindowManager;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 import android.widget.CheckBox;
@@ -57,6 +60,7 @@ import eu.siacs.conversations.R;
 import eu.siacs.conversations.crypto.axolotl.AxolotlService;
 import eu.siacs.conversations.crypto.axolotl.XmppAxolotlSession;
 import eu.siacs.conversations.databinding.ActivityEditAccountBinding;
+import eu.siacs.conversations.databinding.DialogLogoutBinding;
 import eu.siacs.conversations.databinding.DialogPresenceBinding;
 import eu.siacs.conversations.entities.Account;
 import eu.siacs.conversations.entities.Presence;
@@ -717,6 +721,9 @@ public class EditAccountActivity extends OmemoActivity implements OnAccountUpdat
         final MenuItem changePresence = menu.findItem(R.id.action_change_presence);
         final MenuItem share = menu.findItem(R.id.action_share);
         final MenuItem deleteAccount = menu.findItem(R.id.mgmt_account_delete);
+        SpannableString spanString = new SpannableString(deleteAccount.getTitle().toString());
+        spanString.setSpan(new ForegroundColorSpan(getResources().getColor(R.color.error)), 0, spanString.length(), 0);
+        deleteAccount.setTitle(spanString);
         renewCertificate.setVisible(mAccount != null && mAccount.getPrivateKeyAlias() != null);
 //        share.setVisible(mAccount != null && !mInitMode);
         binding.actionShowBlockList.setVisibility(View.VISIBLE);
@@ -1034,18 +1041,40 @@ public class EditAccountActivity extends OmemoActivity implements OnAccountUpdat
             PresenceTemplate template = (PresenceTemplate) parent.getItemAtPosition(position);
             setAvailabilityRadioButton(template.getStatus(), binding);
         });
-        builder.setTitle(R.string.edit_status_message_title);
+//        builder.setTitle(R.string.edit_status_message_title);
         builder.setView(binding.getRoot());
-        builder.setNegativeButton(R.string.cancel, null);
-        builder.setPositiveButton(R.string.confirm, (dialog, which) -> {
+        final AlertDialog dialog = builder.create();
+        dialog.setOnShowListener(d -> SoftKeyboardUtils.showKeyboard(binding.statusMessage));
+        dialog.show();
+        WindowManager.LayoutParams layoutParams = new WindowManager.LayoutParams();
+        layoutParams.copyFrom(dialog.getWindow().getAttributes());
+        layoutParams.width = (int) (348 * this.getResources().getDisplayMetrics().density);
+        layoutParams.height =  layoutParams.WRAP_CONTENT;
+        dialog.getWindow().setAttributes(layoutParams);
+//        builder.setNegativeButton(R.string.cancel, null);
+        binding.cancelButton.setOnClickListener((v -> {
+            SoftKeyboardUtils.hideSoftKeyboard(binding.statusMessage);
+            dialog.dismiss();
+        }));
+        binding.saveButton.setOnClickListener(v -> {
             PresenceTemplate template = new PresenceTemplate(getAvailabilityRadioButton(binding), binding.statusMessage.getText().toString().trim());
             if (mAccount.getPgpId() != 0 && hasPgp()) {
                 generateSignature(null, template);
             } else {
                 xmppConnectionService.changeStatus(mAccount, template, null);
             }
+            SoftKeyboardUtils.hideSoftKeyboard(binding.statusMessage);
+            dialog.dismiss();
         });
-        builder.create().show();
+//        builder.setPositiveButton(R.string.confirm, (dialog, which) -> {
+//            PresenceTemplate template = new PresenceTemplate(getAvailabilityRadioButton(binding), binding.statusMessage.getText().toString().trim());
+//            if (mAccount.getPgpId() != 0 && hasPgp()) {
+//                generateSignature(null, template);
+//            } else {
+//                xmppConnectionService.changeStatus(mAccount, template, null);
+//            }
+//        });
+//        builder.create().show();
     }
 
     private void generateSignature(Intent intent, PresenceTemplate template) {
@@ -1289,20 +1318,21 @@ public class EditAccountActivity extends OmemoActivity implements OnAccountUpdat
         if (!mInitMode) {
             this.binding.editor.setVisibility(View.GONE);
             this.binding.accountCard.setVisibility(View.VISIBLE);
-            this.binding.accountSettingCard.setVisibility(View.VISIBLE);
+//            this.binding.accountSettingCard.setVisibility(View.VISIBLE);
         }else{
             this.binding.accountCard.setVisibility(View.GONE);
-            this.binding.accountSettingCard.setVisibility(View.GONE);
+//            this.binding.accountSettingCard.setVisibility(View.GONE);
             this.binding.editor.setVisibility(View.VISIBLE);
         }
     }
 
     private void updateDisplayName(String displayName) {
         if (TextUtils.isEmpty(displayName)) {
-            this.binding.userName.setText(R.string.no_name_set_instructions);
+//            this.binding.userName.setText(R.string.no_name_set_instructions);
 //            this.binding.yourName.setTextAppearance(this, R.style.TextAppearance_Conversations_Body1_Tertiary);
         } else {
-            this.binding.userName.setText(displayName);
+//            this.binding.userName.setText(displayName);
+              getSupportActionBar().setTitle(displayName);
 //            this.binding.yourName.setTextAppearance(this, R.style.TextAppearance_Conversations_Body1);
         }
     }
@@ -1418,19 +1448,39 @@ public class EditAccountActivity extends OmemoActivity implements OnAccountUpdat
     }
 
     private void deleteAccount() {
+//        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+//        builder.setTitle(getString(R.string.mgmt_account_are_you_sure));
+//        builder.setIconAttribute(android.R.attr.alertDialogIcon);
+//        builder.setMessage(getString(R.string.mgmt_account_delete_confirm_text));
+//        builder.setPositiveButton(getString(R.string.mgmt_account_delete),
+//                (dialog, which) -> {
+//                    xmppConnectionService.deleteAccount(mAccount);
+//                    if (xmppConnectionService.getAccounts().size() == 0 && Config.MAGIC_CREATE_DOMAIN != null) {
+//                        WelcomeActivity.launch(this);
+//                    }
+//                });
+//        builder.setNegativeButton(getString(R.string.cancel), null);
+//        builder.create().show();
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
-        builder.setTitle(getString(R.string.mgmt_account_are_you_sure));
-        builder.setIconAttribute(android.R.attr.alertDialogIcon);
-        builder.setMessage(getString(R.string.mgmt_account_delete_confirm_text));
-        builder.setPositiveButton(getString(R.string.mgmt_account_delete),
-                (dialog, which) -> {
-                    xmppConnectionService.deleteAccount(mAccount);
+        final DialogLogoutBinding binding = DataBindingUtil.inflate(getLayoutInflater(), R.layout.dialog_logout, null, false);
+        builder.setView(binding.getRoot());
+        final AlertDialog dialog = builder.create();
+        dialog.show();
+        WindowManager.LayoutParams layoutParams = new WindowManager.LayoutParams();
+        layoutParams.copyFrom(dialog.getWindow().getAttributes());
+        layoutParams.width = (int) (348 * this.getResources().getDisplayMetrics().density);
+        layoutParams.height =  layoutParams.WRAP_CONTENT;
+        dialog.getWindow().setAttributes(layoutParams);
+        binding.cancelButton.setOnClickListener((v -> {
+            dialog.dismiss();
+        }));
+        binding.logoutButton.setOnClickListener(v -> {
+            xmppConnectionService.deleteAccount(mAccount);
                     if (xmppConnectionService.getAccounts().size() == 0 && Config.MAGIC_CREATE_DOMAIN != null) {
                         WelcomeActivity.launch(this);
                     }
-                });
-        builder.setNegativeButton(getString(R.string.cancel), null);
-        builder.create().show();
+            dialog.dismiss();
+        });
     }
 
     @Override

@@ -57,25 +57,38 @@
         android:visible="false"/>
 
     <item
-        android:id="@+id/action_change_password_on_server"
-        app:showAsAction="never"
-        android:title="@string/change_password"/>
+        android:icon="@drawable/ic_more_white"
+        android:title=""
+        app:showAsAction="always">
+        <menu>
+            <item
+                android:id="@+id/action_change_password_on_server"
+                android:title="@string/change_password"
+                android:icon="@drawable/ic_edit_gray"
+                app:showAsAction="never"/>
 
-    <item
-        android:id="@+id/action_settings"
-        android:orderInCategory="100"
-        app:showAsAction="never"
-        android:title="@string/action_settings"/>
 
-    <item
-        android:id="@+id/mgmt_account_enable"
-        android:title="@string/mgmt_account_enable"/>
+            <item
+                android:id="@+id/mgmt_account_enable"
+                android:title="@string/mgmt_account_enable"
+                android:icon="@drawable/lock_slash"/>
 
-    <item
-        android:id="@+id/mgmt_account_disable"
-        app:showAsAction="never"
-        android:title="@string/mgmt_account_disable"/>
-    <item
-        android:id="@+id/mgmt_account_delete"
-        android:title="@string/mgmt_account_delete"/>
+            <item
+                android:id="@+id/mgmt_account_disable"
+                android:title="@string/mgmt_account_disable"
+                android:icon="@drawable/lock_slash"
+                app:showAsAction="never"/>
+
+            <item
+                android:id="@+id/action_settings"
+                android:title="@string/action_settings"
+                android:icon="@drawable/ic_setting_gray"
+                app:showAsAction="never"/>
+            <item
+                android:id="@+id/mgmt_account_delete"
+                android:title="@string/mgmt_account_delete"
+                android:icon="@drawable/logout"
+                app:showAsAction="never"/>
+        </menu>
+    </item>
 </menu>

@@ -237,6 +237,7 @@ public class PublishProfilePictureActivity extends XmppActivity implements XmppC
             this.hintOrWarning.setText(R.string.error_publish_avatar_converting);
             return;
         }
+        this.avatar.setBackground(null);
         this.avatar.setImageBitmap(bm);
         if (support) {
             togglePublishButton(uri != null, R.string.publish);

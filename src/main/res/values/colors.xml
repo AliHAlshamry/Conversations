@@ -60,6 +60,7 @@
 	<color name="txt_color4">#BDBDBD</color>
 	<color name="txt_color5">#E0E0E0</color>
 	<color name="txt_color6">#F2F2F2</color>
+	<color name="txt_color7">#EEF1F7</color>
 	<color name="txt_field_on_focus">#355BDF</color>
 
 	<color name="background">#FFFFFF</color>

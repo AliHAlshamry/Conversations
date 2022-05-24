@@ -9,6 +9,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.text.Editable;
+import android.text.InputType;
 import android.text.SpannableStringBuilder;
 import android.text.TextWatcher;
 import android.text.method.LinkMovementMethod;
@@ -16,6 +17,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.View.OnClickListener;
+import android.view.WindowManager;
 import android.widget.PopupMenu;
 import android.widget.Toast;
 
@@ -29,6 +31,8 @@ import java.util.concurrent.atomic.AtomicInteger;
 import eu.siacs.conversations.Config;
 import eu.siacs.conversations.R;
 import eu.siacs.conversations.databinding.ActivityMucDetailsBinding;
+import eu.siacs.conversations.databinding.DialogDestroyRoomBinding;
+import eu.siacs.conversations.databinding.DialogQuickeditBinding;
 import eu.siacs.conversations.entities.Account;
 import eu.siacs.conversations.entities.Bookmark;
 import eu.siacs.conversations.entities.Conversation;
@@ -447,9 +451,31 @@ public class ConferenceDetailsActivity extends XmppActivity implements OnConvers
         final Account account = mConversation.getAccount();
         final Bookmark bookmark = mConversation.getBookmark();
         bookmark.setConversation(null);
+//        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+//        builder.setTitle(groupChat ? R.string.leave_group : R.string.leave_channel);
+//        builder.setPositiveButton(R.string.ok, (dialog, which) -> {
+//            xmppConnectionService.deleteBookmark(account, bookmark);
+//            xmppConnectionService.archiveConversation(mConversation);
+//            updateView();
+//            Intent intent = new Intent(this, ConversationsActivity.class);
+//            startActivity(intent);
+//            finish();
+//        });
+//        builder.setNegativeButton(R.string.cancel, null);
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
-        builder.setTitle(groupChat ? R.string.leave_group : R.string.leave_channel);
-        builder.setPositiveButton(R.string.ok, (dialog, which) -> {
+        DialogDestroyRoomBinding binding = DataBindingUtil.inflate(getLayoutInflater(), R.layout.dialog_destroy_room, null, false);
+        builder.setView(binding.getRoot());
+        final AlertDialog dialog = builder.create();
+        dialog.setCanceledOnTouchOutside(false);
+        dialog.show();
+        binding.destroyRoomTitle.setText(groupChat ? R.string.leave_group : R.string.leave_channel);
+        binding.destroyRoomMessage.setVisibility(View.GONE);
+        WindowManager.LayoutParams layoutParams = new WindowManager.LayoutParams();
+        layoutParams.copyFrom(dialog.getWindow().getAttributes());
+        layoutParams.width = (int) (348 * this.getResources().getDisplayMetrics().density);
+        layoutParams.height =  layoutParams.WRAP_CONTENT;
+        dialog.getWindow().setAttributes(layoutParams);
+        binding.destroyRoomButton.setOnClickListener(v->{
             xmppConnectionService.deleteBookmark(account, bookmark);
             xmppConnectionService.archiveConversation(mConversation);
             updateView();
@@ -457,24 +483,40 @@ public class ConferenceDetailsActivity extends XmppActivity implements OnConvers
             startActivity(intent);
             finish();
         });
-        builder.setNegativeButton(R.string.cancel, null);
-        final AlertDialog dialog = builder.create();
-        dialog.setCanceledOnTouchOutside(false);
-        dialog.show();
+        binding.cancelButton.setOnClickListener((v -> {
+            dialog.dismiss();
+        }));
     }
 
     protected void destroyRoom() {
         final boolean groupChat = mConversation != null && mConversation.isPrivateAndNonAnonymous();
+//        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+//        builder.setTitle(groupChat ? R.string.destroy_room : R.string.destroy_channel);
+//        builder.setMessage(groupChat ? R.string.destroy_room_dialog : R.string.destroy_channel_dialog);
+//        builder.setPositiveButton(R.string.ok, (dialog, which) -> {
+//            xmppConnectionService.destroyRoom(mConversation, ConferenceDetailsActivity.this);
+//        });
+//        builder.setNegativeButton(R.string.cancel, null);
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
-        builder.setTitle(groupChat ? R.string.destroy_room : R.string.destroy_channel);
-        builder.setMessage(groupChat ? R.string.destroy_room_dialog : R.string.destroy_channel_dialog);
-        builder.setPositiveButton(R.string.ok, (dialog, which) -> {
-            xmppConnectionService.destroyRoom(mConversation, ConferenceDetailsActivity.this);
-        });
-        builder.setNegativeButton(R.string.cancel, null);
+        DialogDestroyRoomBinding binding = DataBindingUtil.inflate(getLayoutInflater(), R.layout.dialog_destroy_room, null, false);
+        builder.setView(binding.getRoot());
         final AlertDialog dialog = builder.create();
         dialog.setCanceledOnTouchOutside(false);
         dialog.show();
+        binding.destroyRoomTitle.setText(groupChat ? R.string.destroy_room : R.string.destroy_channel);
+        binding.destroyRoomMessage.setText(groupChat ? R.string.destroy_room_dialog : R.string.destroy_channel_dialog);
+        WindowManager.LayoutParams layoutParams = new WindowManager.LayoutParams();
+        layoutParams.copyFrom(dialog.getWindow().getAttributes());
+        layoutParams.width = (int) (348 * this.getResources().getDisplayMetrics().density);
+        layoutParams.height =  layoutParams.WRAP_CONTENT;
+        dialog.getWindow().setAttributes(layoutParams);
+        binding.destroyRoomButton.setOnClickListener(v->{
+            xmppConnectionService.destroyRoom(mConversation, ConferenceDetailsActivity.this);
+            dialog.dismiss();
+        });
+        binding.cancelButton.setOnClickListener((v -> {
+            dialog.dismiss();
+        }));
     }
 
     @Override

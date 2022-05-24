@@ -51,8 +51,9 @@
             <Button
                 android:id="@+id/cancel_button"
                 style="@style/Widget.Conversations.Button.Borderless"
-                android:layout_width="135dp"
+                android:layout_width="@dimen/dialog_button_width"
                 android:layout_height="52dp"
+                android:layout_weight="1"
                 android:background="@drawable/rounded_corner_button_gray"
                 android:text="@string/cancel"
                 android:textColor="@color/txt_color1"
@@ -65,8 +66,9 @@
             <Button
                 android:id="@+id/logout_button"
                 style="@style/Widget.Conversations.Button.Borderless"
-                android:layout_width="135dp"
+                android:layout_width="@dimen/dialog_button_width"
                 android:layout_height="52dp"
+                android:layout_weight="1"
                 android:background="@drawable/rounded_corner_button_red"
                 android:textColor="@color/white"
                 android:text="@string/mgmt_account_delete"

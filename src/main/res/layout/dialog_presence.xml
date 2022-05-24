@@ -97,7 +97,7 @@
                 android:padding="12dp"/>
         </com.google.android.material.textfield.TextInputLayout>
         <LinearLayout
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
             android:layout_marginTop="40dp"
@@ -107,6 +107,7 @@
                 style="@style/Widget.Conversations.Button.Borderless"
                 android:layout_width="@dimen/dialog_button_width"
                 android:layout_height="@dimen/dialog_button_height"
+                android:layout_weight="1"
                 android:background="@drawable/rounded_corner_button_gray"
                 android:text="@string/cancel"
                 android:layout_marginRight="@dimen/dialog_button_horizontal_padding"
@@ -120,6 +121,7 @@
                 style="@style/Widget.Conversations.Button.Borderless"
                 android:layout_width="@dimen/dialog_button_width"
                 android:layout_height="@dimen/dialog_button_height"
+                android:layout_weight="1"
                 android:background="@drawable/rounded_corner_button_blue"
                 android:text="@string/confirm"
                 android:textColor="@color/white"

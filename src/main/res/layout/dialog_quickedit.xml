@@ -57,16 +57,16 @@
 
         </com.google.android.material.textfield.TextInputLayout>
         <LinearLayout
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
-            android:layout_marginTop="40dp"
-            android:layout_gravity="center_horizontal">
+            android:layout_marginTop="40dp">
             <Button
                 android:id="@+id/cancel_button"
                 style="@style/Widget.Conversations.Button.Borderless"
                 android:layout_width="@dimen/dialog_button_width"
                 android:layout_height="@dimen/dialog_button_height"
+                android:layout_weight="1"
                 android:background="@drawable/rounded_corner_button_gray"
                 android:text="@string/cancel"
                 android:textColor="@color/txt_color1"
@@ -80,6 +80,7 @@
                 style="@style/Widget.Conversations.Button.Borderless"
                 android:layout_width="@dimen/dialog_button_width"
                 android:layout_height="@dimen/dialog_button_height"
+                android:layout_weight="1"
                 android:background="@drawable/rounded_corner_button_blue"
                 android:text="@string/accept"
                 android:textColor="@color/white"

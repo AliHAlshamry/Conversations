@@ -23,22 +23,58 @@
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
             android:visibility="gone"/>
-
         <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/jid_layout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="@string/account_settings_jabber_id"
+            android:paddingTop="8dp"
+            android:paddingBottom="8dp"
             app:errorTextAppearance="@style/TextAppearance.Conversations.Design.Error"
-            app:hintTextAppearance="@style/TextAppearance.Conversations.Design.Hint">
+            app:hintEnabled="false">
 
             <AutoCompleteTextView
                 android:id="@+id/jid"
                 style="@style/Widget.Conversations.EditText"
-                android:layout_width="fill_parent"
-                android:layout_height="wrap_content"
-                android:imeOptions="actionDone|flagNoExtractUi"
-                android:inputType="textEmailAddress" />
+                android:layout_width="match_parent"
+                android:layout_height="52dp"
+                android:background="@drawable/custom_edit_text"
+                android:hint="@string/account_settings_example_jabber_id"
+                android:imeOptions="actionNext"
+                android:inputType="textEmailAddress"
+                android:padding="8dp"
+                android:textColor="?attr/edit_text_color"
+                app:errorTextAppearance="@style/TextAppearance.Conversations.Design.Error"
+                app:hintTextAppearance="@style/TextAppearance.Conversations.Caption.Highlight" />
         </com.google.android.material.textfield.TextInputLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_marginTop="24dp"
+            android:layout_gravity="center_horizontal">
+            <Button
+                android:id="@+id/cancel_button"
+                android:layout_width="@dimen/dialog_button_width"
+                android:layout_height="@dimen/dialog_button_height"
+                android:layout_weight="1"
+                android:background="@drawable/rounded_corner_button_gray"
+                android:text="@string/cancel"
+                android:textColor="@color/txt_color1"
+                android:layout_marginEnd="11dp"
+                android:textAllCaps="false"
+                style="@style/Widget.Conversations.Button.primary"/>
+
+            <Button
+                android:id="@+id/positive_button"
+                android:layout_width="@dimen/dialog_button_width"
+                android:layout_height="@dimen/dialog_button_height"
+                android:layout_weight="1"
+                android:background="@drawable/rounded_corner_button_blue"
+                android:text="@string/add_contact"
+                android:textAllCaps="false"
+                style="@style/Widget.Conversations.Button.primary" />
+        </LinearLayout>
     </LinearLayout>
 </layout>

@@ -185,7 +185,7 @@
     <string name="mgmt_account_delete_confirm_text">Logging out of your account will be erases your entire conversation history</string>
     <string name="attach_record_voice">Record voice</string>
     <string name="account_settings_jabber_id">Email address</string>
-    <string name="block_jabber_id">Block XMPP address</string>
+    <string name="block_jabber_id">Block Email address</string>
     <string name="account_settings_example_jabber_id">username@example.com</string>
     <string name="password">Password</string>
     <string name="invalid_jid">This is not a valid Email address</string>

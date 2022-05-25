@@ -122,8 +122,8 @@ public class EnterJidDialog extends DialogFragment implements OnBackendConnected
 
 
 		builder.setView(binding.getRoot());
-		builder.setNegativeButton(R.string.cancel, null);
-		builder.setPositiveButton(getArguments().getString(POSITIVE_BUTTON_KEY), null);
+		binding.cancelButton.setOnClickListener((v1 ->  dialog.dismiss()));
+		binding.positiveButton.setText(getArguments().getString(POSITIVE_BUTTON_KEY), null);
 		this.dialog = builder.create();
 
 		View.OnClickListener dialogOnClick = v -> {
@@ -136,7 +136,7 @@ public class EnterJidDialog extends DialogFragment implements OnBackendConnected
 		});
 
 		dialog.show();
-		dialog.getButton(AlertDialog.BUTTON_POSITIVE).setOnClickListener(dialogOnClick);
+		binding.positiveButton.setOnClickListener(dialogOnClick);
 		return dialog;
 	}
 
@@ -165,13 +165,13 @@ public class EnterJidDialog extends DialogFragment implements OnBackendConnected
 		if (!issuedWarning && sanityCheckJid) {
 			if (contactJid.isDomainJid()) {
 				binding.jidLayout.setError(getActivity().getString(R.string.this_looks_like_a_domain));
-				dialog.getButton(AlertDialog.BUTTON_POSITIVE).setText(R.string.add_anway);
+				binding.positiveButton.setText(R.string.add_anway);
 				issuedWarning = true;
 				return;
 			}
 			if (suspiciousSubDomain(contactJid.getDomain().toEscapedString())) {
 				binding.jidLayout.setError(getActivity().getString(R.string.this_looks_like_channel));
-				dialog.getButton(AlertDialog.BUTTON_POSITIVE).setText(R.string.add_anway);
+				binding.positiveButton.setText(R.string.add_anway);
 				issuedWarning = true;
 				return;
 			}
@@ -184,7 +184,7 @@ public class EnterJidDialog extends DialogFragment implements OnBackendConnected
 				}
 			} catch (JidError error) {
 				binding.jidLayout.setError(error.toString());
-				dialog.getButton(AlertDialog.BUTTON_POSITIVE).setText(R.string.add);
+				binding.positiveButton.setText(R.string.add);
 				issuedWarning = false;
 			}
 		}

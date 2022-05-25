@@ -34,6 +34,7 @@
         <item name="TextSizeCaption">12sp</item>
         <item name="TextSizeBody1">14sp</item>
         <item name="TextSizeBody2">14sp</item>
+        <item name="TextSizeBody3">16sp</item>
         <item name="TextSizeSubhead">16sp</item>
         <item name="TextSizeTitle">20sp</item>
         <item name="TextSizeDisplay2">45sp</item>
@@ -181,7 +182,7 @@
 
         <item name="TextSizeCaption">12sp</item>
         <item name="TextSizeBody1">14sp</item>
-        <item name="TextSizeBody2">14sp</item>
+        <item name="TextSizeBody2">16sp</item>
         <item name="TextSizeSubhead">16sp</item>
         <item name="TextSizeTitle">20sp</item>
         <item name="TextSizeDisplay2">45sp</item>

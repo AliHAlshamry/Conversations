@@ -290,7 +290,7 @@ public class ContactDetailsActivity extends OmemoActivity implements OnAccountUp
                 dialog.dismiss();
             });
         });
-       binding.blockContactButton.setOnClickListener(v->BlockContactDialog.show(this, contact));
+       binding.positiveButton.setOnClickListener(v->BlockContactDialog.show(this, contact));
        binding.unblockContactButton.setOnClickListener(v->BlockContactDialog.show(this, contact));
     }
 
@@ -601,10 +601,10 @@ public class ContactDetailsActivity extends OmemoActivity implements OnAccountUp
             binding.addContactButton.setVisibility(View.GONE);
         }
         if(contact.isBlocked()){
-            binding.blockContactButton.setVisibility(View.GONE);
+            binding.positiveButton.setVisibility(View.GONE);
         }else{
             binding.unblockContactButton.setVisibility(View.GONE);
-            binding.blockContactButton.setVisibility(View.VISIBLE);
+            binding.positiveButton.setVisibility(View.VISIBLE);
         }
 //        if(contact.getShownStatus().name().equals("ONLINE")){
 //            binding.onlineTag.setVisibility(View.VISIBLE);

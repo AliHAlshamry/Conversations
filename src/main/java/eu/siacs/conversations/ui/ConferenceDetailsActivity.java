@@ -9,7 +9,6 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.text.Editable;
-import android.text.InputType;
 import android.text.SpannableStringBuilder;
 import android.text.TextWatcher;
 import android.text.method.LinkMovementMethod;
@@ -32,7 +31,6 @@ import eu.siacs.conversations.Config;
 import eu.siacs.conversations.R;
 import eu.siacs.conversations.databinding.ActivityMucDetailsBinding;
 import eu.siacs.conversations.databinding.DialogDestroyRoomBinding;
-import eu.siacs.conversations.databinding.DialogQuickeditBinding;
 import eu.siacs.conversations.entities.Account;
 import eu.siacs.conversations.entities.Bookmark;
 import eu.siacs.conversations.entities.Conversation;
@@ -212,7 +210,7 @@ public class ConferenceDetailsActivity extends XmppActivity implements OnConvers
         GridManager.setupLayoutManager(this, this.binding.media, R.dimen.media_size);
         GridManager.setupLayoutManager(this, this.binding.users, R.dimen.media_size);
         this.binding.invite.setOnClickListener(v -> inviteToConversation(mConversation));
-        this.binding.showUsers.setOnClickListener(v -> {
+        this.binding.showUsersLayout.setOnClickListener(v -> {
             Intent intent = new Intent(this, MucUsersActivity.class);
             intent.putExtra("uuid", mConversation.getUuid());
             startActivity(intent);
@@ -225,8 +223,8 @@ public class ConferenceDetailsActivity extends XmppActivity implements OnConvers
             SoftKeyboardUtils.hideSoftKeyboard(this);
             hideEditor();
         });
-        binding.actionDestroyRoom.setOnClickListener(v->destroyRoom());
-        binding.actionDeleteBookmark.setOnClickListener(v->deleteBookmark());
+        binding.actionDestroyRoomLayout.setOnClickListener(v->destroyRoom());
+        binding.actionDeleteBookmarkLayout.setOnClickListener(v->deleteBookmark());
         binding.shareButton.setOnClickListener(v->{
             PopupMenu popupMenu = new PopupMenu(this, v);
             getMenuInflater().inflate(R.menu.share_group, popupMenu.getMenu());
@@ -388,14 +386,14 @@ public class ConferenceDetailsActivity extends XmppActivity implements OnConvers
         if (mConversation.getBookmark() != null) {
             menuItemSaveBookmark.setVisible(false);
 //            menuItemDeleteBookmark.setVisible(true);
-            binding.actionDeleteBookmark.setVisibility(View.VISIBLE);
+            binding.actionDeleteBookmarkLayout.setVisibility(View.VISIBLE);
         } else {
 //            menuItemDeleteBookmark.setVisible(false);
             menuItemSaveBookmark.setVisible(true);
-            binding.actionDeleteBookmark.setVisibility(View.GONE);
+            binding.actionDeleteBookmarkLayout.setVisibility(View.GONE);
         }
 //        menuItemDestroyRoom.setVisible(mConversation.getMucOptions().getSelf().getAffiliation().ranks(MucOptions.Affiliation.OWNER));
-          binding.actionDestroyRoom.setVisibility(mConversation.getMucOptions().getSelf().getAffiliation().ranks(MucOptions.Affiliation.OWNER)?View.VISIBLE:View.GONE);
+          binding.actionDestroyRoomLayout.setVisibility(mConversation.getMucOptions().getSelf().getAffiliation().ranks(MucOptions.Affiliation.OWNER)?View.VISIBLE:View.GONE);
         return true;
     }
 
@@ -668,14 +666,16 @@ public class ConferenceDetailsActivity extends XmppActivity implements OnConvers
         });
         this.mUserPreviewAdapter.submitList(MucOptions.sub(users, GridManager.getCurrentColumnCount(binding.users)));
         this.binding.invite.setVisibility(mucOptions.canInvite() ? View.VISIBLE : View.GONE);
-        this.binding.showUsers.setVisibility(users.size() > 0 ? View.VISIBLE : View.GONE);
+        this.binding.showUsersLayout.setVisibility(users.size() > 0 ? View.VISIBLE : View.GONE);
         this.binding.showUsers.setText(getResources().getQuantityString(R.plurals.view_users, users.size(), users.size()));
         this.binding.usersWrapper.setVisibility(users.size() > 0 || mucOptions.canInvite() ? View.VISIBLE : View.GONE);
         if (users.size() == 0) {
             this.binding.noUsersHints.setText(mucOptions.isPrivateAndNonAnonymous() ? R.string.no_users_hint_group_chat : R.string.no_users_hint_channel);
             this.binding.noUsersHints.setVisibility(View.VISIBLE);
+            this.binding.noUsersHintsIcon.setVisibility(View.VISIBLE);
         } else {
             this.binding.noUsersHints.setVisibility(View.GONE);
+            this.binding.noUsersHintsIcon.setVisibility(View.GONE);
         }
 
     }

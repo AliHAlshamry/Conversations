@@ -58,4 +58,5 @@
     <dimen name="radio_button_height">24dp</dimen>
     <dimen name="radio_button_text_padding_left">11dp</dimen>
     <dimen name="radio_button_margin_bottom">16dp</dimen>
+    <dimen name="linear_layout_with_icon_and_text_height">32dp</dimen>
 </resources>

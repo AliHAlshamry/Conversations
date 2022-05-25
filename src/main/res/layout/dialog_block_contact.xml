@@ -1,28 +1,91 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layout xmlns:android="http://schemas.android.com/apk/res/android">
-
     <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:id="@+id/dialog_layout"
+        android:layout_width="312dp"
+        android:layout_height="wrap_content"
         android:orientation="vertical"
-        android:paddingBottom="?attr/dialog_vertical_padding"
-        android:paddingLeft="?attr/dialog_horizontal_padding"
-        android:paddingRight="?attr/dialog_horizontal_padding"
-        android:paddingTop="?attr/dialog_vertical_padding">
-
+        android:elevation="8dp"
+        android:background="@drawable/rounded_corner_dialog"
+        android:paddingVertical="24dp"
+        android:paddingHorizontal="16dp">
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="27dp"
+            android:orientation="horizontal"
+            android:gravity="center|left">
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/unlock"
+                android:background="@drawable/circular_background_blue"
+                android:layout_marginRight="8dp"/>
+            <TextView
+                android:id="@+id/block_unblock_title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/block_contact"
+                android:textColor="@color/txt_color1"
+                android:fontFamily="@font/roboto_medium"
+                android:textFontWeight="500"
+                android:textSize="20sp"/>
+        </LinearLayout>
         <TextView
             android:id="@+id/text"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textAppearance="@style/TextAppearance.Conversations.Body1"/>
-
+            android:layout_marginBottom="16dp"
+            android:fontFamily="@font/roboto"
+            android:text="@string/block_contact_text"
+            android:textColor="@color/txt_color3"
+            android:textFontWeight="400"
+            android:textSize="14sp" />
         <CheckBox
             android:id="@+id/report_spam"
-            style="@style/Widget.Conversations.CheckBox"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="8dp"
-            android:text="@string/report_jid_as_spammer"/>
+            android:text="@string/report_jid_as_spammer"
+            android:paddingLeft="4dp"
+            android:fontFamily="@font/roboto"
+            android:textSize="14sp"
+            android:textFontWeight="400"
+            android:textColor="@color/txt_color2"/>
 
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_marginTop="24dp"
+            android:layout_gravity="center_horizontal">
+            <Button
+                android:id="@+id/cancel_button"
+                style="@style/Widget.Conversations.Button.Borderless"
+                android:layout_width="@dimen/dialog_button_width"
+                android:layout_height="@dimen/dialog_button_height"
+                android:layout_weight="1"
+                android:background="@drawable/rounded_corner_button_gray"
+                android:text="@string/cancel"
+                android:textColor="@color/txt_color1"
+                android:layout_marginRight="11dp"
+                android:fontFamily="@font/roboto_medium"
+                android:textAllCaps="false"
+                android:textFontWeight="500"
+                android:textSize="16sp"/>
+
+            <Button
+                android:id="@+id/block_unblock_contact_button"
+                android:layout_width="@dimen/dialog_button_width"
+                android:layout_height="@dimen/dialog_button_height"
+                android:layout_weight="1"
+                android:background="@drawable/rounded_corner_button_blue"
+                android:textColor="@color/white"
+                android:text="@string/block"
+                android:fontFamily="@font/roboto_medium"
+                android:textAllCaps="false"
+                android:textFontWeight="500"
+                android:textSize="16sp"/>
+        </LinearLayout>
     </LinearLayout>
 </layout>

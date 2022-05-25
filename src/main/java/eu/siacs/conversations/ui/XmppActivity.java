@@ -22,6 +22,7 @@ import android.graphics.Bitmap;
 import android.graphics.Color;
 import android.graphics.Point;
 import android.graphics.drawable.BitmapDrawable;
+import android.graphics.drawable.ColorDrawable;
 import android.graphics.drawable.Drawable;
 import android.net.ConnectivityManager;
 import android.net.Uri;
@@ -721,6 +722,7 @@ public abstract class XmppActivity extends ActionBarActivity {
 //        builder.setNegativeButton(R.string.cancel, null);
         final AlertDialog dialog = builder.create();
         dialog.setOnShowListener(d -> SoftKeyboardUtils.showKeyboard(binding.inputEditText));
+        dialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
         dialog.show();
         WindowManager.LayoutParams layoutParams = new WindowManager.LayoutParams();
         layoutParams.copyFrom(dialog.getWindow().getAttributes());

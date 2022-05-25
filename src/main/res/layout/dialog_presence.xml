@@ -25,7 +25,8 @@
             android:id="@+id/show"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="?attr/dialog_vertical_padding">
+            android:layout_marginBottom="?attr/dialog_vertical_padding"
+            android:visibility="gone">
 
             <RadioButton
                 android:id="@+id/online"

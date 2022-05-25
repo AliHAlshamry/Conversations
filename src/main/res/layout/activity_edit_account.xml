@@ -77,7 +77,7 @@
                         <LinearLayout
                             android:id="@+id/action_edit_name"
                             android:layout_width="match_parent"
-                            android:layout_height="32dp"
+                            android:layout_height="@dimen/linear_layout_with_icon_and_text_height"
                             android:layout_alignParentStart="true"
                             android:layout_alignParentLeft="true"
                             android:background="?attr/selectableItemBackground"
@@ -111,7 +111,7 @@
                         <LinearLayout
                             android:id="@+id/action_edit_status_message"
                             android:layout_width="match_parent"
-                            android:layout_height="32dp"
+                            android:layout_height="@dimen/linear_layout_with_icon_and_text_height"
                             android:layout_alignParentStart="true"
                             android:layout_alignParentLeft="true"
                             android:layout_marginTop="32dp"
@@ -152,7 +152,7 @@
                         <LinearLayout
                             android:id="@+id/action_share_uri_button"
                             android:layout_width="match_parent"
-                            android:layout_height="32dp"
+                            android:layout_height="@dimen/linear_layout_with_icon_and_text_height"
                             android:layout_alignParentStart="true"
                             android:layout_alignParentLeft="true"
                             android:layout_marginTop="27dp"
@@ -186,7 +186,7 @@
                         <LinearLayout
                             android:id="@+id/action_archive_button"
                             android:layout_width="match_parent"
-                            android:layout_height="32dp"
+                            android:layout_height="@dimen/linear_layout_with_icon_and_text_height"
                             android:layout_alignParentStart="true"
                             android:layout_alignParentLeft="true"
                             android:layout_marginTop="32dp"
@@ -220,7 +220,7 @@
                         <LinearLayout
                             android:id="@+id/action_show_block_list"
                             android:layout_width="match_parent"
-                            android:layout_height="32dp"
+                            android:layout_height="@dimen/linear_layout_with_icon_and_text_height"
                             android:layout_alignParentStart="true"
                             android:layout_alignParentLeft="true"
                             android:layout_marginTop="32dp"

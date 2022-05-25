@@ -981,7 +981,7 @@
     <string name="account_registrations_are_not_supported">Account registrations are not supported</string>
     <string name="no_xmpp_adddress_found">No XMPP address found</string>
     <string name="offline">offline</string>
-    <string name="see_all">see all</string>
+    <string name="see_all">See all</string>
     <string name="leave_channel">Do you want to leave channel</string>
     <string name="leave_group">Do you want to leave group</string>
     <string name="change_photo">Change photo</string>

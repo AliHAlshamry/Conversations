@@ -73,7 +73,7 @@
             @drawable/message_bubble_received
         </item>
 
-        <item name="unread_count">@color/green700_desaturated</item>
+        <item name="unread_count">@color/info</item>
 
         <item name="conversations_overview_background">@color/green700</item>
 
@@ -229,7 +229,7 @@
             @drawable/message_bubble_received_dark
         </item>
 
-        <item name="unread_count">@color/green900_desaturated</item>
+        <item name="unread_count">@color/info</item>
 
         <item name="conversations_overview_background">@color/green900</item>
 

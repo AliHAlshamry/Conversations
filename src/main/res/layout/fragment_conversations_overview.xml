@@ -2,27 +2,38 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto">
     <RelativeLayout
-        android:background="?attr/color_background_primary"
+        android:background="@color/background"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:paddingVertical="24dp">
+
         <FrameLayout
             android:id="@+id/horizontal_list_layout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:padding="8dp">
+            android:layout_marginHorizontal="24dp">
+
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@string/contacts" />
+                android:fontFamily="@font/roboto_medium"
+                android:text="@string/contacts"
+                android:textColor="@color/black"
+                android:textFontWeight="500"
+                android:textSize="20sp" />
+
             <TextView
                 android:id="@+id/see_all_btn"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_gravity="end"
-                android:text="@string/see_all"
+                android:layout_gravity="end|center_vertical"
                 android:clickable="true"
-                android:textColor="@android:color/holo_blue_bright"
-                android:focusable="true" />
+                android:focusable="true"
+                android:fontFamily="@font/roboto_medium"
+                android:text="@string/see_all"
+                android:textColor="@color/info"
+                android:textFontWeight="500"
+                android:textSize="16sp" />
         </FrameLayout>
 
         <androidx.recyclerview.widget.RecyclerView
@@ -30,17 +41,18 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_below="@+id/horizontal_list_layout"
-            android:background="?attr/color_background_primary"
-            android:scrollbars="none"/>
+            android:layout_marginTop="16dp"
+            android:paddingHorizontal="24dp"
+            android:scrollbars="none"
+            android:clipToPadding="false"/>
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/list"
-            android:scrollbars="vertical"
-            android:layout_below="@+id/horizontal_contacts_list"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:background="?attr/color_background_primary"
-            />
+            android:layout_below="@+id/horizontal_contacts_list"
+            android:layout_marginTop="22dp"
+            android:scrollbars="vertical" />
 
         <com.leinardi.android.speeddial.SpeedDialOverlayLayout
             android:id="@+id/overlay"

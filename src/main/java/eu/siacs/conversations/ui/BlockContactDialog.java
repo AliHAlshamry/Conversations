@@ -20,7 +20,7 @@ public final class BlockContactDialog {
 	public static void show(final XmppActivity xmppActivity, final Blockable blockable) {
 		final AlertDialog.Builder builder = new AlertDialog.Builder(xmppActivity);
 		final boolean isBlocked = blockable.isBlocked();
-		builder.setNegativeButton(R.string.cancel, null);
+		//builder.setNegativeButton(R.string.cancel, null);
 		DialogBlockContactBinding binding = DataBindingUtil.inflate(xmppActivity.getLayoutInflater(), R.layout.dialog_block_contact, null, false);
 		final boolean reporting = blockable.getAccount().getXmppConnection().getFeatures().spamReporting();
 		binding.reportSpam.setVisibility(!isBlocked && reporting ? View.VISIBLE : View.GONE);

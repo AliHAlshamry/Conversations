@@ -64,13 +64,17 @@ public class ListItemAdapter extends ArrayAdapter<ListItem> {
 		}
 		view.setBackground(StyledAttributes.getDrawable(view.getContext(),R.attr.list_item_background));
 
-		List<ListItem.Tag> tags = item.getTags(activity);
-		if (tags.size() == 0) {
-			//viewHolder.tags.setVisibility(View.GONE);
-			viewHolder.online_tag.setVisibility(View.INVISIBLE);
-		} else {
-			//viewHolder.tags.setVisibility(View.VISIBLE);
-			viewHolder.online_tag.setVisibility(View.VISIBLE);
+        List<ListItem.Tag> tags = item.getTags(activity);
+        if (tags.size() != 0) {
+            for (ListItem.Tag tag : tags) {
+                if (tag.getName().equals("Online")) {
+                    //viewHolder.tags.setVisibility(View.GONE);
+                    viewHolder.online_tag.setVisibility(View.VISIBLE);
+                }
+            }
+        } else {
+            //viewHolder.tags.setVisibility(View.VISIBLE);
+            viewHolder.online_tag.setVisibility(View.INVISIBLE);
 			/*viewHolder.tags.removeAllViewsInLayout();
 			for (ListItem.Tag tag : tags) {
 				TextView tv = (TextView) inflater.inflate(R.layout.list_item_tag, viewHolder.tags, false);

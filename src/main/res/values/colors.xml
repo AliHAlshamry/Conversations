@@ -62,8 +62,7 @@
 	<color name="txt_color6">#F2F2F2</color>
 	<color name="txt_color7">#EEF1F7</color>
 	<color name="txt_field_on_focus">#355BDF</color>
-
 	<color name="background">#FFFFFF</color>
-
-
+    <color name="light_red">#FCE8E8</color>
+	<color name="light_blue">#85BCF0</color>
 </resources>

@@ -6,6 +6,8 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
+import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
@@ -21,6 +23,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.View.OnClickListener;
+import android.view.WindowManager;
 import android.widget.CompoundButton;
 import android.widget.CompoundButton.OnCheckedChangeListener;
 import android.widget.PopupMenu;
@@ -43,6 +46,7 @@ import eu.siacs.conversations.crypto.axolotl.AxolotlService;
 import eu.siacs.conversations.crypto.axolotl.FingerprintStatus;
 import eu.siacs.conversations.crypto.axolotl.XmppAxolotlSession;
 import eu.siacs.conversations.databinding.ActivityContactDetailsBinding;
+import eu.siacs.conversations.databinding.DialogDeleteContactBinding;
 import eu.siacs.conversations.entities.Account;
 import eu.siacs.conversations.entities.Contact;
 import eu.siacs.conversations.entities.ListItem;
@@ -265,10 +269,26 @@ public class ContactDetailsActivity extends OmemoActivity implements OnAccountUp
         });
         binding.deleteContactButton.setOnClickListener(v->{
             final AlertDialog.Builder builder = new AlertDialog.Builder(this);
-            builder.setTitle(getString(R.string.action_delete_contact))
-                    .setMessage(JidDialog.style(this, R.string.remove_contact_text, contact.getJid().toEscapedString()))
-                    .setPositiveButton(getString(R.string.delete),
-                            removeFromRoster).create().show();
+//            builder.setTitle(getString(R.string.action_delete_contact))
+//                    .setMessage(JidDialog.style(this, R.string.remove_contact_text, contact.getJid().toEscapedString()))
+//                    .setPositiveButton(getString(R.string.delete),
+//                            removeFromRoster).create().show();
+
+            final DialogDeleteContactBinding binding = DataBindingUtil.inflate(getLayoutInflater(), R.layout.dialog_delete_contact, null, false);
+            builder.setView(binding.getRoot());
+            final AlertDialog dialog = builder.create();
+            dialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
+            dialog.show();
+            WindowManager.LayoutParams layoutParams = new WindowManager.LayoutParams();
+            layoutParams.copyFrom(dialog.getWindow().getAttributes());
+            layoutParams.width = (int) (348 * this.getResources().getDisplayMetrics().density);
+            dialog.getWindow().setAttributes(layoutParams);
+            binding.deleteContactMessage.setText(JidDialog.style(this, R.string.remove_contact_text, contact.getJid().toEscapedString()));
+            binding.cancelButton.setOnClickListener((v1 ->  dialog.dismiss()));
+            binding.deleteButton.setOnClickListener(v1->{
+                xmppConnectionService.deleteContactOnServer(contact);
+                dialog.dismiss();
+            });
         });
        binding.blockContactButton.setOnClickListener(v->BlockContactDialog.show(this, contact));
        binding.unblockContactButton.setOnClickListener(v->BlockContactDialog.show(this, contact));
@@ -586,9 +606,9 @@ public class ContactDetailsActivity extends OmemoActivity implements OnAccountUp
             binding.unblockContactButton.setVisibility(View.GONE);
             binding.blockContactButton.setVisibility(View.VISIBLE);
         }
-        if(contact.getShownStatus().name().equals("ONLINE")){
-            binding.onlineTag.setVisibility(View.VISIBLE);
-        }
+//        if(contact.getShownStatus().name().equals("ONLINE")){
+//            binding.onlineTag.setVisibility(View.VISIBLE);
+//        }
     }
 
     private void onBadgeClick(View view) {

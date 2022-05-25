@@ -1,12 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools">
+    xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="?attr/color_background_secondary"
+        android:background="@color/background"
         android:orientation="vertical">
 
         <include
@@ -21,243 +20,324 @@
                 android:id="@+id/details_main_layout"
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
-                android:orientation="vertical">
+                android:orientation="vertical"
+                android:paddingVertical="24dp">
 
-                <androidx.cardview.widget.CardView
+                <LinearLayout
+                    android:id="@+id/details_jidbox"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginBottom="@dimen/activity_vertical_margin"
-                    android:layout_marginLeft="@dimen/activity_horizontal_margin"
-                    android:layout_marginRight="@dimen/activity_horizontal_margin"
-                    android:layout_marginTop="@dimen/activity_vertical_margin">
-
-<!--                    <RelativeLayout-->
-<!--                        android:layout_width="match_parent"-->
-<!--                        android:layout_height="wrap_content"-->
-<!--                        android:padding="@dimen/card_padding_regular">-->
-
-<!--                        <QuickContactBadge-->
-<!--                            android:id="@+id/details_contact_badge"-->
-<!--                            android:layout_width="@dimen/avatar_on_details_screen_size"-->
-<!--                            android:layout_height="@dimen/avatar_on_details_screen_size"-->
-<!--                            android:layout_alignParentTop="true"-->
-<!--                            android:scaleType="centerCrop" />-->
-                        <LinearLayout
-                            android:id="@+id/details_jidbox"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_marginLeft="0dp"
-                            android:layout_toRightOf="@+id/details_contact_badge"
-                            android:orientation="vertical"
-                            android:gravity="center"
-                            android:paddingVertical="16dp">
-                            <RelativeLayout
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:padding="@dimen/list_padding"
-                                android:gravity="center">
-
-                                <com.makeramen.roundedimageview.RoundedImageView
-                                    android:id="@+id/details_contact_badge"
-                                    android:layout_width="@dimen/avatar_on_details_screen_size"
-                                    android:layout_height="@dimen/avatar_on_details_screen_size"
-                                    android:scaleType="centerCrop"
-                                    app:riv_corner_radius="50dp"/>
-
-                                <ImageView
-                                    android:id="@+id/online_tag"
-                                    android:layout_width="18dp"
-                                    android:layout_height="18dp"
-                                    android:layout_alignEnd="@+id/details_contact_badge"
-                                    android:layout_alignRight="@+id/details_contact_badge"
-                                    android:layout_alignBottom="@+id/details_contact_badge"
-                                    android:layout_marginEnd="0dp"
-                                    android:layout_marginRight="4dp"
-                                    android:layout_marginBottom="4dp"
-                                    android:src="@drawable/account_online"
-                                    android:visibility="invisible" />
-                            </RelativeLayout>
-                            <TextView
-                                android:id="@+id/details_contactjid"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:text="@string/account_settings_example_jabber_id"
-                                android:textAppearance="@style/TextAppearance.Conversations.Title"
-                                android:layout_marginTop="8dp"/>
-
-                            <com.wefika.flowlayout.FlowLayout
-                                android:id="@+id/tags"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:layout_marginBottom="4dp"
-                                android:layout_marginLeft="-2dp"
-                                android:layout_marginTop="4dp"
-                                android:orientation="horizontal"></com.wefika.flowlayout.FlowLayout>
-
-                            <TextView
-                                android:id="@+id/details_lastseen"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:layout_marginTop="4dp"
-                                android:textAppearance="@style/TextAppearance.Conversations.Subhead" />
-
-                            <TextView
-                                android:id="@+id/status_message"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:layout_marginTop="8dp"
-                                android:textAppearance="@style/TextAppearance.Conversations.Body1" />
-
-<!--                            <Button-->
-<!--                                android:id="@+id/add_contact_button"-->
-<!--                                android:layout_width="wrap_content"-->
-<!--                                android:layout_height="wrap_content"-->
-<!--                                android:layout_marginTop="8dp"-->
-<!--                                android:text="@string/add_contact" />-->
-
-                           <LinearLayout
-                               android:layout_width="wrap_content"
-                               android:layout_height="wrap_content"
-                               android:orientation="vertical">
-                               <CheckBox
-                                   android:id="@+id/details_send_presence"
-                                   style="@style/Widget.Conversations.CheckBox"
-                                   android:layout_width="wrap_content"
-                                   android:layout_height="wrap_content"
-                                   android:layout_marginTop="8dp"
-                                   android:text="@string/send_presence_updates"
-                                   android:textAppearance="@style/TextAppearance.Conversations.Body1" />
-
-                               <CheckBox
-                                   android:id="@+id/details_receive_presence"
-                                   style="@style/Widget.Conversations.CheckBox"
-                                   android:layout_width="wrap_content"
-                                   android:layout_height="wrap_content"
-                                   android:text="@string/receive_presence_updates"
-                                   android:textAppearance="@style/TextAppearance.Conversations.Body1" />
-                           </LinearLayout>
-                        </LinearLayout>
-
-                        <TextView
-                            android:id="@+id/details_account"
+                    android:layout_marginLeft="0dp"
+                    android:layout_toRightOf="@+id/details_contact_badge"
+                    android:orientation="vertical"
+                    android:gravity="center"
+                    android:paddingHorizontal="24dp"
+                    >
+                    <com.makeramen.roundedimageview.RoundedImageView
+                        android:id="@+id/details_contact_badge"
+                        android:layout_width="60dp"
+                        android:layout_height="60dp"
+                        android:scaleType="centerCrop"
+                        app:riv_corner_radius="50dp"/>
+                    <TextView
+                        android:id="@+id/details_contactjid"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="8dp"
+                        android:lineHeight="27sp"
+                        android:text="@string/account_settings_example_jabber_id"
+                        android:fontFamily="@font/roboto"
+                        android:textColor="@color/black"
+                        android:textFontWeight="400"
+                        android:textSize="18sp"/>
+                    <com.wefika.flowlayout.FlowLayout
+                        android:id="@+id/tags"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="4dp"
+                        android:layout_marginLeft="-2dp"
+                        android:layout_marginTop="4dp"
+                        android:orientation="horizontal"></com.wefika.flowlayout.FlowLayout>
+                    <TextView
+                        android:id="@+id/details_lastseen"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="2dp"
+                        android:fontFamily="@font/roboto"
+                        android:textColor="@color/txt_color2"
+                        android:textFontWeight="400"
+                        android:textSize="14sp"/>
+                    <TextView
+                        android:id="@+id/status_message"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="2dp"
+                        android:fontFamily="@font/roboto"
+                        android:textColor="@color/txt_color2"
+                        android:textFontWeight="400"
+                        android:textSize="14sp"/>
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical"
+                        android:layout_marginTop="24dp">
+                        <CheckBox
+                            android:id="@+id/details_send_presence"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:layout_alignParentRight="true"
-                            android:layout_below="@+id/details_jidbox"
-                            android:layout_marginTop="32dp"
-                            android:text="@string/using_account"
-                            android:textAppearance="@style/TextAppearance.Conversations.Caption"
-                            android:visibility="gone"/>
-<!--                    </RelativeLayout>-->
-                </androidx.cardview.widget.CardView>
-                <androidx.cardview.widget.CardView
+                            android:text="@string/send_presence_updates"
+                            android:button="@drawable/checkbox_toggle_drawable"
+                            android:paddingLeft="4dp"
+                            android:fontFamily="@font/roboto"
+                            android:textSize="14sp"
+                            android:textFontWeight="400"
+                            android:textColor="@color/txt_color2"
+                            android:layout_marginBottom="16dp"/>
+
+                        <CheckBox
+                            android:id="@+id/details_receive_presence"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="@string/receive_presence_updates"
+                            android:button="@drawable/checkbox_toggle_drawable"
+                            android:paddingLeft="4dp"
+                            android:fontFamily="@font/roboto"
+                            android:textSize="14sp"
+                            android:textFontWeight="400"
+                            android:textColor="@color/txt_color2"/>
+                    </LinearLayout>
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="1dp"
+                        android:layout_marginTop="24dp"
+                        android:background="@color/txt_color6"/>
+                </LinearLayout>
+
+                <TextView
+                    android:id="@+id/details_account"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentRight="true"
+                    android:layout_below="@+id/details_jidbox"
+                    android:layout_marginTop="32dp"
+                    android:text="@string/using_account"
+                    android:textAppearance="@style/TextAppearance.Conversations.Caption"
+                    android:visibility="gone"/>
+                <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginBottom="@dimen/activity_vertical_margin"
-                    android:layout_marginLeft="@dimen/activity_horizontal_margin"
-                    android:layout_marginRight="@dimen/activity_horizontal_margin"
-                    android:layout_marginTop="@dimen/activity_vertical_margin">
+                    android:orientation="vertical">
                     <LinearLayout
+                        android:id="@+id/add_contact_button"
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:orientation="vertical">
+                        android:layout_height="@dimen/linear_layout_with_icon_and_text_height"
+                        android:layout_alignParentStart="true"
+                        android:layout_alignParentLeft="true"
+                        android:background="?attr/selectableItemBackground"
+                        android:clickable="true"
+                        android:gravity="center|left"
+                        android:orientation="horizontal"
+                        android:paddingHorizontal="24dp"
+                        android:layout_marginTop="27dp">
 
-                        <Button
-                            android:id="@+id/add_contact_button"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:background="?attr/selectableItemBackground"
-                            android:drawableLeft="@drawable/ic_person_add_gray_24"
-                            android:drawablePadding="16dp"
-                            android:gravity="left|center"
-                            android:paddingHorizontal="16dp"
-                            android:paddingVertical="16dp"
+                        <ImageView
+                            android:layout_width="32dp"
+                            android:layout_height="32dp"
+                            android:layout_alignParentStart="true"
+                            android:layout_centerVertical="true"
+                            android:background="@drawable/rounded_background"
+                            android:padding="6dp"
+                            android:src="@drawable/ic_profile_add_blue" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="24dp"
+                            android:layout_marginLeft="7dp"
+                            android:lineHeight="24sp"
                             android:text="@string/add_contact"
-                            android:textAppearance="@style/TextAppearance.Conversations.Subhead"/>
-
-                        <Button
-                            android:id="@+id/edit_contact_name_button"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:text="@string/action_edit_contact"
-                            android:background="?attr/selectableItemBackground"
-                            android:drawableLeft="@drawable/ic_edit_gray_24"
-                            android:drawablePadding="16dp"
-                            android:gravity="left|center"
-                            android:paddingHorizontal="16dp"
-                            android:paddingVertical="16dp"
-                            android:textAppearance="@style/TextAppearance.Conversations.Subhead"
-                            />
-                        <Button
-                            android:id="@+id/share_contact_button"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:text="@string/share_uri_with"
-                            android:background="?attr/selectableItemBackground"
-                            android:drawableLeft="@drawable/ic_share_gray_24"
-                            android:drawablePadding="16dp"
-                            android:gravity="left|center"
-                            android:paddingHorizontal="16dp"
-                            android:paddingVertical="16dp"
-                            android:textAppearance="@style/TextAppearance.Conversations.Subhead"
-                            />
+                            android:fontFamily="@font/roboto"
+                            android:textColor="@color/txt_color2"
+                            android:textFontWeight="400"
+                            android:textSize="16sp"/>
                     </LinearLayout>
-                </androidx.cardview.widget.CardView>
-                <androidx.cardview.widget.CardView
-                    android:id="@+id/block_unblock_delete_card"
+                    <LinearLayout
+                        android:id="@+id/edit_contact_name_button"
+                        android:layout_width="match_parent"
+                        android:layout_height="@dimen/linear_layout_with_icon_and_text_height"
+                        android:layout_alignParentStart="true"
+                        android:layout_alignParentLeft="true"
+                        android:layout_marginTop="27dp"
+                        android:background="?attr/selectableItemBackground"
+                        android:clickable="true"
+                        android:gravity="center|left"
+                        android:orientation="horizontal"
+                        android:paddingHorizontal="24dp">
+
+                        <ImageView
+                            android:layout_width="32dp"
+                            android:layout_height="32dp"
+                            android:layout_alignParentStart="true"
+                            android:layout_centerVertical="true"
+                            android:background="@drawable/rounded_background"
+                            android:padding="6dp"
+                            android:src="@drawable/edit_2" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="24dp"
+                            android:layout_marginLeft="7dp"
+                            android:lineHeight="24sp"
+                            android:text="@string/action_edit_contact"
+                            android:fontFamily="@font/roboto"
+                            android:textColor="@color/txt_color2"
+                            android:textFontWeight="400"
+                            android:textSize="16sp"/>
+                    </LinearLayout>
+                    <LinearLayout
+                        android:id="@+id/share_contact_button"
+                        android:layout_width="match_parent"
+                        android:layout_height="@dimen/linear_layout_with_icon_and_text_height"
+                        android:layout_alignParentStart="true"
+                        android:layout_alignParentLeft="true"
+                        android:layout_marginTop="27dp"
+                        android:background="?attr/selectableItemBackground"
+                        android:clickable="true"
+                        android:gravity="center|left"
+                        android:orientation="horizontal"
+                        android:paddingHorizontal="24dp">
+
+                        <ImageView
+                            android:layout_width="32dp"
+                            android:layout_height="32dp"
+                            android:layout_alignParentStart="true"
+                            android:layout_centerVertical="true"
+                            android:background="@drawable/rounded_background"
+                            android:padding="6dp"
+                            android:src="@drawable/property_34" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="24dp"
+                            android:layout_marginLeft="7dp"
+                            android:lineHeight="24sp"
+                            android:text="@string/share_uri_with"
+                            android:fontFamily="@font/roboto"
+                            android:textColor="@color/txt_color2"
+                            android:textFontWeight="400"
+                            android:textSize="16sp"/>
+                    </LinearLayout>
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="1dp"
+                        android:layout_marginTop="29dp"
+                        android:background="@color/txt_color6"
+                        android:layout_marginHorizontal="24dp"/>
+                </LinearLayout>
+                <LinearLayout
+                    android:id="@+id/block_unblock_deleteCard"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginBottom="@dimen/activity_vertical_margin"
-                    android:layout_marginLeft="@dimen/activity_horizontal_margin"
-                    android:layout_marginRight="@dimen/activity_horizontal_margin"
-                    android:layout_marginTop="@dimen/activity_vertical_margin">
+                    android:orientation="vertical">
                     <LinearLayout
+                        android:id="@+id/delete_contact_button"
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:orientation="vertical">
-                        <Button
-                            android:id="@+id/delete_contact_button"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
+                        android:layout_height="@dimen/linear_layout_with_icon_and_text_height"
+                        android:layout_alignParentStart="true"
+                        android:layout_alignParentLeft="true"
+                        android:background="?attr/selectableItemBackground"
+                        android:clickable="true"
+                        android:gravity="center|left"
+                        android:orientation="horizontal"
+                        android:paddingHorizontal="24dp"
+                        android:layout_marginTop="23dp">
+
+                        <ImageView
+                            android:layout_width="32dp"
+                            android:layout_height="32dp"
+                            android:layout_alignParentStart="true"
+                            android:layout_centerVertical="true"
+                            android:background="@drawable/rounded_background_red"
+                            android:padding="6dp"
+                            android:src="@drawable/ic_trash_red" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="24dp"
+                            android:layout_marginLeft="7dp"
+                            android:lineHeight="24sp"
                             android:text="@string/action_delete_contact"
-                            android:background="?attr/selectableItemBackground"
-                            android:drawableLeft="@drawable/ic_delete_red_24"
-                            android:drawablePadding="16dp"
-                            android:gravity="left|center"
-                            android:paddingHorizontal="16dp"
-                            android:paddingVertical="16dp"
-                            android:textAppearance="@style/TextAppearance.Conversations.Subhead"
-                            android:textColor="@color/red500"
-                            />
-                        <Button
-                            android:id="@+id/block_contact_button"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:text="@string/block_contact"
-                            android:background="?attr/selectableItemBackground"
-                            android:drawableLeft="@drawable/ic_block_red_24"
-                            android:drawablePadding="16dp"
-                            android:gravity="left|center"
-                            android:paddingHorizontal="16dp"
-                            android:paddingVertical="16dp"
-                            android:textAppearance="@style/TextAppearance.Conversations.Subhead"
-                            android:textColor="@color/red500"
-                            />
-                        <Button
-                            android:id="@+id/unblock_contact_button"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:text="@string/unblock_contact"
-                            android:background="?attr/selectableItemBackground"
-                            android:drawableLeft="@drawable/ic_block_gray_24"
-                            android:drawablePadding="16dp"
-                            android:gravity="left|center"
-                            android:paddingHorizontal="16dp"
-                            android:paddingVertical="16dp"
-                            android:textAppearance="@style/TextAppearance.Conversations.Subhead"
-                            />
+                            android:textColor="@color/error"
+                            android:fontFamily="@font/roboto"
+                            android:textFontWeight="400"
+                            android:textSize="16sp"/>
                     </LinearLayout>
-                </androidx.cardview.widget.CardView>
+                    <LinearLayout
+                           android:id="@+id/block_contact_button"
+                            android:layout_width="match_parent"
+                            android:layout_height="@dimen/linear_layout_with_icon_and_text_height"
+                            android:layout_alignParentStart="true"
+                            android:layout_alignParentLeft="true"
+                            android:background="?attr/selectableItemBackground"
+                            android:clickable="true"
+                            android:gravity="center|left"
+                            android:orientation="horizontal"
+                            android:paddingHorizontal="24dp"
+                            android:layout_marginTop="24dp">
+
+                            <ImageView
+                                android:layout_width="32dp"
+                                android:layout_height="32dp"
+                                android:layout_alignParentStart="true"
+                                android:layout_centerVertical="true"
+                                android:background="@drawable/rounded_background_red"
+                                android:padding="6dp"
+                                android:src="@drawable/slash" />
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="24dp"
+                                android:layout_marginLeft="7dp"
+                                android:lineHeight="24sp"
+                                android:text="@string/block_contact"
+                                android:textColor="@color/error"
+                                android:fontFamily="@font/roboto"
+                                android:textFontWeight="400"
+                                android:textSize="16sp"/>
+                        </LinearLayout>
+                    <LinearLayout
+                        android:id="@+id/unblock_contact_button"
+                        android:layout_width="match_parent"
+                        android:layout_height="@dimen/linear_layout_with_icon_and_text_height"
+                        android:layout_alignParentStart="true"
+                        android:layout_alignParentLeft="true"
+                        android:background="?attr/selectableItemBackground"
+                        android:clickable="true"
+                        android:gravity="center|left"
+                        android:orientation="horizontal"
+                        android:paddingHorizontal="24dp"
+                        android:layout_marginTop="24dp">
+
+                        <ImageView
+                            android:layout_width="32dp"
+                            android:layout_height="32dp"
+                            android:layout_alignParentStart="true"
+                            android:layout_centerVertical="true"
+                            android:background="@drawable/rounded_background_red"
+                            android:padding="6dp"
+                            android:src="@drawable/slash" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="24dp"
+                            android:layout_marginLeft="7dp"
+                            android:lineHeight="24sp"
+                            android:text="@string/unblock_contact"
+                            android:textColor="@color/error"
+                            android:fontFamily="@font/roboto"
+                            android:textFontWeight="400"
+                            android:textSize="16sp"/>
+                    </LinearLayout>
+                </LinearLayout>
                 <androidx.cardview.widget.CardView
                     android:id="@+id/media_wrapper"
                     android:layout_width="fill_parent"
@@ -265,7 +345,7 @@
                     android:layout_marginBottom="@dimen/activity_vertical_margin"
                     android:layout_marginLeft="@dimen/activity_horizontal_margin"
                     android:layout_marginRight="@dimen/activity_horizontal_margin"
-                    android:layout_marginTop="@dimen/activity_vertical_margin">
+                    android:layout_marginTop="16dp">
 
                     <LinearLayout
                         android:layout_width="match_parent"

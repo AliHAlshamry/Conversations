@@ -5,8 +5,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        android:paddingStart="3dp"
-        android:paddingEnd="3dp">
+        android:layout_marginEnd="16dp">
             <RelativeLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -38,10 +37,12 @@
             android:id="@+id/contact_jid"
             android:layout_width="50dp"
             android:layout_height="wrap_content"
-            android:text=""
             android:gravity="center"
-            android:height="20dp"/>
+            android:height="24dp"
+            android:textColor="@color/txt_color2"
+            android:fontFamily="@font/roboto"
+            android:textFontWeight="400"
+            android:textSize="16sp"
+            android:layout_marginTop="4dp"/>
     </LinearLayout>
-
-
 </layout>

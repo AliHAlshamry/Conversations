@@ -9,15 +9,16 @@
         <FrameLayout
             android:id="@+id/frame"
             android:layout_width="fill_parent"
-            android:layout_height="wrap_content"
-            android:background="?attr/color_background_primary">
+            android:layout_height="wrap_content">
 
             <RelativeLayout
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
                 android:background="?android:selectableItemBackground"
                 android:orientation="horizontal"
-                android:padding="8dp">
+                android:paddingVertical="8dp"
+                android:layout_marginBottom="8dp"
+                android:paddingHorizontal="24dp">
 
                 <com.makeramen.roundedimageview.RoundedImageView
                     android:id="@+id/conversation_image"
@@ -25,7 +26,7 @@
                     android:layout_height="48dp"
                     android:layout_alignParentLeft="true"
                     android:scaleType="centerCrop"
-                    app:riv_corner_radius="50dp" />
+                    app:riv_corner_radius="50dp"/>
                 <ImageView
                     android:id="@+id/online_tag"
                     android:layout_width="14dp"
@@ -43,7 +44,7 @@
                     android:layout_height="wrap_content"
                     android:layout_centerVertical="true"
                     android:layout_toRightOf="@+id/conversation_image"
-                    android:paddingLeft="@dimen/avatar_item_distance">
+                    android:paddingLeft="4dp">
 
                     <TextView
                         android:id="@+id/conversation_name"
@@ -51,10 +52,13 @@
                         android:layout_height="wrap_content"
                         android:layout_alignLeft="@+id/conversation_lastwrapper"
                         android:layout_toLeftOf="@+id/conversation_lastupdate"
-                        android:paddingRight="4dp"
-                        android:maxLines="1"
                         android:ellipsize="end"
-                        android:textAppearance="@style/TextAppearance.Conversations.Subhead" />
+                        android:fontFamily="@font/roboto_medium"
+                        android:maxLines="1"
+                        android:paddingRight="4dp"
+                        android:textColor="@color/txt_color1"
+                        android:textFontWeight="500"
+                        android:textSize="18sp" />
 
                     <RelativeLayout
                         android:id="@+id/conversation_lastwrapper"
@@ -67,13 +71,17 @@
                             android:id="@+id/sender_name"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:minHeight="?attr/IconSize"
-                            android:layout_centerVertical="true"
-                            android:gravity="center_vertical"
                             android:layout_alignParentLeft="true"
-                            android:text="@string/me"
+                            android:layout_centerVertical="true"
                             android:layout_marginRight="?attr/TextSeparation"
+                            android:fontFamily="@font/roboto"
+                            android:gravity="center_vertical"
+                            android:minHeight="?attr/IconSize"
+                            android:text="@string/me"
                             android:textAppearance="@style/TextAppearance.Conversations.Body1.Secondary"
+                            android:textColor="@color/txt_color3"
+                            android:textFontWeight="400"
+                            android:textSize="14sp"
                             android:visibility="visible" />
 
                         <LinearLayout
@@ -90,7 +98,8 @@
                                 android:id="@+id/conversation_lastmsg_img"
                                 android:layout_width="?attr/IconSize"
                                 android:layout_height="?attr/IconSize"
-                                android:layout_marginRight="?attr/TextSeparation" />
+                                android:layout_marginRight="?attr/TextSeparation"
+                                android:visibility="gone"/>
 
                             <TextView
                                 android:id="@+id/conversation_lastmsg"
@@ -101,20 +110,22 @@
                                 android:scrollHorizontally="false"
                                 android:maxLines="1"
                                 android:ellipsize="end"
-                                android:textAppearance="@style/TextAppearance.Conversations.Body1" />
+                                android:fontFamily="@font/roboto"
+                                android:textFontWeight="400"
+                                android:textColor="@color/txt_color3"
+                                android:textSize="14sp"/>
                         </LinearLayout>
 
                         <ImageView
-                            android:visibility="visible"
                             android:id="@+id/notification_status"
-                            android:layout_width="?attr/IconSize"
-                            android:layout_height="?attr/IconSize"
-                            android:layout_toLeftOf="@+id/pinned_on_top"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
                             android:layout_alignWithParentIfMissing="true"
                             android:layout_centerVertical="true"
                             android:layout_marginLeft="4dp"
-                            android:alpha="?attr/icon_alpha"
-                            android:src="?attr/icon_notifications" />
+                            android:layout_toLeftOf="@+id/pinned_on_top"
+                            android:src="@drawable/notification"
+                            android:visibility="visible"/>
 
                         <ImageView
                             android:visibility="visible"
@@ -126,7 +137,7 @@
                             android:layout_centerVertical="true"
                             android:layout_marginLeft="4dp"
                             android:alpha="?attr/icon_alpha"
-                            android:src="?attr/icon_pinned_on_top" />
+                            android:src="?attr/icon_pinned_on_top"/>
 
                         <eu.siacs.conversations.ui.widget.UnreadCountCustomView
                             android:id="@+id/unread_count"
@@ -148,8 +159,11 @@
                         android:layout_height="wrap_content"
                         android:layout_alignBaseline="@+id/conversation_name"
                         android:layout_alignParentRight="true"
+                        android:fontFamily="@font/roboto"
                         android:gravity="right"
-                        android:textAppearance="@style/TextAppearance.Conversations.Caption" />
+                        android:textColor="@color/txt_color3"
+                        android:textFontWeight="400"
+                        android:textSize="12sp" />
                 </RelativeLayout>
             </RelativeLayout>
         </FrameLayout>

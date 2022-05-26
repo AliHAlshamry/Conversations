@@ -78,11 +78,11 @@ public class ConversationAdapter extends RecyclerView.Adapter<ConversationAdapte
             viewHolder.binding.unreadCount.setVisibility(View.GONE);
         }
 
-        if (isRead) {
-            viewHolder.binding.conversationName.setTypeface(null, Typeface.NORMAL);
-        } else {
-            viewHolder.binding.conversationName.setTypeface(null, Typeface.BOLD);
-        }
+//        if (isRead) {
+//            viewHolder.binding.conversationName.setTypeface(null, Typeface.NORMAL);
+//        } else {
+//            viewHolder.binding.conversationName.setTypeface(null, Typeface.BOLD);
+//        }
 
         if (draft != null) {
             viewHolder.binding.conversationLastmsgImg.setVisibility(View.GONE);

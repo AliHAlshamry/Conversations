@@ -295,7 +295,7 @@
                                 android:imeOptions="actionNext"
                                 android:inputType="textEmailAddress"
                                 android:padding="8dp"
-                                android:textColor="?attr/edit_text_color"
+                                android:textColor="@color/txt_color1"
                                 app:errorTextAppearance="@style/TextAppearance.Conversations.Design.Error"
                                 app:hintTextAppearance="@style/TextAppearance.Conversations.Caption.Highlight" />
                         </com.google.android.material.textfield.TextInputLayout>
@@ -330,7 +330,7 @@
                                 android:hint="@string/password_hint"
                                 android:inputType="textPassword"
                                 android:padding="8dp"
-                                android:textColor="?attr/edit_text_color" />
+                                android:textColor="@color/txt_color1" />
                         </com.google.android.material.textfield.TextInputLayout>
                     <LinearLayout
                         android:id="@+id/confirm_password_layout"
@@ -370,7 +370,7 @@
                                 android:hint="@string/password_hint"
                                 android:inputType="textPassword"
                                 android:padding="8dp"
-                                android:textColor="?attr/edit_text_color" />
+                                android:textColor="@color/txt_color1" />
                         </com.google.android.material.textfield.TextInputLayout>
 
                     </LinearLayout>

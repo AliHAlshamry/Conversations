@@ -8,13 +8,15 @@
         android:layout_height="match_parent"
         android:background="@color/white">
 
-        <include android:id="@+id/toolbarLoginPage"
+        <include android:id="@+id/toolbar2"
             layout="@layout/toolbar_login_page"/>
+        <include android:id="@+id/toolbar"
+            layout="@layout/toolbar"/>
 
         <ScrollView
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
-            android:layout_below="@id/toolbarLoginPage">
+            android:layout_below="@id/toolbar">
 
             <LinearLayout
                 android:id="@+id/account_main_layout"

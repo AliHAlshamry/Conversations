@@ -668,7 +668,6 @@ public class EditAccountActivity extends OmemoActivity implements OnAccountUpdat
             this.mSavedInstanceInit = savedInstanceState.getBoolean("initMode", false);
         }
         this.binding = DataBindingUtil.setContentView(this, R.layout.activity_edit_account);
-        setSupportActionBar(binding.toolbarLoginPage);
         binding.accountJid.addTextChangedListener(this.mTextWatcher);
         binding.accountJid.setOnFocusChangeListener(this.mEditTextFocusListener);
         this.binding.accountPassword.addTextChangedListener(this.mTextWatcher);
@@ -737,6 +736,9 @@ public class EditAccountActivity extends OmemoActivity implements OnAccountUpdat
     public boolean onCreateOptionsMenu(final Menu menu) {
         super.onCreateOptionsMenu(menu);
         getMenuInflater().inflate(R.menu.editaccount, menu);
+        MenuItem more = menu.findItem(R.id.more);
+        if (mInitMode)
+            more.setIcon(R.drawable.more);
         final MenuItem showBlocklist = menu.findItem(R.id.action_show_block_list);
         final MenuItem showMoreInfo = menu.findItem(R.id.action_server_info_show_more);
         final MenuItem changePassword = menu.findItem(R.id.action_change_password_on_server);
@@ -836,28 +838,32 @@ public class EditAccountActivity extends OmemoActivity implements OnAccountUpdat
             Log.d(Config.LOGTAG, "force register=" + mForceRegister);
             this.mInitMode = init || this.jidToEdit == null;
             this.messageFingerprint = intent.getStringExtra("fingerprint");
+            if(mInitMode) {
+                setSupportActionBar(binding.toolbar2);
+                binding.toolbar.setVisibility(View.INVISIBLE);
+            }else{
+                setSupportActionBar(binding.toolbar);
+                binding.toolbar2.setVisibility(View.INVISIBLE);
+            }
+            ActionBar actionBar = getSupportActionBar();
             if (!mInitMode) {
-                ActionBar actionBar = getSupportActionBar();
                 if (actionBar != null) {
-                    setTitle("");
+                    actionBar.setBackgroundDrawable(getDrawable(R.color.primary));
                     actionBar.setDisplayHomeAsUpEnabled(true);
                 }
             } else {
-                ActionBar actionBar = getSupportActionBar();
-                if (actionBar != null) {
-                    actionBar.setElevation(0);
-                    Window window = getWindow();
+                assert actionBar != null;
+                setTitleColor(R.color.black);
+                actionBar.setBackgroundDrawable(getDrawable(R.color.white));
+                actionBar.setElevation(0);
 
-// clear FLAG_TRANSLUCENT_STATUS flag:
-                    window.clearFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
+                actionBar.setDisplayHomeAsUpEnabled(false);
+                Window window = getWindow();
+                window.clearFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
+                window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS);
+                window.setStatusBarColor(ContextCompat.getColor(this,R.color.white));
+                window.getDecorView().setSystemUiVisibility(View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR);
 
-// add FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS flag to the window
-                    window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS);
-
-// finally change the color
-                    window.setStatusBarColor(ContextCompat.getColor(this,R.color.white));
-                    actionBar.setBackgroundDrawable(getResources().getDrawable(R.color.white));
-                }
                 this.binding.accountRegisterNew.setVisibility(View.VISIBLE);
                 this.binding.avater.setVisibility(View.GONE);
                 if (mForceRegister != null) {
@@ -868,7 +874,6 @@ public class EditAccountActivity extends OmemoActivity implements OnAccountUpdat
                     }
                 } else {
                     setTitle(R.string.action_add_account);
-                    setTitleColor(R.color.warning);
                 }
             }
         }

@@ -1,11 +1,18 @@
 package eu.siacs.conversations.ui;
 
 import android.content.Intent;
+import android.os.Build;
 import android.os.Bundle;
 import android.view.View;
+import android.view.Window;
+import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
+
+import androidx.annotation.RequiresApi;
+import androidx.appcompat.app.ActionBar;
+import androidx.core.content.ContextCompat;
 
 import com.google.android.material.textfield.TextInputLayout;
 
@@ -57,12 +64,23 @@ public class ChangePasswordActivity extends XmppActivity implements XmppConnecti
 		}
 	}
 
+	@RequiresApi(api = Build.VERSION_CODES.M)
 	@Override
 	protected void onCreate(final Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_change_password);
 		setSupportActionBar(findViewById(R.id.toolbar));
-		configureActionBar(getSupportActionBar());
+		ActionBar actionBar = getSupportActionBar();
+		assert actionBar != null;
+		actionBar.setBackgroundDrawable(getDrawable(R.color.white));
+		actionBar.setElevation(0);
+		actionBar.setDisplayHomeAsUpEnabled(true);
+		Window window = getWindow();
+		window.clearFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
+		window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS);
+		window.setStatusBarColor(ContextCompat.getColor(this,R.color.white));
+		window.getDecorView().setSystemUiVisibility(View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR);
+
 		Button mCancelButton = findViewById(R.id.cancel_button);
 		mCancelButton.setOnClickListener(view -> finish());
 		this.mChangePasswordButton = findViewById(R.id.positive_button);

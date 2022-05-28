@@ -4,7 +4,10 @@ import android.app.Activity;
 import android.app.Dialog;
 import android.content.Context;
 import android.content.DialogInterface;
+import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
+import android.view.WindowManager;
 import android.widget.AutoCompleteTextView;
 import android.widget.Spinner;
 
@@ -21,9 +24,11 @@ import java.util.List;
 
 import eu.siacs.conversations.R;
 import eu.siacs.conversations.databinding.DialogJoinConferenceBinding;
+import eu.siacs.conversations.entities.PresenceTemplate;
 import eu.siacs.conversations.ui.adapter.KnownHostsAdapter;
 import eu.siacs.conversations.ui.interfaces.OnBackendConnected;
 import eu.siacs.conversations.ui.util.DelayedHintHelper;
+import eu.siacs.conversations.ui.util.SoftKeyboardUtils;
 
 public class JoinConferenceDialog extends DialogFragment implements OnBackendConnected {
 
@@ -51,7 +56,7 @@ public class JoinConferenceDialog extends DialogFragment implements OnBackendCon
 	@Override
 	public Dialog onCreateDialog(Bundle savedInstanceState) {
 		final AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
-		builder.setTitle(R.string.join_public_channel);
+//		builder.setTitle(R.string.join_public_channel);
 		DialogJoinConferenceBinding binding = DataBindingUtil.inflate(getActivity().getLayoutInflater(), R.layout.dialog_join_conference, null, false);
 		DelayedHintHelper.setHint(R.string.channel_full_jid_example, binding.jid);
 		this.knownHostsAdapter = new KnownHostsAdapter(getActivity(), R.layout.simple_list_item);
@@ -62,10 +67,21 @@ public class JoinConferenceDialog extends DialogFragment implements OnBackendCon
 		}
 		StartConversationActivity.populateAccountSpinner(getActivity(), getArguments().getStringArrayList(ACCOUNTS_LIST_KEY), binding.account);
 		builder.setView(binding.getRoot());
-		builder.setPositiveButton(R.string.join, null);
-		builder.setNegativeButton(R.string.cancel, null);
+//		builder.setPositiveButton(R.string.join, null);
+//		builder.setNegativeButton(R.string.cancel, null);
 		AlertDialog dialog = builder.create();
+		dialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
 		dialog.show();
+		WindowManager.LayoutParams layoutParams = new WindowManager.LayoutParams();
+		layoutParams.copyFrom(dialog.getWindow().getAttributes());
+		layoutParams.width = (int) (348 * this.getResources().getDisplayMetrics().density);
+		layoutParams.height =  layoutParams.WRAP_CONTENT;
+		dialog.getWindow().setAttributes(layoutParams);
+		binding.cancelButton.setOnClickListener(v ->dialog.dismiss());
+		binding.joinButton.setOnClickListener(v -> {
+			mListener.onJoinDialogPositiveClick(dialog, binding.account, binding.accountJidLayout, binding.jid, binding.bookmark.isChecked());
+			dialog.dismiss();
+		});
 		dialog.getButton(DialogInterface.BUTTON_POSITIVE).setOnClickListener(view -> mListener.onJoinDialogPositiveClick(dialog, binding.account, binding.accountJidLayout, binding.jid, binding.bookmark.isChecked()));
 		binding.jid.setOnEditorActionListener((v, actionId, event) -> {
 			mListener.onJoinDialogPositiveClick(dialog, binding.account, binding.accountJidLayout, binding.jid, binding.bookmark.isChecked());

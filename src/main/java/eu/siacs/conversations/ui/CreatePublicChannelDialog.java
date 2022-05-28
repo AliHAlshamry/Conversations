@@ -4,11 +4,14 @@ import android.app.Activity;
 import android.app.Dialog;
 import android.content.Context;
 import android.content.DialogInterface;
+import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextUtils;
 import android.text.TextWatcher;
 import android.view.View;
+import android.view.WindowManager;
 import android.widget.AdapterView;
 import android.widget.Button;
 
@@ -65,7 +68,7 @@ public class CreatePublicChannelDialog extends DialogFragment implements OnBacke
         jidWasModified = savedInstanceState != null && savedInstanceState.getBoolean("jid_was_modified_false", false);
         nameEntered = savedInstanceState != null && savedInstanceState.getBoolean("name_entered", false);
         final AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
-        builder.setTitle(R.string.create_public_channel);
+//        builder.setTitle(R.string.create_public_channel);
         final CreatePublicChannelDialogBinding binding = DataBindingUtil.inflate(getActivity().getLayoutInflater(), R.layout.create_public_channel_dialog, null, false);
         binding.account.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
@@ -105,20 +108,31 @@ public class CreatePublicChannelDialog extends DialogFragment implements OnBacke
         ArrayList<String> mActivatedAccounts = getArguments().getStringArrayList(ACCOUNTS_LIST_KEY);
         StartConversationActivity.populateAccountSpinner(getActivity(), mActivatedAccounts, binding.account);
         builder.setView(binding.getRoot());
-        builder.setPositiveButton(nameEntered ? R.string.create : R.string.next, null);
-        builder.setNegativeButton(nameEntered ? R.string.back : R.string.cancel, null);
+//        builder.setPositiveButton(nameEntered ? R.string.create : R.string.next, null);
+//        builder.setNegativeButton(nameEntered ? R.string.back : R.string.cancel, null);
+        binding.cancelButton.setText(nameEntered ? R.string.back : R.string.cancel, null);
+        binding.createButton.setText(nameEntered ? R.string.create : R.string.next, null);
         DelayedHintHelper.setHint(R.string.channel_bare_jid_example, binding.jid);
         this.knownHostsAdapter = new KnownHostsAdapter(getActivity(), R.layout.simple_list_item);
         binding.jid.setAdapter(knownHostsAdapter);
         final AlertDialog dialog = builder.create();
+        dialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
         binding.groupChatName.setOnEditorActionListener((v, actionId, event) -> {
             submit(dialog, binding);
             return true;
         });
-        dialog.setOnShowListener(dialogInterface -> {
-            dialog.getButton(DialogInterface.BUTTON_NEGATIVE).setOnClickListener(v -> goBack(dialog, binding));
-            dialog.getButton(DialogInterface.BUTTON_POSITIVE).setOnClickListener(v -> submit(dialog, binding));
-        });
+        dialog.show();
+        WindowManager.LayoutParams layoutParams = new WindowManager.LayoutParams();
+        layoutParams.copyFrom(dialog.getWindow().getAttributes());
+        layoutParams.width = (int) (348 * this.getResources().getDisplayMetrics().density);
+        layoutParams.height =  layoutParams.WRAP_CONTENT;
+        dialog.getWindow().setAttributes(layoutParams);
+//        dialog.setOnShowListener(dialogInterface -> {
+//            dialog.getButton(DialogInterface.BUTTON_NEGATIVE).setOnClickListener(v -> goBack(dialog, binding));
+//            dialog.getButton(DialogInterface.BUTTON_POSITIVE).setOnClickListener(v -> submit(dialog, binding));
+//        });
+        binding.cancelButton.setOnClickListener(v -> goBack(dialog, binding));
+        binding.createButton.setOnClickListener(v ->submit(dialog, binding));
         return dialog;
     }
 

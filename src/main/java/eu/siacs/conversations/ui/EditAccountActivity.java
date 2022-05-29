@@ -4,6 +4,7 @@ import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.app.PendingIntent;
 import android.content.ActivityNotFoundException;
+import android.content.Context;
 import android.content.Intent;
 import android.content.IntentSender;
 import android.content.SharedPreferences;
@@ -26,7 +27,9 @@ import android.text.style.ForegroundColorSpan;
 import android.transition.AutoTransition;
 import android.transition.TransitionManager;
 import android.util.Log;
+import android.view.ContextThemeWrapper;
 import android.view.Menu;
+import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -46,6 +49,8 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AlertDialog.Builder;
+import androidx.appcompat.view.menu.MenuBuilder;
+import androidx.appcompat.view.menu.MenuPopupHelper;
 import androidx.core.content.ContextCompat;
 import androidx.databinding.DataBindingUtil;
 
@@ -660,6 +665,7 @@ public class EditAccountActivity extends OmemoActivity implements OnAccountUpdat
         }
     }
 
+    @SuppressLint("RestrictedApi")
     @Override
     protected void onCreate(final Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -698,21 +704,30 @@ public class EditAccountActivity extends OmemoActivity implements OnAccountUpdat
             showBlocklistIntent.putExtra(EXTRA_ACCOUNT, mAccount.getJid().toEscapedString());
             startActivity(showBlocklistIntent);
         });
-        binding.actionShareUriButton.setOnClickListener(v->{
-            PopupMenu popupMenu = new PopupMenu(this, v);
-            getMenuInflater().inflate(R.menu.share_account, popupMenu.getMenu());
-            popupMenu.setOnMenuItemClickListener(menuItem -> {
-                switch (menuItem.getItemId()) {
-                    case R.id.action_share_http:
-                        shareLink(true);
-                        break;
-                    case R.id.action_share_uri:
-                        shareLink(false);
-                        break;
+        MenuBuilder menuBuilder = new MenuBuilder(this);
+        MenuInflater inflater = new MenuInflater(this);
+        inflater.inflate(R.menu.share_uri, menuBuilder);
+        binding.actionShareUriButton.setOnClickListener(view -> {
+            Context wrapper = new ContextThemeWrapper(this, R.style.ThemeOverlay_AppCompat_Light);
+            MenuPopupHelper optionsMenu = new MenuPopupHelper(wrapper, menuBuilder,binding.shareUriText);
+            optionsMenu.setForceShowIcon(true);
+            menuBuilder.setCallback(new MenuBuilder.Callback() {
+                @Override
+                public boolean onMenuItemSelected(MenuBuilder menu, MenuItem item) {
+                    switch (item.getItemId()) {
+                        case R.id.action_share_uri:
+                            shareLink(true);
+                            break;
+                        case R.id.action_share_http:
+                            shareLink(false);
+                            break;
+                    }
+                    return true;
                 }
-                return true;
+                @Override
+                public void onMenuModeChange(MenuBuilder menu) {}
             });
-            popupMenu.show();
+            optionsMenu.show();
         });
 
       }

@@ -3,6 +3,7 @@ package eu.siacs.conversations.ui;
 import static eu.siacs.conversations.entities.Bookmark.printableValue;
 import static eu.siacs.conversations.utils.StringUtils.changed;
 
+import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.app.PendingIntent;
 import android.content.Context;
@@ -12,7 +13,9 @@ import android.text.Editable;
 import android.text.SpannableStringBuilder;
 import android.text.TextWatcher;
 import android.text.method.LinkMovementMethod;
+import android.view.ContextThemeWrapper;
 import android.view.Menu;
+import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -21,6 +24,8 @@ import android.widget.PopupMenu;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AlertDialog;
+import androidx.appcompat.view.menu.MenuBuilder;
+import androidx.appcompat.view.menu.MenuPopupHelper;
 import androidx.databinding.DataBindingUtil;
 
 import java.util.Collections;
@@ -166,6 +171,7 @@ public class ConferenceDetailsActivity extends XmppActivity implements OnConvers
         updateView();
     }
 
+    @SuppressLint("RestrictedApi")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -225,21 +231,30 @@ public class ConferenceDetailsActivity extends XmppActivity implements OnConvers
         });
         binding.actionDestroyRoomLayout.setOnClickListener(v->destroyRoom());
         binding.actionDeleteBookmarkLayout.setOnClickListener(v->deleteBookmark());
-        binding.shareButton.setOnClickListener(v->{
-            PopupMenu popupMenu = new PopupMenu(this, v);
-            getMenuInflater().inflate(R.menu.share_group, popupMenu.getMenu());
-            popupMenu.setOnMenuItemClickListener(menuItem -> {
-                switch (menuItem.getItemId()) {
-                    case R.id.action_share_http:
-                        shareLink(true);
-                        break;
-                    case R.id.action_share_uri:
-                        shareLink(false);
-                        break;
+        MenuBuilder menuBuilder = new MenuBuilder(this);
+        MenuInflater inflater = new MenuInflater(this);
+        inflater.inflate(R.menu.share_uri, menuBuilder);
+        binding.shareButton.setOnClickListener(view -> {
+            Context wrapper = new ContextThemeWrapper(this, R.style.ThemeOverlay_AppCompat_Light);
+            MenuPopupHelper optionsMenu = new MenuPopupHelper(wrapper, menuBuilder,binding.shareUriText);
+            optionsMenu.setForceShowIcon(true);
+            menuBuilder.setCallback(new MenuBuilder.Callback() {
+                @Override
+                public boolean onMenuItemSelected(MenuBuilder menu, MenuItem item) {
+                    switch (item.getItemId()) {
+                        case R.id.action_share_uri:
+                            shareLink(true);
+                            break;
+                        case R.id.action_share_http:
+                            shareLink(false);
+                            break;
+                    }
+                    return true;
                 }
-                return true;
+                @Override
+                public void onMenuModeChange(MenuBuilder menu) {}
             });
-            popupMenu.show();
+            optionsMenu.show();
         });
     }
 

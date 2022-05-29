@@ -174,6 +174,7 @@
                                 android:src="@drawable/property_34" />
 
                             <TextView
+                                android:id="@+id/share_uri_text"
                                 android:layout_width="wrap_content"
                                 android:layout_height="24dp"
                                 android:layout_marginLeft="7dp"

@@ -5,14 +5,13 @@
     android:layout_width="match_parent"
     android:layout_height="64dp"
     android:background="?attr/colorPrimary"
-    android:elevation="@dimen/toolbar_elevation"
     android:minHeight="?attr/actionBarSize"
     android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
     app:popupTheme="?popupOverlayStyle"
+    android:elevation="0dp"
     app:contentInsetStartWithNavigation="0dp"
     app:navigationIcon="@drawable/arrow_left"
-    android:gravity="center_vertical"
-    android:paddingBottom="8dp">
+    android:gravity="center_vertical">
 
     <LinearLayout
         android:id="@+id/contact_info"

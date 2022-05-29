@@ -59,6 +59,7 @@
     <item
         android:icon="@drawable/ic_more_white"
         android:title=""
+        android:id="@+id/more"
         app:showAsAction="always">
         <menu>
             <item

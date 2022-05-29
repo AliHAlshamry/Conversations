@@ -46,7 +46,7 @@ import eu.siacs.conversations.xmpp.XmppConnection;
 
 public class AvatarService implements OnAdvancedStreamFeaturesLoaded {
 
-	private static final int FG_COLOR = 0xFFFAFAFA;
+	private static final int FG_COLOR = 0xFFFFFFFF;
 	private static final int TRANSPARENT = 0x00000000;
 	private static final int PLACEHOLDER_COLOR = 0xFF202020;
 
@@ -562,9 +562,10 @@ public class AvatarService implements OnAdvancedStreamFeaturesLoaded {
 		tilePaint.setColor(tileColor);
 		textPaint.setFlags(Paint.ANTI_ALIAS_FLAG);
 		textPaint.setColor(FG_COLOR);
-		textPaint.setTypeface(Typeface.create("sans-serif-light",
-				Typeface.NORMAL));
-		textPaint.setTextSize((float) ((right - left) * 0.8));
+//		textPaint.setTypeface(Typeface.create("sans-serif-light",
+//				Typeface.NORMAL));
+		textPaint.setTypeface(Typeface.create("roboto", Typeface.NORMAL));
+		textPaint.setTextSize((float) ((right - left) * 0.6));
 		Rect rect = new Rect();
 
 		canvas.drawRect(new Rect(left, top, right, bottom), tilePaint);

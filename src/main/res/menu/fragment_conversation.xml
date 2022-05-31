@@ -83,48 +83,38 @@
                 android:title="@string/send_location" />
         </menu>
     </item>
-   <item android:title=""
+   <item
+       android:id="@+id/sub_menu"
+       android:title=""
        android:icon="@drawable/ic_more_white"
        app:showAsAction="always"
        android:orderInCategory="31">
        <menu>
            <item
                android:id="@+id/action_contact_details"
-               android:orderInCategory="40"
                android:title="@string/action_contact_details"
-               android:icon="@drawable/ic_frame_gray"
-               app:showAsAction="never" />
+               android:icon="@drawable/ic_frame_gray"/>
            <item
                android:id="@+id/action_muc_details"
                android:icon="@drawable/ic_people_gray"
-               android:orderInCategory="40"
-               android:title="@string/action_muc_details"
-               app:showAsAction="never" />
+               android:title="@string/action_muc_details"/>
            <item
                android:id="@+id/action_invite"
                android:icon="@drawable/profile_add"
-               android:orderInCategory="45"
-               android:title="@string/invite_contact"
-               app:showAsAction="never" />
+               android:title="@string/invite_contact" />
            <item
                android:id="@+id/action_search"
                android:icon="@drawable/search_normal"
-               android:orderInCategory="48"
                android:title="@string/search_messages"
-               android:visible="@bool/show_individual_search_options"
-               app:showAsAction="never" />
+               android:visible="@bool/show_individual_search_options"/>
            <item
                android:id="@+id/action_clear_history"
                android:icon="@drawable/trash"
-               android:orderInCategory="50"
-               android:title="@string/action_clear_history"
-               app:showAsAction="never" />
+               android:title="@string/action_clear_history"/>
            <item
                android:id="@+id/action_archive"
                android:icon="@drawable/close_square"
-               android:orderInCategory="60"
-               android:title="@string/action_end_conversation"
-               app:showAsAction="never" />
+               android:title="@string/action_end_conversation"/>
            <!--    <item-->
            <!--        android:orderInCategory="70"-->
            <!--        android:title="@string/more_options">-->
@@ -150,23 +140,42 @@
            <item
                android:id="@+id/action_mute"
                android:icon="@drawable/notification"
-               android:orderInCategory="71"
-               android:title="@string/disable_notifications"
-               app:showAsAction="never" />
+               android:title="@string/disable_notifications"/>
            <item
                android:id="@+id/action_unmute"
                android:icon="@drawable/notification"
-               android:orderInCategory="72"
-               android:title="@string/enable_notifications"
-               app:showAsAction="never" />
+               android:title="@string/enable_notifications" />
 
            <item
                android:id="@+id/action_toggle_pinned"
                android:icon="@drawable/pin"
-               android:orderInCategory="73"
-               android:title="@string/add_to_favorites"
-               app:showAsAction="never" />
+               android:title="@string/add_to_favorites"/>
        </menu>
    </item>
 
+    <item
+        android:id="@+id/action_mute1"
+        android:orderInCategory="71"
+        android:title="@string/disable_notifications"
+        app:showAsAction="never"
+        android:visible="false"/>
+    <item
+        android:id="@+id/action_unmute1"
+        android:orderInCategory="72"
+        android:title="@string/enable_notifications"
+        app:showAsAction="never"
+        android:visible="false"/>
+
+    <item
+        android:id="@+id/action_toggle_pinned1"
+        android:orderInCategory="73"
+        android:title="@string/add_to_favorites"
+        app:showAsAction="never"
+        android:visible="false"/>
+    <item
+        android:id="@+id/action_clear_history1"
+        android:orderInCategory="50"
+        android:title="@string/action_clear_history"
+        app:showAsAction="never"
+        android:visible="false"/>
 </menu>

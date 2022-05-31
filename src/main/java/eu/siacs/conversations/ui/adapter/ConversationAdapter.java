@@ -192,8 +192,8 @@ public class ConversationAdapter extends RecyclerView.Adapter<ConversationAdapte
                 viewHolder.binding.notificationStatus.setVisibility(View.GONE);
             } else {
                 viewHolder.binding.notificationStatus.setVisibility(View.VISIBLE);
-                int ic_notifications_none = activity.getThemeResource(R.attr.icon_notifications_none, R.drawable.ic_notifications_none_black_24dp);
-                viewHolder.binding.notificationStatus.setImageResource(ic_notifications_none);
+//                int ic_notifications_none = activity.getThemeResource(R.attr.icon_pinned_on_top, R.drawable.ic_notifications_none_black_24dp);
+                viewHolder.binding.notificationStatus.setImageResource(R.drawable.notification);
             }
         }
 

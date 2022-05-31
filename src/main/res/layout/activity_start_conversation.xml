@@ -16,20 +16,46 @@
             android:layout_height="wrap_content"
             android:layout_below="@id/toolbar"
             android:background="?attr/colorPrimary"
-            android:elevation="@dimen/toolbar_elevation"
+            android:elevation="0dp"
             android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
             app:tabGravity="fill"
             app:tabIndicatorColor="@color/white87"
             app:tabMode="fixed"
             app:tabSelectedTextColor="@color/white"
-            app:tabTextColor="@color/white70" />
+            app:tabTextColor="@color/white70"
+            android:textSize="20sp"/>
 
+        <LinearLayout
+            android:id="@+id/empty_layout"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:gravity="center"
+            android:orientation="vertical"
+            android:layout_below="@id/tab_layout"
+            android:layout_above="@id/speed_dial">
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/ic_no_message">
+            </ImageView>
+            <TextView
+                android:id="@+id/empty_title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/roboto_medium"
+                android:textColor="@color/txt_color1"
+                android:textFontWeight="600"
+                android:textSize="24sp"
+                android:text="No Contacts"
+                android:layout_marginTop="34dp"/>
+        </LinearLayout>
         <androidx.viewpager.widget.ViewPager
             android:id="@+id/start_conversation_view_pager"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_below="@id/tab_layout"
-            android:background="?attr/color_background_primary">
+            android:background="@color/background"
+            android:layout_marginTop="5dp">
 
 
         </androidx.viewpager.widget.ViewPager>

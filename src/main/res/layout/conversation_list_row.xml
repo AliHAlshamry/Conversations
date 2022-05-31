@@ -26,7 +26,7 @@
                     android:layout_height="48dp"
                     android:layout_alignParentLeft="true"
                     android:scaleType="centerCrop"
-                    app:riv_corner_radius="50dp"/>
+                    app:riv_corner_radius="50dp" />
                 <ImageView
                     android:id="@+id/online_tag"
                     android:layout_width="14dp"
@@ -78,7 +78,6 @@
                             android:gravity="center_vertical"
                             android:minHeight="?attr/IconSize"
                             android:text="@string/me"
-                            android:textAppearance="@style/TextAppearance.Conversations.Body1.Secondary"
                             android:textColor="@color/txt_color3"
                             android:textFontWeight="400"
                             android:textSize="14sp"

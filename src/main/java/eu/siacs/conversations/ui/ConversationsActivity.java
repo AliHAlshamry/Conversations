@@ -458,6 +458,7 @@ public class ConversationsActivity extends XmppActivity implements OnConversatio
                 qrCodeScanMenuItem.setVisible(false);
             }
         }
+        qrCodeScanMenuItem.setVisible(false);
         return super.onCreateOptionsMenu(menu);
     }
 

@@ -26,7 +26,7 @@
     </item>
     <item
         android:id="@+id/action_security"
-        android:icon="?attr/icon_not_secure"
+        android:icon="@drawable/ic_lock_white"
         android:orderInCategory="20"
         android:title="@string/encrypted_with_omemo"
         app:showAsAction="always">
@@ -83,75 +83,90 @@
                 android:title="@string/send_location" />
         </menu>
     </item>
-    <item
-        android:id="@+id/action_contact_details"
-        android:orderInCategory="40"
-        android:title="@string/action_contact_details"
-        app:showAsAction="never" />
-    <item
-        android:id="@+id/action_muc_details"
-        android:icon="?attr/icon_group"
-        android:orderInCategory="40"
-        android:title="@string/action_muc_details"
-        app:showAsAction="never" />
-    <item
-        android:id="@+id/action_invite"
-        android:orderInCategory="45"
-        android:title="@string/invite_contact"
-        app:showAsAction="never" />
-    <item
-        android:id="@+id/action_search"
-        android:orderInCategory="48"
-        android:title="@string/search_messages"
-        android:visible="@bool/show_individual_search_options"
-        app:showAsAction="never" />
-    <item
-        android:id="@+id/action_clear_history"
-        android:orderInCategory="50"
-        android:title="@string/action_clear_history"
-        app:showAsAction="never" />
-    <item
-        android:id="@+id/action_archive"
-        android:orderInCategory="60"
-        android:title="@string/action_end_conversation"
-        app:showAsAction="never" />
-<!--    <item-->
-<!--        android:orderInCategory="70"-->
-<!--        android:title="@string/more_options">-->
-<!--        <menu>-->
-<!--            <item-->
-<!--                android:id="@+id/action_mute"-->
-<!--                android:orderInCategory="71"-->
-<!--                android:title="@string/disable_notifications"-->
-<!--                app:showAsAction="never" />-->
-<!--            <item-->
-<!--                android:id="@+id/action_unmute"-->
-<!--                android:orderInCategory="72"-->
-<!--                android:title="@string/enable_notifications"-->
-<!--                app:showAsAction="never" />-->
+   <item android:title=""
+       android:icon="@drawable/ic_more_white"
+       app:showAsAction="always"
+       android:orderInCategory="31">
+       <menu>
+           <item
+               android:id="@+id/action_contact_details"
+               android:orderInCategory="40"
+               android:title="@string/action_contact_details"
+               android:icon="@drawable/ic_frame_gray"
+               app:showAsAction="never" />
+           <item
+               android:id="@+id/action_muc_details"
+               android:icon="@drawable/ic_people_gray"
+               android:orderInCategory="40"
+               android:title="@string/action_muc_details"
+               app:showAsAction="never" />
+           <item
+               android:id="@+id/action_invite"
+               android:icon="@drawable/profile_add"
+               android:orderInCategory="45"
+               android:title="@string/invite_contact"
+               app:showAsAction="never" />
+           <item
+               android:id="@+id/action_search"
+               android:icon="@drawable/search_normal"
+               android:orderInCategory="48"
+               android:title="@string/search_messages"
+               android:visible="@bool/show_individual_search_options"
+               app:showAsAction="never" />
+           <item
+               android:id="@+id/action_clear_history"
+               android:icon="@drawable/trash"
+               android:orderInCategory="50"
+               android:title="@string/action_clear_history"
+               app:showAsAction="never" />
+           <item
+               android:id="@+id/action_archive"
+               android:icon="@drawable/close_square"
+               android:orderInCategory="60"
+               android:title="@string/action_end_conversation"
+               app:showAsAction="never" />
+           <!--    <item-->
+           <!--        android:orderInCategory="70"-->
+           <!--        android:title="@string/more_options">-->
+           <!--        <menu>-->
+           <!--            <item-->
+           <!--                android:id="@+id/action_mute"-->
+           <!--                android:orderInCategory="71"-->
+           <!--                android:title="@string/disable_notifications"-->
+           <!--                app:showAsAction="never" />-->
+           <!--            <item-->
+           <!--                android:id="@+id/action_unmute"-->
+           <!--                android:orderInCategory="72"-->
+           <!--                android:title="@string/enable_notifications"-->
+           <!--                app:showAsAction="never" />-->
 
-<!--            <item-->
-<!--                android:id="@+id/action_toggle_pinned"-->
-<!--                android:orderInCategory="73"-->
-<!--                android:title="@string/add_to_favorites"-->
-<!--                app:showAsAction="never" />-->
-<!--        </menu>-->
-<!--    </item>-->
-    <item
-        android:id="@+id/action_mute"
-        android:orderInCategory="71"
-        android:title="@string/disable_notifications"
-        app:showAsAction="never" />
-    <item
-        android:id="@+id/action_unmute"
-        android:orderInCategory="72"
-        android:title="@string/enable_notifications"
-        app:showAsAction="never" />
+           <!--            <item-->
+           <!--                android:id="@+id/action_toggle_pinned"-->
+           <!--                android:orderInCategory="73"-->
+           <!--                android:title="@string/add_to_favorites"-->
+           <!--                app:showAsAction="never" />-->
+           <!--        </menu>-->
+           <!--    </item>-->
+           <item
+               android:id="@+id/action_mute"
+               android:icon="@drawable/notification"
+               android:orderInCategory="71"
+               android:title="@string/disable_notifications"
+               app:showAsAction="never" />
+           <item
+               android:id="@+id/action_unmute"
+               android:icon="@drawable/notification"
+               android:orderInCategory="72"
+               android:title="@string/enable_notifications"
+               app:showAsAction="never" />
 
-    <item
-        android:id="@+id/action_toggle_pinned"
-        android:orderInCategory="73"
-        android:title="@string/add_to_favorites"
-        app:showAsAction="never" />
+           <item
+               android:id="@+id/action_toggle_pinned"
+               android:icon="@drawable/pin"
+               android:orderInCategory="73"
+               android:title="@string/add_to_favorites"
+               app:showAsAction="never" />
+       </menu>
+   </item>
 
 </menu>

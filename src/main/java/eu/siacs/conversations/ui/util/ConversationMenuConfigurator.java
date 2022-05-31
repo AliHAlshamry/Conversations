@@ -104,7 +104,7 @@ public class ConversationMenuConfigurator {
 		}
 
 		if (conversation.getNextEncryption() != Message.ENCRYPTION_NONE) {
-			menuSecure.setIcon(R.drawable.ic_lock_white_24dp);
+			menuSecure.setIcon(R.drawable.ic_lock_white);
 		}
 
 //		pgp.setVisible(Config.supportOpenPgp());

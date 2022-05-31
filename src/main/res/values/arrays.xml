@@ -36,13 +36,6 @@
 		<item>@string/send_location</item>
 	</string-array>
 
-	<string-array name="fab_menu_colors">
-		<item>@color/primary</item>
-		<item>@color/primary</item>
-		<item>@color/primary</item>
-		<item>@color/primary</item>
-	</string-array>
-
 	<string-array name="quick_action_values">
 		<item>none</item>
 		<item>recent</item>
@@ -133,11 +126,4 @@
 		<item>JABBER_NETWORK</item>
 		<item>LOCAL_SERVER</item>
 	</string-array>
-
-	<array name="fab_menu_icons">
-		<item>@drawable/profile_add</item>
-		<item>@drawable/people</item>
-		<item>@drawable/global</item>
-		<item>@drawable/login</item>
-	</array>
 </resources>

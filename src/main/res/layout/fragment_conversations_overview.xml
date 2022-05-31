@@ -59,33 +59,12 @@
             android:layout_below="@+id/horizontal_contacts_list"
             android:layout_marginTop="22dp"
             android:scrollbars="vertical" />
-        <com.imangazaliev.circlemenu.CircleMenu
-            android:id="@+id/fab"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignBottom="@+id/list"
-            android:layout_alignParentEnd="true"
-            android:layout_gravity="end|bottom"
-            android:layout_marginStart="20dp"
-            android:layout_marginTop="20dp"
-            android:layout_marginEnd="20dp"
-            app:buttonColors="@array/fab_menu_colors"
-            app:buttonIcons="@array/fab_menu_icons"
-            app:centerButtonColor="@color/primary"
-            app:centerButtonIconColor="#ffffff"
-            app:distance="100dp"
-            app:iconsColor="#ffffff"
-            app:maxAngle="140"
-            app:menuIcon="plus"
-            app:showSelectAnimation="true"
-            app:startAngle="-190"
-            tools:ignore="MissingClass" />
+
         <com.leinardi.android.speeddial.SpeedDialOverlayLayout
             android:id="@+id/overlay"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_below="@id/list"
-            android:visibility="invisible"
             android:background="?color_background_overlay" />
 
         <com.leinardi.android.speeddial.SpeedDialView
@@ -95,7 +74,6 @@
             android:layout_alignParentEnd="true"
             android:layout_alignParentBottom="true"
             android:contentDescription="@string/add_contact_or_create_or_join_group_chat"
-            android:visibility="invisible"
             app:backgroundTint="?colorPrimary"
             app:sdMainFabClosedBackgroundColor="?colorPrimary"
             app:sdMainFabClosedSrc="@drawable/ic_add_white_24dp"

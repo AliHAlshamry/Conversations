@@ -314,33 +314,6 @@ public class StartConversationActivity extends XmppActivity implements XmppConne
         }
         mRequestedContactsPermission.set(savedInstanceState != null && savedInstanceState.getBoolean("requested_contacts_permission", false));
         mOpenedFab.set(savedInstanceState != null && savedInstanceState.getBoolean("opened_fab", false));
-        binding.fab.setOnItemClickListener(integer -> {
-            final String searchString = mSearchEditText != null ? mSearchEditText.getText().toString() : null;
-            final String prefilled;
-            if (isValidJid(searchString)) {
-                prefilled = Jid.ofEscaped(searchString).toEscapedString();
-            } else {
-                prefilled = null;
-            }
-            switch (integer.intValue()) {
-                case 4:
-                    startActivity(new Intent(this, ChannelDiscoveryActivity.class));
-                    break;
-                case 3:
-                    showJoinConferenceDialog(prefilled);
-                    break;
-                case 2:
-                    showCreatePrivateGroupChatDialog();
-                    break;
-                case 1:
-                    showPublicChannelDialog();
-                    break;
-                case 0:
-                    showCreateContactDialog(prefilled, null);
-                    break;
-            }
-            return null;
-        });
         binding.speedDial.setOnActionSelectedListener(actionItem -> {
             final String searchString = mSearchEditText != null ? mSearchEditText.getText().toString() : null;
             final String prefilled;

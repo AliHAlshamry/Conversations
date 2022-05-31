@@ -1,5 +1,12 @@
 package eu.siacs.conversations.ui;
 
+import static eu.siacs.conversations.ui.XmppActivity.EXTRA_ACCOUNT;
+import static eu.siacs.conversations.ui.XmppActivity.REQUEST_INVITE_TO_CONVERSATION;
+import static eu.siacs.conversations.ui.util.SoftKeyboardUtils.hideSoftKeyboard;
+import static eu.siacs.conversations.utils.PermissionUtils.allGranted;
+import static eu.siacs.conversations.utils.PermissionUtils.getFirstDenied;
+import static eu.siacs.conversations.utils.PermissionUtils.writeGranted;
+
 import android.Manifest;
 import android.annotation.SuppressLint;
 import android.app.Activity;
@@ -21,6 +28,7 @@ import android.preference.PreferenceManager;
 import android.provider.MediaStore;
 import android.text.Editable;
 import android.text.TextUtils;
+import android.text.TextWatcher;
 import android.util.Log;
 import android.view.ContextMenu;
 import android.view.ContextMenu.ContextMenuInfo;
@@ -56,6 +64,8 @@ import androidx.databinding.DataBindingUtil;
 
 import com.google.android.material.bottomsheet.BottomSheetBehavior;
 import com.google.common.base.Optional;
+
+import org.jetbrains.annotations.NotNull;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -129,15 +139,6 @@ import eu.siacs.conversations.xmpp.jingle.JingleFileTransferConnection;
 import eu.siacs.conversations.xmpp.jingle.Media;
 import eu.siacs.conversations.xmpp.jingle.OngoingRtpSession;
 import eu.siacs.conversations.xmpp.jingle.RtpCapability;
-
-import static eu.siacs.conversations.ui.XmppActivity.EXTRA_ACCOUNT;
-import static eu.siacs.conversations.ui.XmppActivity.REQUEST_INVITE_TO_CONVERSATION;
-import static eu.siacs.conversations.ui.util.SoftKeyboardUtils.hideSoftKeyboard;
-import static eu.siacs.conversations.utils.PermissionUtils.allGranted;
-import static eu.siacs.conversations.utils.PermissionUtils.getFirstDenied;
-import static eu.siacs.conversations.utils.PermissionUtils.writeGranted;
-
-import org.jetbrains.annotations.NotNull;
 
 
 public class ConversationFragment extends XmppFragment implements EditMessage.KeyboardListener, MessageAdapter.OnContactPictureLongClicked, MessageAdapter.OnContactPictureClicked {
@@ -2605,7 +2606,25 @@ public class ConversationFragment extends XmppFragment implements EditMessage.Ke
         this.binding.textSendButton.setTag(action);
         final Activity activity = getActivity();
         if (activity != null) {
+            if(binding.textinput.getText().length() == 0){
             this.binding.textSendButton.setImageResource(SendButtonTool.getSendButtonImageResource(activity, action, status));
+            }
+            this.binding.textinput.addTextChangedListener(new TextWatcher() {
+                @Override
+                public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+                }
+
+                @Override
+                public void onTextChanged(CharSequence s, int start, int before, int count) {
+                }
+
+                @Override
+                public void afterTextChanged(Editable s) {
+                    if(binding.textinput.getText().toString().trim().length()>0) {
+                        binding.textSendButton.setImageResource(R.drawable.ic_send_blue);
+                    }}
+            });
         }
     }
 

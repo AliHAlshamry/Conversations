@@ -556,7 +556,6 @@ public class ConversationsOverviewFragment extends XmppFragment {
 	@Override
 	public void onResume() {
 		super.onResume();
-		this.activity.getSupportActionBar().setSubtitle("");
 		Log.d(Config.LOGTAG, "ConversationsOverviewFragment.onResume()");
 	}
 

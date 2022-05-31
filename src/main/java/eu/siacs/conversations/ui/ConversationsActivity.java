@@ -696,7 +696,7 @@ public class ConversationsActivity extends XmppActivity implements OnConversatio
 //               actionBar.setTitle(EmojiWrapper.transform(conversation.getName()));
                 AvatarWorkerTask.loadAvatar(conversation.getContact(), profilePhoto, R.dimen.media_size);
                 contactName.setVisibility(View.VISIBLE);
-                contactName.setText(EmojiWrapper.transform(conversation.getName()));
+                contactName.setText(conversation.getAccount().getJid().getLocal());
                 contactInfo.setOnClickListener(view -> openConversationDetails(conversation));
 //                profilePhoto.setOnClickListener(view -> openConversationDetails(conversation));
                 actionBar.setDisplayHomeAsUpEnabled(true);
@@ -712,7 +712,7 @@ public class ConversationsActivity extends XmppActivity implements OnConversatio
 //            contactName.setVisibility(View.GONE);
             contactName.setVisibility(View.VISIBLE);
             final Account account = AccountUtils.getFirst(xmppConnectionService);
-            contactName.setText(EmojiWrapper.transform(account.getDisplayName()));
+            contactName.setText(account.getJid().getLocal());
             AvatarWorkerTask.loadAvatar(account, profilePhoto, R.dimen.media_size);
         }
         contactInfo.setOnClickListener(view ->AccountUtils.launchManageAccount(this));

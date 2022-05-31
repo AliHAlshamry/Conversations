@@ -430,26 +430,6 @@ public class ConversationsOverviewFragment extends XmppFragment {
 		this.touchHelper = new ItemTouchHelper(this.callback);
 		this.touchHelper.attachToRecyclerView(this.binding.horizontalContactsList);
 		this.touchHelper.attachToRecyclerView(this.binding.list);
-		binding.fab.setOnItemClickListener(integer -> {
-			switch (integer.intValue()){
-				case 4:
-					startActivity(new Intent(this.activity, ChannelDiscoveryActivity.class));
-					break;
-				case 3:
-					showJoinConferenceDialog();
-					break;
-				case 2:
-					showCreatePrivateGroupChatDialog();
-					break;
-				case 1:
-					showPublicChannelDialog();
-					break;
-				case 0:
-					showCreateContactDialog(null);
-					break;
-			}
-			return null;
-		});
 		binding.speedDial.setOnActionSelectedListener(actionItem -> {
 			switch (actionItem.getId()) {
 				case R.id.discover_public_channels:

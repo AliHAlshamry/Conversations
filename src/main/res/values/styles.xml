@@ -185,5 +185,8 @@
         <item name="android:textSize">14sp</item>
         <item name="android:fontFamily">@font/roboto</item>
         <item name="actionOverflowMenuStyle">@style/OverflowMenuStyle</item>
+        <item name="android:colorControlActivated">@color/primary</item>
+        <item name="android:colorControlHighlight">@color/txt_color5</item>
+        <item name="android:colorControlNormal">@color/txt_color3</item>
     </style>
 </resources>

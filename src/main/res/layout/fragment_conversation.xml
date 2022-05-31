@@ -9,7 +9,7 @@
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="?attr/color_background_secondary">
+        android:background="@drawable/geometric_abstract_background">
 
         <ListView
             android:id="@+id/messages_view"
@@ -19,7 +19,6 @@
             android:layout_alignParentStart="true"
             android:layout_alignParentLeft="true"
             android:layout_alignParentTop="true"
-            android:background="?attr/color_background_secondary"
             android:divider="@null"
             android:dividerHeight="0dp"
             android:listSelector="@android:color/transparent"
@@ -59,19 +58,21 @@
         <RelativeLayout
             android:id="@+id/textsend"
             android:layout_width="fill_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="58dp"
             android:layout_alignParentStart="true"
             android:layout_alignParentLeft="true"
             android:layout_alignParentBottom="true"
-            android:background="?attr/color_background_primary">
+            android:background="@drawable/background_white"
+            android:layout_marginHorizontal="24dp"
+            android:layout_marginVertical="25dp">
 
             <RelativeLayout
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content">
+                android:layout_height="match_parent">
 
                 <LinearLayout
                     android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
+                    android:layout_height="match_parent"
                     android:layout_alignParentStart="true"
                     android:layout_alignParentLeft="true"
                     android:layout_toStartOf="@+id/text_attach_button"
@@ -106,15 +107,20 @@
                         android:id="@+id/textinput"
                         style="@style/Widget.Conversations.EditText"
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:background="?attr/color_background_primary"
+                        android:layout_height="match_parent"
+                        android:background="@android:color/transparent"
                         android:ems="10"
                         android:imeOptions="flagNoExtractUi|actionSend"
                         android:inputType="textShortMessage|textMultiLine|textCapSentences"
                         android:maxLines="8"
                         android:minHeight="48dp"
                         android:minLines="1"
-                        android:padding="8dp">
+                        android:paddingLeft="16dp"
+                        android:fontFamily="@font/roboto"
+                        android:textFontWeight="400"
+                        android:textSize="14sp"
+                        android:textColorHint="@color/txt_color3"
+                        android:textColor="@color/txt_color2">
 
                         <requestFocus />
                     </eu.siacs.conversations.ui.widget.EditMessage>
@@ -126,10 +132,19 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_alignEnd="@+id/textSendButton"
-                    android:padding="10dp"
                     android:layout_marginEnd="50dp"
                     android:background="@android:color/transparent"
-                    android:src="@drawable/icons8_attach_32px_3" />
+                    android:padding="10dp"
+                    android:src="@drawable/icons8_attach_32px_3"
+                    android:layout_centerVertical="true"/>
+              <View
+                  android:layout_width="1dp"
+                  android:layout_height="30dp"
+                  android:background="@color/txt_color5"
+                  android:src="@drawable/paperclip_2"
+                  android:layout_alignRight="@id/text_attach_button"
+                  android:layout_alignLeft="@id/textSendButton"
+                  android:layout_centerVertical="true"/>
 
                 <ImageButton
                     android:id="@+id/textSendButton"
@@ -140,7 +155,7 @@
                     android:layout_centerVertical="true"
                     android:background="?attr/color_background_primary"
                     android:contentDescription="@string/send_message"
-                    android:src="?attr/ic_send_text_offline" />
+                    android:src="@drawable/send" />
             </RelativeLayout>
         </RelativeLayout>
 
@@ -189,6 +204,7 @@
 
     <include
         android:id="@+id/bottom_sheet"
-        layout="@layout/bottom_sheet" />
+        layout="@layout/bottom_sheet"
+        android:visibility="gone"/>
     </androidx.coordinatorlayout.widget.CoordinatorLayout>
 </layout>

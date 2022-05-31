@@ -174,8 +174,9 @@ public class MessageAdapter extends ArrayAdapter<Message> {
         if (viewHolder.edit_indicator != null) {
             if (message.edited()) {
                 viewHolder.edit_indicator.setVisibility(View.VISIBLE);
-                viewHolder.edit_indicator.setImageResource(darkBackground ? R.drawable.ic_mode_edit_white_18dp : R.drawable.ic_mode_edit_black_18dp);
-                viewHolder.edit_indicator.setAlpha(darkBackground ? 0.7f : 0.57f);
+//                viewHolder.edit_indicator.setImageResource(darkBackground ? R.drawable.ic_mode_edit_white_18dp : R.drawable.ic_mode_edit_black_18dp);
+//                viewHolder.edit_indicator.setAlpha(darkBackground ? 0.7f : 0.57f);
+                viewHolder.edit_indicator.setImageResource(R.drawable.ic_edit_2_gray);
             } else {
                 viewHolder.edit_indicator.setVisibility(View.GONE);
             }
@@ -206,8 +207,9 @@ public class MessageAdapter extends ArrayAdapter<Message> {
                 break;
             case Message.STATUS_SEND_RECEIVED:
             case Message.STATUS_SEND_DISPLAYED:
-                viewHolder.indicatorReceived.setImageResource(darkBackground ? R.drawable.ic_done_white_18dp : R.drawable.ic_done_black_18dp);
-                viewHolder.indicatorReceived.setAlpha(darkBackground ? 0.7f : 0.57f);
+//                viewHolder.indicatorReceived.setImageResource(darkBackground ? R.drawable.ic_done_white_18dp : R.drawable.ic_done_black_18dp);
+//                viewHolder.indicatorReceived.setAlpha(darkBackground ? 0.7f : 0.57f);
+                viewHolder.indicatorReceived.setImageResource(R.drawable.vector);
                 viewHolder.indicatorReceived.setVisibility(View.VISIBLE);
                 break;
             case Message.STATUS_SEND_FAILED:
@@ -245,14 +247,15 @@ public class MessageAdapter extends ArrayAdapter<Message> {
             } else {
                 viewHolder.time.setTextAppearance(getContext(), R.style.TextAppearance_Conversations_Caption_Warning);
             }
-        } else {
-            if (darkBackground) {
-                viewHolder.time.setTextAppearance(getContext(), R.style.TextAppearance_Conversations_Caption_OnDark);
-            } else {
-                viewHolder.time.setTextAppearance(getContext(), R.style.TextAppearance_Conversations_Caption);
-            }
-            viewHolder.time.setTextColor(this.getMessageTextColor(darkBackground, false));
         }
+//        else {
+//            if (darkBackground) {
+//                viewHolder.time.setTextAppearance(getContext(), R.style.TextAppearance_Conversations_Caption_OnDark);
+//            } else {
+//                viewHolder.time.setTextAppearance(getContext(), R.style.TextAppearance_Conversations_Caption);
+//            }
+//            viewHolder.time.setTextColor(this.getMessageTextColor(darkBackground, false));
+//        }
         if (message.getEncryption() == Message.ENCRYPTION_NONE) {
             viewHolder.indicator.setVisibility(View.GONE);
         } else {
@@ -268,7 +271,8 @@ public class MessageAdapter extends ArrayAdapter<Message> {
             if (verified) {
                 viewHolder.indicator.setImageResource(darkBackground ? R.drawable.ic_verified_user_white_18dp : R.drawable.ic_verified_user_black_18dp);
             } else {
-                viewHolder.indicator.setImageResource(darkBackground ? R.drawable.ic_lock_white_18dp : R.drawable.ic_lock_black_18dp);
+//                viewHolder.indicator.setImageResource(darkBackground ? R.drawable.ic_lock_white_18dp : R.drawable.ic_lock_black_18dp);
+                viewHolder.indicator.setImageResource(R.drawable.ic_lock_gray);
             }
             if (darkBackground) {
                 viewHolder.indicator.setAlpha(0.7f);

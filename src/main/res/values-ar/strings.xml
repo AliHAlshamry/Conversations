@@ -840,4 +840,6 @@
     <string name="Exit_channel">مغادرة القناة</string>
     <string name="Exit_group">مغادرة المجموعة</string>
     <string name="confirm_password">تأكيد كلمة المرور</string>
+    <string name="no_contacts">لاتوجد جهات اتصال</string>
+    <string name="no_book_marks">لاتوجد مجموعات</string>
 </resources>

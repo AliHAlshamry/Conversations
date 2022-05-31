@@ -277,6 +277,7 @@ public class StartConversationActivity extends XmppActivity implements XmppConne
             @Override
             public void onPageSelected(int position) {
                 updateSearchViewHint();
+                updateContactsBookmarks();
             }
         });
         mListPagerAdapter = new ListPagerAdapter(getSupportFragmentManager());
@@ -340,7 +341,8 @@ public class StartConversationActivity extends XmppActivity implements XmppConne
             }
             return false;
         });
-    }
+
+       }
 
     private void inflateFab(final SpeedDialView speedDialView, final @MenuRes int menuRes) {
         speedDialView.clearActionItems();
@@ -645,10 +647,44 @@ public class StartConversationActivity extends XmppActivity implements XmppConne
         if (binding.startConversationViewPager.getCurrentItem() == 0) {
             mSearchEditText.setHint(R.string.search_contacts);
             mSearchEditText.setContentDescription(getString(R.string.search_contacts));
+            if(contacts.size() <= 0){
+                binding.emptyLayout.setVisibility(View.VISIBLE);
+                binding.startConversationViewPager.setVisibility(View.GONE);
+            }
         } else {
+            if(conferences.size() <= 0){
+                binding.emptyLayout.setVisibility(View.VISIBLE);
+                binding.startConversationViewPager.setVisibility(View.GONE);
+            }
             mSearchEditText.setHint(R.string.search_bookmarks);
             mSearchEditText.setContentDescription(getString(R.string.search_bookmarks));
         }
+    }
+
+    public void updateContactsBookmarks(){
+        if (binding == null || mSearchEditText == null) {
+            return;
+        }
+        if (binding.startConversationViewPager.getCurrentItem() == 0) {
+            if(contacts.size() <= 0){
+                binding.emptyLayout.setVisibility(View.VISIBLE);
+                binding.startConversationViewPager.setVisibility(View.GONE);
+                binding.emptyTitle.setText(R.string.no_contacts);
+            }else{
+                binding.emptyLayout.setVisibility(View.GONE);
+                binding.startConversationViewPager.setVisibility(View.VISIBLE);
+            }
+        }else{
+            if(conferences.size() <= 0){
+                binding.emptyLayout.setVisibility(View.VISIBLE);
+                binding.startConversationViewPager.setVisibility(View.GONE);
+                binding.emptyTitle.setText(R.string.no_book_marks);
+            }else{
+                binding.emptyLayout.setVisibility(View.GONE);
+                binding.startConversationViewPager.setVisibility(View.VISIBLE);
+            }
+        }
+
     }
 
     @Override

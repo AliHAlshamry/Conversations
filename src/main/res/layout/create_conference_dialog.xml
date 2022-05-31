@@ -3,30 +3,46 @@
         xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_width="312dp"
+        android:layout_height="wrap_content"
         android:orientation="vertical"
-        android:paddingBottom="?attr/dialog_vertical_padding"
-        android:paddingLeft="?attr/dialog_horizontal_padding"
-        android:paddingRight="?attr/dialog_horizontal_padding"
-        android:paddingTop="?attr/dialog_vertical_padding">
-
+        android:elevation="8dp"
+        android:background="@drawable/rounded_corner_dialog"
+        android:gravity="center_vertical"
+        android:paddingVertical="@dimen/dialog_padding_vertical"
+        android:paddingHorizontal="@dimen/card_padding_regular">
         <TextView
-            style="@style/InputLabel"
-            android:layout_width="match_parent"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/your_account"/>
+            android:text="@string/create_private_group_chat"
+            android:textColor="@color/txt_color1"
+            android:fontFamily="@font/roboto_medium"
+            android:textFontWeight="500"
+            android:textSize="20sp"
+            android:layout_marginBottom="24dp"/>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@color/txt_color1"
+            android:fontFamily="@font/roboto_medium"
+            android:textFontWeight="500"
+            android:textSize="16sp"
+            android:text="@string/create_dialog_group_chat_name"
+            android:layout_marginBottom="8dp"/>
 
         <Spinner
             android:id="@+id/account"
             android:layout_width="fill_parent"
-            android:layout_height="wrap_content"/>
+            android:layout_height="wrap_content"
+            android:visibility="gone"/>
 
         <com.google.android.material.textfield.TextInputLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             app:errorTextAppearance="@style/TextAppearance.Conversations.Design.Error"
-            app:hintTextAppearance="@style/TextAppearance.Conversations.Design.Hint">
+            app:hintTextAppearance="@style/TextAppearance.Conversations.Design.Hint"
+            app:hintEnabled="false"
+            android:background="@drawable/rounded_corner_input_layout_with_border">
 
             <eu.siacs.conversations.ui.widget.EmojiWrapperEditText
                 android:id="@+id/group_chat_name"
@@ -34,7 +50,42 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:hint="@string/create_dialog_group_chat_name"
-                android:imeOptions="actionNext|flagNoExtractUi"/>
+                android:imeOptions="actionNext|flagNoExtractUi"
+                android:background="@android:color/transparent"
+                android:padding="12dp"/>
         </com.google.android.material.textfield.TextInputLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_marginTop="40dp">
+            <Button
+                android:id="@+id/cancel_button"
+                style="@style/Widget.Conversations.Button.Borderless"
+                android:layout_width="100dp"
+                android:layout_height="@dimen/dialog_button_height"
+                android:layout_weight="0.3"
+                android:background="@drawable/rounded_corner_button_gray"
+                android:text="@string/cancel"
+                android:textColor="@color/txt_color1"
+                android:layout_marginRight="@dimen/dialog_button_horizontal_padding"
+                android:fontFamily="@font/roboto_medium"
+                android:textAllCaps="false"
+                android:textFontWeight="500"
+                android:textSize="16sp"/>
+            <Button
+                android:id="@+id/choose_button"
+                style="@style/Widget.Conversations.Button.Borderless"
+                android:layout_width="wrap_content"
+                android:layout_height="@dimen/dialog_button_height"
+                android:layout_weight="0.7"
+                android:background="@drawable/rounded_corner_button_blue"
+                android:text="@string/choose_participants"
+                android:textColor="@color/white"
+                android:fontFamily="@font/roboto_medium"
+                android:textAllCaps="false"
+                android:textFontWeight="500"
+                android:textSize="16sp"/>
+        </LinearLayout>
     </LinearLayout>
 </layout>

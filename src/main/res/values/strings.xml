@@ -990,4 +990,6 @@
     <string name="confirm_password">Confirm password</string>
     <string name="email">Email</string>
     <string name="password_hint">at least 6 letters</string>
+    <string name="no_contacts">No contacts</string>
+    <string name="no_book_marks">No bookMarks</string>
 </resources>

@@ -6,7 +6,8 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="?selectableItemBackground"
-        android:padding="@dimen/list_padding">
+        android:paddingVertical="8dp"
+        android:paddingHorizontal="24dp">
 
         <com.makeramen.roundedimageview.RoundedImageView
             android:id="@+id/contact_photo"
@@ -14,7 +15,7 @@
             android:layout_height="48dp"
             android:layout_alignParentLeft="true"
             android:scaleType="centerCrop"
-            app:riv_corner_radius="50dp"/>
+            app:riv_corner_radius="50dp" />
 
         <ImageView
             android:id="@+id/online_tag"
@@ -35,21 +36,29 @@
             android:layout_centerVertical="true"
             android:layout_toRightOf="@+id/contact_photo"
             android:orientation="vertical"
-            android:paddingLeft="@dimen/avatar_item_distance">
+            android:paddingLeft="4dp">
 
             <TextView
                 android:id="@+id/contact_display_name"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:singleLine="true"
-                android:textAppearance="@style/TextAppearance.Conversations.Subhead"/>
+                android:paddingRight="4dp"
+                android:fontFamily="@font/roboto_medium"
+                android:textColor="@color/txt_color1"
+                android:textFontWeight="500"
+                android:textSize="18sp"/>
 
             <TextView
                 android:id="@+id/contact_jid"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:singleLine="true"
-                android:textAppearance="@style/TextAppearance.Conversations.Body1.Secondary"/>
+                android:fontFamily="@font/roboto"
+                android:textColor="@color/txt_color3"
+                android:textFontWeight="400"
+                android:textSize="14sp"
+                android:layout_marginTop="4dp"/>
 
             <com.wefika.flowlayout.FlowLayout
                 android:id="@+id/tags"

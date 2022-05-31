@@ -93,7 +93,8 @@ public class SendButtonTool {
 					case DND:
 						return R.drawable.ic_send_text_dnd;
 					default:
-						return getThemeResource(activity, R.attr.ic_send_text_offline, R.drawable.ic_send_text_offline);
+//						return getThemeResource(activity, R.attr.ic_send_text_offline, R.drawable.ic_send_text_offline);
+						return R.drawable.send;
 				}
 			case RECORD_VIDEO:
 				switch (status) {

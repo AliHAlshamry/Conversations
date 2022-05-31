@@ -1,5 +1,8 @@
 package eu.siacs.conversations.ui;
 
+import static eu.siacs.conversations.utils.PermissionUtils.allGranted;
+import static eu.siacs.conversations.utils.PermissionUtils.writeGranted;
+
 import android.Manifest;
 import android.content.ActivityNotFoundException;
 import android.content.Intent;
@@ -15,14 +18,11 @@ import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.databinding.DataBindingUtil;
 
 import java.util.Arrays;
-import java.util.List;
 
 import eu.siacs.conversations.Config;
 import eu.siacs.conversations.R;
-import eu.siacs.conversations.databinding.ActivityWelcomeBinding;
 import eu.siacs.conversations.entities.Account;
 import eu.siacs.conversations.services.XmppConnectionService;
 import eu.siacs.conversations.utils.Compatibility;
@@ -30,9 +30,6 @@ import eu.siacs.conversations.utils.InstallReferrerUtils;
 import eu.siacs.conversations.utils.SignupUtils;
 import eu.siacs.conversations.utils.XmppUri;
 import eu.siacs.conversations.xmpp.Jid;
-
-import static eu.siacs.conversations.utils.PermissionUtils.allGranted;
-import static eu.siacs.conversations.utils.PermissionUtils.writeGranted;
 
 public class WelcomeActivity extends XmppActivity implements XmppConnectionService.OnAccountCreated, KeyChainAliasCallback {
 
@@ -152,6 +149,7 @@ public class WelcomeActivity extends XmppActivity implements XmppConnectionServi
         getMenuInflater().inflate(R.menu.welcome_menu, menu);
         final MenuItem scan = menu.findItem(R.id.action_scan_qr_code);
         scan.setVisible(Compatibility.hasFeatureCamera(this));
+        scan.setVisible(false);
         return super.onCreateOptionsMenu(menu);
     }
 

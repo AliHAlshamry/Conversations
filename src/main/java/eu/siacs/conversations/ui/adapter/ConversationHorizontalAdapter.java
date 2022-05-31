@@ -43,7 +43,7 @@ public class ConversationHorizontalAdapter extends RecyclerView.Adapter<Conversa
         }
         if(conversation.getMode() == Conversation.MODE_MULTI)
             viewHolder.binding.onlineTag.setVisibility(View.INVISIBLE);
-        AvatarWorkerTask.loadAvatar(conversation, viewHolder.binding.conversationImage, R.dimen.avatar_on_conversation_overview);
+        AvatarWorkerTask.loadAvatar(conversation, viewHolder.binding.conversationImage, R.dimen.avatar_on_conversation_horizontal_overview);
         viewHolder.itemView.setOnClickListener(v -> listener.onConversationClick(v, conversation));
     }
 

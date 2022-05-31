@@ -20,7 +20,6 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.WindowManager;
-import android.widget.PopupMenu;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AlertDialog;
@@ -190,7 +189,7 @@ public class ConferenceDetailsActivity extends XmppActivity implements OnConvers
                 }));
         this.mAdvancedMode = getPreferences().getBoolean("advanced_muc_mode", false);
 //        this.binding.mucInfoMore.setVisibility(this.mAdvancedMode ? View.VISIBLE : View.GONE);
-        this.binding.notificationStatusButton.setOnClickListener(this.mNotifyStatusClickListener);
+        this.binding.notificationStatusLayout.setOnClickListener(this.mNotifyStatusClickListener);
         this.binding.editMucPhotoButton.setOnClickListener(v -> {
             final MucOptions mucOptions = mConversation.getMucOptions();
             if (!mucOptions.hasVCards()) {

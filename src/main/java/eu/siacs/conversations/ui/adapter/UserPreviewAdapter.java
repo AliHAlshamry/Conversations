@@ -35,6 +35,7 @@ public class UserPreviewAdapter extends ListAdapter<MucOptions.User, UserPreview
     public void onBindViewHolder(@NonNull ViewHolder viewHolder, int position) {
         final MucOptions.User user = getItem(position);
         AvatarWorkerTask.loadAvatar(user, viewHolder.binding.avatar, R.dimen.media_size);
+        viewHolder.binding.contactJid.setText(user.getName());
         viewHolder.binding.getRoot().setOnClickListener(v -> {
             final XmppActivity activity = XmppActivity.find(v);
             if (activity != null) {

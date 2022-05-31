@@ -604,100 +604,100 @@
                         android:layout_marginEnd="-2dp"/>
                 </LinearLayout>
 
-                <androidx.cardview.widget.CardView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginBottom="@dimen/activity_vertical_margin"
-                    android:layout_marginLeft="@dimen/activity_horizontal_margin"
-                    android:layout_marginRight="@dimen/activity_horizontal_margin"
-                    android:layout_marginTop="@dimen/activity_vertical_margin">
+<!--                <androidx.cardview.widget.CardView-->
+<!--                    android:layout_width="match_parent"-->
+<!--                    android:layout_height="wrap_content"-->
+<!--                    android:layout_marginBottom="@dimen/activity_vertical_margin"-->
+<!--                    android:layout_marginLeft="@dimen/activity_horizontal_margin"-->
+<!--                    android:layout_marginRight="@dimen/activity_horizontal_margin"-->
+<!--                    android:layout_marginTop="@dimen/activity_vertical_margin">-->
 
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:orientation="vertical"
-                        android:padding="@dimen/card_padding_regular">
+<!--                    <LinearLayout-->
+<!--                        android:layout_width="match_parent"-->
+<!--                        android:layout_height="wrap_content"-->
+<!--                        android:orientation="vertical"-->
+<!--                        android:padding="@dimen/card_padding_regular">-->
 
-                        <RelativeLayout
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content">
+<!--                        <RelativeLayout-->
+<!--                            android:layout_width="match_parent"-->
+<!--                            android:layout_height="wrap_content">-->
 
-                            <LinearLayout
-                                android:layout_width="fill_parent"
-                                android:layout_height="wrap_content"
-                                android:layout_centerVertical="true"
-                                android:orientation="vertical">
+<!--                            <LinearLayout-->
+<!--                                android:layout_width="fill_parent"-->
+<!--                                android:layout_height="wrap_content"-->
+<!--                                android:layout_centerVertical="true"-->
+<!--                                android:orientation="vertical">-->
 
-                                <TextView
-                                    android:id="@+id/muc_your_nick"
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="wrap_content"
-                                    android:singleLine="true"
-                                    android:textAppearance="@style/TextAppearance.Conversations.Subhead" />
+<!--                                <TextView-->
+<!--                                    android:id="@+id/muc_your_nick"-->
+<!--                                    android:layout_width="wrap_content"-->
+<!--                                    android:layout_height="wrap_content"-->
+<!--                                    android:singleLine="true"-->
+<!--                                    android:textAppearance="@style/TextAppearance.Conversations.Subhead" />-->
 
-                                <TextView
-                                    android:id="@+id/muc_role"
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="wrap_content"
-                                    android:singleLine="true"
-                                    android:textAppearance="@style/TextAppearance.Conversations.Body1.Secondary" />
-                            </LinearLayout>
+<!--                                <TextView-->
+<!--                                    android:id="@+id/muc_role"-->
+<!--                                    android:layout_width="wrap_content"-->
+<!--                                    android:layout_height="wrap_content"-->
+<!--                                    android:singleLine="true"-->
+<!--                                    android:textAppearance="@style/TextAppearance.Conversations.Body1.Secondary" />-->
+<!--                            </LinearLayout>-->
 
-                            <ImageButton
-                                android:id="@+id/edit_nick_button"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:layout_alignParentEnd="true"
-                                android:layout_centerVertical="true"
-                                android:alpha="?attr/icon_alpha"
-                                android:background="?attr/selectableItemBackgroundBorderless"
-                                android:padding="@dimen/image_button_padding"
-                                android:src="?attr/icon_edit_body"
-                                android:layout_alignParentRight="true" />
-                        </RelativeLayout>
+<!--                            <ImageButton-->
+<!--                                android:id="@+id/edit_nick_button"-->
+<!--                                android:layout_width="wrap_content"-->
+<!--                                android:layout_height="wrap_content"-->
+<!--                                android:layout_alignParentEnd="true"-->
+<!--                                android:layout_centerVertical="true"-->
+<!--                                android:alpha="?attr/icon_alpha"-->
+<!--                                android:background="?attr/selectableItemBackgroundBorderless"-->
+<!--                                android:padding="@dimen/image_button_padding"-->
+<!--                                android:src="?attr/icon_edit_body"-->
+<!--                                android:layout_alignParentRight="true" />-->
+<!--                        </RelativeLayout>-->
 
-                        <RelativeLayout
-                            android:layout_width="fill_parent"
-                            android:layout_height="wrap_content">
+<!--                        <RelativeLayout-->
+<!--                            android:layout_width="fill_parent"-->
+<!--                            android:layout_height="wrap_content">-->
 
-                            <TextView
-                                android:id="@+id/notification_status_text"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:layout_alignParentStart="true"
-                                android:layout_centerVertical="true"
-                                android:layout_toStartOf="@+id/notification_status_button"
-                                android:text="@string/notify_on_all_messages"
-                                android:textAppearance="@style/TextAppearance.Conversations.Body1"
-                                android:layout_alignParentLeft="true"
-                                android:layout_toLeftOf="@+id/notification_status_button" />
+<!--                            <TextView-->
+<!--                                android:id="@+id/notification_status_text"-->
+<!--                                android:layout_width="wrap_content"-->
+<!--                                android:layout_height="wrap_content"-->
+<!--                                android:layout_alignParentStart="true"-->
+<!--                                android:layout_alignParentLeft="true"-->
+<!--                                android:layout_centerVertical="true"-->
+<!--                                android:layout_toStartOf="@+id/notification_status_button"-->
+<!--                                android:layout_toLeftOf="@+id/notification_status_button"-->
+<!--                                android:text="@string/notify_on_all_messages"-->
+<!--                                android:textAppearance="@style/TextAppearance.Conversations.Body1" />-->
 
-                            <ImageButton
-                                android:id="@+id/notification_status_button"
-                                style="?android:attr/buttonStyleSmall"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:layout_alignParentEnd="true"
-                                android:layout_centerVertical="true"
-                                android:layout_gravity="center_horizontal"
-                                android:alpha="?attr/icon_alpha"
-                                android:background="?attr/selectableItemBackgroundBorderless"
-                                android:padding="@dimen/image_button_padding"
-                                android:src="?attr/icon_notifications"
-                                android:layout_alignParentRight="true" />
-                        </RelativeLayout>
+<!--                            <ImageButton-->
+<!--                                android:id="@+id/notification_status_button"-->
+<!--                                style="?android:attr/buttonStyleSmall"-->
+<!--                                android:layout_width="wrap_content"-->
+<!--                                android:layout_height="wrap_content"-->
+<!--                                android:layout_alignParentEnd="true"-->
+<!--                                android:layout_centerVertical="true"-->
+<!--                                android:layout_gravity="center_horizontal"-->
+<!--                                android:alpha="?attr/icon_alpha"-->
+<!--                                android:background="?attr/selectableItemBackgroundBorderless"-->
+<!--                                android:padding="@dimen/image_button_padding"-->
+<!--                                android:src="?attr/icon_notifications"-->
+<!--                                android:layout_alignParentRight="true" />-->
+<!--                        </RelativeLayout>-->
 
-                        <TextView
-                            android:id="@+id/details_account"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_gravity="end"
-                            android:layout_marginTop="32dp"
-                            android:text="@string/using_account"
-                            android:textAppearance="@style/TextAppearance.Conversations.Caption"
-                            android:visibility="gone"/>
-                    </LinearLayout>
-                </androidx.cardview.widget.CardView>
+<!--                        <TextView-->
+<!--                            android:id="@+id/details_account"-->
+<!--                            android:layout_width="wrap_content"-->
+<!--                            android:layout_height="wrap_content"-->
+<!--                            android:layout_gravity="end"-->
+<!--                            android:layout_marginTop="32dp"-->
+<!--                            android:text="@string/using_account"-->
+<!--                            android:textAppearance="@style/TextAppearance.Conversations.Caption"-->
+<!--                            android:visibility="gone"/>-->
+<!--                    </LinearLayout>-->
+<!--                </androidx.cardview.widget.CardView>-->
                 <androidx.cardview.widget.CardView
                     android:id="@+id/media_wrapper"
                     android:layout_width="fill_parent"
@@ -747,7 +747,105 @@
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:orientation="vertical">
+                    android:orientation="vertical"
+                    android:layout_marginTop="16dp">
+                    <LinearLayout
+                        android:id="@+id/notification_status_layout"
+                        android:layout_width="match_parent"
+                        android:layout_height="@dimen/linear_layout_with_icon_and_text_height"
+                        android:layout_alignParentStart="true"
+                        android:layout_alignParentLeft="true"
+                        android:background="?attr/selectableItemBackground"
+                        android:clickable="true"
+                        android:gravity="center|left"
+                        android:orientation="horizontal"
+                        android:paddingHorizontal="24dp">
+
+                        <ImageView
+                            android:id="@+id/notification_status_button"
+                            android:layout_width="32dp"
+                            android:layout_height="32dp"
+                            android:layout_alignParentStart="true"
+                            android:layout_centerVertical="true"
+                            android:background="@drawable/rounded_background"
+                            android:padding="6dp"
+                            android:src="@drawable/notification"/>
+
+                        <TextView
+                            android:id="@+id/notification_status_text"
+                            android:layout_width="wrap_content"
+                            android:layout_height="24dp"
+                            android:layout_marginLeft="7dp"
+                            android:lineHeight="24sp"
+                            android:text="@string/notify_on_all_messages"
+                            android:fontFamily="@font/roboto"
+                            android:textColor="@color/txt_color2"
+                            android:textFontWeight="400"
+                            android:textSize="16sp"/>
+                    </LinearLayout>
+                    <LinearLayout
+                        android:id="@+id/edit_nick_button"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentStart="true"
+                        android:layout_alignParentLeft="true"
+                        android:background="?attr/selectableItemBackground"
+                        android:clickable="true"
+                        android:gravity="center|left"
+                        android:orientation="horizontal"
+                        android:paddingHorizontal="24dp"
+                        android:layout_marginTop="32dp">
+
+                        <ImageView
+                            android:layout_width="32dp"
+                            android:layout_height="32dp"
+                            android:layout_alignParentStart="true"
+                            android:layout_centerVertical="true"
+                            android:background="@drawable/rounded_background"
+                            android:padding="6dp"
+                            android:src="@drawable/user_octagon"/>
+
+                        <LinearLayout
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_centerVertical="true"
+                            android:orientation="vertical"
+                            android:layout_marginLeft="7dp">
+
+                            <TextView
+                                android:id="@+id/muc_your_nick"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:singleLine="true"
+                                android:fontFamily="@font/roboto"
+                                android:textColor="@color/txt_color2"
+                                android:textFontWeight="400"
+                                android:textSize="16sp" />
+
+                            <TextView
+                                android:id="@+id/muc_role"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:singleLine="true"
+                                android:fontFamily="@font/roboto"
+                                android:textColor="@color/txt_color3"
+                                android:textFontWeight="400"
+                                android:textSize="12sp"
+                                android:layout_marginTop="1sp"/>
+                        </LinearLayout>
+                    </LinearLayout>
+                    <TextView
+                        android:id="@+id/details_account"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="32dp"
+                        android:text="@string/using_account"
+                        android:fontFamily="@font/roboto"
+                        android:textColor="@color/txt_color3"
+                        android:textFontWeight="400"
+                        android:textSize="12sp"
+                        android:visibility="gone"
+                        android:layout_marginHorizontal="24sp"/>
                     <LinearLayout
                         android:id="@+id/action_destroy_room_layout"
                         android:layout_width="match_parent"
@@ -759,7 +857,7 @@
                         android:gravity="center|left"
                         android:orientation="horizontal"
                         android:paddingHorizontal="24dp"
-                        android:layout_marginTop="51dp">
+                        android:layout_marginTop="32dp">
 
                         <ImageView
                             android:layout_width="32dp"
@@ -816,20 +914,6 @@
                             android:textFontWeight="400"
                             android:textSize="16sp"/>
                     </LinearLayout>
-                    <!--                    <Button-->
-                    <!--                        android:id="@+id/action_delete_bookmark"-->
-                    <!--                        android:layout_width="match_parent"-->
-                    <!--                        android:layout_height="wrap_content"-->
-                    <!--                        android:text="@string/delete_bookmark"-->
-                    <!--                        android:background="?attr/selectableItemBackground"-->
-                    <!--                        android:drawableLeft="@drawable/ic_delete_red_24"-->
-                    <!--                        android:drawablePadding="16dp"-->
-                    <!--                        android:gravity="left|center"-->
-                    <!--                        android:paddingHorizontal="16dp"-->
-                    <!--                        android:paddingVertical="16dp"-->
-                    <!--                        android:textAppearance="@style/TextAppearance.Conversations.Subhead"-->
-                    <!--                        android:textColor="@color/red500"-->
-                    <!--                        />-->
                 </LinearLayout>
 
             </LinearLayout>

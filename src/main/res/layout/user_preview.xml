@@ -5,13 +5,25 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:padding="2dp"
-        android:background="?selectableItemBackground">
+        android:background="?selectableItemBackground"
+        android:orientation="vertical">
         <com.makeramen.roundedimageview.RoundedImageView
             android:id="@+id/avatar"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_width="48dp"
+            android:layout_height="48dp"
             android:background="@color/black54"
             android:scaleType="centerInside"
             app:riv_corner_radius="50dp"/>
+        <TextView
+            android:id="@+id/contact_jid"
+            android:layout_width="50dp"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:height="24dp"
+            android:textColor="@color/txt_color2"
+            android:fontFamily="@font/roboto"
+            android:textFontWeight="400"
+            android:textSize="16sp"
+            android:layout_marginTop="4dp"/>
     </LinearLayout>
 </layout>

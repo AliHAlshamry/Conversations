@@ -454,14 +454,21 @@ public class ConversationsOverviewFragment extends XmppFragment {
 			android.widget.PopupMenu popupMenu = new android.widget.PopupMenu(view.getContext(), view.findViewById(R.id.conversation_name));
 			getActivity().getMenuInflater().inflate(R.menu.fragment_conversation, popupMenu.getMenu());
 			Menu menu = popupMenu.getMenu();
-			final MenuItem menuMute = menu.findItem(R.id.action_mute);
-			final MenuItem menuUnmute = menu.findItem(R.id.action_unmute);
+			final MenuItem subMenu = menu.findItem(R.id.sub_menu);
+			subMenu.setVisible(false);
+			final MenuItem menuMute = menu.findItem(R.id.action_mute1);
+			final MenuItem menuUnmute = menu.findItem(R.id.action_unmute1);
+			final MenuItem menuClearHistory = menu.findItem(R.id.action_clear_history1);
+			menuMute.setVisible(true);
+			menuUnmute.setVisible(true);
+			menuClearHistory.setVisible(true);
 			if (conversation.isMuted()) {
 				menuMute.setVisible(false);
 			} else {
 				menuUnmute.setVisible(false);
 			}
-			final MenuItem menuTogglePinned = menu.findItem(R.id.action_toggle_pinned);
+			final MenuItem menuTogglePinned = menu.findItem(R.id.action_toggle_pinned1);
+			menuTogglePinned.setVisible(true);
 			if (conversation.getBooleanAttribute(Conversation.ATTRIBUTE_PINNED_ON_TOP, false)) {
 				menuTogglePinned.setTitle(R.string.remove_from_favorites);
 			} else {
@@ -469,16 +476,16 @@ public class ConversationsOverviewFragment extends XmppFragment {
 			}
 			popupMenu.setOnMenuItemClickListener(menuItem -> {
 				switch (menuItem.getItemId()) {
-					case R.id.action_clear_history:
+					case R.id.action_clear_history1:
 						clearHistoryDialog(conversation);
 						break;
-					case R.id.action_toggle_pinned:
+					case R.id.action_toggle_pinned1:
 						togglePinned(conversation);
 						break;
-					case R.id.action_mute:
+					case R.id.action_mute1:
 						muteConversationDialog(conversation);
 						break;
-					case R.id.action_unmute:
+					case R.id.action_unmute1:
 						unmuteConversation(conversation);
 						break;
 					default:

@@ -132,11 +132,11 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_alignEnd="@+id/textSendButton"
+                    android:layout_centerVertical="true"
                     android:layout_marginEnd="50dp"
                     android:background="@android:color/transparent"
                     android:padding="10dp"
-                    android:src="@drawable/icons8_attach_32px_3"
-                    android:layout_centerVertical="true"/>
+                    android:src="@drawable/icons8_attach_32px_3" />
               <View
                   android:layout_width="1dp"
                   android:layout_height="30dp"
@@ -201,10 +201,8 @@
         </RelativeLayout>
 
     </RelativeLayout>
-
     <include
         android:id="@+id/bottom_sheet"
-        layout="@layout/bottom_sheet"
-        android:visibility="gone"/>
+        layout="@layout/bottom_sheet"/>
     </androidx.coordinatorlayout.widget.CoordinatorLayout>
 </layout>

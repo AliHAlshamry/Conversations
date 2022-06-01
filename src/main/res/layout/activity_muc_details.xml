@@ -485,7 +485,7 @@
                             android:textSize="12sp"/>
                     </LinearLayout>
                     <LinearLayout
-                        android:id="@+id/show_users_layout"
+                        android:id="@+id/invite"
                         android:layout_width="match_parent"
                         android:layout_height="@dimen/linear_layout_with_icon_and_text_height"
                         android:layout_alignParentStart="true"
@@ -504,15 +504,14 @@
                             android:layout_centerVertical="true"
                             android:background="@drawable/rounded_background"
                             android:padding="6dp"
-                            android:src="@drawable/frame"/>
+                            android:src="@drawable/ic_profile_add_blue"/>
 
                         <TextView
-                            android:id="@+id/show_users"
                             android:layout_width="wrap_content"
                             android:layout_height="24dp"
                             android:layout_marginLeft="7dp"
                             android:lineHeight="24sp"
-                            android:text="View n Participants"
+                            android:text="@string/invite"
                             android:fontFamily="@font/roboto"
                             android:textColor="@color/txt_color2"
                             android:textFontWeight="400"
@@ -553,7 +552,7 @@
                             android:textSize="16sp"/>
                     </LinearLayout>
                     <LinearLayout
-                        android:id="@+id/invite"
+                        android:id="@+id/show_users_layout"
                         android:layout_width="match_parent"
                         android:layout_height="@dimen/linear_layout_with_icon_and_text_height"
                         android:layout_alignParentStart="true"
@@ -572,25 +571,20 @@
                             android:layout_centerVertical="true"
                             android:background="@drawable/rounded_background"
                             android:padding="6dp"
-                            android:src="@drawable/ic_profile_add_blue"/>
+                            android:src="@drawable/frame"/>
 
                         <TextView
+                            android:id="@+id/show_users"
                             android:layout_width="wrap_content"
                             android:layout_height="24dp"
                             android:layout_marginLeft="7dp"
                             android:lineHeight="24sp"
-                            android:text="@string/invite"
+                            android:text="View n Participants"
                             android:fontFamily="@font/roboto"
                             android:textColor="@color/txt_color2"
                             android:textFontWeight="400"
                             android:textSize="16sp"/>
                     </LinearLayout>
-                    <View
-                        android:layout_width="match_parent"
-                        android:layout_height="1dp"
-                        android:layout_marginTop="19dp"
-                        android:background="@color/txt_color6"
-                        android:layout_marginHorizontal="24dp"/>
                     <androidx.recyclerview.widget.RecyclerView
                         android:id="@+id/users"
                         android:layout_width="match_parent"
@@ -601,8 +595,15 @@
                         android:paddingTop="@dimen/card_padding_regular"
                         android:paddingBottom="@dimen/card_padding_list"
                         android:layout_marginStart="-2dp"
-                        android:layout_marginEnd="-2dp"/>
-                </LinearLayout>
+                        android:layout_marginEnd="-2dp"
+                        android:layout_marginTop="8dp"/>
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="1dp"
+                        android:layout_marginTop="19dp"
+                        android:background="@color/txt_color6"
+                        android:layout_marginHorizontal="24dp"/>
+                 </LinearLayout>
 
 <!--                <androidx.cardview.widget.CardView-->
 <!--                    android:layout_width="match_parent"-->

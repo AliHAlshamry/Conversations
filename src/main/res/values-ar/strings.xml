@@ -708,7 +708,7 @@
     <string name="create_private_group_chat">انشاء مجموعة جديدة</string>
     <string name="create_public_channel">انشاء قناة</string>
     <string name="create_dialog_channel_name">اسم القناة</string>
-    <string name="xmpp_address">العنوان</string>
+    <string name="xmpp_address">البريد الالكتروني</string>
     <string name="please_enter_name">يرجى إدخال اسمٍ للقناة</string>
     <string name="creating_channel">جار انشاء القناة العامة…</string>
     <string name="joined_an_existing_channel">لقد التحقت بقناة موجودة سابقا</string>

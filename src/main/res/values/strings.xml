@@ -849,7 +849,7 @@
     <string name="create_private_group_chat">Create private group chat</string>
     <string name="create_public_channel">Create public channel</string>
     <string name="create_dialog_channel_name">Channel name</string>
-    <string name="xmpp_address">XMPP address</string>
+    <string name="xmpp_address">Email address</string>
     <string name="please_enter_name">Please provide a name for the channel</string>
     <string name="please_enter_xmpp_address">Please provide an XMPP address</string>
     <string name="this_is_an_xmpp_address">This is an XMPP address. Please provide a name.</string>

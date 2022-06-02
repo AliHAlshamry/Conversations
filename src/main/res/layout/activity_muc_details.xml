@@ -349,18 +349,19 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:orientation="vertical"
-                    android:layout_marginTop="32dp">
+                    android:layout_marginTop="27dp">
                     <LinearLayout
                         android:id="@+id/edit_muc_photo_button"
                         android:layout_width="match_parent"
-                        android:layout_height="@dimen/linear_layout_with_icon_and_text_height"
+                        android:layout_height="wrap_content"
                         android:layout_alignParentStart="true"
                         android:layout_alignParentLeft="true"
                         android:background="?attr/selectableItemBackground"
                         android:clickable="true"
                         android:gravity="center|left"
                         android:orientation="horizontal"
-                        android:paddingHorizontal="24dp">
+                        android:paddingHorizontal="24dp"
+                        android:paddingVertical="@dimen/linear_layout_with_icon_and_text_padding">
 
                         <ImageView
                             android:layout_width="32dp"
@@ -385,7 +386,7 @@
                     <LinearLayout
                         android:id="@+id/edit_muc_name_button"
                         android:layout_width="match_parent"
-                        android:layout_height="@dimen/linear_layout_with_icon_and_text_height"
+                        android:layout_height="wrap_content"
                         android:layout_alignParentStart="true"
                         android:layout_alignParentLeft="true"
                         android:background="?attr/selectableItemBackground"
@@ -393,7 +394,8 @@
                         android:gravity="center|left"
                         android:orientation="horizontal"
                         android:paddingHorizontal="24dp"
-                        android:layout_marginTop="32dp">
+                        android:layout_marginTop="27dp"
+                        android:paddingVertical="@dimen/linear_layout_with_icon_and_text_padding">
 
                         <ImageView
                             android:layout_width="32dp"
@@ -418,7 +420,7 @@
                     <LinearLayout
                         android:id="@+id/change_conference_button"
                         android:layout_width="match_parent"
-                        android:layout_height="@dimen/linear_layout_with_icon_and_text_height"
+                        android:layout_height="wrap_content"
                         android:layout_alignParentStart="true"
                         android:layout_alignParentLeft="true"
                         android:background="?attr/selectableItemBackground"
@@ -426,7 +428,8 @@
                         android:gravity="center|left"
                         android:orientation="horizontal"
                         android:paddingHorizontal="24dp"
-                        android:layout_marginTop="32dp">
+                        android:layout_marginTop="27dp"
+                        android:paddingVertical="@dimen/linear_layout_with_icon_and_text_padding">
 
                         <ImageView
                             android:layout_width="32dp"
@@ -487,7 +490,7 @@
                     <LinearLayout
                         android:id="@+id/invite"
                         android:layout_width="match_parent"
-                        android:layout_height="@dimen/linear_layout_with_icon_and_text_height"
+                        android:layout_height="wrap_content"
                         android:layout_alignParentStart="true"
                         android:layout_alignParentLeft="true"
                         android:background="?attr/selectableItemBackground"
@@ -495,7 +498,8 @@
                         android:gravity="center|left"
                         android:orientation="horizontal"
                         android:paddingHorizontal="24dp"
-                        android:layout_marginTop="27dp">
+                        android:layout_marginTop="22dp"
+                        android:paddingVertical="@dimen/linear_layout_with_icon_and_text_padding">
 
                         <ImageView
                             android:layout_width="32dp"
@@ -520,7 +524,7 @@
                     <LinearLayout
                         android:id="@+id/share_button"
                         android:layout_width="match_parent"
-                        android:layout_height="@dimen/linear_layout_with_icon_and_text_height"
+                        android:layout_height="wrap_content"
                         android:layout_alignParentStart="true"
                         android:layout_alignParentLeft="true"
                         android:background="?attr/selectableItemBackground"
@@ -528,7 +532,8 @@
                         android:gravity="center|left"
                         android:orientation="horizontal"
                         android:paddingHorizontal="24dp"
-                        android:layout_marginTop="32dp">
+                        android:layout_marginTop="27dp"
+                        android:paddingVertical="@dimen/linear_layout_with_icon_and_text_padding">
 
                         <ImageView
                             android:layout_width="32dp"
@@ -554,7 +559,7 @@
                     <LinearLayout
                         android:id="@+id/show_users_layout"
                         android:layout_width="match_parent"
-                        android:layout_height="@dimen/linear_layout_with_icon_and_text_height"
+                        android:layout_height="wrap_content"
                         android:layout_alignParentStart="true"
                         android:layout_alignParentLeft="true"
                         android:background="?attr/selectableItemBackground"
@@ -562,7 +567,8 @@
                         android:gravity="center|left"
                         android:orientation="horizontal"
                         android:paddingHorizontal="24dp"
-                        android:layout_marginTop="32dp">
+                        android:layout_marginTop="27dp"
+                        android:paddingVertical="@dimen/linear_layout_with_icon_and_text_padding">
 
                         <ImageView
                             android:layout_width="32dp"
@@ -749,18 +755,19 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:orientation="vertical"
-                    android:layout_marginTop="16dp">
+                    android:layout_marginTop="11dp">
                     <LinearLayout
                         android:id="@+id/notification_status_layout"
                         android:layout_width="match_parent"
-                        android:layout_height="@dimen/linear_layout_with_icon_and_text_height"
+                        android:layout_height="wrap_content"
                         android:layout_alignParentStart="true"
                         android:layout_alignParentLeft="true"
                         android:background="?attr/selectableItemBackground"
                         android:clickable="true"
                         android:gravity="center|left"
                         android:orientation="horizontal"
-                        android:paddingHorizontal="24dp">
+                        android:paddingHorizontal="24dp"
+                        android:paddingVertical="@dimen/linear_layout_with_icon_and_text_padding">
 
                         <ImageView
                             android:id="@+id/notification_status_button"
@@ -795,7 +802,8 @@
                         android:gravity="center|left"
                         android:orientation="horizontal"
                         android:paddingHorizontal="24dp"
-                        android:layout_marginTop="32dp">
+                        android:layout_marginTop="27dp"
+                        android:paddingVertical="@dimen/linear_layout_with_icon_and_text_padding">
 
                         <ImageView
                             android:layout_width="32dp"
@@ -850,7 +858,7 @@
                     <LinearLayout
                         android:id="@+id/action_destroy_room_layout"
                         android:layout_width="match_parent"
-                        android:layout_height="@dimen/linear_layout_with_icon_and_text_height"
+                        android:layout_height="wrap_content"
                         android:layout_alignParentStart="true"
                         android:layout_alignParentLeft="true"
                         android:background="?attr/selectableItemBackground"
@@ -858,7 +866,8 @@
                         android:gravity="center|left"
                         android:orientation="horizontal"
                         android:paddingHorizontal="24dp"
-                        android:layout_marginTop="32dp">
+                        android:layout_marginTop="27dp"
+                        android:paddingVertical="@dimen/linear_layout_with_icon_and_text_padding">
 
                         <ImageView
                             android:layout_width="32dp"
@@ -884,7 +893,7 @@
                     <LinearLayout
                         android:id="@+id/action_delete_bookmark_layout"
                         android:layout_width="match_parent"
-                        android:layout_height="@dimen/linear_layout_with_icon_and_text_height"
+                        android:layout_height="wrap_content"
                         android:layout_alignParentStart="true"
                         android:layout_alignParentLeft="true"
                         android:background="?attr/selectableItemBackground"
@@ -892,7 +901,8 @@
                         android:gravity="center|left"
                         android:orientation="horizontal"
                         android:paddingHorizontal="24dp"
-                        android:layout_marginTop="32dp">
+                        android:layout_marginTop="27dp"
+                        android:paddingVertical="@dimen/linear_layout_with_icon_and_text_padding">
 
                         <ImageView
                             android:layout_width="32dp"

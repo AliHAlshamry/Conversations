@@ -23,6 +23,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="vertical">
+
                 <LinearLayout
                     android:id="@+id/account_card"
                     android:layout_width="match_parent"
@@ -63,30 +64,31 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="15dp"
+                        android:fontFamily="@font/roboto"
                         android:lineHeight="27sp"
                         android:text="@string/account_settings_example_jabber_id"
-                        android:fontFamily="@font/roboto"
                         android:textColor="@color/black"
                         android:textFontWeight="400"
-                        android:textSize="18sp"/>
+                        android:textSize="18sp" />
 
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_marginTop="57dp"
+                        android:layout_marginTop="52dp"
                         android:orientation="vertical">
 
                         <LinearLayout
                             android:id="@+id/action_edit_name"
                             android:layout_width="match_parent"
-                            android:layout_height="@dimen/linear_layout_with_icon_and_text_height"
+                            android:layout_height="wrap_content"
                             android:layout_alignParentStart="true"
                             android:layout_alignParentLeft="true"
                             android:background="?attr/selectableItemBackground"
                             android:clickable="true"
                             android:gravity="center|left"
                             android:orientation="horizontal"
-                            android:paddingHorizontal="24dp">
+                            android:paddingHorizontal="24dp"
+                            android:paddingVertical="@dimen/linear_layout_with_icon_and_text_padding">
 
                             <ImageView
                                 android:layout_width="32dp"
@@ -102,26 +104,27 @@
                                 android:layout_width="wrap_content"
                                 android:layout_height="24dp"
                                 android:layout_marginLeft="7dp"
+                                android:fontFamily="@font/roboto"
                                 android:lineHeight="24sp"
                                 android:text="@string/your_name"
-                                android:fontFamily="@font/roboto"
                                 android:textColor="@color/txt_color2"
                                 android:textFontWeight="400"
-                                android:textSize="16sp"/>
+                                android:textSize="16sp" />
                         </LinearLayout>
 
                         <LinearLayout
                             android:id="@+id/action_edit_status_message"
                             android:layout_width="match_parent"
-                            android:layout_height="@dimen/linear_layout_with_icon_and_text_height"
+                            android:layout_height="wrap_content"
                             android:layout_alignParentStart="true"
                             android:layout_alignParentLeft="true"
-                            android:layout_marginTop="32dp"
+                            android:layout_marginTop="27dp"
                             android:background="?attr/selectableItemBackground"
                             android:clickable="true"
                             android:gravity="center|left"
                             android:orientation="horizontal"
-                            android:paddingHorizontal="24dp">
+                            android:paddingHorizontal="24dp"
+                            android:paddingVertical="@dimen/linear_layout_with_icon_and_text_padding">
 
                             <ImageView
                                 android:layout_width="32dp"
@@ -136,33 +139,34 @@
                                 android:layout_width="wrap_content"
                                 android:layout_height="24dp"
                                 android:layout_marginLeft="7dp"
+                                android:fontFamily="@font/roboto"
                                 android:lineHeight="24sp"
                                 android:text="@string/status_message"
-                                android:fontFamily="@font/roboto"
                                 android:textColor="@color/txt_color2"
                                 android:textFontWeight="400"
-                                android:textSize="16sp"/>
+                                android:textSize="16sp" />
                         </LinearLayout>
 
                         <View
                             android:layout_width="match_parent"
                             android:layout_height="1dp"
+                            android:layout_marginHorizontal="24dp"
                             android:layout_marginTop="29dp"
-                            android:background="@color/txt_color6"
-                            android:layout_marginHorizontal="24dp"/>
+                            android:background="@color/txt_color6" />
 
                         <LinearLayout
                             android:id="@+id/action_share_uri_button"
                             android:layout_width="match_parent"
-                            android:layout_height="@dimen/linear_layout_with_icon_and_text_height"
+                            android:layout_height="wrap_content"
                             android:layout_alignParentStart="true"
                             android:layout_alignParentLeft="true"
-                            android:layout_marginTop="27dp"
+                            android:layout_marginTop="22dp"
                             android:background="?attr/selectableItemBackground"
                             android:clickable="true"
                             android:gravity="center|left"
                             android:orientation="horizontal"
-                            android:paddingHorizontal="24dp">
+                            android:paddingHorizontal="24dp"
+                            android:paddingVertical="@dimen/linear_layout_with_icon_and_text_padding">
 
                             <ImageView
                                 android:layout_width="32dp"
@@ -178,26 +182,27 @@
                                 android:layout_width="wrap_content"
                                 android:layout_height="24dp"
                                 android:layout_marginLeft="7dp"
+                                android:fontFamily="@font/roboto"
                                 android:lineHeight="24sp"
                                 android:text="@string/share_uri_with"
-                                android:fontFamily="@font/roboto"
                                 android:textColor="@color/txt_color2"
                                 android:textFontWeight="400"
-                                android:textSize="16sp"/>
+                                android:textSize="16sp" />
                         </LinearLayout>
 
                         <LinearLayout
                             android:id="@+id/action_archive_button"
                             android:layout_width="match_parent"
-                            android:layout_height="@dimen/linear_layout_with_icon_and_text_height"
+                            android:layout_height="wrap_content"
                             android:layout_alignParentStart="true"
                             android:layout_alignParentLeft="true"
-                            android:layout_marginTop="32dp"
+                            android:layout_marginTop="27dp"
                             android:background="?attr/selectableItemBackground"
                             android:clickable="true"
                             android:gravity="center|left"
                             android:orientation="horizontal"
-                            android:paddingHorizontal="24dp">
+                            android:paddingHorizontal="24dp"
+                            android:paddingVertical="@dimen/linear_layout_with_icon_and_text_padding">
 
                             <ImageView
                                 android:layout_width="32dp"
@@ -212,26 +217,27 @@
                                 android:layout_width="wrap_content"
                                 android:layout_height="24dp"
                                 android:layout_marginLeft="7dp"
+                                android:fontFamily="@font/roboto"
                                 android:lineHeight="24sp"
                                 android:text="@string/mam_prefs"
-                                android:fontFamily="@font/roboto"
                                 android:textColor="@color/txt_color2"
                                 android:textFontWeight="400"
-                                android:textSize="16sp"/>
+                                android:textSize="16sp" />
                         </LinearLayout>
 
                         <LinearLayout
                             android:id="@+id/action_show_block_list"
                             android:layout_width="match_parent"
-                            android:layout_height="@dimen/linear_layout_with_icon_and_text_height"
+                            android:layout_height="wrap_content"
                             android:layout_alignParentStart="true"
                             android:layout_alignParentLeft="true"
-                            android:layout_marginTop="32dp"
+                            android:layout_marginTop="27dp"
                             android:background="?attr/selectableItemBackground"
                             android:clickable="true"
                             android:gravity="center|left"
                             android:orientation="horizontal"
-                            android:paddingHorizontal="24dp">
+                            android:paddingHorizontal="24dp"
+                            android:paddingVertical="@dimen/linear_layout_with_icon_and_text_padding">
 
                             <ImageView
                                 android:layout_width="32dp"
@@ -246,12 +252,12 @@
                                 android:layout_width="wrap_content"
                                 android:layout_height="24dp"
                                 android:layout_marginLeft="7dp"
+                                android:fontFamily="@font/roboto"
                                 android:lineHeight="24sp"
                                 android:text="@string/show_block_list"
                                 android:textColor="@color/error"
-                                android:fontFamily="@font/roboto"
                                 android:textFontWeight="400"
-                                android:textSize="16sp"/>
+                                android:textSize="16sp" />
                         </LinearLayout>
                     </LinearLayout>
                 </LinearLayout>
@@ -333,48 +339,51 @@
                                 android:padding="8dp"
                                 android:textColor="@color/txt_color1" />
                         </com.google.android.material.textfield.TextInputLayout>
-                    <LinearLayout
-                        android:id="@+id/confirm_password_layout"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:visibility="gone"
-                        android:orientation="vertical">
-                        <TextView
-                            android:layout_width="122dp"
-                            android:layout_height="40dp"
-                            android:fontFamily="sans-serif"
-                            android:paddingTop="8dp"
-                            android:text="@string/confirm_password"
-                            android:textColor="@color/txt_color1"
-                            android:textStyle="bold" />
 
-
-                        <com.google.android.material.textfield.TextInputLayout
-                            android:id="@+id/re_enter_password_layout"
+                        <LinearLayout
+                            android:id="@+id/confirm_password_layout"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            app:errorTextAppearance="@style/TextAppearance.Conversations.Design.Error"
-                            app:hintEnabled="false"
-                            app:hintTextAppearance="@style/TextAppearance.Conversations.Design.Hint"
-                            app:passwordToggleDrawable="@drawable/visibility_toggle_drawable"
-                            app:passwordToggleEnabled="true"
-                            app:passwordToggleTint="?android:textColorSecondary">
+                            android:orientation="vertical"
+                            android:visibility="gone">
 
-                            <eu.siacs.conversations.ui.widget.TextInputEditText
-                                android:id="@+id/re_enter_password"
+                            <TextView
+                                android:layout_width="122dp"
+                                android:layout_height="40dp"
+                                android:fontFamily="sans-serif"
+                                android:paddingTop="8dp"
+                                android:text="@string/confirm_password"
+                                android:textColor="@color/txt_color1"
+                                android:textStyle="bold" />
 
-                                style="@style/Widget.Conversations.EditText"
+
+                            <com.google.android.material.textfield.TextInputLayout
+                                android:id="@+id/re_enter_password_layout"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
-                                android:layout_alignParentTop="true"
-                                android:background="@drawable/custom_edit_text"
-                                android:hint="@string/password_hint"
-                                android:inputType="textPassword"
-                                android:padding="8dp"
-                                android:textColor="@color/txt_color1" />
-                        </com.google.android.material.textfield.TextInputLayout>
+                                app:errorTextAppearance="@style/TextAppearance.Conversations.Design.Error"
+                                app:hintEnabled="false"
+                                app:hintTextAppearance="@style/TextAppearance.Conversations.Design.Hint"
+                                app:passwordToggleDrawable="@drawable/visibility_toggle_drawable"
+                                app:passwordToggleEnabled="true"
+                                app:passwordToggleTint="?android:textColorSecondary">
 
-                    </LinearLayout>
+                                <eu.siacs.conversations.ui.widget.TextInputEditText
+                                    android:id="@+id/re_enter_password"
+
+                                    style="@style/Widget.Conversations.EditText"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:layout_alignParentTop="true"
+                                    android:background="@drawable/custom_edit_text"
+                                    android:hint="@string/password_hint"
+                                    android:inputType="textPassword"
+                                    android:padding="8dp"
+                                    android:textColor="@color/txt_color1" />
+                            </com.google.android.material.textfield.TextInputLayout>
+
+                        </LinearLayout>
+
                         <LinearLayout
                             android:id="@+id/name_port"
                             android:layout_width="fill_parent"

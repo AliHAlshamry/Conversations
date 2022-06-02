@@ -10,6 +10,7 @@ import static eu.siacs.conversations.utils.PermissionUtils.writeGranted;
 import android.Manifest;
 import android.annotation.SuppressLint;
 import android.app.Activity;
+import android.app.Dialog;
 import android.app.Fragment;
 import android.app.FragmentManager;
 import android.app.PendingIntent;
@@ -47,6 +48,7 @@ import android.widget.AbsListView;
 import android.widget.AbsListView.OnScrollListener;
 import android.widget.AdapterView;
 import android.widget.AdapterView.AdapterContextMenuInfo;
+import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.ListView;
 import android.widget.PopupMenu;
@@ -1684,13 +1686,31 @@ public class ConversationFragment extends XmppFragment implements EditMessage.Ke
 
     @SuppressLint("InflateParams")
     protected void clearHistoryDialog(final Conversation conversation) {
-        final AlertDialog.Builder builder = new AlertDialog.Builder(requireActivity());
-        builder.setTitle(getString(R.string.clear_conversation_history));
-        final View dialogView = requireActivity().getLayoutInflater().inflate(R.layout.dialog_clear_history, null);
-        final CheckBox endConversationCheckBox = dialogView.findViewById(R.id.end_conversation_checkbox);
-        builder.setView(dialogView);
-        builder.setNegativeButton(getString(R.string.cancel), null);
-        builder.setPositiveButton(getString(R.string.confirm), (dialog, which) -> {
+//        final AlertDialog.Builder builder = new AlertDialog.Builder(requireActivity());
+//        builder.setTitle(getString(R.string.clear_conversation_history));
+//        final View dialogView = requireActivity().getLayoutInflater().inflate(R.layout.dialog_clear_history, null);
+//        final CheckBox endConversationCheckBox = dialogView.findViewById(R.id.end_conversation_checkbox);
+//        builder.setView(dialogView);
+//        builder.setNegativeButton(getString(R.string.cancel), null);
+//        builder.setPositiveButton(getString(R.string.confirm), (dialog, which) -> {
+//            this.activity.xmppConnectionService.clearConversationHistory(conversation);
+//            if (endConversationCheckBox.isChecked()) {
+//                this.activity.xmppConnectionService.archiveConversation(conversation);
+//                this.activity.onConversationArchived(conversation);
+//            } else {
+//                activity.onConversationsListItemUpdated();
+//                refresh();
+//            }
+//        });
+//        builder.create().show();
+        Dialog dialog = new Dialog(getActivity());
+        dialog.setCancelable(true);
+        View view  = getActivity().getLayoutInflater().inflate(R.layout.dialog_clear_history, null);
+        dialog.setContentView(view);
+        final CheckBox endConversationCheckBox = view.findViewById(R.id.end_conversation_checkbox);
+        Button confirmBtn =  view.findViewById(R.id.confirm_button);
+        Button cancel =  view.findViewById(R.id.cancel_button);
+        confirmBtn.setOnClickListener(v->{
             this.activity.xmppConnectionService.clearConversationHistory(conversation);
             if (endConversationCheckBox.isChecked()) {
                 this.activity.xmppConnectionService.archiveConversation(conversation);
@@ -1699,8 +1719,10 @@ public class ConversationFragment extends XmppFragment implements EditMessage.Ke
                 activity.onConversationsListItemUpdated();
                 refresh();
             }
+            dialog.dismiss();
         });
-        builder.create().show();
+        cancel.setOnClickListener(v -> dialog.dismiss());
+        dialog.show();
     }
 
     protected void muteConversationDialog(final Conversation conversation) {

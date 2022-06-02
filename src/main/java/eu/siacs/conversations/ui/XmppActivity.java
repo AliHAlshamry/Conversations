@@ -64,6 +64,7 @@ import java.util.concurrent.RejectedExecutionException;
 import eu.siacs.conversations.Config;
 import eu.siacs.conversations.R;
 import eu.siacs.conversations.crypto.PgpEngine;
+import eu.siacs.conversations.databinding.DialogAddContactBinding;
 import eu.siacs.conversations.databinding.DialogQuickeditBinding;
 import eu.siacs.conversations.entities.Account;
 import eu.siacs.conversations.entities.Contact;
@@ -663,11 +664,27 @@ public abstract class XmppActivity extends ActionBarActivity {
 
     protected void showAddToRosterDialog(final Contact contact) {
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
-        builder.setTitle(contact.getJid().toString());
-        builder.setMessage(getString(R.string.not_in_roster));
-        builder.setNegativeButton(getString(R.string.cancel), null);
-        builder.setPositiveButton(getString(R.string.add_contact), (dialog, which) -> xmppConnectionService.createContact(contact, true));
-        builder.create().show();
+//        builder.setTitle(contact.getJid().toString());
+//        builder.setMessage(getString(R.string.not_in_roster));
+//        builder.setNegativeButton(getString(R.string.cancel), null);
+//        builder.setPositiveButton(getString(R.string.add_contact), (dialog, which) -> xmppConnectionService.createContact(contact, true));
+//        builder.create().show();
+        DialogAddContactBinding binding = DataBindingUtil.inflate(getLayoutInflater(), R.layout.dialog_add_contact, null, false);
+        builder.setView(binding.getRoot());
+        final AlertDialog dialog = builder.create();
+        dialog.setCanceledOnTouchOutside(false);
+        dialog.show();
+        binding.contactName.setText(contact.getJid().toString());
+        WindowManager.LayoutParams layoutParams = new WindowManager.LayoutParams();
+        layoutParams.copyFrom(dialog.getWindow().getAttributes());
+        layoutParams.width = (int) (348 * this.getResources().getDisplayMetrics().density);
+        layoutParams.height =  layoutParams.WRAP_CONTENT;
+        dialog.getWindow().setAttributes(layoutParams);
+        binding.addContactButton.setOnClickListener(v->{
+            xmppConnectionService.createContact(contact, true);
+            dialog.dismiss();
+        });
+        binding.cancelButton.setOnClickListener(v -> dialog.dismiss());
     }
 
     private void showAskForPresenceDialog(final Contact contact) {

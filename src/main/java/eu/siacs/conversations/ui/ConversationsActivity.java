@@ -178,6 +178,22 @@ public class ConversationsActivity extends XmppActivity implements OnConversatio
             refreshFragment(id);
         }
     }
+    public interface OnBackClickListener {
+        boolean onBackClick();
+    }
+
+    private OnBackClickListener onBackClickListener;
+
+    public void setOnBackClickListener(OnBackClickListener onBackClickListener) {
+        this.onBackClickListener = onBackClickListener;
+    }
+
+    @Override
+    public void onBackPressed() {
+        if (onBackClickListener != null && onBackClickListener.onBackClick()) {
+            super.onBackPressed();
+        }
+    }
 
     @Override
     void onBackendConnected() {

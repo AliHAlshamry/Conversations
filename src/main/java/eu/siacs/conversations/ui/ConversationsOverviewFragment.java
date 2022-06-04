@@ -450,6 +450,16 @@ public class ConversationsOverviewFragment extends XmppFragment {
 			}
 			return false;
 		});
+		((ConversationsActivity) getActivity()).setOnBackClickListener(new ConversationsActivity.OnBackClickListener() {
+			@Override
+			public boolean onBackClick() {
+				if(binding.speedDial.isOpen()){
+					binding.speedDial.close();
+					return false;
+				}
+				return true;
+			}
+		});
 		this.conversationAdapter.setConversationLongClickListener((view, conversation) -> {
 			android.widget.PopupMenu popupMenu = new android.widget.PopupMenu(view.getContext(), view.findViewById(R.id.conversation_name));
 			getActivity().getMenuInflater().inflate(R.menu.fragment_conversation, popupMenu.getMenu());

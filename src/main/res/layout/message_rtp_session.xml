@@ -32,7 +32,10 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             tools:text="@string/incoming_call"
-            android:textAppearance="@style/TextAppearance.Conversations.Body1.Secondary" />
+            android:fontFamily="@font/roboto_medium"
+            android:textFontWeight="500"
+            android:textSize="14sp"
+            android:textColor="@color/txt_color2"/>
     </LinearLayout>
 
 </RelativeLayout>

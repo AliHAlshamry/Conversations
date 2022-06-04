@@ -20,8 +20,11 @@
             android:id="@+id/message_body"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textAppearance="@style/TextAppearance.Conversations.Body1.Secondary"
-            tools:text="Yesterday" />
+            android:fontFamily="@font/roboto_medium"
+            android:textFontWeight="500"
+            android:textSize="14sp"
+            android:textColor="@color/txt_color2"
+            tools:text="Yesterday"/>
     </LinearLayout>
 
 </RelativeLayout>

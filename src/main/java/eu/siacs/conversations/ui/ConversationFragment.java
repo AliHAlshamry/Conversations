@@ -50,6 +50,7 @@ import android.widget.AdapterView;
 import android.widget.AdapterView.AdapterContextMenuInfo;
 import android.widget.Button;
 import android.widget.CheckBox;
+import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.PopupMenu;
 import android.widget.TextView;
@@ -2514,7 +2515,11 @@ public class ConversationFragment extends XmppFragment implements EditMessage.Ke
                 connectionStatus = getString(R.string.account_status_not_found);
                 break;
         }
+        LinearLayout contact_info = activity.findViewById(R.id.contact_info);
         TextView contactStatus = activity.findViewById(R.id.contact_status);
+        TextView contactName = activity.findViewById(R.id.contact_name);
+        contactName.setVisibility(View.VISIBLE);
+        contactName.setText(conversation.getName());
         contactStatus.setVisibility(View.VISIBLE);
         if (connectionStatus != "") {
 //            activity.getSupportActionBar().setSubtitle(connectionStatus);
@@ -2546,12 +2551,15 @@ public class ConversationFragment extends XmppFragment implements EditMessage.Ke
                 }
             }
         } else {
-            activity.getSupportActionBar().setSubtitle("");
+            contactName.setText(conversation.getName());
             contactStatus.setText("");
         }
         if(connectionStatus.isEmpty() && conversation.getMode() == Conversational.MODE_MULTI){
+            contact_info.setVisibility(View.GONE);
             contactStatus.setVisibility(View.GONE);
         }
+        if (conversation.getMode() == Conversational.MODE_MULTI)
+            contact_info.setVisibility(View.GONE);
     }
     protected void messageSent() {
         mSendingPgpMessage.set(false);

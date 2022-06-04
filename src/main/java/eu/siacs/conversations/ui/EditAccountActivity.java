@@ -1389,6 +1389,7 @@ public class EditAccountActivity extends OmemoActivity implements OnAccountUpdat
 
     private void updateDisplayName(String displayName) {
         if (TextUtils.isEmpty(displayName)) {
+            getSupportActionBar().setTitle(mAccount.getJid().getLocal());
 //            this.binding.userName.setText(R.string.no_name_set_instructions);
 //            this.binding.yourName.setTextAppearance(this, R.style.TextAppearance_Conversations_Body1_Tertiary);
         } else {

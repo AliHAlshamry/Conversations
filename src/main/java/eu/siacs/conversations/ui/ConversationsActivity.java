@@ -709,10 +709,12 @@ public class ConversationsActivity extends XmppActivity implements OnConversatio
         if (mainFragment instanceof ConversationFragment) {
             final Conversation conversation = ((ConversationFragment) mainFragment).getConversation();
             if (conversation != null) {
+                if (conversation.getMode() == Conversational.MODE_MULTI)
+                    contactInfo.setVisibility(View.GONE);
 //               actionBar.setTitle(EmojiWrapper.transform(conversation.getName()));
                 AvatarWorkerTask.loadAvatar(conversation.getContact(), profilePhoto, R.dimen.media_size);
                 contactName.setVisibility(View.VISIBLE);
-                contactName.setText(conversation.getAccount().getJid().getLocal());
+                contactName.setText(conversation.getName());
                 contactInfo.setOnClickListener(view -> openConversationDetails(conversation));
 //                profilePhoto.setOnClickListener(view -> openConversationDetails(conversation));
                 actionBar.setDisplayHomeAsUpEnabled(true);

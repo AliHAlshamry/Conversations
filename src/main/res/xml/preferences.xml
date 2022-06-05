@@ -205,7 +205,7 @@
             android:summary="@string/pref_create_backup_summary"
             android:title="@string/pref_create_backup" />
     </PreferenceCategory>
-    <PreferenceCategory
+    <!--<PreferenceCategory
         android:key="advanced"
         android:title="@string/pref_advanced_options">
         <CheckBoxPreference
@@ -356,7 +356,7 @@
                     android:value="expert" />
             </intent>
         </PreferenceScreen>
-    </PreferenceCategory>
+    </PreferenceCategory>-->
     <PreferenceCategory android:title="@string/category_about">
         <eu.siacs.chatx.ui.AboutPreference />
     </PreferenceCategory>

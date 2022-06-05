@@ -27,8 +27,8 @@ public class AboutPreference extends Preference {
     @Override
     protected void onClick() {
         super.onClick();
-        final Intent intent = new Intent(getContext(), AboutActivity.class);
-        getContext().startActivity(intent);
+        //final Intent intent = new Intent(getContext(), AboutActivity.class);
+        //getContext().startActivity(intent);
     }
 }
 

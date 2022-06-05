@@ -72,12 +72,12 @@
             <item
                 android:id="@+id/mgmt_account_enable"
                 android:title="@string/mgmt_account_enable"
-                android:icon="@drawable/lock_slash"/>
+                android:icon="@drawable/ic_timer_gray"/>
 
             <item
                 android:id="@+id/mgmt_account_disable"
                 android:title="@string/mgmt_account_disable"
-                android:icon="@drawable/lock_slash"
+                android:icon="@drawable/ic_timer_gray"
                 app:showAsAction="never"/>
 
             <item

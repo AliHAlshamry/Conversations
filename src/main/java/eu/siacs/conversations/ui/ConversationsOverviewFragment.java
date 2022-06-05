@@ -453,10 +453,14 @@ public class ConversationsOverviewFragment extends XmppFragment {
 		((ConversationsActivity) getActivity()).setOnBackClickListener(new ConversationsActivity.OnBackClickListener() {
 			@Override
 			public boolean onBackClick() {
-				if(binding.speedDial.isOpen()){
-					binding.speedDial.close();
-					return false;
-				}
+				try {
+					if (binding.speedDial != null) {
+						if (binding.speedDial.isOpen()) {
+							binding.speedDial.close();
+							return false;
+						}
+					}
+				}catch (NullPointerException ignored){}
 				return true;
 			}
 		});

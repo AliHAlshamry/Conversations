@@ -118,7 +118,7 @@
             android:layout_gravity="right"
             android:orientation="horizontal"
             android:paddingBottom="2dp"
-            android:paddingTop="8dp">
+            android:paddingRight="10dp">
 
             <TextView
                 android:id="@+id/message_time"
@@ -134,16 +134,16 @@
                 android:text="@string/sending"
                 android:textColor="@color/txt_color2"
                 android:textFontWeight="400"
-                android:textSize="12sp" />
+                android:textSize="12sp"/>
 
             <ImageView
                 android:id="@+id/security_indicator"
-                android:layout_width="?attr/TextSizeCaption"
-                android:layout_height="?attr/TextSizeCaption"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
                 android:layout_gravity="center_vertical"
                 android:layout_marginLeft="4sp"
                 android:gravity="center_vertical"
-                android:src="@drawable/ic_lock_black_18dp" />
+                android:src="@drawable/ic_frame_lock_gray" />
 
             <ImageView
                 android:id="@+id/edit_indicator"
@@ -156,12 +156,12 @@
 
             <ImageView
                 android:id="@+id/indicator_received"
-                android:layout_width="?attr/TextSizeSubhead"
-                android:layout_height="?attr/TextSizeSubhead"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
                 android:layout_gravity="center_vertical"
                 android:layout_marginLeft="4sp"
                 android:gravity="center_vertical"
-                android:src="@drawable/vector" />
+                android:src="@drawable/vector"/>
         </LinearLayout>
     </LinearLayout>
 </RelativeLayout>

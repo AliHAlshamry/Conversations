@@ -53,9 +53,8 @@
             android:layout_height="wrap_content"
             android:layout_gravity="left"
             android:orientation="horizontal"
-            android:paddingLeft="4dp"
-            android:paddingBottom="2dp"
-            android:paddingTop="8dp">
+            android:paddingLeft="10dp"
+            android:paddingBottom="2dp">
 
             <TextView
                 android:id="@+id/message_encryption"
@@ -68,12 +67,12 @@
 
             <ImageView
                 android:id="@+id/security_indicator"
-                android:layout_width="?attr/TextSizeCaption"
-                android:layout_height="?attr/TextSizeCaption"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
                 android:layout_gravity="center_vertical"
                 android:layout_marginRight="4sp"
                 android:gravity="center_vertical"
-                android:src="@drawable/ic_lock_gray" />
+                android:src="@drawable/ic_frame_lock_gray" />
 
             <ImageView
                 android:id="@+id/edit_indicator"

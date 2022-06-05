@@ -269,10 +269,11 @@ public class MessageAdapter extends ArrayAdapter<Message> {
                 }
             }
             if (verified) {
-                viewHolder.indicator.setImageResource(darkBackground ? R.drawable.ic_verified_user_white_18dp : R.drawable.ic_verified_user_black_18dp);
+//              viewHolder.indicator.setImageResource(darkBackground ? R.drawable.ic_verified_user_white_18dp : R.drawable.ic_verified_user_black_18dp);
+                viewHolder.indicator.setImageResource(R.drawable.ic_shield_tick_gray);
             } else {
-//                viewHolder.indicator.setImageResource(darkBackground ? R.drawable.ic_lock_white_18dp : R.drawable.ic_lock_black_18dp);
-                viewHolder.indicator.setImageResource(R.drawable.ic_lock_gray);
+//              viewHolder.indicator.setImageResource(darkBackground ? R.drawable.ic_lock_white_18dp : R.drawable.ic_lock_black_18dp);
+                viewHolder.indicator.setImageResource(R.drawable.ic_frame_lock_gray);
             }
             if (darkBackground) {
                 viewHolder.indicator.setAlpha(0.7f);
@@ -838,7 +839,9 @@ public class MessageAdapter extends ArrayAdapter<Message> {
                 viewHolder.encryption.setVisibility(View.GONE);
             } else {
                 viewHolder.message_box.setBackgroundResource(R.drawable.message_bubble_received_warning);
-                viewHolder.encryption.setVisibility(View.VISIBLE);
+//                viewHolder.encryption.setVisibility(View.VISIBLE);
+                  viewHolder.encryption.setVisibility(View.GONE);
+
                 if (omemoEncryption && !message.isTrusted()) {
                     viewHolder.encryption.setText(R.string.not_trusted);
                 } else {

@@ -664,7 +664,7 @@ public class ConversationsOverviewFragment extends XmppFragment {
 				break;
 		}
 		TextView contactName = activity.findViewById(R.id.contact_name);
-		contactName.setText(activity.xmppConnectionService.getAccounts().get(0).getDisplayName());
+		//contactName.setText(activity.xmppConnectionService.getAccounts().get(0).getDisplayName());
 //		activity.getSupportActionBar().setSubtitle(connectionStatus);
 		final TextView contactStatus = activity.findViewById(R.id.contact_status);
 		contactStatus.setText(connectionStatus.isEmpty()?getString(R.string.account_status_online):connectionStatus);

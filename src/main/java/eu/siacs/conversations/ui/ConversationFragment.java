@@ -2651,11 +2651,8 @@ public class ConversationFragment extends XmppFragment implements EditMessage.Ke
             contactStatus.setText("");
         }
         if(connectionStatus.isEmpty() && conversation.getMode() == Conversational.MODE_MULTI){
-            contact_info.setVisibility(View.GONE);
             contactStatus.setVisibility(View.GONE);
         }
-        if (conversation.getMode() == Conversational.MODE_MULTI)
-            contact_info.setVisibility(View.GONE);
     }
     protected void messageSent() {
         mSendingPgpMessage.set(false);

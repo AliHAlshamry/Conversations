@@ -22,8 +22,8 @@
             android:layout_height="wrap_content"
             android:fontFamily="@font/roboto_medium"
             android:textFontWeight="500"
-            android:textSize="14sp"
-            android:textColor="@color/txt_color2"
+            android:textSize="12sp"
+            android:textColor="@color/txt_color3"
             tools:text="Yesterday"/>
     </LinearLayout>
 

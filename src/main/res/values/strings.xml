@@ -992,4 +992,5 @@
     <string name="password_hint">at least 6 letters</string>
     <string name="no_contacts">No contacts</string>
     <string name="no_book_marks">No bookMarks</string>
+    <string name="replay_to">Replaying to</string>
 </resources>

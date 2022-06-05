@@ -460,7 +460,37 @@ public class ConversationFragment extends XmppFragment implements EditMessage.Ke
                         }
                         break;
                     default:
+                        // TODO: The beginning of reply code
+
+                        LinearLayout replyContainer = activity.findViewById(R.id.reply_Container);
+                        if (replyContainer.getVisibility() == View.VISIBLE) {
+                            TextView sender = activity.findViewById(R.id.reply_sender);
+                            TextView msg = activity.findViewById(R.id.reply_message);
+                            String text;
+                            if (sender.getVisibility() == View.VISIBLE && conversation.getMode() == Conversation.MODE_MULTI)
+                                text = sender.getText().toString() + "\n" + msg.getText().toString();
+                            else
+                                text = msg.getText().toString();
+
+
+                            //String text = message.getBody();
+                            if (binding.textinput.isEnabled()) {
+                                if (binding.textinput.isEnabled()) {
+                                    binding.textinput.insertAsQuote(text);
+                                    binding.textinput.requestFocus();
+                                    InputMethodManager inputMethodManager = (InputMethodManager) getActivity().getSystemService(Context.INPUT_METHOD_SERVICE);
+                                    if (inputMethodManager != null) {
+                                        inputMethodManager.showSoftInput(binding.textinput, InputMethodManager.SHOW_IMPLICIT);
+                                    }
+                                }
+                            }
+                        }
+
+                        // The end of reply code
                         sendMessage();
+                        // TODO: x button of reply
+                        activity.findViewById(R.id.reply_Container).setVisibility(View.GONE);
+
                 }
             } else {
                 sendMessage();
@@ -1184,7 +1214,8 @@ public class ConversationFragment extends XmppFragment implements EditMessage.Ke
             MenuItem openWith = menu.findItem(R.id.open_with);
             MenuItem copyMessage = menu.findItem(R.id.copy_message);
             MenuItem copyLink = menu.findItem(R.id.copy_link);
-            MenuItem quoteMessage = menu.findItem(R.id.quote_message);
+//            MenuItem quoteMessage = menu.findItem(R.id.quote_message);
+            MenuItem reply = menu.findItem(R.id.reply);
             MenuItem retryDecryption = menu.findItem(R.id.retry_decryption);
             MenuItem correctMessage = menu.findItem(R.id.correct_message);
             MenuItem shareWith = menu.findItem(R.id.share_with);
@@ -1198,7 +1229,8 @@ public class ConversationFragment extends XmppFragment implements EditMessage.Ke
             final boolean showError = m.getStatus() == Message.STATUS_SEND_FAILED && m.getErrorMessage() != null && !Message.ERROR_MESSAGE_CANCELLED.equals(m.getErrorMessage());
             if (!m.isFileOrImage() && !encrypted && !m.isGeoUri() && !m.treatAsDownloadable() && !unInitiatedButKnownSize && t == null) {
                 copyMessage.setVisible(true);
-                quoteMessage.setVisible(!showError && MessageUtils.prepareQuote(m).length() > 0);
+                //quoteMessage.setVisible(!showError && MessageUtils.prepareQuote(m).length() > 0);
+                reply.setVisible(true);
                 String body = m.getMergedBody().toString();
                 if (ShareUtil.containsXmppUri(body)) {
                     copyLink.setTitle(R.string.copy_jabber_id);
@@ -1273,8 +1305,8 @@ public class ConversationFragment extends XmppFragment implements EditMessage.Ke
             case R.id.copy_link:
                 ShareUtil.copyLinkToClipboard(activity, selectedMessage);
                 return true;
-            case R.id.quote_message:
-                quoteMessage(selectedMessage);
+            case R.id.reply:
+                reply(selectedMessage);
                 return true;
             case R.id.send_again:
                 resendMessage(selectedMessage);
@@ -1910,7 +1942,71 @@ public class ConversationFragment extends XmppFragment implements EditMessage.Ke
         builder.setPositiveButton(R.string.confirm, null);
         builder.create().show();
     }
+    private void reply(Message message) {
 
+        final int index;
+        synchronized (this.messageList) {
+            index = this.messageList.indexOf(message);
+        }
+
+
+        if (index >= 0) {
+            final boolean isDarkTheme = activity.isDarkTheme();
+            final int first = binding.messagesView.getFirstVisiblePosition();
+            final int last = first + binding.messagesView.getChildCount();
+            if (index >= first && index < last) {
+                final View view = binding.messagesView.getChildAt(index - first);
+                LinearLayout replyContainer = (LinearLayout) activity.findViewById(R.id.reply_Container);
+                TextView tvSender = (TextView) activity.findViewById(R.id.reply_sender);
+                replyContainer.setVisibility(View.VISIBLE);
+                tvSender.setVisibility(View.VISIBLE);
+
+                try {
+                    if (this.selectedMessage.getStatus() <= Message.STATUS_RECEIVED) {
+                        String sender = this.selectedMessage.getContact().getDisplayName();
+                        //sender = activity.getContactName(sender);
+                        if (sender != null) {
+                            //tvSender.setText(R.string.reply_to + sender + ":");
+                            tvSender.setText("Replying to " + sender);
+                        }
+                        else {
+                            sender = this.selectedMessage.getContact().getJid().getLocal();
+                            tvSender.setText("Replying to " + sender);
+                        }
+                    } else {
+                        tvSender.setText("Replying to my message");
+                    }
+                } catch (NullPointerException e) {
+                    tvSender.setVisibility(View.GONE);
+                }
+
+                TextView tvMessage = (TextView) activity.findViewById(R.id.reply_message);
+                String msg = this.selectedMessage.getMergedBody().toString();
+                int lastLineOfReply = msg.lastIndexOf("< ");
+                boolean hasReply = lastLineOfReply > -1;
+                int beginningOfMessage = hasReply ? msg.indexOf("\n", lastLineOfReply) + 1 : 0;
+                String msgTrimmed = this.selectedMessage.getMergedBody().toString().substring(beginningOfMessage);
+                String asdf = this.selectedMessage.getMergedBody().toString().replace("< ", "").trim();
+                msgTrimmed = msg.replaceAll("(\n *){2,}", "\n").replaceAll("(^|\n)", "$1> ").replaceAll("\n$", "");
+
+                if (msgTrimmed.contains("< "))
+                    msgTrimmed = msgTrimmed.substring(0, msgTrimmed.indexOf("< ") - 1);
+                tvMessage.setText(msg);
+                //final TextView messageBody = this.messageListAdapter.getMessageBody(view);
+//				if (messageBody != null) {
+//					//ListSelectionManager.startSelection(messageBody);
+//				}
+                //replyContainer.setBackgroundColor(R.drawable.ic_message_box_rect);
+                binding.textinput.requestFocus();
+                InputMethodManager inputMethodManager = (InputMethodManager) getActivity()
+                        .getSystemService(Context.INPUT_METHOD_SERVICE);
+                if (inputMethodManager != null) {
+                    inputMethodManager.showSoftInput(binding.textinput, InputMethodManager.SHOW_IMPLICIT);
+                }
+            }
+        }
+
+    }
 
     private void deleteFile(final Message message) {
         AlertDialog.Builder builder = new AlertDialog.Builder(requireActivity());

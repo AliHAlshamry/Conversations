@@ -969,4 +969,9 @@ public class ConversationsActivity extends XmppActivity implements OnConversatio
             }
         });
     }
+    public void x_button_click(View view) {
+        ImageView xButton = findViewById(R.id.x_button);
+        findViewById(R.id.reply_Container).setVisibility(View.GONE);
+        //xButton.setOnClickListener(v -> findViewById(R.id.reply_Container).setVisibility(View.GONE));
+    }
 }

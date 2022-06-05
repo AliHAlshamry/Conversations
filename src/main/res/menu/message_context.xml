@@ -2,6 +2,11 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
 
     <item
+        android:id="@+id/reply"
+        android:title="@string/reply"
+        android:visible="false"/>
+
+    <item
         android:id="@+id/open_with"
         android:title="@string/open_with"
         android:visible="false" />
@@ -20,10 +25,10 @@
         android:id="@+id/copy_link"
         android:title="@string/copy_link"
         android:visible="false" />
-    <item
+<!--    <item
         android:id="@+id/quote_message"
         android:title="@string/quote"
-        android:visible="false" />
+        android:visible="false" />-->
 
     <item
         android:id="@+id/retry_decryption"

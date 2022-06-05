@@ -1,4 +1,4 @@
-package eu.siacs.conversations.ui;
+package eu.siacs.chatx.ui;
 
 import android.app.AlertDialog;
 import android.content.ClipData;
@@ -17,15 +17,15 @@ import android.view.View;
 
 import java.util.concurrent.atomic.AtomicBoolean;
 
-import eu.siacs.conversations.R;
-import eu.siacs.conversations.databinding.ActivityVerifyBinding;
-import eu.siacs.conversations.entities.Account;
-import eu.siacs.conversations.services.QuickConversationsService;
-import eu.siacs.conversations.ui.util.ApiDialogHelper;
-import eu.siacs.conversations.ui.util.PinEntryWrapper;
-import eu.siacs.conversations.utils.AccountUtils;
-import eu.siacs.conversations.utils.PhoneNumberUtilWrapper;
-import eu.siacs.conversations.utils.TimeFrameUtils;
+import eu.siacs.chatx.R;
+import eu.siacs.chatx.databinding.ActivityVerifyBinding;
+import eu.siacs.chatx.entities.Account;
+import eu.siacs.chatx.services.QuickConversationsService;
+import eu.siacs.chatx.ui.util.ApiDialogHelper;
+import eu.siacs.chatx.ui.util.PinEntryWrapper;
+import eu.siacs.chatx.utils.AccountUtils;
+import eu.siacs.chatx.utils.PhoneNumberUtilWrapper;
+import eu.siacs.chatx.utils.TimeFrameUtils;
 import io.michaelrocks.libphonenumber.android.NumberParseException;
 
 import static android.content.ClipDescription.MIMETYPE_TEXT_PLAIN;

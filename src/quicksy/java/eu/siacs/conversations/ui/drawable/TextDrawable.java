@@ -1,4 +1,4 @@
-package eu.siacs.conversations.ui.drawable; /**
+package eu.siacs.chatx.ui.drawable; /**
  * Copyright 2016 Ali Muzaffar
  * <p/>
  * Licensed under the Apache License, Version 2.0 (the "License");
@@ -26,7 +26,7 @@ import android.widget.TextView;
 
 import java.lang.ref.WeakReference;
 
-import eu.siacs.conversations.ui.util.StyledAttributes;
+import eu.siacs.chatx.ui.util.StyledAttributes;
 
 public class TextDrawable extends Drawable implements TextWatcher {
     private WeakReference<TextView> ref;

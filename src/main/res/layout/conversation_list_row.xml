@@ -137,7 +137,7 @@
                             android:src="@drawable/ic_pin_gray"
                             android:visibility="visible" />
 
-                        <eu.siacs.conversations.ui.widget.UnreadCountCustomView
+                        <eu.siacs.chatx.ui.widget.UnreadCountCustomView
                             android:id="@+id/unread_count"
                             android:layout_width="?attr/IconSize"
                             android:layout_height="?attr/IconSize"

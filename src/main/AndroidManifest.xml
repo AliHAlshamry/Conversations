@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    package="eu.siacs.conversations">
+    package="eu.siacs.chatx">
 
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
@@ -69,9 +69,9 @@
             android:name="com.google.android.gms.car.application"
             android:resource="@xml/automotive_app_desc" />
 
-        <service android:name=".services.XmppConnectionService" />
+        <service android:name="eu.siacs.chatx.services.XmppConnectionService" />
 
-        <receiver android:name=".services.EventReceiver">
+        <receiver android:name="eu.siacs.chatx.services.EventReceiver">
             <intent-filter>
                 <action android:name="android.intent.action.BOOT_COMPLETED" />
                 <action android:name="android.net.conn.CONNECTIVITY_CHANGE" />
@@ -81,20 +81,20 @@
         </receiver>
 
         <activity
-            android:name=".ui.ShareLocationActivity"
+            android:name="eu.siacs.chatx.ui.ShareLocationActivity"
             android:label="@string/title_activity_share_location" />
         <activity
-            android:name=".ui.SearchActivity"
+            android:name="eu.siacs.chatx.ui.SearchActivity"
             android:label="@string/search_messages" />
         <activity
-            android:name=".ui.RecordingActivity"
+            android:name="eu.siacs.chatx.ui.RecordingActivity"
             android:configChanges="orientation|screenSize"
             android:theme="@style/ConversationsTheme.Dialog" />
         <activity
-            android:name=".ui.ShowLocationActivity"
+            android:name="eu.siacs.chatx.ui.ShowLocationActivity"
             android:label="@string/title_activity_show_location" />
         <activity
-            android:name=".ui.ConversationActivity"
+            android:name="eu.siacs.chatx.ui.ConversationActivity"
             android:theme="@style/SplashTheme">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -102,19 +102,19 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".ui.ConversationsActivity"
+            android:name="eu.siacs.chatx.ui.ConversationsActivity"
             android:label="@string/app_name"
             android:launchMode="singleTask"
             android:minWidth="300dp"
             android:minHeight="300dp"
             android:windowSoftInputMode="stateHidden" />
         <activity
-            android:name=".ui.ScanActivity"
+            android:name="eu.siacs.chatx.ui.ScanActivity"
             android:screenOrientation="portrait"
             android:theme="@style/ConversationsTheme.FullScreen"
             android:windowSoftInputMode="stateAlwaysHidden" />
         <activity
-            android:name=".ui.UriHandlerActivity"
+            android:name="eu.siacs.chatx.ui.UriHandlerActivity"
             android:label="@string/app_name">
             <intent-filter>
                 <action android:name="android.intent.action.VIEW" />
@@ -153,7 +153,7 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".ui.StartConversationActivity"
+            android:name="eu.siacs.chatx.ui.StartConversationActivity"
             android:label="@string/title_activity_start_conversation"
             android:launchMode="singleTop">
             <intent-filter>
@@ -161,7 +161,7 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".ui.SettingsActivity"
+            android:name="eu.siacs.chatx.ui.SettingsActivity"
             android:label="@string/title_activity_settings">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -169,16 +169,16 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".ui.ChooseContactActivity"
+            android:name="eu.siacs.chatx.ui.ChooseContactActivity"
             android:label="@string/title_activity_choose_contact" />
         <activity
-            android:name=".ui.BlocklistActivity"
+            android:name="eu.siacs.chatx.ui.BlocklistActivity"
             android:label="@string/title_activity_block_list" />
         <activity
-            android:name=".ui.ChangePasswordActivity"
+            android:name="eu.siacs.chatx.ui.ChangePasswordActivity"
             android:label="@string/change_password_on_server" />
         <activity
-            android:name=".ui.ChooseAccountForProfilePictureActivity"
+            android:name="eu.siacs.chatx.ui.ChooseAccountForProfilePictureActivity"
             android:enabled="false"
             android:label="@string/choose_account">
             <intent-filter android:label="@string/set_profile_picture">
@@ -189,30 +189,30 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".ui.ShareViaAccountActivity"
+            android:name="eu.siacs.chatx.ui.ShareViaAccountActivity"
             android:label="@string/title_activity_share_via_account"
             android:launchMode="singleTop" />
         <activity
-            android:name=".ui.EditAccountActivity"
+            android:name="eu.siacs.chatx.ui.EditAccountActivity"
             android:exported="false"
             android:launchMode="singleTop"
             android:windowSoftInputMode="stateHidden|adjustResize" />
         <activity
-            android:name=".ui.ConferenceDetailsActivity"
+            android:name="eu.siacs.chatx.ui.ConferenceDetailsActivity"
             android:label="@string/action_muc_details"
             android:windowSoftInputMode="stateHidden" />
         <activity
-            android:name=".ui.ContactDetailsActivity"
+            android:name="eu.siacs.chatx.ui.ContactDetailsActivity"
             android:windowSoftInputMode="stateHidden" />
         <activity
-            android:name=".ui.PublishProfilePictureActivity"
+            android:name="eu.siacs.chatx.ui.PublishProfilePictureActivity"
             android:label="@string/mgmt_account_publish_avatar"
             android:windowSoftInputMode="stateHidden" />
         <activity
-            android:name=".ui.PublishGroupChatProfilePictureActivity"
+            android:name="eu.siacs.chatx.ui.PublishGroupChatProfilePictureActivity"
             android:label="@string/group_chat_avatar" />
         <activity
-            android:name=".ui.ShareWithActivity"
+            android:name="eu.siacs.chatx.ui.ShareWithActivity"
             android:label="@string/app_name"
             android:launchMode="singleTop">
 
@@ -240,15 +240,15 @@
                 android:value="eu.siacs.conversations.services.ContactChooserTargetService" />
         </activity>
         <activity
-            android:name=".ui.TrustKeysActivity"
+            android:name="eu.siacs.chatx.ui.TrustKeysActivity"
             android:label="@string/trust_omemo_fingerprints"
             android:windowSoftInputMode="stateAlwaysHidden" />
         <activity
-            android:name=".ui.AboutActivity"
-            android:parentActivityName=".ui.SettingsActivity">
+            android:name="eu.siacs.chatx.ui.AboutActivity"
+            android:parentActivityName="eu.siacs.chatx.ui.SettingsActivity">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value="eu.siacs.conversations.ui.SettingsActivity" />
+                android:value="eu.siacs.chatx.ui.SettingsActivity" />
             <intent-filter>
                 <action android:name="android.intent.action.VIEW" />
                 <category android:name="android.intent.category.PREFERENCE" />
@@ -257,16 +257,16 @@
         <activity
             android:name="com.theartofdev.edmodo.cropper.CropImageActivity"
             android:theme="@style/Base.Theme.AppCompat" />
-        <activity android:name=".ui.MemorizingActivity" />
+        <activity android:name="eu.siacs.chatx.ui.MemorizingActivity" />
 
         <activity
-            android:name=".ui.MediaBrowserActivity"
+            android:name="eu.siacs.chatx.ui.MediaBrowserActivity"
             android:label="@string/media_browser" />
 
-        <service android:name=".services.ExportBackupService" />
-        <service android:name=".services.ImportBackupService" />
+        <service android:name="eu.siacs.chatx.services.ExportBackupService" />
+        <service android:name="eu.siacs.chatx.services.ImportBackupService" />
         <service
-            android:name=".services.ContactChooserTargetService"
+            android:name="eu.siacs.chatx.services.ContactChooserTargetService"
             android:permission="android.permission.BIND_CHOOSER_TARGET_SERVICE">
             <intent-filter>
                 <action android:name="android.service.chooser.ChooserTargetService" />
@@ -283,26 +283,26 @@
                 android:resource="@xml/file_paths" />
         </provider>
         <provider
-            android:name=".services.BarcodeProvider"
+            android:name="eu.siacs.chatx.services.BarcodeProvider"
             android:authorities="${applicationId}.barcodes"
             android:exported="false"
             android:grantUriPermissions="true" />
 
         <activity
-            android:name=".ui.ShortcutActivity"
+            android:name="eu.siacs.chatx.ui.ShortcutActivity"
             android:label="@string/contact">
             <intent-filter>
                 <action android:name="android.intent.action.CREATE_SHORTCUT" />
             </intent-filter>
         </activity>
         <activity
-            android:name=".ui.MucUsersActivity"
+            android:name="eu.siacs.chatx.ui.MucUsersActivity"
             android:label="@string/group_chat_members" />
         <activity
-            android:name=".ui.ChannelDiscoveryActivity"
+            android:name="eu.siacs.chatx.ui.ChannelDiscoveryActivity"
             android:label="@string/discover_channels" />
         <activity
-            android:name=".ui.RtpSessionActivity"
+            android:name="eu.siacs.chatx.ui.RtpSessionActivity"
             android:autoRemoveFromRecents="true"
             android:launchMode="singleInstance"
             android:supportsPictureInPicture="true" />

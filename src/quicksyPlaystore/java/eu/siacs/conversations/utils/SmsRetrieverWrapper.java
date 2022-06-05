@@ -1,4 +1,4 @@
-package eu.siacs.conversations.utils;
+package eu.siacs.chatx.utils;
 
 import android.content.Context;
 import android.os.Bundle;
@@ -14,7 +14,7 @@ import com.google.common.base.Strings;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-import eu.siacs.conversations.Config;
+import eu.siacs.chatx.Config;
 
 public class SmsRetrieverWrapper {
 

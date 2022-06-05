@@ -1,6 +1,6 @@
-package eu.siacs.conversations.utils;
+package eu.siacs.chatx.utils;
 
-import eu.siacs.conversations.ui.UriHandlerActivity;
+import eu.siacs.chatx.ui.UriHandlerActivity;
 
 public class ProvisioningUtils {
     public static void provision(UriHandlerActivity uriHandlerActivity, String result) {

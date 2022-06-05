@@ -1,4 +1,4 @@
-package eu.siacs.conversations.ui;
+package eu.siacs.chatx.ui;
 
 import android.content.Context;
 import android.content.Intent;
@@ -22,11 +22,11 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.Locale;
 
-import eu.siacs.conversations.R;
-import eu.siacs.conversations.databinding.ActivityChooseCountryBinding;
-import eu.siacs.conversations.ui.adapter.CountryAdapter;
-import eu.siacs.conversations.utils.PhoneNumberUtilWrapper;
-import eu.siacs.conversations.utils.ThemeHelper;
+import eu.siacs.chatx.R;
+import eu.siacs.chatx.databinding.ActivityChooseCountryBinding;
+import eu.siacs.chatx.ui.adapter.CountryAdapter;
+import eu.siacs.chatx.utils.PhoneNumberUtilWrapper;
+import eu.siacs.chatx.utils.ThemeHelper;
 
 public class ChooseCountryActivity extends ActionBarActivity implements CountryAdapter.OnCountryClicked {
 

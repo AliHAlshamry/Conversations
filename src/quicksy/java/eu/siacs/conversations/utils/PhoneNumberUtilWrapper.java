@@ -1,4 +1,4 @@
-package eu.siacs.conversations.utils;
+package eu.siacs.chatx.utils;
 
 import android.content.Context;
 import android.telephony.TelephonyManager;
@@ -7,7 +7,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Locale;
 
-import eu.siacs.conversations.xmpp.Jid;
+import eu.siacs.chatx.xmpp.Jid;
 import io.michaelrocks.libphonenumber.android.NumberParseException;
 import io.michaelrocks.libphonenumber.android.PhoneNumberUtil;
 import io.michaelrocks.libphonenumber.android.Phonenumber;

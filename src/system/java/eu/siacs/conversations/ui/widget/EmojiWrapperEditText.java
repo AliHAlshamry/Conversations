@@ -1,4 +1,4 @@
-package eu.siacs.conversations.ui.widget;
+package eu.siacs.chatx.ui.widget;
 
 import android.content.Context;
 import androidx.appcompat.widget.AppCompatEditText;

@@ -93,11 +93,11 @@ android {
         minSdkVersion 21
         targetSdkVersion 29
         versionCode 42024
-        versionName "2.10.3-beta"
+        versionName "1.0-beta"
         archivesBaseName += "-$versionName"
-        applicationId "eu.siacs.conversations"
+        applicationId "eu.siacs.chatx"
         resValue "string", "applicationId", applicationId
-        def appName = "Conversations"
+        def appName = "ChatX"
         resValue "string", "app_name", appName
         buildConfigField "String", "APP_NAME", "\"$appName\"";
     }
@@ -142,19 +142,15 @@ android {
 
         playstore {
             dimension "distribution"
-            versionNameSuffix "+p"
         }
         free {
             dimension "distribution"
-            versionNameSuffix "+f"
         }
         system {
             dimension "emoji"
-            versionNameSuffix "s"
         }
         compat {
             dimension "emoji"
-            versionNameSuffix "c"
         }
     }
 
@@ -224,13 +220,11 @@ android {
             shrinkResources true
             minifyEnabled true
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
-            versionNameSuffix "r"
         }
         debug {
             shrinkResources true
             minifyEnabled true
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
-            versionNameSuffix "d"
         }
     }
 

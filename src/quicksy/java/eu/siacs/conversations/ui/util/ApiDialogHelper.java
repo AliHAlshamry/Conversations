@@ -1,4 +1,4 @@
-package eu.siacs.conversations.ui.util;
+package eu.siacs.chatx.ui.util;
 
 import android.app.AlertDialog;
 import android.app.Dialog;
@@ -9,9 +9,9 @@ import android.net.Uri;
 import android.os.SystemClock;
 import androidx.annotation.StringRes;
 
-import eu.siacs.conversations.R;
-import eu.siacs.conversations.services.QuickConversationsService;
-import eu.siacs.conversations.utils.TimeFrameUtils;
+import eu.siacs.chatx.R;
+import eu.siacs.chatx.services.QuickConversationsService;
+import eu.siacs.chatx.utils.TimeFrameUtils;
 
 public class ApiDialogHelper {
 

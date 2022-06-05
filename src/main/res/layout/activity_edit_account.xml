@@ -327,7 +327,7 @@
                             app:passwordToggleEnabled="true"
                             app:passwordToggleTint="?android:textColorSecondary">
 
-                            <eu.siacs.conversations.ui.widget.TextInputEditText
+                            <eu.siacs.chatx.ui.widget.TextInputEditText
                                 android:id="@+id/account_password"
                                 style="@style/Widget.Conversations.EditText"
                                 android:layout_width="match_parent"
@@ -368,7 +368,7 @@
                                 app:passwordToggleEnabled="true"
                                 app:passwordToggleTint="?android:textColorSecondary">
 
-                                <eu.siacs.conversations.ui.widget.TextInputEditText
+                                <eu.siacs.chatx.ui.widget.TextInputEditText
                                     android:id="@+id/re_enter_password"
 
                                     style="@style/Widget.Conversations.EditText"

@@ -40,7 +40,7 @@
             app:fabSize="mini"
             app:useCompatPadding="true" />
 
-        <eu.siacs.conversations.ui.widget.UnreadCountCustomView
+        <eu.siacs.chatx.ui.widget.UnreadCountCustomView
             android:id="@+id/unread_count_custom_view"
             android:layout_width="?attr/IconSize"
             android:layout_height="?attr/IconSize"
@@ -179,7 +179,7 @@
 
                     </androidx.recyclerview.widget.RecyclerView>
 
-                    <eu.siacs.conversations.ui.widget.EditMessage
+                    <eu.siacs.chatx.ui.widget.EditMessage
                         android:id="@+id/textinput"
                         style="@style/Widget.Conversations.EditText"
                         android:layout_width="match_parent"
@@ -199,7 +199,7 @@
                         android:textColor="@color/txt_color2">
 
                         <requestFocus />
-                    </eu.siacs.conversations.ui.widget.EditMessage>
+                    </eu.siacs.chatx.ui.widget.EditMessage>
 
                 </LinearLayout>
 

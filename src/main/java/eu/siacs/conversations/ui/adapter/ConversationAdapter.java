@@ -182,12 +182,12 @@ public class ConversationAdapter extends RecyclerView.Adapter<ConversationAdapte
             final long muted_till = conversation.getLongAttribute(Conversation.ATTRIBUTE_MUTED_TILL, 0);
             if (muted_till == Long.MAX_VALUE) {
                 viewHolder.binding.notificationStatus.setVisibility(View.VISIBLE);
-                int ic_notifications_off = activity.getThemeResource(R.attr.icon_notifications_off, R.drawable.ic_notifications_off_black_24dp);
-                viewHolder.binding.notificationStatus.setImageResource(ic_notifications_off);
+//                int ic_notifications_off = activity.getThemeResource(R.attr.icon_notifications_off, R.drawable.ic_notifications_off_black_24dp);
+                viewHolder.binding.notificationStatus.setImageResource(R.drawable.ic_notification_disable_gray);
             } else if (muted_till >= System.currentTimeMillis()) {
                 viewHolder.binding.notificationStatus.setVisibility(View.VISIBLE);
-                int ic_notifications_paused = activity.getThemeResource(R.attr.icon_notifications_paused, R.drawable.ic_notifications_paused_black_24dp);
-                viewHolder.binding.notificationStatus.setImageResource(ic_notifications_paused);
+//                int ic_notifications_paused = activity.getThemeResource(R.attr.icon_notifications_paused, R.drawable.ic_notifications_paused_black_24dp);
+                viewHolder.binding.notificationStatus.setImageResource(R.drawable.ic_notification_disable_gray);
             } else if (conversation.alwaysNotify()) {
                 viewHolder.binding.notificationStatus.setVisibility(View.GONE);
             } else {

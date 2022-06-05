@@ -230,6 +230,40 @@
                             android:textFontWeight="400"
                             android:textSize="16sp"/>
                     </LinearLayout>
+                    <LinearLayout
+                        android:id="@+id/media_wrapper_layout"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentStart="true"
+                        android:layout_alignParentLeft="true"
+                        android:background="?attr/selectableItemBackground"
+                        android:clickable="true"
+                        android:gravity="center|left"
+                        android:orientation="horizontal"
+                        android:paddingHorizontal="24dp"
+                        android:layout_marginTop="22dp"
+                        android:paddingVertical="@dimen/linear_layout_with_icon_and_text_padding">
+
+                        <ImageView
+                            android:layout_width="32dp"
+                            android:layout_height="32dp"
+                            android:layout_alignParentStart="true"
+                            android:layout_centerVertical="true"
+                            android:background="@drawable/rounded_background"
+                            android:padding="6dp"
+                            android:src="@drawable/ic_gallery_blue"/>
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="24dp"
+                            android:layout_marginLeft="7dp"
+                            android:lineHeight="24sp"
+                            android:text="@string/view_media"
+                            android:fontFamily="@font/roboto"
+                            android:textColor="@color/txt_color2"
+                            android:textFontWeight="400"
+                            android:textSize="16sp"/>
+                    </LinearLayout>
                     <View
                         android:layout_width="match_parent"
                         android:layout_height="1dp"
@@ -352,7 +386,8 @@
                     android:layout_marginBottom="@dimen/activity_vertical_margin"
                     android:layout_marginLeft="@dimen/activity_horizontal_margin"
                     android:layout_marginRight="@dimen/activity_horizontal_margin"
-                    android:layout_marginTop="16dp">
+                    android:layout_marginTop="16dp"
+                    android:visibility="gone">
 
                     <LinearLayout
                         android:layout_width="match_parent"

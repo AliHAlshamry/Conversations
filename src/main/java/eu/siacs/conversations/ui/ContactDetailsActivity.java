@@ -326,7 +326,7 @@ public class ContactDetailsActivity extends OmemoActivity implements OnAccountUp
             this.showDynamicTags = preferences.getBoolean(SettingsActivity.SHOW_DYNAMIC_TAGS, false);
             this.showLastSeen = preferences.getBoolean("last_activity", false);
         }
-        binding.mediaWrapper.setVisibility(Compatibility.hasStoragePermission(this) ? View.VISIBLE : View.GONE);
+        binding.mediaWrapperLayout.setVisibility(Compatibility.hasStoragePermission(this) ? View.VISIBLE : View.GONE);
         mMediaAdapter.setAttachments(Collections.emptyList());
     }
 
@@ -656,7 +656,7 @@ public class ContactDetailsActivity extends OmemoActivity implements OnAccountUp
             if (Compatibility.hasStoragePermission(this)) {
                 final int limit = GridManager.getCurrentColumnCount(this.binding.media);
                 xmppConnectionService.getAttachments(account, contact.getJid().asBareJid(), limit, this);
-                this.binding.showMedia.setOnClickListener((v) -> MediaBrowserActivity.launch(this, contact));
+                this.binding.mediaWrapperLayout.setOnClickListener((v) -> MediaBrowserActivity.launch(this, contact));
             }
             populateView();
         }
@@ -683,7 +683,7 @@ public class ContactDetailsActivity extends OmemoActivity implements OnAccountUp
         runOnUiThread(() -> {
             int limit = GridManager.getCurrentColumnCount(binding.media);
             mMediaAdapter.setAttachments(attachments.subList(0, Math.min(limit, attachments.size())));
-            binding.mediaWrapper.setVisibility(attachments.size() > 0 ? View.VISIBLE : View.GONE);
+            binding.mediaWrapperLayout.setVisibility(attachments.size() > 0 ? View.VISIBLE : View.GONE);
         });
 
     }

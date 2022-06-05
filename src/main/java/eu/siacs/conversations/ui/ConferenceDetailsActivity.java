@@ -264,7 +264,7 @@ public class ConferenceDetailsActivity extends XmppActivity implements OnConvers
         if (this.mTheme != theme) {
             recreate();
         }
-        binding.mediaWrapper.setVisibility(Compatibility.hasStoragePermission(this) ? View.VISIBLE : View.GONE);
+        binding.mediaWrapperLayout.setVisibility(Compatibility.hasStoragePermission(this) ? View.VISIBLE : View.GONE);
     }
 
     @Override
@@ -431,7 +431,7 @@ public class ConferenceDetailsActivity extends XmppActivity implements OnConvers
         runOnUiThread(() -> {
             int limit = GridManager.getCurrentColumnCount(binding.media);
             mMediaAdapter.setAttachments(attachments.subList(0, Math.min(limit, attachments.size())));
-            binding.mediaWrapper.setVisibility(attachments.size() > 0 ? View.VISIBLE : View.GONE);
+            binding.mediaWrapperLayout.setVisibility(attachments.size() > 0 ? View.VISIBLE : View.GONE);
         });
 //        binding.actionDestroyRoom.setOnClickListener(v->destroyRoom());
 //        binding.actionDeleteBookmark.setOnClickListener(v->deleteBookmark());
@@ -546,7 +546,7 @@ public class ConferenceDetailsActivity extends XmppActivity implements OnConvers
                 if (Compatibility.hasStoragePermission(this)) {
                     final int limit = GridManager.getCurrentColumnCount(this.binding.media);
                     xmppConnectionService.getAttachments(this.mConversation, limit, this);
-                    this.binding.showMedia.setOnClickListener((v) -> MediaBrowserActivity.launch(this, mConversation));
+                    this.binding.mediaWrapperLayout.setOnClickListener((v) -> MediaBrowserActivity.launch(this, mConversation));
                 }
                 updateView();
             }
@@ -651,16 +651,16 @@ public class ConferenceDetailsActivity extends XmppActivity implements OnConvers
         long mutedTill = mConversation.getLongAttribute(Conversation.ATTRIBUTE_MUTED_TILL, 0);
         if (mutedTill == Long.MAX_VALUE) {
             this.binding.notificationStatusText.setText(R.string.notify_never);
-            this.binding.notificationStatusButton.setImageResource(ic_notifications_off);
+            this.binding.notificationStatusButton.setImageResource(R.drawable.ic_notification_disable);
         } else if (System.currentTimeMillis() < mutedTill) {
             this.binding.notificationStatusText.setText(R.string.notify_paused);
-            this.binding.notificationStatusButton.setImageResource(ic_notifications_paused);
+            this.binding.notificationStatusButton.setImageResource(R.drawable.ic_notification_disable);
         } else if (mConversation.alwaysNotify()) {
             this.binding.notificationStatusText.setText(R.string.notify_on_all_messages);
-            this.binding.notificationStatusButton.setImageResource(ic_notifications);
+            this.binding.notificationStatusButton.setImageResource(R.drawable.ic_notification_blue);
         } else {
             this.binding.notificationStatusText.setText(R.string.notify_only_when_highlighted);
-            this.binding.notificationStatusButton.setImageResource(ic_notifications_none);
+            this.binding.notificationStatusButton.setImageResource(R.drawable.ic_notification_blue);
         }
         final List<User> users = mucOptions.getUsers();
         Collections.sort(users, (a, b) -> {

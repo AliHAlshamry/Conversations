@@ -535,6 +535,8 @@ public class ConversationsOverviewFragment extends XmppFragment {
 				final SpeedDialActionItem actionItem = new SpeedDialActionItem.Builder(menuItem.getItemId(), menuItem.getIcon())
 						.setLabel(menuItem.getTitle() != null ? menuItem.getTitle().toString() : null)
 						.setFabImageTintColor(ContextCompat.getColor(this.activity, R.color.white))
+						.setLabelBackgroundColor(ContextCompat.getColor(this.activity, R.color.white))
+						.setLabelColor(ContextCompat.getColor(this.activity, R.color.black))
 						.create();
 				speedDialView.addActionItem(actionItem);}
 		}

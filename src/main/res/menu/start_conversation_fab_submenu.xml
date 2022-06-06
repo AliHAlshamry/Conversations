@@ -6,18 +6,18 @@
         android:title="@string/discover_channels" />
     <item
         android:id="@+id/join_public_channel"
-        android:icon="@drawable/ic_input_white_24dp"
+        android:icon="@drawable/join"
         android:title="@string/join_public_channel" />
     <item
         android:id="@+id/create_public_channel"
-        android:icon="@drawable/ic_public_white_24dp"
+        android:icon="@drawable/global"
         android:title="@string/create_public_channel" />
     <item
         android:id="@+id/create_private_group_chat"
-        android:icon="@drawable/ic_group_white_24dp"
+        android:icon="@drawable/people"
         android:title="@string/create_private_group_chat" />
     <item
         android:id="@+id/create_contact"
-        android:icon="@drawable/ic_person_white_48dp"
+        android:icon="@drawable/profile_add"
         android:title="@string/add_contact" />
 </menu>

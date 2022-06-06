@@ -696,6 +696,13 @@ public class ConversationsOverviewFragment extends XmppFragment {
 			}
 		}
 		Collections.sort(this.contacts);
+		if (contacts.isEmpty()) {
+			binding.horizontalListLayout.setVisibility(View.GONE);
+			binding.horizontalContactsList.setVisibility(View.GONE);
+		}else{
+			binding.horizontalListLayout.setVisibility(View.VISIBLE);
+			binding.horizontalContactsList.setVisibility(View.VISIBLE);
+		}
 	}
 
 	private void switchToConversation(Conversation conversation){

@@ -582,7 +582,7 @@ public class EditAccountActivity extends OmemoActivity implements OnAccountUpdat
                 && (mAccount.getStatus() == Account.State.CONNECTING || mAccount.getStatus() == Account.State.REGISTRATION_SUCCESSFUL || mFetchingAvatar)) {
             this.binding.saveButton.setEnabled(false);
 //            this.binding.cancelButton.setEnabled(true);
-            this.binding.accountPassword.setEnabled(false);
+            //this.binding.accountPassword.setEnabled(false);
             this.binding.saveButton.setText(R.string.account_status_connecting);
         } else if (mAccount != null && mAccount.getStatus() == Account.State.DISABLED && !mInitMode) {
             this.binding.saveButton.setEnabled(true);

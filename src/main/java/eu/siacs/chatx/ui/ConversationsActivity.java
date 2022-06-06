@@ -262,7 +262,7 @@ public class ConversationsActivity extends XmppActivity implements OnConversatio
             if (ExceptionHelper.checkForCrash(this)) {
                 return;
             }
-            openBatteryOptimizationDialogIfNeeded();
+            //openBatteryOptimizationDialogIfNeeded();
         }
     }
 

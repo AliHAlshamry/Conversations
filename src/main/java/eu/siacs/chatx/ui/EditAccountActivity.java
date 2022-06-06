@@ -1233,7 +1233,7 @@ public class EditAccountActivity extends OmemoActivity implements OnAccountUpdat
 //            this.binding.stats.setVisibility(View.VISIBLE);
             boolean showBatteryWarning = !xmppConnectionService.getPushManagementService().available(mAccount) && isOptimizingBattery();
             boolean showDataSaverWarning = isAffectedByDataSaver();
-            showOsOptimizationWarning(showBatteryWarning, showDataSaverWarning);
+            showOsOptimizationWarning(false, false);
             this.binding.sessionEst.setText(UIHelper.readableTimeDifferenceFull(this, this.mAccount.getXmppConnection()
                     .getLastSessionEstablished()));
             if (features.rosterVersioning()) {

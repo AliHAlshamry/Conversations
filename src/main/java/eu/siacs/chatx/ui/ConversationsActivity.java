@@ -266,8 +266,8 @@ public class ConversationsActivity extends XmppActivity implements OnConversatio
         }
     }
 
-    private void createPrivateGroupChat(int requestCode,Intent intent){
-        if (xmppConnectionServiceBound) {
+    private void createPrivateGroupChat(int requestCode, Intent intent) {
+        try {
             this.mPostponedActivityResult = null;
             if (requestCode == REQUEST_CREATE_CONFERENCE) {
                 Account account = extractAccount(intent);
@@ -280,7 +280,8 @@ public class ConversationsActivity extends XmppActivity implements OnConversatio
                     }
                 }
             }
-        } else {
+        } catch (Exception e) {
+            Log.d("error :", "cann't create private group chat");
             this.mPostponedActivityResult = new Pair<>(requestCode, intent);
         }
     }

@@ -7,33 +7,66 @@
         android:layout_height="wrap_content"
         android:autoLink="web"
         android:longClickable="false"
-        android:textAppearance="@style/TextAppearance.Conversations.Body1"/>
+        android:textAppearance="@style/TextAppearance.Conversations.Body1" />
 
     <ImageView
         android:id="@+id/message_image"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="4dp"
         android:layout_marginTop="8dp"
+        android:layout_marginBottom="4dp"
         android:adjustViewBounds="true"
         android:background="@color/black87"
         android:longClickable="true"
-        android:scaleType="centerCrop"/>
+        android:scaleType="centerCrop" />
 
-    <Button
+    <LinearLayout
         android:id="@+id/download_button"
-        style="?android:attr/buttonStyleSmall"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:background="@drawable/rounded_background"
+        android:clickable="true"
+        android:gravity="center"
         android:longClickable="true"
-        android:visibility="gone"/>
+        android:orientation="vertical"
+        android:padding="8dp">
+
+        <ImageView
+            android:id="@+id/download_image"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="5dp"
+            android:src="@drawable/ic_download_arrow_gray" />
+
+        <TextView
+            android:id="@+id/download_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/roboto_medium"
+            android:text="Download Image"
+            android:textColor="@color/txt_color2"
+            android:textSize="12sp"/>
+    </LinearLayout>
+
+    <!--    <Button-->
+    <!--        android:id="@+id/download_button1"-->
+    <!--        android:layout_width="wrap_content"-->
+    <!--        android:layout_height="wrap_content"-->
+    <!--        android:longClickable="true"-->
+    <!--        android:visibility="gone"-->
+    <!--        android:fontFamily="@font/roboto_medium"-->
+    <!--        android:textSize="12sp"-->
+    <!--        android:textColor="@color/txt_color2"-->
+    <!--        android:textAllCaps="false"-->
+    <!--        android:paddingHorizontal="2dp"-->
+    <!--        android:drawablePadding="4dp"-->
+    <!--        android:background="@drawable/rounded_background"/>-->
 
     <RelativeLayout
         android:id="@+id/audio_player"
         android:layout_width="@dimen/audio_player_width"
         android:layout_height="wrap_content"
-        android:visibility="gone"
-        >
+        android:visibility="gone">
 
         <ImageButton
             android:id="@+id/play_pause"
@@ -41,7 +74,7 @@
             android:layout_height="wrap_content"
             android:layout_centerVertical="true"
             android:alpha="?attr/icon_alpha"
-            android:background="?android:selectableItemBackground"/>
+            android:background="?android:selectableItemBackground" />
 
         <TextView
             android:id="@+id/runtime"
@@ -49,9 +82,9 @@
             android:layout_height="wrap_content"
             android:layout_alignParentEnd="true"
             android:layout_alignParentRight="true"
-            android:paddingBottom="16dp"
             android:paddingRight="16dp"
-            android:textAppearance="@style/TextAppearance.Conversations.Caption"/>
+            android:paddingBottom="16dp"
+            android:textAppearance="@style/TextAppearance.Conversations.Caption" />
 
         <SeekBar
             android:id="@+id/progress"
@@ -60,7 +93,7 @@
             android:layout_below="@+id/runtime"
             android:layout_centerVertical="true"
             android:layout_toRightOf="@+id/play_pause"
-            android:progress="100"/>
+            android:progress="100" />
     </RelativeLayout>
 
 </merge>

@@ -115,7 +115,7 @@
         <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_gravity="right"
+            android:layout_gravity="right|top"
             android:orientation="horizontal"
             android:paddingBottom="2dp"
             android:paddingRight="10dp">

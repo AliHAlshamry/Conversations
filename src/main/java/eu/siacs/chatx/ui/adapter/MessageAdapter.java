@@ -512,7 +512,8 @@ public class MessageAdapter extends ArrayAdapter<Message> {
         viewHolder.image.setVisibility(View.GONE);
         viewHolder.audioPlayer.setVisibility(View.GONE);
         viewHolder.download_button.setVisibility(View.VISIBLE);
-        viewHolder.download_button.setText(text);
+        viewHolder.download_text.setText(text);
+        viewHolder.download_image.setImageResource(R.drawable.ic_download_arrow_gray);
         viewHolder.download_button.setOnClickListener(v -> ConversationFragment.downloadFile(activity, message));
     }
 
@@ -521,7 +522,8 @@ public class MessageAdapter extends ArrayAdapter<Message> {
         viewHolder.image.setVisibility(View.GONE);
         viewHolder.audioPlayer.setVisibility(View.GONE);
         viewHolder.download_button.setVisibility(View.VISIBLE);
-        viewHolder.download_button.setText(activity.getString(R.string.open_x_file, UIHelper.getFileDescriptionString(activity, message)));
+        viewHolder.download_image.setImageResource(R.drawable.ic_open_in_new_gray);
+        viewHolder.download_text.setText(activity.getString(R.string.open_x_file, UIHelper.getFileDescriptionString(activity, message)));
         viewHolder.download_button.setOnClickListener(v -> openDownloadable(message));
     }
 
@@ -530,7 +532,8 @@ public class MessageAdapter extends ArrayAdapter<Message> {
         viewHolder.image.setVisibility(View.GONE);
         viewHolder.audioPlayer.setVisibility(View.GONE);
         viewHolder.download_button.setVisibility(View.VISIBLE);
-        viewHolder.download_button.setText(R.string.show_location);
+        viewHolder.download_text.setText(R.string.show_location);
+        viewHolder.download_image.setImageResource(R.drawable.ic_location_gray);
         viewHolder.download_button.setOnClickListener(v -> showLocation(message));
     }
 
@@ -639,6 +642,8 @@ public class MessageAdapter extends ArrayAdapter<Message> {
                     viewHolder.message_box = view.findViewById(R.id.message_box);
                     viewHolder.contact_picture = view.findViewById(R.id.message_photo);
                     viewHolder.download_button = view.findViewById(R.id.download_button);
+                    viewHolder.download_text = view.findViewById(R.id.download_text);
+                    viewHolder.download_image = view.findViewById(R.id.download_image);
                     viewHolder.indicator = view.findViewById(R.id.security_indicator);
                     viewHolder.edit_indicator = view.findViewById(R.id.edit_indicator);
                     viewHolder.image = view.findViewById(R.id.message_image);
@@ -652,6 +657,8 @@ public class MessageAdapter extends ArrayAdapter<Message> {
                     viewHolder.message_box = view.findViewById(R.id.message_box);
                     viewHolder.contact_picture = view.findViewById(R.id.message_photo);
                     viewHolder.download_button = view.findViewById(R.id.download_button);
+                    viewHolder.download_text = view.findViewById(R.id.download_text);
+                    viewHolder.download_image = view.findViewById(R.id.download_image);
                     viewHolder.indicator = view.findViewById(R.id.security_indicator);
                     viewHolder.edit_indicator = view.findViewById(R.id.edit_indicator);
                     viewHolder.image = view.findViewById(R.id.message_image);
@@ -924,7 +931,9 @@ public class MessageAdapter extends ArrayAdapter<Message> {
         public ImageView edit_indicator;
         public RelativeLayout audioPlayer;
         protected LinearLayout message_box;
-        protected Button download_button;
+        protected LinearLayout download_button;
+        protected TextView download_text;
+        protected ImageView download_image;
         protected ImageView image;
         protected ImageView indicator;
         protected ImageView indicatorReceived;

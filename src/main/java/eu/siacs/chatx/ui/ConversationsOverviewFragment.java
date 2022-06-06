@@ -36,6 +36,7 @@ import static eu.siacs.chatx.ui.XmppActivity.FRAGMENT_TAG_DIALOG;
 import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.app.AlertDialog;
+import android.app.Dialog;
 import android.app.Fragment;
 import android.content.Intent;
 import android.graphics.Canvas;
@@ -48,6 +49,7 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -728,18 +730,32 @@ public class ConversationsOverviewFragment extends XmppFragment {
 	}
 
 	protected void clearHistoryDialog(final Conversation conversation) {
-		final androidx.appcompat.app.AlertDialog.Builder builder = new androidx.appcompat.app.AlertDialog.Builder(activity);
-		builder.setTitle(getString(R.string.clear_conversation_history));
-		final View dialogView = activity.getLayoutInflater().inflate(R.layout.dialog_clear_history, null);
-		final CheckBox endConversationCheckBox = dialogView.findViewById(R.id.end_conversation_checkbox);
+//		final androidx.appcompat.app.AlertDialog.Builder builder = new androidx.appcompat.app.AlertDialog.Builder(activity);
+//		builder.setTitle(getString(R.string.clear_conversation_history));
+//		final View dialogView = activity.getLayoutInflater().inflate(R.layout.dialog_clear_history, null);
+//		final CheckBox endConversationCheckBox = dialogView.findViewById(R.id.end_conversation_checkbox);
+//		endConversationCheckBox.setVisibility(View.GONE);
+//		builder.setView(dialogView);
+//		builder.setNegativeButton(getString(R.string.cancel), null);
+//		builder.setPositiveButton(getString(R.string.confirm), (dialog, which) -> {
+//			activity.xmppConnectionService.clearConversationHistory(conversation);
+//			refresh();
+//		});
+//		builder.create().show();
+		Dialog dialog = new Dialog(getActivity());
+		View view  = getActivity().getLayoutInflater().inflate(R.layout.dialog_clear_history, null);
+		dialog.setContentView(view);
+		final CheckBox endConversationCheckBox = view.findViewById(R.id.end_conversation_checkbox);
 		endConversationCheckBox.setVisibility(View.GONE);
-		builder.setView(dialogView);
-		builder.setNegativeButton(getString(R.string.cancel), null);
-		builder.setPositiveButton(getString(R.string.confirm), (dialog, which) -> {
+		Button confirmBtn =  view.findViewById(R.id.confirm_button);
+		Button cancel =  view.findViewById(R.id.cancel_button);
+		confirmBtn.setOnClickListener(v->{
 			activity.xmppConnectionService.clearConversationHistory(conversation);
 			refresh();
+			dialog.dismiss();
 		});
-		builder.create().show();
+		cancel.setOnClickListener(v -> dialog.dismiss());
+		dialog.show();
 	}
 
 	private void togglePinned(Conversation conversation) {

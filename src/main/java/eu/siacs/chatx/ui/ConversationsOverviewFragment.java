@@ -697,14 +697,18 @@ public class ConversationsOverviewFragment extends XmppFragment {
 				}
 			}
 		}
-		Collections.sort(this.contacts);
-		if (contacts.isEmpty()) {
-			binding.horizontalListLayout.setVisibility(View.GONE);
+		if (contacts.isEmpty() && this.conversations.isEmpty()) {
+			StartConversationActivity.launch(getActivity());
+		}else if (contacts.isEmpty()){
 			binding.horizontalContactsList.setVisibility(View.GONE);
-		}else{
+			binding.horizontalListLayout.setVisibility(View.VISIBLE);
+			binding.horizontalTextLayout.setText("Archive :");
+
+		}else {
 			binding.horizontalListLayout.setVisibility(View.VISIBLE);
 			binding.horizontalContactsList.setVisibility(View.VISIBLE);
 		}
+		Collections.sort(this.contacts);
 	}
 
 	private void switchToConversation(Conversation conversation){

@@ -57,7 +57,6 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_below="@+id/horizontal_contacts_list"
-            android:layout_marginTop="22dp"
             android:scrollbars="vertical" />
 
         <com.leinardi.android.speeddial.SpeedDialOverlayLayout

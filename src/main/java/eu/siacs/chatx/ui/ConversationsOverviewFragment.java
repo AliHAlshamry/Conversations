@@ -79,6 +79,7 @@ import eu.siacs.chatx.entities.Account;
 import eu.siacs.chatx.entities.Contact;
 import eu.siacs.chatx.entities.Conversation;
 import eu.siacs.chatx.entities.Conversational;
+import eu.siacs.chatx.entities.Presence;
 import eu.siacs.chatx.ui.adapter.ContactsHorizontalAdapter;
 import eu.siacs.chatx.ui.adapter.ConversationAdapter;
 import eu.siacs.chatx.ui.interfaces.OnConversationArchived;
@@ -687,7 +688,12 @@ public class ConversationsOverviewFragment extends XmppFragment {
 		this.contacts.clear();
 		final Account account = this.activity.xmppConnectionService.getAccounts().get(0);
 		if (account.getStatus() != Account.State.DISABLED) {
-			this.contacts.addAll(account.getRoster().getContacts());
+			for (Contact contact : account.getRoster().getContacts()) {
+				Presence.Status s = contact.getShownStatus();
+				if (contact.showInContactList() || s.compareTo(Presence.Status.OFFLINE) < 0) {
+					this.contacts.add(contact);
+				}
+			}
 		}
 		Collections.sort(this.contacts);
 	}

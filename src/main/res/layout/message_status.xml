@@ -5,8 +5,8 @@
                 android:layout_height="wrap_content"
                 android:orientation="vertical"
                 android:paddingBottom="5dp"
-                android:paddingLeft="8dp"
-                android:paddingRight="8dp"
+                android:paddingLeft="14dp"
+                android:paddingRight="14dp"
                 android:paddingTop="5dp">
 
     <Button
@@ -46,7 +46,7 @@
         android:gravity="center_vertical"
         android:minHeight="32dp"
         android:text="@string/contact_has_read_up_to_this_point"
-        android:textColor="@color/txt_color2"
+        android:textColor="@color/txt_color1"
         android:textFontWeight="400"
         android:textSize="12sp" />
 

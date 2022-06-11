@@ -79,10 +79,10 @@
     <string name="clear_histor_msg">هل أنت متأكد من أنك تريد حذف جميع الرسائل في هذه المحادثة؟\n\n<b>تحذير:</b> لن يحذف هذا نسخًا من الرسائل المخزنة على الأجهزة الأخرى.</string>
     <string name="delete_file_dialog">حذف الملف</string>
     <string name="choose_presence">إختر جهازاً</string>
-    <string name="send_unencrypted_message">إرسال رسالة مشفرة</string>
+    <string name="send_unencrypted_message">إرسال رسالة</string>
     <string name="send_message">إبعث رسالة</string>
     <string name="send_message_to_x">إبعث رسالة إلى %s</string>
-    <string name="send_omemo_message">ارسال رسالة تامة التشفير</string>
+    <string name="send_omemo_message">ارسال رسالة مشفرة</string>
     <string name="send_omemo_x509_message">"إبعث رسالة مشفَّرة "</string>
     <string name="send_pgp_message">إرسال رسالة مشفرة عبر OpenPGP</string>
     <string name="your_nick_has_been_changed">إسم مستخدم جديد تحت الإستعمال</string>
@@ -287,7 +287,7 @@
     <string name="notification_backup_created_title">تم إنشاء نسختك الاحتياطية</string>
     <string name="notification_restored_backup_title">تم استرجاع نسختك الاحتياطية</string>
     <string name="notification_restored_backup_subtitle">لا تنسَ تنشيط الحساب.</string>
-    <string name="pref_create_backup_summary">سيتم حفظ النسخة الاحتياطية في: Conversations/Backup/</string>
+    <string name="pref_create_backup_summary">سيتم حفظ النسخة الاحتياطية في: ChatX/Backup/</string>
     <string name="choose_file">اختيار ملف</string>
     <string name="receiving_x_file">تنزيل %1$s (%2$d%%)</string>
     <string name="download_x_file">تنزيل %s</string>
@@ -433,8 +433,8 @@
     </plurals>
     <string name="load_more_messages">تحميل المزيد</string>
     <string name="shared_text_with_x">شارك النص عبر %s</string>
-    <string name="no_storage_permission">تطبيق Conversations بحاجة إلى الوصول إلى ذاكرة التخزين الخارجية</string>
-    <string name="no_camera_permission">تطبيق Conversations بحاجة إلى الوصول إلى الكاميرا</string>
+    <string name="no_storage_permission">تطبيق ChatX بحاجة إلى الوصول إلى ذاكرة التخزين الخارجية</string>
+    <string name="no_camera_permission">تطبيق ChatX بحاجة إلى الوصول إلى الكاميرا</string>
     <string name="sync_with_contacts">المزامنة مع جهات الإتصال</string>
     <string name="notify_on_all_messages">الاشعارات</string>
     <string name="notify_only_when_highlighted">قم باخطاري عندما يقوم احدهم بذكري </string>
@@ -481,7 +481,7 @@
     <string name="pref_message_notification_settings">إعدادات الإشعارات (للرسائل)</string>
     <string name="pref_incoming_call_notification_settings">إعدادات الإشعارات (للمكالمات الواردة)</string>
     <string name="pref_broadcast_last_activity">تحديثات آخر ظهور</string>
-    <string name="pref_broadcast_last_activity_summary">ستعرف جهات الإتصال الخاصة بك بأنك متصل حالياً أم لا، بالإضافة إلى توقيت آخر ظهور لك على Conversations عندما لا تكون متصلاً</string>
+    <string name="pref_broadcast_last_activity_summary">ستعرف جهات الإتصال الخاصة بك بأنك متصل حالياً أم لا، بالإضافة إلى توقيت آخر ظهور لك على ChatX عندما لا تكون متصلاً</string>
     <string name="pref_privacy">الخصوصية</string>
     <string name="pref_theme_options">المظهر</string>
     <string name="pref_theme_options_summary">التبديل بين المظهر الفاتح والمظهر المظلم</string>
@@ -750,8 +750,8 @@
     <string name="shared_file_with_x">" %s مشاركة الملف مع "</string>
     <string name="shared_image_with_x">" %s مشاركة الصورة مع "</string>
     <string name="shared_images_with_x">" %s مشاركة الصور  مع "</string>
-    <string name="sync_with_contacts_long">Conversations يحتاج الأذن للوصول إلى جهات الإتصال لمطابقة جهات اتصالك مع السيرفر لعرض الإسم الكامل و الصورة الشخصية. سيتم قرائة البيانات فقط ولن يتم رفعها إلى السيرفر.</string>
-    <string name="welcome_header">إنضمام إلى Conversations</string>
+    <string name="sync_with_contacts_long">يحتاج الأذن للوصول إلى جهات الإتصال لمطابقة جهات اتصالك مع السيرفر لعرض الإسم الكامل و الصورة الشخصية. سيتم قرائة البيانات فقط ولن يتم رفعها إلى السيرفر.</string>
+    <string name="welcome_header">إنضمام إلى ChatX</string>
     <string name="pref_theme_automatic">حسب واجهة النظام</string>
     <string name="encrypted_with_omemo">تشفير تام</string>
     <string name="not_encrypted">تشفير اعتيادي</string>
@@ -764,8 +764,8 @@
     <string name="attach_file">ملف</string>
     <string name="attach_voice">رسالة صوتية</string>
     <string name="attach_location">موقع</string>
-    <string name="battery_optimizations_enabled_explained">جهازك يقوم بمنع Conversations من التشغيل في الخلفية من أجل توفير الطاقة، ننصحك بإيقاف تحسين البطارية لتتمكن من استلام جميع الإشعارات والرسائل والمكالمات بصورة طبيعية.</string>
-    <string name="battery_optimizations_enabled_dialog">جهازك يقوم بمنع Conversations من التشغيل في الخلفية من أجل توفير الطاقة، يرجى السماح لإيقاف تحسين البطارية لتتمكن من استلام جميع الإشعارات والرسائل والمكالمات بصورة طبيعية.</string>
+    <string name="battery_optimizations_enabled_explained">جهازك يقوم بمنع ChatX من التشغيل في الخلفية من أجل توفير الطاقة، ننصحك بإيقاف تحسين البطارية لتتمكن من استلام جميع الإشعارات والرسائل والمكالمات بصورة طبيعية.</string>
+    <string name="battery_optimizations_enabled_dialog">جهازك يقوم بمنع ChatX من التشغيل في الخلفية من أجل توفير الطاقة، يرجى السماح لإيقاف تحسين البطارية لتتمكن من استلام جميع الإشعارات والرسائل والمكالمات بصورة طبيعية.</string>
     <string name="default_resource">جهاز لوحي</string>
     <string name="delete_file_dialog_msg">هل تريد بالتأكيد حذف هذا الملف؟  لن يتم حذف الملف من الطرف المقابل</string>
     <string name="pref_call_ringtone_summary">نغمة الرنين للمكالمات الواردة</string>
@@ -773,8 +773,8 @@
     <string name="contacts_and_n_more_have_read_up_to_this_point">%1$s +%2$d آخرين قرأوا لغاية هذا السطر</string>
     <string name="pref_enter_is_send_summary">استخدم مفتاح الإدخال لإرسال الرسالة. سيظل بإمكانك استخدام المفتاحين Ctrl+Enter لإرسال الرسالة حتى عند إيقاف تشغيل هذا الخيار.</string>
     <string name="device_does_not_support_battery_op">جهازك لا يدعم خيار إيقاف تحسين البطارية</string>
-    <string name="no_permission_to_access_x">Conversations ليس لديه صلاحية الوصول إلى %s</string>
-    <string name="device_does_not_support_data_saver">جهازك لا يدعم خيار إيقاف توفير الطاقة لتطبيق Conversations</string>
+    <string name="no_permission_to_access_x">ChatX ليس لديه صلاحية الوصول إلى %s</string>
+    <string name="device_does_not_support_data_saver">جهازك لا يدعم خيار إيقاف توفير الطاقة لتطبيق ChatX</string>
     <string name="pref_headsup_notifications">الإشعارات المنبثقة</string>
     <string name="create_shortcut">إنشاء اختصار</string>
     <string name="add_contact_or_create_or_join_group_chat">إضافة جهة اتصال، أو إنشاء مجموعة أو الإنضمام إليها</string>
@@ -845,10 +845,18 @@
     <string name="email">البريد الالكتروني</string>
     <string name="not_in_roster">اضافة هذه الجهة الى جهات الاتصال</string>
     <plurals name="view_users">
-        <item quantity="one">View %1$d Participant</item>
+        <item quantity="one">عرض %1$d عضو</item>
         <item quantity="other">عرض المشتركون</item>
     </plurals>
     <string name="no_users_hint_channel">هذه القناة لاتحتوي على مشتركين.يرجى دعوة جهات اتصالك.او مشاركة القناة</string>
     <string name="also_end_conversation">غلق هذه المحادثة مباشرة بعد الحذف</string>
     <string name="disable_encryption_message">هل تريد بالتأكيد تعطيل التشفير لهذه المحادثة؟</string>
+    <string name="replay_to">الرد على </string>
+    <string name="replay_to_my_message">الرد على رسالتي </string>
+    <string name="not_encrypted_for_this_device">الرسالة غير مشفرة في هذا الجهاز.</string>
+    <string name="fetching_mam_prefs">إحضار تفضيلات الأرشفة.يرجى الانتظار...</string>
+    <string name="server_side_mam_prefs">تفضيلات الارشفة من جانب السيرفر</string>
+    <string name="password_hint">6 أحرف على الأقل</string>
+    <string name="pref_notification_grace_period_summary">المدة الزمنية التي يتم فيها تجاهل الإشعارات بعد اكتشاف نشاط على أحد أجهزتك الأخرى.</string>
+
 </resources>

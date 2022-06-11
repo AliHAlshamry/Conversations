@@ -1967,14 +1967,14 @@ public class ConversationFragment extends XmppFragment implements EditMessage.Ke
                         //sender = activity.getContactName(sender);
                         if (sender != null) {
                             //tvSender.setText(R.string.reply_to + sender + ":");
-                            tvSender.setText("Replying to " + sender);
+                            tvSender.setText(activity.getString(R.string.replay_to)+" "+ sender);
                         }
                         else {
                             sender = this.selectedMessage.getContact().getJid().getLocal();
-                            tvSender.setText("Replying to " + sender);
+                            tvSender.setText(activity.getString(R.string.replay_to) +" "+ sender);
                         }
                     } else {
-                        tvSender.setText("Replying to my message");
+                        tvSender.setText(activity.getString(R.string.replay_to_my_message));
                     }
                 } catch (NullPointerException e) {
                     tvSender.setVisibility(View.GONE);

@@ -275,7 +275,7 @@
                         android:orientation="vertical">
 
                         <TextView
-                            android:layout_width="40dp"
+                            android:layout_width="wrap_content"
                             android:layout_height="24dp"
                             android:fontFamily="sans-serif"
                             android:text="@string/email"
@@ -308,7 +308,7 @@
                         </com.google.android.material.textfield.TextInputLayout>
 
                         <TextView
-                            android:layout_width="71dp"
+                            android:layout_width="wrap_content"
                             android:layout_height="40dp"
                             android:fontFamily="sans-serif"
                             android:paddingTop="8dp"

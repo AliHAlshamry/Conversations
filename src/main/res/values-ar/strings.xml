@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<resources>
+<resources xmlns:tools="http://schemas.android.com/tools" tools:ignore="MissingQuantity">
     <string name="action_settings">الإعدادات</string>
     <string name="action_add">محادثة جديدة</string>
     <string name="action_accounts">إدارة الحسابات</string>
@@ -70,7 +70,7 @@
     <string name="problem_connecting_to_account">لا يمكن الإتصال بالحساب</string>
     <string name="problem_connecting_to_accounts">لايمكن الإتصال بحسابات متعددة</string>
     <string name="add_contact">اضافة الى جهات الاتصال</string>
-    <string name="send_failed">فشل التسليم</string>
+    <string name="send_failed">فشل الارسال</string>
     <string name="preparing_image">اعداد صورة للإرسال</string>
     <string name="preparing_images">إعداد الصور للإرسال</string>
     <string name="sharing_files_please_wait">جاري إرسال الملفات.  الرجاء الإنتظار ...</string>
@@ -200,7 +200,7 @@
     <string name="delete_contact">حذف جهة الإتصال</string>
     <string name="view_contact_details">عرض بيانات جهة الاتصال</string>
     <string name="block_contact">حظر المستخدم</string>
-    <string name="unblock_contact">الغاء حجب جهة اتصال</string>
+    <string name="unblock_contact">الغاء الحظر</string>
     <string name="create">إنشاء</string>
     <string name="select">اختيار</string>
     <string name="contact_already_exists">جهة الاتصال موجودة لديك مسبقا</string>
@@ -218,7 +218,7 @@
     <string name="joining_conference">في صدد الإنظمام إلى المجموعة...</string>
     <string name="leave">مغادرة</string>
     <string name="contact_added_you">جهة اتصال أضافتك </string>
-    <string name="add_back">أضافة من جهتك أيضا</string>
+    <string name="add_back">أضافة الى جهات الاتصال</string>
     <string name="contact_has_read_up_to_this_point">لقد قرأ %s الرسائل إلى غاية هذا السطر</string>
     <string name="contacts_have_read_up_to_this_point">لقد قرأ %s الرسائل إلى غاية هذا السطر</string>
     <string name="publish">نشر</string>
@@ -313,10 +313,10 @@
     <string name="clear_other_devices">حذف أجهزة</string>
     <string name="error_trustkeys_title">حدث خطأ … الرجاء المحاولة لاحقاً</string>
     <string name="fetching_history_from_server">جلب المحفوظات من السرفر</string>
-    <string name="no_more_history_on_server">لا يوجد مزيد من المحفوظات في السيرفر</string>
+    <string name="no_more_history_on_server">لا يوجد مزيد من البيانات في السيرفر</string>
     <string name="updating">جاري التحديث..</string>
-    <string name="password_changed">تم تغيير كلمة السر!</string>
-    <string name="could_not_change_password">لايمكن تغيير كلمة السر</string>
+    <string name="password_changed">تم تغيير كلمة المرور!</string>
+    <string name="could_not_change_password">لايمكن تغيير كلمة المرور</string>
     <string name="change_password">تغيير كلمة المرور</string>
     <string name="current_password">كلمة المرور الحالية</string>
     <string name="new_password">كلمة المرور الجديدة</string>
@@ -369,7 +369,7 @@
     <string name="pref_chat_states">مؤشر الكتابة</string>
     <string name="pref_chat_states_summary">سيتم اعلام الطرف الآخر بأنك "تكتب الآن" أو "توقفت عن الكتابة"</string>
     <string name="send_location">ارسال موقعك</string>
-    <string name="show_location">أظهار الموقع</string>
+    <string name="show_location">عرض الموقع</string>
     <string name="no_application_found_to_display_location">لم يتم العثور على أي تطبيق يسمح بعرض الموقع الجغرافي</string>
     <string name="location">الموقع</string>
     <string name="title_undo_swipe_out_conversation">تم إغلاق المحادثة</string>
@@ -407,8 +407,8 @@
     <string name="hostname_example">xmpp.example.com</string>
     <string name="action_add_account_with_certificate">أضف حساباً مرفوقاً بشهادة</string>
     <string name="mam_prefs">إعدادت الأرشيف</string>
-    <string name="captcha_required">رمز الكابتشا ضروري</string>
-    <string name="captcha_hint">قم بإدخال الرموز المتواجدة في الصورة</string>
+    <string name="captcha_required">رمز التحقق</string>
+    <string name="captcha_hint">قم بإدخال رمز التحقق</string>
     <string name="certificate_chain_is_not_trusted">سلسلة الشهادة غير موثوق فيها</string>
     <string name="action_renew_certificate">تجديد الشهادة</string>
     <!--  <string name="error_fetching_omemo_key">خطأ أثناء جلب مفتاح أوميمو التشفير !</string>-->
@@ -662,7 +662,7 @@
     <string name="pref_more_notification_settings_summary">الأهمية، الصوت، الإهتزاز</string>
     <string name="video_compression_channel_name">ضغط الفيديو</string>
     <string name="view_media">عرض الوسائط</string>
-    <string name="group_chat_members">المشارِكون</string>
+    <string name="group_chat_members">المشتركون</string>
     <string name="pref_video_compression">دقّة الفيديو</string>
     <string name="pref_video_compression_summary">كلما قلّت الدقة كلما قلّ حجم الفيديو وبالعكس</string>
     <string name="video_360p">دقة متوسطة (360p)</string>
@@ -843,4 +843,12 @@
     <string name="no_contacts">لاتوجد جهات اتصال</string>
     <string name="no_book_marks">لاتوجد مجموعات</string>
     <string name="email">البريد الالكتروني</string>
+    <string name="not_in_roster">اضافة هذه الجهة الى جهات الاتصال</string>
+    <plurals name="view_users">
+        <item quantity="one">View %1$d Participant</item>
+        <item quantity="other">عرض المشتركون</item>
+    </plurals>
+    <string name="no_users_hint_channel">هذه القناة لاتحتوي على مشتركين.يرجى دعوة جهات اتصالك.او مشاركة القناة</string>
+    <string name="also_end_conversation">غلق هذه المحادثة مباشرة بعد الحذف</string>
+    <string name="disable_encryption_message">هل تريد بالتأكيد تعطيل التشفير لهذه المحادثة؟</string>
 </resources>

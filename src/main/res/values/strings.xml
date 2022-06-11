@@ -866,7 +866,7 @@
     <string name="anyone_can_invite_others">Anyone can invite others.</string>
     <string name="jabber_ids_are_visible_to_admins">XMPP addresses are visible to admins.</string>
     <string name="jabber_ids_are_visible_to_anyone">XMPP addresses are visible to anyone.</string>
-    <string name="no_users_hint_channel">This public channel has no participants. Invite your contacts or use the share button to distribute its XMPP address.</string>
+    <string name="no_users_hint_channel">This public channel has no participants. Invite your contacts or use the share button to distribute its Email address.</string>
     <string name="no_users_hint_group_chat">This private group chat has no participants.</string>
     <string name="manage_permission">Manage privileges</string>
     <string name="search_participants">Search participants</string>

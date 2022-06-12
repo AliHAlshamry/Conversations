@@ -598,7 +598,7 @@
     <string name="application_found_to_open_website">تعذر العثور على تطبيق يُمكنه فتح موقع الويب</string>
     <string name="pref_headsup_notifications_summary">أظهر الإشعارات المنبثقة</string>
     <string name="today">اليوم</string>
-    <string name="yesterday">البارحة</string>
+    <string name="yesterday">امس</string>
     <string name="pref_validate_hostname">التحقق من صحة إسم المضيف بواسطة DNSSEC</string>
     <string name="certificate_does_not_contain_jid">الشهادة لا تحتوي على عنوان</string>
     <string name="server_info_partial">جُزْئِيًّا</string>

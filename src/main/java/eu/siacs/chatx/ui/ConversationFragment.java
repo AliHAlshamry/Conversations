@@ -1120,7 +1120,6 @@ public class ConversationFragment extends XmppFragment implements EditMessage.Ke
 
         binding.textinput.setOnEditorActionListener(mEditorActionListener);
         binding.textinput.setRichContentListener(new String[]{"image/*"}, mEditorContentListener);
-        binding.textAttachButton.setImageResource(activity.getResources().getBoolean(R.bool.is_right_to_left) ? R.drawable.ic_attach_gray_ar : R.drawable.paperclip_2);
         binding.textAttachButton.setOnClickListener(this.mAttachButtonListener);
         binding.textSendButton.setOnClickListener(this.mSendButtonListener);
 
@@ -2706,7 +2705,6 @@ public class ConversationFragment extends XmppFragment implements EditMessage.Ke
     }
 
     public void updateSendButton() {
-        boolean isRightLeft =  activity.getResources().getBoolean(R.bool.is_right_to_left);
         boolean hasAttachments = mediaPreviewAdapter != null && mediaPreviewAdapter.hasAttachments();
         final Conversation c = this.conversation;
         final Presence.Status status;
@@ -2747,7 +2745,7 @@ public class ConversationFragment extends XmppFragment implements EditMessage.Ke
                 @Override
                 public void afterTextChanged(Editable s) {
                     if(binding.textinput.getText().toString().trim().length()>0) {
-                        binding.textSendButton.setImageResource(isRightLeft ? R.drawable.ic_send_blue_ar : R.drawable.ic_send_blue);
+                        binding.textSendButton.setImageResource(R.drawable.ic_send_blue);
                     }}
             });
         }
@@ -2773,7 +2771,7 @@ public class ConversationFragment extends XmppFragment implements EditMessage.Ke
                         } else {
                             if (message.getStatus() == Message.STATUS_SEND_DISPLAYED) {
                                 this.messageList.add(i + 1,
-                                Message.createStatusMessage(conversation, getString(R.string.contact_has_read_up_to_this_point, conversation.getName())));
+                                        Message.createStatusMessage(conversation, getString(R.string.contact_has_read_up_to_this_point, conversation.getName())));
                                 return;
                             }
                         }

@@ -14,13 +14,13 @@
             android:layout_height="wrap_content"
             android:layout_marginBottom="27dp"
             android:orientation="horizontal"
-            android:gravity="center|left">
+            android:gravity="center|start">
             <ImageView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:src="@drawable/unlock"
                 android:background="@drawable/circular_background_blue"
-                android:layout_marginRight="8dp"/>
+                android:layout_marginEnd="8dp"/>
             <TextView
                 android:id="@+id/block_unblock_title"
                 android:layout_width="wrap_content"
@@ -47,7 +47,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="8dp"
             android:text="@string/report_jid_as_spammer"
-            android:paddingLeft="4dp"
+            android:paddingStart="4dp"
             android:fontFamily="@font/roboto"
             android:textSize="14sp"
             android:textFontWeight="400"
@@ -68,7 +68,7 @@
                 android:background="@drawable/rounded_corner_button_gray"
                 android:text="@string/cancel"
                 android:textColor="@color/txt_color1"
-                android:layout_marginRight="11dp"
+                android:layout_marginEnd="11dp"
                 android:fontFamily="@font/roboto_medium"
                 android:textAllCaps="false"
                 android:textFontWeight="500"

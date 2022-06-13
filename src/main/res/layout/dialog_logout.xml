@@ -15,13 +15,13 @@
             android:layout_height="wrap_content"
             android:layout_marginBottom="35dp"
             android:orientation="horizontal"
-            android:gravity="center|left">
+            android:gravity="center|start">
             <ImageView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:src="@drawable/ic_danger_red"
                 android:background="@drawable/circular_background_red"
-                android:layout_marginRight="8dp"/>
+                android:layout_marginEnd="8dp"/>
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -56,7 +56,7 @@
                 android:background="@drawable/rounded_corner_button_gray"
                 android:text="@string/cancel"
                 android:textColor="@color/txt_color1"
-                android:layout_marginRight="11dp"
+                android:layout_marginEnd="11dp"
                 android:fontFamily="@font/roboto_medium"
                 android:textAllCaps="false"
                 android:textFontWeight="500"

@@ -45,7 +45,7 @@
                 android:background="@drawable/rounded_corner_button_gray"
                 android:text="@string/cancel"
                 android:textColor="@color/txt_color1"
-                android:layout_marginRight="11dp"
+                android:layout_marginEnd="11dp"
                 android:fontFamily="@font/roboto_medium"
                 android:textAllCaps="false"
                 android:textFontWeight="500"

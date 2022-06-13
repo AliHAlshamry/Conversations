@@ -219,7 +219,7 @@
     <string name="leave">مغادرة</string>
     <string name="contact_added_you">جهة اتصال أضافتك </string>
     <string name="add_back">أضافة الى جهات الاتصال</string>
-    <string name="contact_has_read_up_to_this_point">لقد قرأ %s الرسائل إلى غاية هذا السطر</string>
+    <string name="contact_has_read_up_to_this_point">تمت المشاهدة</string>
     <string name="contacts_have_read_up_to_this_point">لقد قرأ %s الرسائل إلى غاية هذا السطر</string>
     <string name="publish">نشر</string>
     <string name="touch_to_choose_picture">إضغط على الصورة لاختيار صورة من الأستوديو</string>
@@ -362,10 +362,10 @@
     <string name="sending_x_file">ارسال %s</string>
     <string name="offering_x_file">عرض %s</string>
     <string name="hide_offline">اخفاء غير النشطين</string>
-    <string name="contact_is_typing">%s يكتب …</string>
-    <string name="contact_has_stopped_typing">توقف %s عن الكتابة</string>
-    <string name="contacts_are_typing">%s يكتبون …</string>
-    <string name="contacts_have_stopped_typing">%s توقفو عن الكتابة</string>
+    <string name="contact_is_typing">يكتب …</string>
+    <string name="contact_has_stopped_typing">توقف عن الكتابة</string>
+    <string name="contacts_are_typing">يكتبون …</string>
+    <string name="contacts_have_stopped_typing">توقفو عن الكتابة</string>
     <string name="pref_chat_states">مؤشر الكتابة</string>
     <string name="pref_chat_states_summary">سيتم اعلام الطرف الآخر بأنك "تكتب الآن" أو "توقفت عن الكتابة"</string>
     <string name="send_location">ارسال موقعك</string>
@@ -858,5 +858,4 @@
     <string name="server_side_mam_prefs">تفضيلات الارشفة من جانب السيرفر</string>
     <string name="password_hint">6 أحرف على الأقل</string>
     <string name="pref_notification_grace_period_summary">المدة الزمنية التي يتم فيها تجاهل الإشعارات بعد اكتشاف نشاط على أحد أجهزتك الأخرى.</string>
-
 </resources>

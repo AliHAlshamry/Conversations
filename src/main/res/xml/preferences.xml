@@ -100,7 +100,7 @@
                 android:title="@string/title_pref_quiet_hours_end_time" />
             <intent
                 android:action="android.intent.action.VIEW"
-                android:targetClass="eu.siacs.conversations.ui.SettingsActivity"
+                android:targetClass="eu.siacs.chatx.ui.SettingsActivity"
                 android:targetPackage="@string/applicationId">
                 <extra
                     android:name="page"

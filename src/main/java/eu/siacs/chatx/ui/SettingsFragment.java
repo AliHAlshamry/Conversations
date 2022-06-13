@@ -41,7 +41,10 @@ public class SettingsFragment extends PreferenceFragment {
 
 		PreferenceCategory uiCategory = (PreferenceCategory) findPreference("ui");
 		Preference quickAction = findPreference("quick_action");
+		if(quickAction != null)
+		{
 		uiCategory.removePreference(quickAction);
+		}
 	}
 
 	@Override

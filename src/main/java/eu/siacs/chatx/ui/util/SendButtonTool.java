@@ -87,17 +87,17 @@ public class SendButtonTool {
 					case CHAT:
 					case ONLINE:
 //						return R.drawable.ic_send_text_online;
-						return R.drawable.send;
+						return activity.getResources().getBoolean(R.bool.is_right_to_left) ? R.drawable.ic_send_ar :R.drawable.send;
 					case AWAY:
 //						return R.drawable.ic_send_text_away;
-						return R.drawable.send;
+						return activity.getResources().getBoolean(R.bool.is_right_to_left) ? R.drawable.ic_send_ar :R.drawable.send;
 					case XA:
 					case DND:
 //						return R.drawable.ic_send_text_dnd;
-						return R.drawable.send;
+						return activity.getResources().getBoolean(R.bool.is_right_to_left) ? R.drawable.ic_send_ar :R.drawable.send;
 					default:
 //						return getThemeResource(activity, R.attr.ic_send_text_offline, R.drawable.ic_send_text_offline);
-						return R.drawable.send;
+						return activity.getResources().getBoolean(R.bool.is_right_to_left) ? R.drawable.ic_send_ar :R.drawable.send;
 				}
 			case RECORD_VIDEO:
 				switch (status) {

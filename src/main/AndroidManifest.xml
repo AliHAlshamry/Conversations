@@ -63,7 +63,7 @@
         android:requestLegacyExternalStorage="true"
         android:theme="@style/ConversationsTheme"
         tools:replace="android:label"
-        android:supportsRtl="false"
+        android:supportsRtl="true"
         tools:targetApi="q">
 
         <meta-data

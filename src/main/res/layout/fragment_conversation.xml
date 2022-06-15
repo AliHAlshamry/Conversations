@@ -17,13 +17,13 @@
             android:layout_height="fill_parent"
             android:layout_above="@+id/snackbar"
             android:layout_alignParentStart="true"
-            android:layout_alignParentLeft="true"
             android:layout_alignParentTop="true"
             android:divider="@null"
             android:dividerHeight="0dp"
             android:listSelector="@android:color/transparent"
             android:stackFromBottom="true"
             android:transcriptMode="normal"
+            android:layoutDirection="ltr"
             tools:listitem="@layout/message_sent" />
 
         <com.google.android.material.floatingactionbutton.FloatingActionButton
@@ -32,7 +32,6 @@
             android:layout_height="wrap_content"
             android:layout_alignBottom="@+id/messages_view"
             android:layout_alignParentEnd="true"
-            android:layout_alignParentRight="true"
             android:alpha="0.85"
             android:src="?attr/icon_scroll_down"
             android:visibility="gone"
@@ -46,10 +45,8 @@
             android:layout_height="?attr/IconSize"
             android:layout_alignTop="@+id/scroll_to_bottom_button"
             android:layout_alignEnd="@+id/scroll_to_bottom_button"
-            android:layout_alignRight="@+id/scroll_to_bottom_button"
             android:layout_marginTop="16dp"
             android:layout_marginEnd="8dp"
-            android:layout_marginRight="8dp"
             android:elevation="8dp"
             android:visibility="gone"
             app:backgroundColor="?attr/unread_count"
@@ -61,7 +58,6 @@
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
             android:layout_alignParentStart="true"
-            android:layout_alignParentLeft="true"
             android:layout_alignParentBottom="true"
             android:background="@drawable/background_white"
             android:layout_marginHorizontal="15dp"
@@ -151,9 +147,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_alignParentStart="true"
-                    android:layout_alignParentLeft="true"
                     android:layout_toStartOf="@+id/text_attach_button"
-                    android:layout_toLeftOf="@+id/text_attach_button"
                     android:orientation="vertical">
 
                     <TextView
@@ -192,7 +186,8 @@
                         android:maxLines="8"
                         android:minHeight="48dp"
                         android:minLines="1"
-                        android:paddingLeft="16dp"
+                        android:paddingStart="16dp"
+                        android:paddingEnd="16dp"
                         android:fontFamily="@font/roboto"
                         android:textFontWeight="400"
                         android:textSize="14sp"
@@ -229,7 +224,6 @@
                     android:layout_width="48dp"
                     android:layout_height="48dp"
                     android:layout_alignParentEnd="true"
-                    android:layout_alignParentRight="true"
                     android:layout_centerVertical="true"
                     android:background="?attr/color_background_primary"
                     android:contentDescription="@string/send_message"
@@ -254,12 +248,10 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_alignParentStart="true"
-                android:layout_alignParentLeft="true"
                 android:layout_centerVertical="true"
                 android:layout_toStartOf="@+id/snackbar_action"
-                android:layout_toLeftOf="@+id/snackbar_action"
                 android:paddingStart="24dp"
-                android:paddingLeft="24dp"
+                android:paddingEnd="24dp"
                 android:textAppearance="@style/TextAppearance.Conversations.Body1.OnDark" />
 
             <TextView
@@ -267,7 +259,6 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_alignParentEnd="true"
-                android:layout_alignParentRight="true"
                 android:layout_centerVertical="true"
                 android:paddingLeft="24dp"
                 android:paddingTop="16dp"

@@ -43,7 +43,7 @@
                             android:id="@+id/avater"
                             android:layout_width="@dimen/avatar_on_details_screen_size"
                             android:layout_height="@dimen/avatar_on_details_screen_size"
-                            android:layout_marginRight="@dimen/avatar_item_distance"
+                            android:layout_marginEnd="@dimen/avatar_item_distance"
                             android:contentDescription="@string/account_image_description"
                             app:riv_corner_radius="50dp" />
 
@@ -51,10 +51,8 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_alignEnd="@+id/avater"
-                            android:layout_alignRight="@+id/avater"
                             android:layout_marginTop="13dp"
                             android:layout_marginEnd="-15dp"
-                            android:layout_marginRight="-15dp"
                             android:background="@drawable/rounded_background_with_border"
                             android:src="@drawable/ic_camera_white" />
                     </RelativeLayout>
@@ -75,17 +73,16 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="52dp"
+                        android:layout_gravity="start"
                         android:orientation="vertical">
 
                         <LinearLayout
                             android:id="@+id/action_edit_name"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:layout_alignParentStart="true"
-                            android:layout_alignParentLeft="true"
                             android:background="?attr/selectableItemBackground"
                             android:clickable="true"
-                            android:gravity="center|left"
+                            android:gravity="center|start"
                             android:orientation="horizontal"
                             android:paddingHorizontal="24dp"
                             android:paddingVertical="@dimen/linear_layout_with_icon_and_text_padding">
@@ -93,8 +90,6 @@
                             <ImageView
                                 android:layout_width="32dp"
                                 android:layout_height="32dp"
-                                android:layout_alignParentStart="true"
-                                android:layout_centerVertical="true"
                                 android:background="@drawable/rounded_background"
                                 android:padding="6dp"
                                 android:src="@drawable/frame" />
@@ -103,7 +98,7 @@
                                 android:id="@+id/action_edit_contact"
                                 android:layout_width="wrap_content"
                                 android:layout_height="24dp"
-                                android:layout_marginLeft="7dp"
+                                android:layout_marginStart="7dp"
                                 android:fontFamily="@font/roboto"
                                 android:lineHeight="24sp"
                                 android:text="@string/your_name"
@@ -116,12 +111,10 @@
                             android:id="@+id/action_edit_status_message"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:layout_alignParentStart="true"
-                            android:layout_alignParentLeft="true"
                             android:layout_marginTop="27dp"
                             android:background="?attr/selectableItemBackground"
                             android:clickable="true"
-                            android:gravity="center|left"
+                            android:gravity="center|start"
                             android:orientation="horizontal"
                             android:paddingHorizontal="24dp"
                             android:paddingVertical="@dimen/linear_layout_with_icon_and_text_padding">
@@ -129,8 +122,6 @@
                             <ImageView
                                 android:layout_width="32dp"
                                 android:layout_height="32dp"
-                                android:layout_alignParentStart="true"
-                                android:layout_centerVertical="true"
                                 android:background="@drawable/rounded_background"
                                 android:padding="6dp"
                                 android:src="@drawable/message_text" />
@@ -138,7 +129,7 @@
                             <TextView
                                 android:layout_width="wrap_content"
                                 android:layout_height="24dp"
-                                android:layout_marginLeft="7dp"
+                                android:layout_marginStart="7dp"
                                 android:fontFamily="@font/roboto"
                                 android:lineHeight="24sp"
                                 android:text="@string/status_message"
@@ -158,12 +149,10 @@
                             android:id="@+id/action_share_uri_button"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:layout_alignParentStart="true"
-                            android:layout_alignParentLeft="true"
                             android:layout_marginTop="22dp"
                             android:background="?attr/selectableItemBackground"
                             android:clickable="true"
-                            android:gravity="center|left"
+                            android:gravity="center|start"
                             android:orientation="horizontal"
                             android:paddingHorizontal="24dp"
                             android:paddingVertical="@dimen/linear_layout_with_icon_and_text_padding">
@@ -171,8 +160,6 @@
                             <ImageView
                                 android:layout_width="32dp"
                                 android:layout_height="32dp"
-                                android:layout_alignParentStart="true"
-                                android:layout_centerVertical="true"
                                 android:background="@drawable/rounded_background"
                                 android:padding="6dp"
                                 android:src="@drawable/property_34" />
@@ -181,7 +168,7 @@
                                 android:id="@+id/share_uri_text"
                                 android:layout_width="wrap_content"
                                 android:layout_height="24dp"
-                                android:layout_marginLeft="7dp"
+                                android:layout_marginStart="7dp"
                                 android:fontFamily="@font/roboto"
                                 android:lineHeight="24sp"
                                 android:text="@string/share_uri_with"
@@ -194,12 +181,10 @@
                             android:id="@+id/action_archive_button"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:layout_alignParentStart="true"
-                            android:layout_alignParentLeft="true"
                             android:layout_marginTop="27dp"
                             android:background="?attr/selectableItemBackground"
                             android:clickable="true"
-                            android:gravity="center|left"
+                            android:gravity="center|start"
                             android:orientation="horizontal"
                             android:paddingHorizontal="24dp"
                             android:paddingVertical="@dimen/linear_layout_with_icon_and_text_padding">
@@ -207,8 +192,6 @@
                             <ImageView
                                 android:layout_width="32dp"
                                 android:layout_height="32dp"
-                                android:layout_alignParentStart="true"
-                                android:layout_centerVertical="true"
                                 android:background="@drawable/rounded_background"
                                 android:padding="6dp"
                                 android:src="@drawable/document_download" />
@@ -216,7 +199,7 @@
                             <TextView
                                 android:layout_width="wrap_content"
                                 android:layout_height="24dp"
-                                android:layout_marginLeft="7dp"
+                                android:layout_marginStart="7dp"
                                 android:fontFamily="@font/roboto"
                                 android:lineHeight="24sp"
                                 android:text="@string/mam_prefs"
@@ -229,12 +212,10 @@
                             android:id="@+id/action_show_block_list"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:layout_alignParentStart="true"
-                            android:layout_alignParentLeft="true"
                             android:layout_marginTop="27dp"
                             android:background="?attr/selectableItemBackground"
                             android:clickable="true"
-                            android:gravity="center|left"
+                            android:gravity="center|start"
                             android:orientation="horizontal"
                             android:paddingHorizontal="24dp"
                             android:paddingVertical="@dimen/linear_layout_with_icon_and_text_padding">
@@ -242,8 +223,6 @@
                             <ImageView
                                 android:layout_width="32dp"
                                 android:layout_height="32dp"
-                                android:layout_alignParentStart="true"
-                                android:layout_centerVertical="true"
                                 android:background="@drawable/rounded_background_red"
                                 android:padding="6dp"
                                 android:src="@drawable/slash" />
@@ -251,7 +230,7 @@
                             <TextView
                                 android:layout_width="wrap_content"
                                 android:layout_height="24dp"
-                                android:layout_marginLeft="7dp"
+                                android:layout_marginStart="7dp"
                                 android:fontFamily="@font/roboto"
                                 android:lineHeight="24sp"
                                 android:text="@string/show_block_list"
@@ -336,6 +315,7 @@
                                 android:background="@drawable/custom_edit_text"
                                 android:hint="@string/password_hint"
                                 android:inputType="textPassword"
+                                android:textAlignment="viewStart"
                                 android:padding="8dp"
                                 android:textColor="@color/txt_color1" />
                         </com.google.android.material.textfield.TextInputLayout>
@@ -378,6 +358,7 @@
                                     android:background="@drawable/custom_edit_text"
                                     android:hint="@string/password_hint"
                                     android:inputType="textPassword"
+                                    android:textAlignment="viewStart"
                                     android:padding="8dp"
                                     android:textColor="@color/txt_color1" />
                             </com.google.android.material.textfield.TextInputLayout>

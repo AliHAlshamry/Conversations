@@ -13,7 +13,7 @@
             android:id="@+id/contact_photo"
             android:layout_width="48dp"
             android:layout_height="48dp"
-            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
             android:scaleType="centerCrop"
             app:riv_corner_radius="50dp" />
 
@@ -23,10 +23,8 @@
             android:layout_height="14dp"
             android:visibility="invisible"
             android:layout_alignEnd="@+id/contact_photo"
-            android:layout_alignRight="@+id/contact_photo"
             android:layout_alignBottom="@+id/contact_photo"
             android:layout_marginEnd="0dp"
-            android:layout_marginRight="0dp"
             android:layout_marginBottom="0dp"
             android:src="@drawable/account_online" />
 
@@ -34,16 +32,16 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_centerVertical="true"
-            android:layout_toRightOf="@+id/contact_photo"
-            android:orientation="vertical"
-            android:paddingLeft="4dp">
+            android:layout_toEndOf="@+id/contact_photo"
+            android:orientation="vertical">
 
             <TextView
                 android:id="@+id/contact_display_name"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:singleLine="true"
-                android:paddingRight="4dp"
+                android:paddingEnd="4dp"
+                android:paddingStart="4dp"
                 android:fontFamily="@font/roboto_medium"
                 android:textColor="@color/txt_color1"
                 android:textFontWeight="500"
@@ -54,6 +52,8 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:singleLine="true"
+                android:paddingEnd="4dp"
+                android:paddingStart="4dp"
                 android:fontFamily="@font/roboto"
                 android:textColor="@color/txt_color3"
                 android:textFontWeight="400"
@@ -64,7 +64,7 @@
                 android:id="@+id/tags"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="-2dp"
+                android:layout_marginStart="-2dp"
                 android:orientation="horizontal">
             </com.wefika.flowlayout.FlowLayout>
 

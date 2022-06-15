@@ -24,7 +24,7 @@
                     android:id="@+id/conversation_image"
                     android:layout_width="48dp"
                     android:layout_height="48dp"
-                    android:layout_alignParentLeft="true"
+                    android:layout_alignParentStart="true"
                     android:scaleType="centerCrop"
                     app:riv_corner_radius="50dp" />
                 <ImageView
@@ -32,10 +32,8 @@
                     android:layout_width="14dp"
                     android:layout_height="14dp"
                     android:layout_alignEnd="@+id/conversation_image"
-                    android:layout_alignRight="@+id/conversation_image"
                     android:layout_alignBottom="@+id/conversation_image"
                     android:layout_marginEnd="2dp"
-                    android:layout_marginRight="2dp"
                     android:layout_marginBottom="2dp"
                     android:src="@drawable/account_online"
                     android:visibility="invisible" />
@@ -43,19 +41,18 @@
                     android:layout_width="fill_parent"
                     android:layout_height="wrap_content"
                     android:layout_centerVertical="true"
-                    android:layout_toRightOf="@+id/conversation_image"
-                    android:paddingLeft="4dp">
+                    android:layout_toEndOf="@+id/conversation_image"
+                    android:paddingStart="4dp">
 
                     <TextView
                         android:id="@+id/conversation_name"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_alignLeft="@+id/conversation_lastwrapper"
-                        android:layout_toLeftOf="@+id/conversation_lastupdate"
                         android:ellipsize="end"
                         android:fontFamily="@font/roboto_medium"
                         android:maxLines="1"
-                        android:paddingRight="4dp"
+                        android:paddingStart="4dp"
+                        android:paddingEnd="4dp"
                         android:textColor="@color/txt_color1"
                         android:textFontWeight="500"
                         android:textSize="18sp" />
@@ -71,9 +68,9 @@
                             android:id="@+id/sender_name"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:layout_alignParentLeft="true"
+                            android:layout_alignParentStart="true"
                             android:layout_centerVertical="true"
-                            android:layout_marginRight="?attr/TextSeparation"
+                            android:layout_marginEnd="?attr/TextSeparation"
                             android:fontFamily="@font/roboto"
                             android:gravity="center_vertical"
                             android:minHeight="?attr/IconSize"
@@ -88,16 +85,16 @@
                             android:layout_height="wrap_content"
                             android:layout_centerVertical="true"
                             android:orientation="horizontal"
-                            android:layout_toRightOf="@id/sender_name"
+                            android:layout_toEndOf="@id/sender_name"
                             android:layout_alignWithParentIfMissing="true"
-                            android:layout_toLeftOf="@+id/notification_status"
+                            android:layout_toStartOf="@+id/notification_status"
                             android:id="@+id/txt_img_wrapper">
 
                             <ImageView
                                 android:id="@+id/conversation_lastmsg_img"
                                 android:layout_width="?attr/IconSize"
                                 android:layout_height="?attr/IconSize"
-                                android:layout_marginRight="?attr/TextSeparation"
+                                android:layout_marginEnd="?attr/TextSeparation"
                                 android:visibility="gone"/>
 
                             <TextView
@@ -121,8 +118,8 @@
                             android:layout_height="wrap_content"
                             android:layout_alignWithParentIfMissing="true"
                             android:layout_centerVertical="true"
-                            android:layout_marginLeft="4dp"
-                            android:layout_toLeftOf="@+id/pinned_on_top"
+                            android:layout_marginStart="4dp"
+                            android:layout_toStartOf="@+id/pinned_on_top"
                             android:src="@drawable/notification"
                             android:visibility="visible" />
 
@@ -132,8 +129,8 @@
                             android:layout_height="?attr/IconSize"
                             android:layout_alignWithParentIfMissing="true"
                             android:layout_centerVertical="true"
-                            android:layout_marginLeft="4dp"
-                            android:layout_toLeftOf="@+id/unread_count"
+                            android:layout_marginStart="4dp"
+                            android:layout_toStartOf="@+id/unread_count"
                             android:src="@drawable/ic_pin_gray"
                             android:visibility="visible" />
 
@@ -142,11 +139,11 @@
                             android:layout_width="?attr/IconSize"
                             android:layout_height="?attr/IconSize"
                             android:layout_centerVertical="true"
-                            android:layout_marginLeft="3dp"
+                            android:layout_marginStart="3dp"
                             android:layout_marginTop="2dp"
                             android:layout_marginBottom="1dp"
                             android:visibility="gone"
-                            android:layout_alignParentRight="true"
+                            android:layout_alignParentEnd="true"
                             app:backgroundColor="?attr/unread_count" />
 
                     </RelativeLayout>
@@ -156,9 +153,9 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_alignBaseline="@+id/conversation_name"
-                        android:layout_alignParentRight="true"
+                        android:layout_alignParentEnd="true"
                         android:fontFamily="@font/roboto"
-                        android:gravity="right"
+                        android:gravity="start"
                         android:textColor="@color/txt_color3"
                         android:textFontWeight="400"
                         android:textSize="12sp" />

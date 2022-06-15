@@ -220,7 +220,7 @@
     <string name="contact_added_you">جهة اتصال أضافتك </string>
     <string name="add_back">أضافة الى جهات الاتصال</string>
     <string name="contact_has_read_up_to_this_point">تمت المشاهدة</string>
-    <string name="contacts_have_read_up_to_this_point">لقد قرأ %s الرسائل إلى غاية هذا السطر</string>
+    <string name="contacts_have_read_up_to_this_point">تمت المشاهدة بواسطة %s</string>
     <string name="publish">نشر</string>
     <string name="touch_to_choose_picture">إضغط على الصورة لاختيار صورة من الأستوديو</string>
     <string name="publishing">جار النشر ...</string>
@@ -732,7 +732,7 @@
     <string name="this_looks_like_a_domain">رقم الهاتف غير صالح</string>
     <string name="this_looks_like_channel">عنوان القناة غير صالح</string>
     <string name="destroy_room_dialog">هل تريد حذف هذه المجموعة ؟ <b>تحذير:</b> هذه المجموعة ستحذف نهائيا من السيرفر  .</string>
-    <string name="everyone_has_read_up_to_this_point">الجميع قرأ الى غاية هذا السطر</string>
+    <string name="everyone_has_read_up_to_this_point">تمت المشاهدة بواسطة الكل</string>
     <string name="notification_create_backup_title">أنشاء نسخة أحتياطية</string>
     <string name="notification_backup_created_subtitle">تم حفظ النسخة الأحتياطية في  %s</string>
     <string name="restoring_backup">أسترجاع النسخة الأحتياطية</string>

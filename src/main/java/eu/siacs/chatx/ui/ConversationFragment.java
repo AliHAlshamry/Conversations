@@ -2768,13 +2768,14 @@ public class ConversationFragment extends XmppFragment implements EditMessage.Ke
                     if (message.getType() != Message.TYPE_STATUS) {
                         if (message.getStatus() == Message.STATUS_RECEIVED) {
                             return;
-                        } else {
-                            if (message.getStatus() == Message.STATUS_SEND_DISPLAYED) {
-                                this.messageList.add(i + 1,
-                                        Message.createStatusMessage(conversation, getString(R.string.contact_has_read_up_to_this_point, conversation.getName())));
-                                return;
-                            }
                         }
+//                        else {
+//                            if (message.getStatus() == Message.STATUS_SEND_DISPLAYED) {
+//                                this.messageList.add(i + 1,
+//                                        Message.createStatusMessage(conversation, getString(R.string.contact_has_read_up_to_this_point, conversation.getName())));
+//                                return;
+//                            }
+//                        }
                     }
                 }
             }

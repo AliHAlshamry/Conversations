@@ -680,14 +680,10 @@ public class EditAccountActivity extends OmemoActivity implements OnAccountUpdat
         this.binding.avater.setOnClickListener(this.mAvatarClickListener);
         this.binding.hostname.addTextChangedListener(mTextWatcher);
         this.binding.hostname.setOnFocusChangeListener(mEditTextFocusListener);
-        this.binding.clearDevices.setOnClickListener(v -> showWipePepDialog());
         this.binding.port.setText(String.valueOf(Resolver.DEFAULT_PORT_XMPP));
         this.binding.port.addTextChangedListener(mTextWatcher);
         this.binding.saveButton.setOnClickListener(this.mSaveButtonClickListener);
 //        this.binding.cancelButton.setOnClickListener(this.mCancelButtonClickListener);
-        if (savedInstanceState != null && savedInstanceState.getBoolean("showMoreTable")) {
-            changeMoreTableVisibility(true);
-        }
         final OnCheckedChangeListener OnCheckedShowConfirmPassword = (buttonView, isChecked) -> updateSaveButton(true);
         this.binding.accountRegisterNew.setOnCheckedChangeListener(OnCheckedShowConfirmPassword);
         if (Config.DISALLOW_REGISTRATION_IN_UI) {
@@ -754,7 +750,6 @@ public class EditAccountActivity extends OmemoActivity implements OnAccountUpdat
         if (mInitMode)
             more.setIcon(R.drawable.more);
         final MenuItem showBlocklist = menu.findItem(R.id.action_show_block_list);
-        final MenuItem showMoreInfo = menu.findItem(R.id.action_server_info_show_more);
         final MenuItem changePassword = menu.findItem(R.id.action_change_password_on_server);
         final MenuItem renewCertificate = menu.findItem(R.id.action_renew_certificate);
         final MenuItem mamPrefs = menu.findItem(R.id.action_mam_prefs);
@@ -785,7 +780,6 @@ public class EditAccountActivity extends OmemoActivity implements OnAccountUpdat
             binding.actionEditStatusMessage.setVisibility(!mInitMode?View.VISIBLE:View.GONE);
         } else {
             showBlocklist.setVisible(false);
-            showMoreInfo.setVisible(false);
             changePassword.setVisible(false);
             mamPrefs.setVisible(false);
             changePresence.setVisible(false);
@@ -811,10 +805,6 @@ public class EditAccountActivity extends OmemoActivity implements OnAccountUpdat
 
     @Override
     public boolean onPrepareOptionsMenu(Menu menu) {
-        final MenuItem showMoreInfo = menu.findItem(R.id.action_server_info_show_more);
-        if (showMoreInfo.isVisible()) {
-            showMoreInfo.setChecked(binding.serverInfoMore.getVisibility() == View.VISIBLE);
-        }
         return super.onPrepareOptionsMenu(menu);
     }
 
@@ -940,7 +930,6 @@ public class EditAccountActivity extends OmemoActivity implements OnAccountUpdat
         if (mAccount != null) {
             savedInstanceState.putString("account", mAccount.getJid().asBareJid().toEscapedString());
             savedInstanceState.putBoolean("initMode", mInitMode);
-            savedInstanceState.putBoolean("showMoreTable", binding.serverInfoMore.getVisibility() == View.VISIBLE);
         }
         super.onSaveInstanceState(savedInstanceState);
     }
@@ -1015,9 +1004,6 @@ public class EditAccountActivity extends OmemoActivity implements OnAccountUpdat
                 showBlocklistIntent.putExtra(EXTRA_ACCOUNT, mAccount.getJid().toEscapedString());
                 startActivity(showBlocklistIntent);
                 break;
-            case R.id.action_server_info_show_more:
-                changeMoreTableVisibility(!item.isChecked());
-                break;
             case R.id.action_share_barcode:
                 shareBarcode();
                 break;
@@ -1063,10 +1049,6 @@ public class EditAccountActivity extends OmemoActivity implements OnAccountUpdat
         intent.setFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION);
         intent.setType("image/png");
         startActivity(Intent.createChooser(intent, getText(R.string.share_with)));
-    }
-
-    private void changeMoreTableVisibility(boolean visible) {
-        binding.serverInfoMore.setVisibility(visible ? View.VISIBLE : View.GONE);
     }
 
     private void gotoChangePassword(String newPassword) {
@@ -1228,131 +1210,7 @@ public class EditAccountActivity extends OmemoActivity implements OnAccountUpdat
         } else if (this.mAccount.isOptionSet(Account.OPTION_REGISTER) && mForceRegister == null || mInitMode) {
             this.binding.accountRegisterNew.setVisibility(View.VISIBLE);
         }
-        if (this.mAccount.isOnlineAndConnected() && !this.mFetchingAvatar) {
-            Features features = this.mAccount.getXmppConnection().getFeatures();
-//            this.binding.stats.setVisibility(View.VISIBLE);
-            boolean showBatteryWarning = !xmppConnectionService.getPushManagementService().available(mAccount) && isOptimizingBattery();
-            boolean showDataSaverWarning = isAffectedByDataSaver();
-            showOsOptimizationWarning(false, false);
-            this.binding.sessionEst.setText(UIHelper.readableTimeDifferenceFull(this, this.mAccount.getXmppConnection()
-                    .getLastSessionEstablished()));
-            if (features.rosterVersioning()) {
-                this.binding.serverInfoRosterVersion.setText(R.string.server_info_available);
-            } else {
-                this.binding.serverInfoRosterVersion.setText(R.string.server_info_unavailable);
-            }
-            if (features.carbons()) {
-                this.binding.serverInfoCarbons.setText(R.string.server_info_available);
-            } else {
-                this.binding.serverInfoCarbons.setText(R.string.server_info_unavailable);
-            }
-            if (features.mam()) {
-                this.binding.serverInfoMam.setText(R.string.server_info_available);
-            } else {
-                this.binding.serverInfoMam.setText(R.string.server_info_unavailable);
-            }
-            if (features.csi()) {
-                this.binding.serverInfoCsi.setText(R.string.server_info_available);
-            } else {
-                this.binding.serverInfoCsi.setText(R.string.server_info_unavailable);
-            }
-            if (features.blocking()) {
-                this.binding.serverInfoBlocking.setText(R.string.server_info_available);
-            } else {
-                this.binding.serverInfoBlocking.setText(R.string.server_info_unavailable);
-            }
-            if (features.sm()) {
-                this.binding.serverInfoSm.setText(R.string.server_info_available);
-            } else {
-                this.binding.serverInfoSm.setText(R.string.server_info_unavailable);
-            }
-            if (features.externalServiceDiscovery()) {
-                this.binding.serverInfoExternalService.setText(R.string.server_info_available);
-            } else {
-                this.binding.serverInfoExternalService.setText(R.string.server_info_unavailable);
-            }
-            if (features.pep()) {
-                AxolotlService axolotlService = this.mAccount.getAxolotlService();
-                if (axolotlService != null && axolotlService.isPepBroken()) {
-                    this.binding.serverInfoPep.setText(R.string.server_info_broken);
-                } else if (features.pepPublishOptions() || features.pepOmemoWhitelisted()) {
-                    this.binding.serverInfoPep.setText(R.string.server_info_available);
-                } else {
-                    this.binding.serverInfoPep.setText(R.string.server_info_partial);
-                }
-            } else {
-                this.binding.serverInfoPep.setText(R.string.server_info_unavailable);
-            }
-            if (features.httpUpload(0)) {
-                final long maxFileSize = features.getMaxHttpUploadSize();
-                if (maxFileSize > 0) {
-                    this.binding.serverInfoHttpUpload.setText(UIHelper.filesizeToString(maxFileSize));
-                } else {
-                    this.binding.serverInfoHttpUpload.setText(R.string.server_info_available);
-                }
-            } else {
-                this.binding.serverInfoHttpUpload.setText(R.string.server_info_unavailable);
-            }
-
-            this.binding.pushRow.setVisibility(xmppConnectionService.getPushManagementService().isStub() ? View.GONE : View.VISIBLE);
-
-            if (xmppConnectionService.getPushManagementService().available(mAccount)) {
-                this.binding.serverInfoPush.setText(R.string.server_info_available);
-            } else {
-                this.binding.serverInfoPush.setText(R.string.server_info_unavailable);
-            }
-            final long pgpKeyId = this.mAccount.getPgpId();
-            if (pgpKeyId != 0 && Config.supportOpenPgp()) {
-                OnClickListener openPgp = view -> launchOpenKeyChain(pgpKeyId);
-                OnClickListener delete = view -> showDeletePgpDialog();
-                this.binding.pgpFingerprintBox.setVisibility(View.VISIBLE);
-                this.binding.pgpFingerprint.setText(OpenPgpUtils.convertKeyIdToHex(pgpKeyId));
-                this.binding.pgpFingerprint.setOnClickListener(openPgp);
-                if ("pgp".equals(messageFingerprint)) {
-                    this.binding.pgpFingerprintDesc.setTextAppearance(this, R.style.TextAppearance_Conversations_Caption_Highlight);
-                }
-                this.binding.pgpFingerprintDesc.setOnClickListener(openPgp);
-                this.binding.actionDeletePgp.setOnClickListener(delete);
-            } else {
-                this.binding.pgpFingerprintBox.setVisibility(View.GONE);
-            }
-            final String ownAxolotlFingerprint = this.mAccount.getAxolotlService().getOwnFingerprint();
-            if (ownAxolotlFingerprint != null && Config.supportOmemo()) {
-                this.binding.axolotlFingerprintBox.setVisibility(View.VISIBLE);
-                if (ownAxolotlFingerprint.equals(messageFingerprint)) {
-                    this.binding.ownFingerprintDesc.setTextAppearance(this, R.style.TextAppearance_Conversations_Caption_Highlight);
-                    this.binding.ownFingerprintDesc.setText(R.string.omemo_fingerprint_selected_message);
-                } else {
-                    this.binding.ownFingerprintDesc.setTextAppearance(this, R.style.TextAppearance_Conversations_Caption);
-                    this.binding.ownFingerprintDesc.setText(R.string.omemo_fingerprint);
-                }
-                this.binding.axolotlFingerprint.setText(CryptoHelper.prettifyFingerprint(ownAxolotlFingerprint.substring(2)));
-                this.binding.actionCopyAxolotlToClipboard.setVisibility(View.VISIBLE);
-                this.binding.actionCopyAxolotlToClipboard.setOnClickListener(v -> copyOmemoFingerprint(ownAxolotlFingerprint));
-            } else {
-                this.binding.axolotlFingerprintBox.setVisibility(View.GONE);
-            }
-            boolean hasKeys = false;
-            binding.otherDeviceKeys.removeAllViews();
-            for (XmppAxolotlSession session : mAccount.getAxolotlService().findOwnSessions()) {
-                if (!session.getTrust().isCompromised()) {
-                    boolean highlight = session.getFingerprint().equals(messageFingerprint);
-                    addFingerprintRow(binding.otherDeviceKeys, session, highlight);
-                    hasKeys = true;
-                }
-            }
-            if (hasKeys && Config.supportOmemo()) { //TODO: either the button should be visible if we print an active device or the device list should be fed with reactived devices
-//                this.binding.otherDeviceKeysCard.setVisibility(View.VISIBLE);
-                Set<Integer> otherDevices = mAccount.getAxolotlService().getOwnDeviceIds();
-                if (otherDevices == null || otherDevices.isEmpty()) {
-                    binding.clearDevices.setVisibility(View.GONE);
-                } else {
-                    binding.clearDevices.setVisibility(View.VISIBLE);
-                }
-            } else {
-//                this.binding.otherDeviceKeysCard.setVisibility(View.GONE);
-            }
-        } else {
+        if (!this.mAccount.isOnlineAndConnected() && this.mFetchingAvatar) {
             final TextInputLayout errorLayout;
             if (this.mAccount.errorStatus()) {
                 if (this.mAccount.getStatus() == Account.State.UNAUTHORIZED || this.mAccount.getStatus() == Account.State.DOWNGRADE_ATTACK) {
@@ -1372,8 +1230,6 @@ public class EditAccountActivity extends OmemoActivity implements OnAccountUpdat
                 errorLayout = null;
             }
             removeErrorsOnAllBut(errorLayout);
-            this.binding.stats.setVisibility(View.GONE);
-            this.binding.otherDeviceKeysCard.setVisibility(View.GONE);
         }
         if (!mInitMode) {
             this.binding.login.setVisibility(View.GONE);

@@ -84,6 +84,7 @@ import eu.siacs.chatx.ui.adapter.ContactsHorizontalAdapter;
 import eu.siacs.chatx.ui.adapter.ConversationAdapter;
 import eu.siacs.chatx.ui.interfaces.OnConversationArchived;
 import eu.siacs.chatx.ui.interfaces.OnConversationSelected;
+import eu.siacs.chatx.ui.util.JidDialog;
 import eu.siacs.chatx.ui.util.MenuDoubleTabUtil;
 import eu.siacs.chatx.ui.util.PendingActionHelper;
 import eu.siacs.chatx.ui.util.PendingItem;
@@ -94,6 +95,7 @@ import eu.siacs.chatx.utils.EasyOnboardingInvite;
 import eu.siacs.chatx.utils.ThemeHelper;
 import eu.siacs.chatx.utils.TimeFrameUtils;
 import eu.siacs.chatx.utils.XmppUri;
+import eu.siacs.chatx.xmpp.XmppConnection;
 
 public class ConversationsOverviewFragment extends XmppFragment {
 
@@ -424,6 +426,49 @@ public class ConversationsOverviewFragment extends XmppFragment {
 				Log.w(ConversationsOverviewFragment.class.getCanonicalName(), "Activity does not implement OnConversationSelected");
 			}
 		});
+		this.conversationHorizontalAdapter.setContactLongClickListener((view, contact) -> {
+			android.widget.PopupMenu popupMenu = new android.widget.PopupMenu(view.getContext(), view.findViewById(R.id.contact_jid));
+			getActivity().getMenuInflater().inflate(R.menu.contact_context, popupMenu.getMenu());
+			Menu menu = popupMenu.getMenu();
+			final MenuItem blockUnblockItem = menu.findItem(R.id.context_contact_block_unblock);
+			final MenuItem showContactDetailsItem = menu.findItem(R.id.context_contact_details);
+			final MenuItem deleteContactMenuItem = menu.findItem(R.id.context_delete_contact);
+			if (contact.isSelf()) {
+				showContactDetailsItem.setVisible(false);
+			}
+			deleteContactMenuItem.setVisible(contact.showInRoster() && !contact.getOption(Contact.Options.SYNCED_VIA_OTHER));
+			final XmppConnection xmpp = contact.getAccount().getXmppConnection();
+			if (xmpp != null && xmpp.getFeatures().blocking() && !contact.isSelf()) {
+				if (contact.isBlocked()) {
+					blockUnblockItem.setTitle(R.string.unblock_contact);
+				} else {
+					blockUnblockItem.setTitle(R.string.block_contact);
+				}
+			} else {
+				blockUnblockItem.setVisible(false);
+			}
+			popupMenu.setOnMenuItemClickListener(menuItem -> {
+				switch (menuItem.getItemId()) {
+					case R.id.context_contact_details:
+					openDetailsForContact(contact);
+						break;
+					case R.id.context_show_qr:
+						showQrForContact(contact);
+						break;
+					case R.id.context_contact_block_unblock:
+						toggleContactBlock(contact);
+						break;
+					case R.id.context_delete_contact:
+						deleteContact(contact);
+						break;
+					default:
+						break;
+				}
+				return true;
+			});
+			popupMenu.show();
+		});
+
 		this.binding.horizontalContactsList.setAdapter(this.conversationHorizontalAdapter);
 		this.binding.horizontalContactsList.setLayoutManager(new LinearLayoutManager(getActivity(),LinearLayoutManager.HORIZONTAL,false));
 		this.binding.list.setAdapter(this.conversationAdapter);
@@ -817,6 +862,29 @@ public class ConversationsOverviewFragment extends XmppFragment {
 		activity.xmppConnectionService.updateConversation(conversation);
 		refresh();
 		activity.invalidateOptionsMenu();
+	}
+
+	protected void openDetailsForContact(Contact contact) {
+	    activity.switchToContactDetails(contact);
+	}
+
+	protected void showQrForContact(Contact contact) {
+		activity.showQrCode("xmpp:" + contact.getJid().asBareJid().toEscapedString());
+	}
+
+	protected void toggleContactBlock(Contact contact) {
+		BlockContactDialog.show(activity, contact);
+	}
+
+	protected void deleteContact(Contact contact) {
+		final androidx.appcompat.app.AlertDialog.Builder builder = new androidx.appcompat.app.AlertDialog.Builder(activity);
+		builder.setNegativeButton(R.string.cancel, null);
+		builder.setTitle(R.string.action_delete_contact);
+		builder.setMessage(JidDialog.style(activity, R.string.remove_contact_text, contact.getJid().toEscapedString()));
+		builder.setPositiveButton(R.string.delete, (dialog, which) -> {
+			activity.xmppConnectionService.deleteContactOnServer(contact);
+		});
+		builder.create().show();
 	}
 
 }

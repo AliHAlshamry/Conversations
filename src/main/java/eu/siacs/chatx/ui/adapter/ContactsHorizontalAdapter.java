@@ -20,6 +20,7 @@ public class ContactsHorizontalAdapter extends RecyclerView.Adapter<ContactsHori
 
     private final List<Contact> contacts;
     private OnContactClickListener listener;
+    private OnContactLongClickListener longListener;
 
     public ContactsHorizontalAdapter(List<Contact> contacts) {
         this.contacts = contacts;
@@ -44,6 +45,10 @@ public class ContactsHorizontalAdapter extends RecyclerView.Adapter<ContactsHori
             viewHolder.binding.contactJid.setText(contact.getJid().getLocal());
             AvatarWorkerTask.loadAvatar(contact, viewHolder.binding.conversationImage, R.dimen.avatar_on_conversation_overview);
         viewHolder.itemView.setOnClickListener(v -> listener.onContactClick(v, contact));
+        viewHolder.itemView.setOnLongClickListener(v -> {
+            longListener.onContactLongClick(v, contact);
+            return true;
+        });
     }
 
     @Override
@@ -57,6 +62,14 @@ public class ContactsHorizontalAdapter extends RecyclerView.Adapter<ContactsHori
 
     public interface OnContactClickListener {
         void onContactClick(View view, Contact contact);
+    }
+
+    public void setContactLongClickListener(OnContactLongClickListener listener) {
+        this.longListener = listener;
+    }
+
+    public interface OnContactLongClickListener {
+        void onContactLongClick(View view, Contact contact);
     }
 
     static class ContactsViewHolder extends RecyclerView.ViewHolder {

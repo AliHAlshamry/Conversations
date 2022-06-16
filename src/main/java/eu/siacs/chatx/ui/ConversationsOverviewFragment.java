@@ -143,7 +143,8 @@ public class ConversationsOverviewFragment extends XmppFragment {
 			super.onChildDraw(c, recyclerView, viewHolder, dX, dY, actionState, isCurrentlyActive);
 			if(actionState != ItemTouchHelper.ACTION_STATE_IDLE){
 				Paint paint = new Paint();
-				paint.setColor(StyledAttributes.getColor(activity,R.attr.conversations_overview_background));
+//				paint.setColor(StyledAttributes.getColor(activity,R.attr.conversations_overview_background));
+				paint.setColor(getResources().getColor(R.color.info));
 				paint.setStyle(Paint.Style.FILL);
 				c.drawRect(viewHolder.itemView.getLeft(),viewHolder.itemView.getTop()
 						,viewHolder.itemView.getRight(),viewHolder.itemView.getBottom(), paint);

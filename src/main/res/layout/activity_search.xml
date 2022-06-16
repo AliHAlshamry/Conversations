@@ -48,6 +48,34 @@
             android:divider="@android:color/transparent"
             android:dividerHeight="0dp"
             android:listSelector="@android:color/transparent"
-            android:stackFromBottom="true"/>
+            android:stackFromBottom="true"
+            android:visibility="gone"/>
+        <LinearLayout
+            android:id="@+id/empty_layout"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:gravity="center"
+            android:orientation="vertical"
+            android:layout_below="@id/tab_layout"
+            android:layout_above="@id/speed_dial">
+            <ImageView
+                android:id="@+id/search_image"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/ic_search_normal_gray">
+            </ImageView>
+            <TextView
+                android:id="@+id/no_messages_text"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/roboto_medium"
+                android:textColor="@color/txt_color1"
+                android:textFontWeight="600"
+                android:textSize="24sp"
+                android:text="@string/no_messages"
+                android:layout_marginTop="24dp"
+                android:visibility="gone"
+                android:gravity="center"/>
+        </LinearLayout>
     </LinearLayout>
 </layout>

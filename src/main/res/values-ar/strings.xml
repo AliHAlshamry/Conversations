@@ -858,4 +858,5 @@
     <string name="server_side_mam_prefs">تفضيلات الارشفة من جانب السيرفر</string>
     <string name="password_hint">6 أحرف على الأقل</string>
     <string name="pref_notification_grace_period_summary">المدة الزمنية التي يتم فيها تجاهل الإشعارات بعد اكتشاف نشاط على أحد أجهزتك الأخرى.</string>
+    <string name="no_messages">لاتوجد رسائل</string>
 </resources>

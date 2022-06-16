@@ -994,4 +994,5 @@
     <string name="no_book_marks">No Groups</string>
     <string name="replay_to">Replaying to </string>
     <string name="replay_to_my_message">Reply to my message</string>
+    <string name="no_messages">No messages found</string>
 </resources>

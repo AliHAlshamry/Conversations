@@ -36,6 +36,6 @@
         <bitmap
             android:alpha="0.9"
             android:gravity="center"
-            android:src="@drawable/ic_search_blue"/>
+            android:src="@drawable/ic_search_normal_gray"/>
     </item>
 </layer-list>

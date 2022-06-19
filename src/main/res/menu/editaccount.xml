@@ -42,14 +42,6 @@
         android:title="@string/action_renew_certificate"
         android:visible="false"/>
 
-    <item
-        android:id="@+id/action_server_info_show_more"
-        android:checkable="true"
-        android:checked="false"
-        app:showAsAction="never"
-        android:title="@string/server_info_show_more"
-        android:visible="false"
-        />
 
     <item
         android:id="@+id/action_mam_prefs"

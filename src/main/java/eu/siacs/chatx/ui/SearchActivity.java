@@ -223,11 +223,19 @@ public class SearchActivity extends XmppActivity implements TextWatcher, OnSearc
 	private void changeBackground(boolean hasSearch, boolean hasResults) {
 		if (hasSearch) {
 			if (hasResults) {
+			    binding.emptyLayout.setVisibility(View.GONE);
+				binding.searchResults.setVisibility(View.VISIBLE);
 				binding.searchResults.setBackgroundColor(StyledAttributes.getColor(this, R.attr.color_background_secondary));
 			} else {
-				binding.searchResults.setBackground(StyledAttributes.getDrawable(this, R.attr.activity_background_no_results));
+				binding.emptyLayout.setVisibility(View.VISIBLE);
+				binding.searchResults.setVisibility(View.GONE);
+//				binding.searchResults.setBackground(StyledAttributes.getDrawable(this, R.attr.activity_background_no_results));
+				binding.searchImage.setImageResource(R.drawable.ic_no_message);
+				binding.noMessagesText.setVisibility(View.VISIBLE);
 			}
 		} else {
+			binding.emptyLayout.setVisibility(View.GONE);
+			binding.searchResults.setVisibility(View.VISIBLE);
 			binding.searchResults.setBackground(StyledAttributes.getDrawable(this, R.attr.activity_background_search));
 		}
 	}

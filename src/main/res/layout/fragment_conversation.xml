@@ -24,6 +24,7 @@
             android:stackFromBottom="true"
             android:transcriptMode="normal"
             android:layoutDirection="ltr"
+            android:paddingTop="1dp"
             tools:listitem="@layout/message_sent" />
 
         <com.google.android.material.floatingactionbutton.FloatingActionButton
@@ -63,7 +64,8 @@
             android:layout_marginHorizontal="15dp"
             android:layout_marginTop="5dp"
             android:layout_marginBottom="25dp"
-            android:orientation="vertical">
+            android:orientation="vertical"
+            android:layoutDirection="ltr">
             <LinearLayout
                 android:id="@+id/reply_Container"
                 android:layout_width="fill_parent"
@@ -140,6 +142,7 @@
             </LinearLayout>
             <RelativeLayout
                 android:id="@id/input_field"
+                android:layoutDirection="ltr"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content">
 
@@ -173,7 +176,17 @@
                         tools:listitem="@layout/media_preview">
 
                     </androidx.recyclerview.widget.RecyclerView>
-
+                    <com.devlomi.record_view.RecordView
+                        android:id="@+id/record_view"
+                        android:layout_width="match_parent"
+                        android:layout_height="58dp"
+                        android:visibility="gone"
+                        app:counter_time_color="@color/colorAccent"
+                        app:slide_to_cancel_arrow="@drawable/recv_ic_arrow"
+                        app:slide_to_cancel_arrow_color="@color/txt_color3"
+                        app:slide_to_cancel_text="@string/pull_to_cancel"
+                        app:slide_to_cancel_bounds="10dp"
+                        app:slide_to_cancel_margin_right="20dp"/>
                     <eu.siacs.chatx.ui.widget.EditMessage
                         android:id="@+id/textinput"
                         style="@style/Widget.Conversations.EditText"
@@ -196,18 +209,16 @@
 
                         <requestFocus />
                     </eu.siacs.chatx.ui.widget.EditMessage>
-
                 </LinearLayout>
 
                 <ImageButton
                     android:id="@+id/text_attach_button"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_alignEnd="@+id/textSendButton"
+                    android:layout_alignParentEnd="true"
                     android:layout_centerVertical="true"
-                    android:layout_marginEnd="45dp"
+                    android:layout_marginEnd="48dp"
                     android:background="@android:color/transparent"
-                    android:padding="10dp"
                     android:src="@drawable/paperclip_2" />
 
 <!--                <View-->
@@ -222,12 +233,25 @@
                 <ImageButton
                     android:id="@+id/textSendButton"
                     android:layout_width="48dp"
+                    android:layoutDirection="ltr"
                     android:layout_height="48dp"
-                    android:layout_alignParentEnd="true"
+                    android:layout_alignParentRight="true"
                     android:layout_centerVertical="true"
                     android:background="?attr/color_background_primary"
                     android:contentDescription="@string/send_message"
                     android:src="@drawable/send" />
+
+                <com.devlomi.record_view.RecordButton
+                    android:id="@+id/record_button"
+                    android:layout_width="48dp"
+                    android:layout_height="58dp"
+                    android:visibility="gone"
+                    android:layout_alignParentEnd="true"
+                    android:layout_centerVertical="true"
+                    android:layout_gravity="center_vertical"
+                    android:background="@drawable/shape_send_button"
+                    android:scaleType="centerInside"
+                    app:mic_icon="@drawable/ic_record_button" />
             </RelativeLayout>
         </LinearLayout>
 

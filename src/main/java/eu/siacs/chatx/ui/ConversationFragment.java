@@ -20,9 +20,11 @@ import android.content.Intent;
 import android.content.IntentSender.SendIntentException;
 import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
+import android.media.MediaRecorder;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
+import android.os.FileObserver;
 import android.os.Handler;
 import android.os.SystemClock;
 import android.preference.PreferenceManager;
@@ -65,20 +67,29 @@ import androidx.core.view.inputmethod.InputConnectionCompat;
 import androidx.core.view.inputmethod.InputContentInfoCompat;
 import androidx.databinding.DataBindingUtil;
 
+import com.devlomi.record_view.OnBasketAnimationEnd;
+import com.devlomi.record_view.OnRecordListener;
 import com.google.android.material.bottomsheet.BottomSheetBehavior;
 import com.google.common.base.Optional;
 
 import org.jetbrains.annotations.NotNull;
 
+import java.io.File;
+import java.io.IOException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collection;
 import java.util.Collections;
+import java.util.Date;
 import java.util.HashSet;
 import java.util.Iterator;
 import java.util.List;
+import java.util.Locale;
 import java.util.Set;
 import java.util.UUID;
+import java.util.concurrent.CountDownLatch;
+import java.util.concurrent.TimeUnit;
 import java.util.concurrent.atomic.AtomicBoolean;
 
 import eu.siacs.chatx.Config;
@@ -190,6 +201,26 @@ public class ConversationFragment extends XmppFragment implements EditMessage.Ke
     private Toast messageLoaderToast;
     private ConversationsActivity activity;
     private boolean reInitRequiredOnStart = true;
+
+    private MediaRecorder mRecorder;
+    private File mOutputFile;
+    private long mStartTime = 0;
+    private Handler mHandler = new Handler();
+    private CountDownLatch outputFileWrittenLatch = new CountDownLatch(1);
+    private Runnable mTickExecutor = new Runnable() {
+        @Override
+        public void run() {
+            tick();
+            mHandler.postDelayed(mTickExecutor, 100);
+        }
+    };
+    private void tick() {
+        //this.binding.timer.setText(TimeFrameUtils.formatTimePassed(mStartTime, true));
+    }
+    public static String STORAGE_DIRECTORY_TYPE_NAME = "Recordings";
+    private FileObserver mFileObserver;
+
+
     private final OnClickListener clickToMuc = new OnClickListener() {
 
         @Override
@@ -1147,11 +1178,179 @@ public class ConversationFragment extends XmppFragment implements EditMessage.Ke
         binding.bottomSheet.btnAttachFile.setOnClickListener(onAttachClickListener);
         binding.bottomSheet.btnAttachVoice.setOnClickListener(onAttachClickListener);
         binding.bottomSheet.btnAttachLocation.setOnClickListener(onAttachClickListener);
+        binding.recordButton.setRecordView(binding.recordView);
+        binding.recordView.setSlideToCancelTextColor(R.color.txt_color3);
+        binding.recordView.setOnRecordListener(new OnRecordListener() {
+            @Override
+            public void onStart() {
+                //Start Recording..
+                Log.d("RecordView", "onStart");
+                hideSendButtonAndMessageBoxWhileRecording();
+                if (hasPermissions(0, Manifest.permission.RECORD_AUDIO))
+                    startRecording();
+            }
 
+            @Override
+            public void onCancel() {
+                //On Swipe To Cancel
+                Log.d("RecordView", "onCancel");
+                stopRecording(false);
+            }
 
+            @Override
+            public void onFinish(long recordTime) {
+                //Stop Recording..
+                String time = String.valueOf(recordTime);
+                Log.d("RecordView", "onFinish");
+
+                Log.d("RecordTime", time);
+
+                showSendButtonAndMessageBoxAfterRecording();
+                stopRecording(true);
+            }
+
+            @Override
+            public void onLessThanSecond() {
+                //When the record time is less than One Second
+                Log.d("RecordView", "onLessThanSecond");
+                showSendButtonAndMessageBoxAfterRecording();
+                stopRecording(false);
+            }
+        });
+
+        binding.recordView.setOnBasketAnimationEndListener(new OnBasketAnimationEnd() {
+            @Override
+            public void onAnimationEnd() {
+                Log.d("RecordView", "Basket Animation Finished");
+                showSendButtonAndMessageBoxAfterRecording();
+            }
+        });
 
         return binding.getRoot();
     }
+
+    private void hideSendButtonAndMessageBoxWhileRecording() {
+        binding.textAttachButton.setVisibility(View.GONE);
+        binding.textinput.setVisibility(View.GONE);
+        binding.recordView.setVisibility(View.VISIBLE);
+    }
+
+    private void showSendButtonAndMessageBoxAfterRecording() {
+        binding.textAttachButton.setVisibility(View.VISIBLE);
+        binding.textinput.setVisibility(View.VISIBLE);
+        binding.recordView.setVisibility(View.GONE);
+    }
+    private void hideControlsWhileRecording() {
+        binding.textAttachButton.setVisibility(View.GONE);
+        binding.textinput.setVisibility(View.GONE);
+        binding.recordView.setVisibility(View.VISIBLE);
+    }
+
+    private void showControlsAfterRecording() {
+        binding.textAttachButton.setVisibility(View.VISIBLE);
+        binding.textinput.setVisibility(View.VISIBLE);
+        binding.recordView.setVisibility(View.GONE);
+    }
+
+    private boolean startRecording() {
+        mRecorder = new MediaRecorder();
+        mRecorder.setAudioSource(MediaRecorder.AudioSource.MIC);
+        mRecorder.setOutputFormat(MediaRecorder.OutputFormat.MPEG_4);
+        mRecorder.setAudioEncoder(MediaRecorder.AudioEncoder.AAC);
+        mRecorder.setAudioEncodingBitRate(96000);
+        mRecorder.setAudioSamplingRate(22050);
+        setupOutputFile();
+        mRecorder.setOutputFile(mOutputFile.getAbsolutePath());
+
+        try {
+            mRecorder.prepare();
+            mRecorder.start();
+            mStartTime = SystemClock.elapsedRealtime();
+            mHandler.postDelayed(mTickExecutor, 100);
+            Log.d("Voice Recorder", "started recording to " + mOutputFile.getAbsolutePath());
+            return true;
+        } catch (Exception e) {
+            Log.e("Voice Recorder", "prepare() failed " + e.getMessage());
+            return false;
+        }
+    }
+
+    protected void stopRecording(final boolean saveFile) {
+        try {
+            mRecorder.stop();
+            mRecorder.release();
+        } catch (Exception e) {
+            if (saveFile) {
+                Toast.makeText(activity, R.string.unable_to_save_recording, Toast.LENGTH_SHORT).show();
+                return;
+            }
+        } finally {
+            mRecorder = null;
+            mStartTime = 0;
+        }
+        if (!saveFile && mOutputFile != null) {
+            if (mOutputFile.delete()) {
+                Log.d(Config.LOGTAG, "deleted canceled recording");
+            }
+        }
+        if (saveFile) {
+            new Thread(() -> {
+                try {
+                    if (!outputFileWrittenLatch.await(2, TimeUnit.SECONDS)) {
+                        Log.d(Config.LOGTAG, "time out waiting for output file to be written");
+                    }
+                } catch (InterruptedException e) {
+                    Log.d(Config.LOGTAG, "interrupted while waiting for output file to be written", e);
+                }
+                Attachment attachment = Attachment.of(activity, Uri.fromFile(mOutputFile), Attachment.Type.RECORDING).get(0);
+                runOnUiThread(new Runnable() {
+                    @Override
+                    public void run() {
+                        attachFileToConversation(conversation, attachment.getUri(), attachment.getMime());
+                    }
+                });
+
+            }).start();
+        }
+    }
+
+    private void setupOutputFile() {
+        mOutputFile = generateOutputFilename(activity);
+        File parentDirectory = mOutputFile.getParentFile();
+        if (parentDirectory.mkdirs()) {
+            Log.d(Config.LOGTAG, "created " + parentDirectory.getAbsolutePath());
+        }
+        File noMedia = new File(parentDirectory, ".nomedia");
+        if (!noMedia.exists()) {
+            try {
+                if (noMedia.createNewFile()) {
+                    Log.d(Config.LOGTAG, "created nomedia file in " + parentDirectory.getAbsolutePath());
+                }
+            } catch (IOException e) {
+                Log.d(Config.LOGTAG, "unable to create nomedia file in " + parentDirectory.getAbsolutePath(), e);
+            }
+        }
+        setupFileObserver(parentDirectory);
+    }
+
+    private static File generateOutputFilename(Context context) {
+        SimpleDateFormat dateFormat = new SimpleDateFormat("yyyyMMdd_HHmmssSSS", Locale.US);
+        String filename = "RECORDING_" + dateFormat.format(new Date()) + ".m4a";
+        return new File(FileBackend.getConversationsDirectory(context, STORAGE_DIRECTORY_TYPE_NAME) + "/" + filename);
+    }
+
+    private void setupFileObserver(File directory) {
+        mFileObserver = new FileObserver(directory.getAbsolutePath()) {
+            @Override
+            public void onEvent(int event, String s) {
+                if (s != null && s.equals(mOutputFile.getName()) && event == FileObserver.CLOSE_WRITE) {
+                    outputFileWrittenLatch.countDown();
+                }
+            }
+        };
+        mFileObserver.startWatching();
+    }
+
 
     @Override
     public void onDestroyView() {
@@ -1660,6 +1859,8 @@ public class ConversationFragment extends XmppFragment implements EditMessage.Ke
                         break;
                     case REQUEST_START_VIDEO_CALL:
                         triggerRtpSession(RtpSessionActivity.ACTION_MAKE_VIDEO_CALL);
+                        break;
+                    case ATTACHMENT_CHOICE_RECORD_VOICE:
                         break;
                     default:
                         attachFile(requestCode);
@@ -2650,14 +2851,6 @@ public class ConversationFragment extends XmppFragment implements EditMessage.Ke
             contactName.setText(conversation.getName());
             contactStatus.setText("");
         }
-        if (conversation.getMode() == Conversation.MODE_SINGLE) {
-            ChatState state = conversation.getIncomingChatState();
-            if (state == ChatState.COMPOSING) {
-                contactStatus.setText(R.string.contact_is_typing);
-            }else if (state == ChatState.PAUSED) {
-                contactStatus.setText(R.string.contact_has_stopped_typing);
-            }
-        }
         if(connectionStatus.isEmpty() && conversation.getMode() == Conversational.MODE_MULTI){
             contactStatus.setVisibility(View.GONE);
         }
@@ -2718,9 +2911,13 @@ public class ConversationFragment extends XmppFragment implements EditMessage.Ke
         final Presence.Status status;
         final String text = this.binding.textinput == null ? "" : this.binding.textinput.getText().toString();
         final SendButtonAction action;
-        if (hasAttachments) {
+        if (hasAttachments || !text.equals("")) {
+            binding.textSendButton.setVisibility(View.VISIBLE);
+            binding.recordButton.setVisibility(View.GONE);
             action = SendButtonAction.TEXT;
         } else {
+            binding.textSendButton.setVisibility(View.GONE);
+            binding.recordButton.setVisibility(View.VISIBLE);
             action = SendButtonTool.getAction(getActivity(), c, text);
         }
         if (c.getAccount().getStatus() == Account.State.ONLINE) {

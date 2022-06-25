@@ -2,12 +2,14 @@ package eu.siacs.chatx.ui;
 
 import android.Manifest;
 import android.annotation.SuppressLint;
+import android.app.Dialog;
 import android.content.ActivityNotFoundException;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
+import android.graphics.Bitmap;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.net.Uri;
@@ -27,9 +29,11 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.View.OnClickListener;
+import android.view.Window;
 import android.view.WindowManager;
 import android.widget.CompoundButton;
 import android.widget.CompoundButton.OnCheckedChangeListener;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -523,6 +527,7 @@ public class ContactDetailsActivity extends OmemoActivity implements OnAccountUp
         binding.detailsAccount.setText(getString(R.string.using_account, account));
         AvatarWorkerTask.loadAvatar(contact, binding.detailsContactBadge, R.dimen.avatar_on_details_screen_size);
         binding.detailsContactBadge.setOnClickListener(this::onBadgeClick);
+        binding.addToDeviceContact.setOnClickListener(this::addToContactClick);
 
         binding.detailsContactKeys.removeAllViews();
         boolean hasKeys = false;
@@ -625,8 +630,7 @@ public class ContactDetailsActivity extends OmemoActivity implements OnAccountUp
 //            binding.onlineTag.setVisibility(View.VISIBLE);
 //        }
     }
-
-    private void onBadgeClick(View view) {
+    private void addToContactClick(View view) {
         final Uri systemAccount = contact.getSystemAccount();
         if (systemAccount == null) {
             checkContactPermissionAndShowAddDialog();
@@ -640,7 +644,24 @@ public class ContactDetailsActivity extends OmemoActivity implements OnAccountUp
             }
         }
     }
-
+    private void onBadgeClick(View view) {
+        final XmppActivity activity = XmppActivity.find(binding.detailsContactBadge);
+        if (activity == null) {
+            return;
+        }
+        final Bitmap bm = activity.avatarService().get(contact, (int) activity.getResources().getDimension(R.dimen.avatar_on_details_screen_size), true);
+        if (bm == null) {
+            return;
+        }
+        Dialog settingsDialog = new Dialog(this);
+        settingsDialog.getWindow().requestFeature(Window.FEATURE_NO_TITLE);
+        LayoutInflater inflater = getLayoutInflater();
+        View dialogLayout = inflater.inflate(R.layout.image_view_dialog, null);
+        ImageView imageView = dialogLayout.findViewById(R.id.image_dialog);
+        imageView.setImageBitmap(bm);
+        settingsDialog.setContentView(dialogLayout);
+        settingsDialog.show();
+    }
     public void onBackendConnected() {
         if (accountJid != null && contactJid != null) {
             Account account = xmppConnectionService.findAccountByJid(accountJid);

@@ -46,25 +46,34 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="@string/error_trustkeys_title"
-                            android:textAppearance="@style/TextAppearance.Conversations.Title"
+                            android:textColor="@color/txt_color1"
+                            android:fontFamily="@font/roboto_medium"
+                            android:textFontWeight="500"
+                            android:textSize="20sp"
                             android:layout_marginBottom="8sp"/>
 
                         <TextView
                             android:id="@+id/key_error_message"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:textAppearance="@style/TextAppearance.Conversations.Subhead"/>
+                            android:textColor="@color/txt_color2"
+                            android:textFontWeight="500"
+                            android:textSize="18sp"/>
                         <TextView
                             android:id="@+id/key_error_general"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:textAppearance="@style/TextAppearance.Conversations.Body1"/>
+                            android:textColor="@color/txt_color2"
+                            android:textFontWeight="500"
+                            android:textSize="16sp"/>
                         <TextView
                             android:layout_marginTop="8sp"
                             android:id="@+id/key_error_hint_mutual"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:textAppearance="@style/TextAppearance.Conversations.Body1.Secondary"
+                            android:textColor="@color/txt_color2"
+                            android:textFontWeight="500"
+                            android:textSize="16sp"
                             android:text="@string/error_trustkey_hint_mutual"/>
                     </LinearLayout>
                     <LinearLayout
@@ -82,7 +91,7 @@
                             android:paddingLeft="16dp"
                             android:paddingRight="16dp"
                             android:text="@string/disable_encryption"
-                            android:textColor="?colorAccent"/>
+                            android:textColor="@color/error"/>
                     </LinearLayout>
                     </LinearLayout>
 
@@ -109,7 +118,9 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_margin="@dimen/list_padding"
-                            android:textAppearance="@style/TextAppearance.Conversations.Title"/>
+                            android:textColor="@color/txt_color2"
+                            android:textFontWeight="500"
+                            android:textSize="20sp"/>
 
                         <LinearLayout
                             android:id="@+id/own_keys_details"
@@ -134,37 +145,41 @@
 
         <LinearLayout
             android:id="@+id/button_bar"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_alignParentBottom="true"
-            android:layout_alignParentEnd="true"
-            android:layout_alignParentLeft="true"
-            android:layout_alignParentRight="true"
-            android:layout_alignParentStart="true">
+            android:layout_gravity="center_horizontal"
+            android:paddingHorizontal="16dp"
+            android:paddingVertical="12dp">
 
             <Button
                 android:id="@+id/cancel_button"
                 style="@style/Widget.Conversations.Button.Borderless"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
+                android:layout_width="@dimen/dialog_button_width"
+                android:layout_height="@dimen/dialog_button_height"
                 android:layout_weight="1"
-                android:text="@string/cancel"/>
-
-            <View
-                android:layout_width="1dp"
-                android:layout_height="fill_parent"
-                android:layout_marginBottom="7dp"
-                android:layout_marginTop="7dp"
-                android:background="?attr/divider"/>
-
+                android:text="@string/cancel"
+                android:background="@drawable/rounded_corner_button_gray"
+                android:textColor="@color/txt_color1"
+                android:layout_marginEnd="11dp"
+                android:fontFamily="@font/roboto_medium"
+                android:textAllCaps="false"
+                android:textFontWeight="500"
+                android:textSize="16sp"/>
             <Button
                 android:id="@+id/save_button"
                 style="@style/Widget.Conversations.Button.Borderless"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
+                android:layout_width="@dimen/dialog_button_width"
+                android:layout_height="@dimen/dialog_button_height"
                 android:layout_weight="1"
                 android:enabled="true"
-                android:text="@string/done"/>
+                android:text="@string/done"
+                android:background="@drawable/rounded_corner_button_blue"
+                android:textColor="@color/white"
+                android:fontFamily="@font/roboto_medium"
+                android:textAllCaps="false"
+                android:textFontWeight="500"
+                android:textSize="16sp"/>
         </LinearLayout>
     </RelativeLayout>
 </layout>

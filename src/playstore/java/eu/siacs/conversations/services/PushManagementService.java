@@ -1,4 +1,4 @@
-package eu.siacs.chatx.services;
+package eu.siacs.auva.services;
 
 import android.util.Log;
 
@@ -6,16 +6,16 @@ import com.google.android.gms.common.ConnectionResult;
 import com.google.android.gms.common.GoogleApiAvailabilityLight;
 import com.google.firebase.messaging.FirebaseMessaging;
 
-import eu.siacs.chatx.Config;
-import eu.siacs.chatx.R;
-import eu.siacs.chatx.entities.Account;
-import eu.siacs.chatx.utils.PhoneHelper;
-import eu.siacs.chatx.xml.Element;
-import eu.siacs.chatx.xml.Namespace;
-import eu.siacs.chatx.xmpp.Jid;
-import eu.siacs.chatx.xmpp.XmppConnection;
-import eu.siacs.chatx.xmpp.forms.Data;
-import eu.siacs.chatx.xmpp.stanzas.IqPacket;
+import eu.siacs.auva.Config;
+import eu.siacs.auva.R;
+import eu.siacs.auva.entities.Account;
+import eu.siacs.auva.utils.PhoneHelper;
+import eu.siacs.auva.xml.Element;
+import eu.siacs.auva.xml.Namespace;
+import eu.siacs.auva.xmpp.Jid;
+import eu.siacs.auva.xmpp.XmppConnection;
+import eu.siacs.auva.xmpp.forms.Data;
+import eu.siacs.auva.xmpp.stanzas.IqPacket;
 
 public class PushManagementService {
 

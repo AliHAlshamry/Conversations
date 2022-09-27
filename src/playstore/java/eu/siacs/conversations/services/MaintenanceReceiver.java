@@ -1,4 +1,4 @@
-package eu.siacs.chatx.services;
+package eu.siacs.auva.services;
 
 import android.content.BroadcastReceiver;
 import android.content.Context;
@@ -7,8 +7,8 @@ import android.util.Log;
 
 import com.google.firebase.installations.FirebaseInstallations;
 
-import eu.siacs.chatx.Config;
-import eu.siacs.chatx.utils.Compatibility;
+import eu.siacs.auva.Config;
+import eu.siacs.auva.utils.Compatibility;
 
 public class MaintenanceReceiver extends BroadcastReceiver {
 	@Override

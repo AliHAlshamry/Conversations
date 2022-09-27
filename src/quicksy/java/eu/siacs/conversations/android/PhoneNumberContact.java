@@ -1,4 +1,4 @@
-package eu.siacs.chatx.android;
+package eu.siacs.auva.android;
 
 import android.Manifest;
 import android.content.Context;
@@ -16,8 +16,8 @@ import java.util.Collections;
 import java.util.HashMap;
 import java.util.Map;
 
-import eu.siacs.chatx.Config;
-import eu.siacs.chatx.utils.PhoneNumberUtilWrapper;
+import eu.siacs.auva.Config;
+import eu.siacs.auva.utils.PhoneNumberUtilWrapper;
 import io.michaelrocks.libphonenumber.android.NumberParseException;
 
 public class PhoneNumberContact extends AbstractPhoneContact {

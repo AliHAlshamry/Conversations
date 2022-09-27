@@ -1,4 +1,4 @@
-package eu.siacs.chatx.services;
+package eu.siacs.auva.services;
 
 import android.content.Intent;
 import android.util.Log;
@@ -8,8 +8,8 @@ import com.google.firebase.messaging.RemoteMessage;
 
 import java.util.Map;
 
-import eu.siacs.chatx.Config;
-import eu.siacs.chatx.utils.Compatibility;
+import eu.siacs.auva.Config;
+import eu.siacs.auva.utils.Compatibility;
 
 public class PushMessageReceiver extends FirebaseMessagingService {
 

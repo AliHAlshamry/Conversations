@@ -87,7 +87,7 @@
             app:hintEnabled="false"
             android:background="@drawable/rounded_corner_input_layout_with_border">
 
-            <eu.siacs.chatx.ui.widget.ImmediateAutoCompleteTextView
+            <eu.siacs.auva.ui.widget.ImmediateAutoCompleteTextView
                 android:id="@+id/status_message"
                 style="@style/Widget.Conversations.EditText"
                 android:layout_width="match_parent"

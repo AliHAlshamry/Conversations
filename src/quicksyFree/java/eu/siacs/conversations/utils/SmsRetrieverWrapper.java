@@ -1,8 +1,8 @@
-package eu.siacs.chatx.utils;
+package eu.siacs.auva.utils;
 
 import android.os.Bundle;
 
-import eu.siacs.chatx.services.XmppConnectionService;
+import eu.siacs.auva.services.XmppConnectionService;
 
 public class SmsRetrieverWrapper {
 

@@ -1,4 +1,4 @@
-package eu.siacs.chatx.services;
+package eu.siacs.auva.services;
 
 import android.content.BroadcastReceiver;
 import android.content.Context;
@@ -9,8 +9,8 @@ import android.util.Log;
 
 import com.google.common.base.Strings;
 
-import eu.siacs.chatx.Config;
-import eu.siacs.chatx.utils.Compatibility;
+import eu.siacs.auva.Config;
+import eu.siacs.auva.utils.Compatibility;
 
 public class SMSReceiver extends BroadcastReceiver {
 

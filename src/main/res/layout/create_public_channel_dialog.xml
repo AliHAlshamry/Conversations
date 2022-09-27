@@ -46,7 +46,7 @@
             app:hintEnabled="false"
             android:background="@drawable/rounded_corner_input_layout_with_border">
 
-            <eu.siacs.chatx.ui.widget.EmojiWrapperEditText
+            <eu.siacs.auva.ui.widget.EmojiWrapperEditText
                 android:id="@+id/group_chat_name"
                 style="@style/Widget.Conversations.EditText"
                 android:layout_width="match_parent"

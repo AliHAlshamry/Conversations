@@ -1,4 +1,4 @@
-package eu.siacs.chatx.ui.adapter;
+package eu.siacs.auva.ui.adapter;
 
 import androidx.databinding.DataBindingUtil;
 import androidx.annotation.NonNull;
@@ -8,9 +8,9 @@ import android.view.ViewGroup;
 
 import java.util.List;
 
-import eu.siacs.chatx.R;
-import eu.siacs.chatx.databinding.CountryItemBinding;
-import eu.siacs.chatx.utils.PhoneNumberUtilWrapper;
+import eu.siacs.auva.R;
+import eu.siacs.auva.databinding.CountryItemBinding;
+import eu.siacs.auva.utils.PhoneNumberUtilWrapper;
 
 public class CountryAdapter extends RecyclerView.Adapter<CountryAdapter.CountryViewHolder> {
 

@@ -1,4 +1,4 @@
-package eu.siacs.chatx.utils;
+package eu.siacs.auva.utils;
 
 import android.app.Activity;
 import android.content.SharedPreferences;
@@ -12,8 +12,8 @@ import com.android.installreferrer.api.InstallReferrerStateListener;
 import com.android.installreferrer.api.ReferrerDetails;
 import com.google.common.base.Strings;
 
-import eu.siacs.chatx.Config;
-import eu.siacs.chatx.ui.WelcomeActivity;
+import eu.siacs.auva.Config;
+import eu.siacs.auva.ui.WelcomeActivity;
 
 public class InstallReferrerUtils implements InstallReferrerStateListener {
 

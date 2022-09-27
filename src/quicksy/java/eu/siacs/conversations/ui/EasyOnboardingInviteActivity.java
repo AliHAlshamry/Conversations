@@ -1,6 +1,6 @@
-package eu.siacs.chatx.ui;
+package eu.siacs.auva.ui;
 
-import eu.siacs.chatx.entities.Account;
+import eu.siacs.auva.entities.Account;
 
 public class EasyOnboardingInviteActivity {
     public static void launch(Account account, XmppActivity activity) {

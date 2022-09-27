@@ -1,6 +1,6 @@
 -dontobfuscate
 
--keep class eu.siacs.chatx.**
+-keep class eu.siacs.auva.**
 
 -keep class org.whispersystems.**
 
@@ -35,7 +35,7 @@
 -dontwarn org.openjsse.javax.net.ssl.SSLSocket
 -dontwarn org.openjsse.net.ssl.OpenJSSE
 
--keepclassmembers class eu.siacs.chatx.http.services.** {
+-keepclassmembers class eu.siacs.auva.http.services.** {
   !transient <fields>;
 }
 

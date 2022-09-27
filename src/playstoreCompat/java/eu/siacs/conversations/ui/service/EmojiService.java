@@ -1,4 +1,4 @@
-package eu.siacs.chatx.ui.service;
+package eu.siacs.auva.ui.service;
 
 import android.content.Context;
 import android.os.Build;
@@ -8,8 +8,8 @@ import androidx.core.provider.FontRequest;
 import androidx.emoji.text.EmojiCompat;
 import androidx.emoji.text.FontRequestEmojiCompatConfig;
 
-import eu.siacs.chatx.Config;
-import eu.siacs.chatx.R;
+import eu.siacs.auva.Config;
+import eu.siacs.auva.R;
 
 public class EmojiService {
 

@@ -1,4 +1,4 @@
-package eu.siacs.chatx.ui.service;
+package eu.siacs.auva.ui.service;
 
 import android.content.Context;
 

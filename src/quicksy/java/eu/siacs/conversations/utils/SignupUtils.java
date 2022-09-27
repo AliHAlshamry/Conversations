@@ -1,4 +1,4 @@
-package eu.siacs.chatx.utils;
+package eu.siacs.auva.utils;
 
 import android.app.Activity;
 import android.content.Intent;
@@ -6,15 +6,15 @@ import android.content.SharedPreferences;
 import android.preference.PreferenceManager;
 import android.util.Log;
 
-import eu.siacs.chatx.Config;
-import eu.siacs.chatx.entities.Account;
-import eu.siacs.chatx.ui.ConversationsActivity;
-import eu.siacs.chatx.ui.EditAccountActivity;
-import eu.siacs.chatx.ui.EnterPhoneNumberActivity;
-import eu.siacs.chatx.ui.StartConversationActivity;
-import eu.siacs.chatx.ui.TosActivity;
-import eu.siacs.chatx.ui.VerifyActivity;
-import eu.siacs.chatx.xmpp.Jid;
+import eu.siacs.auva.Config;
+import eu.siacs.auva.entities.Account;
+import eu.siacs.auva.ui.ConversationsActivity;
+import eu.siacs.auva.ui.EditAccountActivity;
+import eu.siacs.auva.ui.EnterPhoneNumberActivity;
+import eu.siacs.auva.ui.StartConversationActivity;
+import eu.siacs.auva.ui.TosActivity;
+import eu.siacs.auva.ui.VerifyActivity;
+import eu.siacs.auva.xmpp.Jid;
 
 public class SignupUtils {
 

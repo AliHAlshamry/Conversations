@@ -86,13 +86,13 @@
                 android:key="enable_quiet_hours"
                 android:summary="@string/pref_quiet_hours_summary"
                 android:title="@string/title_pref_enable_quiet_hours" />
-            <eu.siacs.chatx.ui.TimePreference
+            <eu.siacs.auva.ui.TimePreference
                 android:dependency="enable_quiet_hours"
                 android:key="quiet_hours_start"
                 android:negativeButtonText="@string/cancel"
                 android:positiveButtonText="@string/set"
                 android:title="@string/title_pref_quiet_hours_start_time" />
-            <eu.siacs.chatx.ui.TimePreference
+            <eu.siacs.auva.ui.TimePreference
                 android:dependency="enable_quiet_hours"
                 android:key="quiet_hours_end"
                 android:negativeButtonText="@string/cancel"
@@ -100,7 +100,7 @@
                 android:title="@string/title_pref_quiet_hours_end_time" />
             <intent
                 android:action="android.intent.action.VIEW"
-                android:targetClass="eu.siacs.chatx.ui.SettingsActivity"
+                android:targetClass="eu.siacs.auva.ui.SettingsActivity"
                 android:targetPackage="@string/applicationId">
                 <extra
                     android:name="page"
@@ -358,6 +358,6 @@
         </PreferenceScreen>
     </PreferenceCategory>-->
     <PreferenceCategory android:title="@string/category_about">
-        <eu.siacs.chatx.ui.AboutPreference />
+        <eu.siacs.auva.ui.AboutPreference />
     </PreferenceCategory>
 </PreferenceScreen>

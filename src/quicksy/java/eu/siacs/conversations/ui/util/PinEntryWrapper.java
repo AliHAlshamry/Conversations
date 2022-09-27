@@ -1,4 +1,4 @@
-package eu.siacs.chatx.ui.util;
+package eu.siacs.auva.ui.util;
 
 import android.text.Editable;
 import android.text.TextWatcher;

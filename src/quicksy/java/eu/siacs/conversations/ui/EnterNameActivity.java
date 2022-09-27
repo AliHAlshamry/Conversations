@@ -1,4 +1,4 @@
-package eu.siacs.chatx.ui;
+package eu.siacs.auva.ui;
 
 import android.content.Intent;
 import androidx.databinding.DataBindingUtil;
@@ -8,11 +8,11 @@ import android.view.View;
 
 import java.util.concurrent.atomic.AtomicBoolean;
 
-import eu.siacs.chatx.R;
-import eu.siacs.chatx.databinding.ActivityEnterNameBinding;
-import eu.siacs.chatx.entities.Account;
-import eu.siacs.chatx.services.XmppConnectionService;
-import eu.siacs.chatx.utils.AccountUtils;
+import eu.siacs.auva.R;
+import eu.siacs.auva.databinding.ActivityEnterNameBinding;
+import eu.siacs.auva.entities.Account;
+import eu.siacs.auva.services.XmppConnectionService;
+import eu.siacs.auva.utils.AccountUtils;
 
 public class EnterNameActivity extends XmppActivity implements XmppConnectionService.OnAccountUpdate {
 

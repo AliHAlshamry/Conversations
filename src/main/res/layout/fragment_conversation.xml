@@ -20,11 +20,11 @@
             android:layout_alignParentTop="true"
             android:divider="@null"
             android:dividerHeight="0dp"
+            android:layoutDirection="ltr"
             android:listSelector="@android:color/transparent"
+            android:paddingTop="1dp"
             android:stackFromBottom="true"
             android:transcriptMode="normal"
-            android:layoutDirection="ltr"
-            android:paddingTop="1dp"
             tools:listitem="@layout/message_sent" />
 
         <com.google.android.material.floatingactionbutton.FloatingActionButton
@@ -40,7 +40,7 @@
             app:fabSize="mini"
             app:useCompatPadding="true" />
 
-        <eu.siacs.chatx.ui.widget.UnreadCountCustomView
+        <eu.siacs.auva.ui.widget.UnreadCountCustomView
             android:id="@+id/unread_count_custom_view"
             android:layout_width="?attr/IconSize"
             android:layout_height="?attr/IconSize"
@@ -187,7 +187,7 @@
                         app:slide_to_cancel_text="@string/pull_to_cancel"
                         app:slide_to_cancel_bounds="10dp"
                         app:slide_to_cancel_margin_right="20dp"/>
-                    <eu.siacs.chatx.ui.widget.EditMessage
+                    <eu.siacs.auva.ui.widget.EditMessage
                         android:id="@+id/textinput"
                         style="@style/Widget.Conversations.EditText"
                         android:layout_width="match_parent"
@@ -208,7 +208,7 @@
                         android:textColor="@color/txt_color2">
 
                         <requestFocus />
-                    </eu.siacs.chatx.ui.widget.EditMessage>
+                    </eu.siacs.auva.ui.widget.EditMessage>
                 </LinearLayout>
 
                 <ImageButton

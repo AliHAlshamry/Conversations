@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
-    package="eu.siacs.auva">
+    xmlns:tools="http://schemas.android.com/tools">
 
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
@@ -72,7 +71,8 @@
 
         <service android:name="eu.siacs.auva.services.XmppConnectionService" />
 
-        <receiver android:name="eu.siacs.auva.services.EventReceiver">
+        <receiver android:name="eu.siacs.auva.services.EventReceiver"
+            android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.BOOT_COMPLETED" />
                 <action android:name="android.net.conn.CONNECTIVITY_CHANGE" />
@@ -96,7 +96,8 @@
             android:label="@string/title_activity_show_location" />
         <activity
             android:name="eu.siacs.auva.ui.ConversationActivity"
-            android:theme="@style/SplashTheme">
+            android:theme="@style/SplashTheme"
+            android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />
@@ -116,7 +117,8 @@
             android:windowSoftInputMode="stateAlwaysHidden" />
         <activity
             android:name="eu.siacs.auva.ui.UriHandlerActivity"
-            android:label="@string/app_name">
+            android:label="@string/app_name"
+            android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.VIEW" />
 
@@ -156,14 +158,16 @@
         <activity
             android:name="eu.siacs.auva.ui.StartConversationActivity"
             android:label="@string/title_activity_start_conversation"
-            android:launchMode="singleTop">
+            android:launchMode="singleTop"
+            android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.VIEW" />
             </intent-filter>
         </activity>
         <activity
             android:name="eu.siacs.auva.ui.SettingsActivity"
-            android:label="@string/title_activity_settings">
+            android:label="@string/title_activity_settings"
+            android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.NOTIFICATION_PREFERENCES" />
@@ -181,7 +185,8 @@
         <activity
             android:name="eu.siacs.auva.ui.ChooseAccountForProfilePictureActivity"
             android:enabled="false"
-            android:label="@string/choose_account">
+            android:label="@string/choose_account"
+            android:exported="true">
             <intent-filter android:label="@string/set_profile_picture">
                 <action android:name="android.intent.action.ATTACH_DATA" />
                 <category android:name="android.intent.category.DEFAULT" />
@@ -215,7 +220,8 @@
         <activity
             android:name="eu.siacs.auva.ui.ShareWithActivity"
             android:label="@string/app_name"
-            android:launchMode="singleTop">
+            android:launchMode="singleTop"
+            android:exported="true">
 
             <intent-filter>
                 <action android:name="android.intent.action.SEND" />
@@ -246,7 +252,8 @@
             android:windowSoftInputMode="stateAlwaysHidden" />
         <activity
             android:name="eu.siacs.auva.ui.AboutActivity"
-            android:parentActivityName="eu.siacs.auva.ui.SettingsActivity">
+            android:parentActivityName="eu.siacs.auva.ui.SettingsActivity"
+            android:exported="true">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="eu.siacs.auva.ui.SettingsActivity" />
@@ -268,7 +275,8 @@
         <service android:name="eu.siacs.auva.services.ImportBackupService" />
         <service
             android:name="eu.siacs.auva.services.ContactChooserTargetService"
-            android:permission="android.permission.BIND_CHOOSER_TARGET_SERVICE">
+            android:permission="android.permission.BIND_CHOOSER_TARGET_SERVICE"
+            android:exported="true">
             <intent-filter>
                 <action android:name="android.service.chooser.ChooserTargetService" />
             </intent-filter>
@@ -291,7 +299,8 @@
 
         <activity
             android:name="eu.siacs.auva.ui.ShortcutActivity"
-            android:label="@string/contact">
+            android:label="@string/contact"
+            android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.CREATE_SHORTCUT" />
             </intent-filter>

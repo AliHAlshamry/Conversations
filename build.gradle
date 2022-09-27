@@ -6,7 +6,7 @@ buildscript {
         mavenCentral()
     }
     dependencies {
-        classpath 'com.android.tools.build:gradle:7.1.2'
+        classpath 'com.android.tools.build:gradle:7.3.0'
     }
 }
 
@@ -89,11 +89,11 @@ ext {
 }
 
 android {
-    compileSdkVersion 29
+    compileSdkVersion 31
 
     defaultConfig {
         minSdkVersion 21
-        targetSdkVersion 29
+        targetSdkVersion 31
         versionCode 42025
         versionName "1.1-beta"
         archivesBaseName += "-$versionName"
@@ -268,6 +268,7 @@ android {
     lint {
         disable 'MissingTranslation', 'InvalidPackage', 'AppCompatResource'
     }
+    namespace 'eu.siacs.auva'
 
 
     android.applicationVariants.all { variant ->
